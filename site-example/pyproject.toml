@@ -1,0 +1,26 @@
+[project]
+name = "tools"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = "==3.12.12"
+dependencies = [
+    "django>=6.0",
+    "psycopg[binary,pool]",
+    "uvicorn==0.34.3",#pin to version which prodigy 1.18.4 wants
+
+    "django_dataset_new",
+]
+
+[dependency-groups]
+dev = [
+]
+
+[tool.uv]
+package = true
+
+[project.scripts]
+tools-manage = "mysite.manage:main"
+
+[tool.setuptools.packages.find]
+exclude = ['static', 'templates']
