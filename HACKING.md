@@ -17,6 +17,7 @@ brew install python@3.12
 export LDFLAGS="-L/opt/homebrew/opt/openssl/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl/include"
 
+cd site-example 
 uv sync --no-managed-python \
 --all-packages 
 ```

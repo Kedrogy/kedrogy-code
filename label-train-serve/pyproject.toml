@@ -10,6 +10,7 @@ dependencies = [
     "django-htmx>=1.27.0",
     "django-tasks>=0.10.0",
     "psycopg[binary,pool]",
+    "jinja2",
 ]
 description = "A Django apps."
 readme = "README.rst"

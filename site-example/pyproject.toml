@@ -10,10 +10,9 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "django>=6.0.1",
+    "label-train-serve",
     "psycopg[binary,pool]",
     "uvicorn==0.34.3",#pin to version which prodigy 1.18.4 wants
-
-    "label-train-serve",
 ]
 
 [dependency-groups]
@@ -22,6 +21,9 @@ dev = [
 
 [tool.uv]
 package = true
+
+[tool.uv.sources]
+label-train-serve = { path = "../label-train-serve", editable = true }
 
 [project.scripts]
 tools-manage = "site_example.manage:main"

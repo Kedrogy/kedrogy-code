@@ -47,7 +47,12 @@ Then can use both manage.py and <https://docs.djangoproject.com/en/6.0/ref/djang
 
 ```sh
 # to run against ???
-export $(cat ../.env | sed '/^#/d')
+export $(cat .env | sed '/^#/d')
+# and in ..
+docker compose up 
+# do delete
+# docker compose down -v --remove-orphans
+# or with '--rmi all' to delete images too 
 
 python -m django migrate --settings site_example.settings
 # run django-tasks db_worker
@@ -93,8 +98,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 to delete superuser drop record in `django_schema.auth_user`
 
 ```sh
-export $(cat ../.env-dev)
-DJANGO_SUPERUSER_EMAIL=team@ysz.vc DJANGO_SUPERUSER_USERNAME=superuser python -m django createsuperuser --no-input --settings site_example.settings
+python -m django createsuperuser --no-input --settings site_example.settings
 ```
 
 ## make migrations
