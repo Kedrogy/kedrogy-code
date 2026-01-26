@@ -3,10 +3,10 @@ requires = ["setuptools>=77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "django_dataset_new"
+name = "label-train-serve"
 version = "0.1"
 dependencies = [
-    "django>=6.0",
+    "django>=6.0.1",
     "django-htmx>=1.27.0",
     "django-tasks>=0.10.0",
     "psycopg[binary,pool]",
@@ -14,7 +14,7 @@ dependencies = [
 description = "A Django apps."
 readme = "README.rst"
 license = "BSD-3-Clause"
-requires-python = "==3.12.12"
+requires-python = ">=3.12"
 authors = [
     {name = "Team Ysz", email = "team@ysz.vc"},
 ]
@@ -41,7 +41,6 @@ Homepage = "https://www.example.com/"
 
 [dependency-groups]
 dev = [
-    "jinja2-to-psql",
     "prodigy>=1.18.4",
     "psycopg2>=2.9.11",
     "django-extensions>=4.1",
@@ -65,7 +64,6 @@ explicit = true
 # and pin 
 [tool.uv.sources]
 prodigy = { index = "prodigy" }
-jinja2-to-psql = { git = "ssh://git@github.com/ysz-vc/images", subdirectory = "jinja2-to-psql" }
 django-tasks = { git = "ssh://git@github.com/RealOrangeOne/django-tasks.git", rev = "4377f2c" }
 # add like this
 # uv add --package django-dataset-new git+ssh://github.com/RealOrangeOne/django-tasks.git --rev 4377f2c
