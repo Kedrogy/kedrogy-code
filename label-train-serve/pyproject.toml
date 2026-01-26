@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django_dataset_new"
+version = "0.1"
+dependencies = [
+    "django>=6.0",
+    "django-htmx>=1.27.0",
+    "django-tasks>=0.10.0",
+    "psycopg[binary,pool]",
+]
+description = "A Django apps."
+readme = "README.rst"
+license = "BSD-3-Clause"
+requires-python = "==3.12.12"
+authors = [
+    {name = "Team Ysz", email = "team@ysz.vc"},
+]
+classifiers = [
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 6.0",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+]
+
+[project.urls]
+Homepage = "https://www.example.com/"
+
+[dependency-groups]
+dev = [
+    "jinja2-to-psql",
+    "prodigy>=1.18.4",
+    "psycopg2>=2.9.11",
+    "django-extensions>=4.1",
+
+    "ipykernel>=7.1.0",
+    "ipywidgets>=8.1.8",
+
+    # XXX CommandError: Could not load shell runner: 'IPython Notebook' https://github.com/django-extensions/django-extensions/issues/1835#issuecomment-3035536658
+    "notebook==6.5.4",
+    "traitlets==5.9.0",
+]
+
+[[tool.uv.index]]
+name = "prodigy"
+url = "https://download.prodi.gy"
+ignore-error-codes = [422]
+# https://docs.astral.sh/uv/concepts/indexes/#pinning-a-package-to-an-index
+# prevent packages from being installed from here unless explicitly pinned to it
+explicit = true
+
+# and pin 
+[tool.uv.sources]
+prodigy = { index = "prodigy" }
+jinja2-to-psql = { git = "ssh://git@github.com/ysz-vc/images", subdirectory = "jinja2-to-psql" }
+django-tasks = { git = "ssh://git@github.com/RealOrangeOne/django-tasks.git", rev = "4377f2c" }
+# add like this
+# uv add --package django-dataset-new git+ssh://github.com/RealOrangeOne/django-tasks.git --rev 4377f2c
+
+[tool.setuptools.packages.find]
+exclude = ['notebooks*', 'django_dataset_new_site*']

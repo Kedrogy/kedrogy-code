@@ -1,0 +1,24 @@
+{% block content %} 
+
+{% if dataset_list %}
+    <ul>
+    {% for dataset in dataset_list %}
+        <li><a href="{% url 'django_dataset_new:detail' dataset.id %}">{{ dataset.dataset_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No datasets are available.</p>
+{% endif %}
+
+<form action="{% url 'django_dataset_new:new' %}" method="post">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>Create new dataset</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <input type="text" name="dataset_name" id="dataset_name" >
+    <label for="dataset_name">Name</label><br>
+</fieldset>
+<input type="submit" value="new">
+</form>
+
+{% endblock %}

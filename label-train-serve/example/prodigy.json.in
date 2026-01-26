@@ -1,0 +1,12 @@
+{
+    "db": "postgresql",
+    "db_settings": {
+        "postgresql": {
+            "user": "$PGUSER",
+            "password": "$PGPASSWORD",
+            "dbname": "$PGDATABASE",
+            "host": "$PGHOST",
+            "port": $PGPORT
+        }
+    }
+}

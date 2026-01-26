@@ -1,0 +1,25 @@
+select 
+-- or jsonb_pretty instead of json_serialize
+json_serialize(
+    json_build_object('text', sms_text, -- or to_json(sms_text::text) etc 
+    'meta', json_build_object('vendor_message_id', vendor_message_id
+                            , 'fasttext_label', edrs_feature.fasttext_label
+                            , 'client_sender_id', client_sender_id
+
+                            -- google translate 
+                            , 'text_en', edrs_feature.google_translate
+                            , 'detected_language_code', edrs_feature.google_translate_language
+    )) 
+)
+from edrs
+-- fasttext_label.py 
+left join edrs_feature using(vendor_message_id)
+where edrs_feature.fasttext_label in 
+(
+'__label__{{ fasttext_labels|replace(",", "\',\'__label__") }}'
+)
+and 
+vendor_message_id not in (select * from labeled_of_dataset_edrs('{{ dataset_name }}') as vendor_message_id)
+and sms_text is not null 
+and edrs_feature.google_translate != ''
+{{limit}} -- eg limit 5

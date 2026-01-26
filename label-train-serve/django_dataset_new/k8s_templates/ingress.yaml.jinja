@@ -1,0 +1,31 @@
+# multiple Ingress w same host wont work
+# https://github.com/nginx/kubernetes-ingress/issues/76#issuecomment-318056966
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prodigy
+  namespace: annotate
+  labels:
+    app.kubernetes.io/part-of: prodigy
+  annotations: 
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - prodigy.stertell-ai.com
+      secretName: tls-secret-prodigy
+  rules:
+    - host: prodigy.stertell-ai.com
+      http:
+        paths:
+          {% for dataset in datasets %}
+          - path: /{{ dataset.dataset_name }}(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: prodigy-{{ dataset.dataset_name }}
+                port:
+                  number: 8080
+          {% endfor %}

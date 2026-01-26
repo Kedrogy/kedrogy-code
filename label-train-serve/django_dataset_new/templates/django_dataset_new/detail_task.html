@@ -1,0 +1,26 @@
+{% comment %}
+<h1>Creating dataset {{ dataset_name }} using result with id {{ result_id }}</h1>
+{% endcomment %}
+
+{% load django_htmx %}
+<!doctype html>
+<html>
+  <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
+    Creating dataset {{ dataset_name }} using result with id {{ result_id }}
+
+    {% partialdef task_result inline %}
+    <section
+      hx-trigger="every 1s"
+      hx-swap=outerHTML
+      hx-get="{% url 'django_dataset_new:new-dataset-result' result_id %}"
+    >
+      <label for="logs">result: {{ result }}</label>
+      <textarea id="logs" name="logs" rows="5" cols="33">
+        {{ logs }}
+      </textarea>
+    </section>
+    {% endpartialdef %}
+
+    {% htmx_script %}
+  </body>
+</html>
