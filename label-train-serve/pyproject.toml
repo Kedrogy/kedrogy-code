@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=77.0.3"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -68,5 +68,9 @@ django-tasks = { git = "ssh://git@github.com/RealOrangeOne/django-tasks.git", re
 # add like this
 # uv add --package django-dataset-new git+ssh://github.com/RealOrangeOne/django-tasks.git --rev 4377f2c
 
-[tool.setuptools.packages.find]
-exclude = ['notebooks*', 'django_dataset_new_site*']
+# [tool.setuptools.packages.find]
+# exclude = ['notebooks*', 'label_train_serve_site*']
+
+[tool.uv]
+package = true
+

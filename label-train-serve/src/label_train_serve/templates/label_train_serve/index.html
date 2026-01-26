@@ -3,14 +3,14 @@
 {% if dataset_list %}
     <ul>
     {% for dataset in dataset_list %}
-        <li><a href="{% url 'django_dataset_new:detail' dataset.id %}">{{ dataset.dataset_name }}</a></li>
+        <li><a href="{% url 'label_train_serve:detail' dataset.id %}">{{ dataset.dataset_name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No datasets are available.</p>
 {% endif %}
 
-<form action="{% url 'django_dataset_new:new' %}" method="post">
+<form action="{% url 'label_train_serve:new' %}" method="post">
 {% csrf_token %}
 <fieldset>
     <legend><h1>Create new dataset</h1></legend>

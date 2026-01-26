@@ -1,0 +1,12 @@
+services:
+  postgres-rw:
+    image: postgres:18
+    volumes:
+      # if <18 mount /var/lib/postgresql/data instead , https://hub.docker.com/_/postgres
+      - db-data:/var/lib/postgresql
+    env_file: .env
+    ports:
+      - "30001:30001"
+
+volumes:
+  db-data:

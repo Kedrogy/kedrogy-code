@@ -1,3 +1,3 @@
-recursive-include django_dataset_new/static *
-recursive-include django_dataset_new/templates *
-recursive-include django_dataset_new/k8s_templates *
+recursive-include label_train_serve/static *
+recursive-include label_train_serve/templates *
+recursive-include label_train_serve/k8s_templates *

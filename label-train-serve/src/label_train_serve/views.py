@@ -14,12 +14,12 @@ def index(request):
         DjangoDataset.objects.all()
     )  # has no calss attribute objects: https://pyrefly.org/en/docs/django/
     context = {"dataset_list": dataset_list}
-    return render(request, "django_dataset_new/index.html", context)
+    return render(request, "label_train_serve/index.html", context)
 
 
 def detail(request, dataset_id):
     dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
-    return render(request, "django_dataset_new/detail.html", {"dataset": dataset})
+    return render(request, "label_train_serve/detail.html", {"dataset": dataset})
 
 
 def new_dataset(request):  # , dataset_name):
@@ -28,13 +28,13 @@ def new_dataset(request):  # , dataset_name):
     myresult = new_dataset_task.enqueue(dataset_name)
     # return HttpResponse("You're creating a dataset %s , result id %s" % (dataset_name, myresult.id))
     context = {"dataset_name": dataset_name, "result_id": myresult.id}
-    # return render(request, "django_dataset_new/new_dataset.html", context)#You're creating a dataset
-    return render(request, "django_dataset_new/detail_task.html", context)
+    # return render(request, "label_train_serve/new_dataset.html", context)#You're creating a dataset
+    return render(request, "label_train_serve/detail_task.html", context)
 
 
 def new_dataset_poll(request, dataset_name, result_id):
     context = {"dataset_name": dataset_name, "result_id": result_id}
-    return render(request, "django_dataset_new/detail_task.html", context)
+    return render(request, "label_train_serve/detail_task.html", context)
 
 
 def new_dataset_result(request, result_id):
@@ -44,9 +44,9 @@ def new_dataset_result(request, result_id):
     else:
         result = taskResult.return_value
     logs = taskResult.metadata.get("logs", "")
-    # TODO if is_finished return non-HTMX to stop polling 
+    # TODO if is_finished return non-HTMX to stop polling
     return render(
         request,
-        "django_dataset_new/detail_task.html#task_result",
+        "label_train_serve/detail_task.html#task_result",
         {"result_id": result_id, "result": result, "logs": logs},
     )

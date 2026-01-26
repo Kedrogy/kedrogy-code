@@ -24,7 +24,7 @@ dev = [
 package = true
 
 [project.scripts]
-tools-manage = "mysite.manage:main"
+tools-manage = "site_example.manage:main"
 
-[tool.setuptools.packages.find]
-exclude = ['static', 'templates']
+# [tool.setuptools.packages.find]
+# exclude = ['static', 'templates']

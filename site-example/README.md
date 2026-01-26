@@ -29,7 +29,7 @@ docker run --platform linux/amd64 --rm -it \
 Ensure Postgres.app has
 
 ```sh
-create database stertell_anomalies;
+create database site_example;
 #and stertell_anomalies has
 create schema django_schema;
 ```
@@ -43,35 +43,35 @@ XXX
 ssh -NL5555:localhost:5555 stertell-ai
 ```
 
-Then can use both manage.py and https://docs.djangoproject.com/en/6.0/ref/django-admin/
+Then can use both manage.py and <https://docs.djangoproject.com/en/6.0/ref/django-admin/>
 
 ```sh
-# to run against Postgres.app
-export $(cat ../.env-dev)
+# to run against ???
+export $(cat ../.env | sed '/^#/d')
 
-python -m django migrate --settings mysite.settings
+python -m django migrate --settings site_example.settings
 # run django-tasks db_worker
-python -m django db_worker --settings mysite.settings
+python -m django db_worker --settings site_example.settings
 
-python -m django runserver --settings mysite.settings
+python -m django runserver --settings site_example.settings
 ```
 
 or
 
 ```sh
-python -m uvicorn mysite.asgi:application
+python -m uvicorn site_example.asgi:application
 ```
 
 NB:
 
 ```sh
-python -m django collectstatic --noinput --settings mysite.settings
+python -m django collectstatic --noinput --settings site_example.settings
 ```
 
 ## using shell
 
 ```sh
-> python mysite/manage.py shell
+> python site_example/manage.py shell
 13 objects imported automatically (use -v 2 for details).
 
 Python 3.12.12 (main, Oct 28 2025, 11:52:25) [Clang 20.1.4 ] on darwin
@@ -94,14 +94,14 @@ to delete superuser drop record in `django_schema.auth_user`
 
 ```sh
 export $(cat ../.env-dev)
-DJANGO_SUPERUSER_EMAIL=team@ysz.vc DJANGO_SUPERUSER_USERNAME=superuser python -m django createsuperuser --no-input --settings mysite.settings
+DJANGO_SUPERUSER_EMAIL=team@ysz.vc DJANGO_SUPERUSER_USERNAME=superuser python -m django createsuperuser --no-input --settings site_example.settings
 ```
 
 ## make migrations
 
 ```sh
-> python -m django makemigrations --settings mysite.settings django_dataset_new
-Migrations for 'django_dataset_new':
-  /Users/me/stertell-ai/all-in-one/code/django-dataset-new/django_dataset_new/migrations/0001_initial.py
+> python -m django makemigrations --settings site_example.settings label_train_serve
+Migrations for 'label_train_serve':
+  /Users/me/stertell-ai/all-in-one/code/django-dataset-new/label_train_serve/migrations/0001_initial.py
     + Create model DjangoDataset
 ```
