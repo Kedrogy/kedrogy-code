@@ -22,6 +22,24 @@ uv sync --no-managed-python \
 --all-packages 
 ```
 
+## k8s cluster
+
+create a cluster with a specific k3s version <https://github.com/k3d-io/k3d/discussions/474#discussioncomment-335175> or
+
+```sh
+curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+
+k3d cluster create mycluster
+```
+
+and then
+
+disable traefik etc <https://github.com/waybarrios/k3d-nginx-ingress?tab=readme-ov-file#step-1-install-kubernetes>
+
+and <https://k3d.io/v5.3.0/usage/exposing_services/>
+
+### flytectl demo
+
 Get k8s cluster eg like this
 
 ```sh
@@ -43,9 +61,11 @@ Server Version: v1.29.0+k3s1
 
 ## maybe Get matching version of kubectl
 
+v1.31.5 is `k3d cluster create mycluster`
+
 ```sh
 # -s is silent
-sudo bash -c 'curl -Ls https://dl.k8s.io/v1.29.15/kubernetes-client-darwin-arm64.tar.gz | tar xOvf - --strip-components=3 kubernetes/client/bin/kubectl > /usr/local/bin/kubectl && chmod +x /usr/local/bin/kubectl '
+sudo bash -c 'curl -Ls https://dl.k8s.io/v1.31.5/kubernetes-client-darwin-arm64.tar.gz | tar xOvf - --strip-components=3 kubernetes/client/bin/kubectl > /usr/local/bin/kubectl && chmod +x /usr/local/bin/kubectl '
 ```
 
 or via brew

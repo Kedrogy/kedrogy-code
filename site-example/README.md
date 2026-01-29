@@ -54,10 +54,13 @@ docker compose up
 # docker compose down -v --remove-orphans
 # or with '--rmi all' to delete images too 
 
+psql -c "create schema django_schema;"
 python -m django migrate --settings site_example.settings
 # run django-tasks db_worker
 python -m django db_worker --settings site_example.settings
 
+python -m django createsuperuser --no-input --settings site_example.settings
+# to delete superuser drop record in `django_schema.auth_user`
 python -m django runserver --settings site_example.settings
 ```
 
@@ -91,14 +94,6 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> DjangoDataset.objects.all()
 <QuerySet [<DjangoDataset: DjangoDataset object (1)>]>
 >>>
-```
-
-## create superuser
-
-to delete superuser drop record in `django_schema.auth_user`
-
-```sh
-python -m django createsuperuser --no-input --settings site_example.settings
 ```
 
 ## make migrations
