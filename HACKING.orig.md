@@ -34,7 +34,7 @@ k3d cluster create mycluster
 
 and then
 
-disable traefik etc <https://github.com/waybarrios/k3d-nginx-ingress?tab=readme-ov-file#step-1-install-kubernetes>
+~~disable traefik etc <https://github.com/waybarrios/k3d-nginx-ingress?tab=readme-ov-file#step-1-install-kubernetes>~~
 
 and <https://k3d.io/v5.3.0/usage/exposing_services/>
 
