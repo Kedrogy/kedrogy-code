@@ -37,10 +37,52 @@ k apply -f postgres.yaml
 #k port-forward svc/postgres-svc 30001:30001
 ```
 
-verify postgres up
+verify postgres up and create django schemas
 
 ```sh
 export $(cat .env | sed '/^#/d')
 
-psql 
+psql -c "create schema django_schema;"
+```
+
+migrate/create superuser once
+
+```sh
+. site-example/.venv/bin/activate
+
+psql -c "create schema django_schema;"
+python -m django migrate --settings site_example.settings
+
+python -m django createsuperuser --no-input --settings site_example.settings
+# to delete superuser 
+psql -c "delete from django_schema.auth_user where username='superuser';"
+```
+
+run site example
+
+```sh
+# run django-tasks db_worker
+python -m django db_worker --settings site_example.settings
+
+python -m django runserver --settings site_example.settings
+
+```
+
+## maybe Get matching version of kubectl
+
+v1.31.5 is `k3d cluster create mycluster`
+
+```sh
+# -s is silent
+sudo bash -c 'curl -Ls https://dl.k8s.io/v1.31.5/kubernetes-client-darwin-arm64.tar.gz | tar xOvf - --strip-components=3 kubernetes/client/bin/kubectl > /usr/local/bin/kubectl && chmod +x /usr/local/bin/kubectl '
+```
+
+or via brew
+
+```sh
+brew tap homebrew/core --force
+brew edit kubernetes-cli@1.29
+#and comment out line like this 
+# # disable! date: "2025-02-28", because: :deprecated_upstream
+
 ```
