@@ -6,4 +6,8 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "django>=6.0.1",
+    "label-train-serve",
 ]
+
+[tool.uv.sources]
+label-train-serve = { path = "../label-train-serve", editable = true }

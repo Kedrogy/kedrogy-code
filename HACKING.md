@@ -12,10 +12,6 @@ brew install python@3.12
 # brew install openssl
 export LDFLAGS="-L/opt/homebrew/opt/openssl/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl/include"
-
-cd site-example 
-uv sync --no-managed-python \
---all-packages 
 ```
 
 then ensure k8s cluster with postgres expose , see <https://k3d.io/v5.3.0/usage/exposing_services/#2-via-nodeport>
@@ -37,7 +33,7 @@ k apply -f postgres.yaml
 #k port-forward svc/postgres-svc 30001:30001
 ```
 
-verify postgres up and create django schemas
+verify postgres up and create django schema if needed
 
 ```sh
 export $(cat .env | sed '/^#/d')
@@ -45,27 +41,12 @@ export $(cat .env | sed '/^#/d')
 psql -c "create schema django_schema;"
 ```
 
-migrate/create superuser once
+migrate/create superuser once if needed
 
 ```sh
-. site-example/.venv/bin/activate
-
-psql -c "create schema django_schema;"
-python -m django migrate --settings site_example.settings
-
 python -m django createsuperuser --no-input --settings site_example.settings
 # to delete superuser 
 psql -c "delete from django_schema.auth_user where username='superuser';"
-```
-
-run site example
-
-```sh
-# run django-tasks db_worker
-python -m django db_worker --settings site_example.settings
-
-python -m django runserver --settings site_example.settings
-
 ```
 
 ## maybe Get matching version of kubectl
