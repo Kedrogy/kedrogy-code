@@ -526,7 +526,7 @@ wheels = [
 [[package]]
 name = "django-tasks"
 version = "0.10.0"
-source = { git = "ssh://git@github.com/RealOrangeOne/django-tasks.git?rev=4377f2c#4377f2c5e80174fed9feded1b975c301026a1a81" }
+source = { git = "https://github.com/RealOrangeOne/django-tasks.git?rev=4377f2c#4377f2c5e80174fed9feded1b975c301026a1a81" }
 dependencies = [
     { name = "django" },
     { name = "django-stubs-ext" },
@@ -870,7 +870,7 @@ dependencies = [
 requires-dist = [
     { name = "django", specifier = ">=6.0.1" },
     { name = "django-htmx", specifier = ">=1.27.0" },
-    { name = "django-tasks", git = "ssh://git@github.com/RealOrangeOne/django-tasks.git?rev=4377f2c" },
+    { name = "django-tasks", git = "https://github.com/RealOrangeOne/django-tasks.git?rev=4377f2c" },
     { name = "jinja2" },
     { name = "psycopg", extras = ["binary", "pool"] },
 ]

@@ -47,6 +47,6 @@ Homepage = "https://www.example.com/"
 package = true
 
 [tool.uv.sources]
-django-tasks = { git = "ssh://git@github.com/RealOrangeOne/django-tasks.git", rev = "4377f2c" }
+django-tasks = { git = "https://github.com/RealOrangeOne/django-tasks.git", rev = "4377f2c" }
 # add like this
 # uv add --package django-dataset-new git+ssh://github.com/RealOrangeOne/django-tasks.git --rev 4377f2c

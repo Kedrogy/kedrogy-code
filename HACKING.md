@@ -21,6 +21,33 @@ export LDFLAGS="-L/opt/homebrew/opt/openssl/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl/include"
 ```
 
+## tilt
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
+```
+
+```sh
+DOCKER_BUILDKIT=1 docker build --platform=linux/arm64 \
+--ssh default \
+--build-arg UV_INDEX_PRODIGY_USERNAME=$UV_INDEX_PRODIGY_USERNAME \
+-t lts-registry.localhost:5500/mysite:latest \
+-f Dockerfile-tilt .
+
+docker build --platform=linux/arm64 \
+--build-arg UV_INDEX_PRODIGY_USERNAME=$UV_INDEX_PRODIGY_USERNAME \
+-t lts-registry.localhost:5500/mysite:latest \
+-f Dockerfile-tilt .
+```
+
+verify
+
+```sh
+docker run --platform linux/arm64 --rm -it lts-registry.localhost:5500/mysite:latest -m django runserver --settings mysite.settings
+```
+
+## cluster setup
+
 then ensure k8s cluster with postgres expose , see <https://k3d.io/v5.3.0/usage/exposing_services/#2-via-nodeport>
 
 ```sh
