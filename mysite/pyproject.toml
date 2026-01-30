@@ -11,3 +11,32 @@ dependencies = [
 
 [tool.uv.sources]
 label-train-serve = { path = "../label-train-serve", editable = true }
+# and pin prodigy 
+prodigy = { index = "prodigy" }
+django-tasks = { git = "ssh://git@github.com/RealOrangeOne/django-tasks.git", rev = "4377f2c" }
+# add like this
+# uv add --package django-dataset-new git+ssh://github.com/RealOrangeOne/django-tasks.git --rev 4377f2c
+
+# uv does not support transitive dev dependencies , so 
+[dependency-groups]
+dev = [
+    "prodigy>=1.18.4",
+    "psycopg2>=2.9.11",
+    "django-extensions>=4.1",
+
+    "ipykernel>=7.1.0",
+    "ipywidgets>=8.1.8",
+
+    # XXX CommandError: Could not load shell runner: 'IPython Notebook' https://github.com/django-extensions/django-extensions/issues/1835#issuecomment-3035536658
+    "notebook==6.5.4",
+    "traitlets==5.9.0",
+]
+
+[[tool.uv.index]]
+name = "prodigy"
+url = "https://download.prodi.gy"
+ignore-error-codes = [422]
+# https://docs.astral.sh/uv/concepts/indexes/#pinning-a-package-to-an-index
+# prevent packages from being installed from here unless explicitly pinned to it
+explicit = true
+

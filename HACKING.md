@@ -1,5 +1,12 @@
 # development
 
+to also get dev dependencies
+
+```sh
+export $(cat .env-prodigy | sed '/^#/d')
+uv sync --dev 
+```
+
 NB: django>=6.0 only supports >=3.12
 
 ```sh
