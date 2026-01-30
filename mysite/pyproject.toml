@@ -13,9 +13,6 @@ dependencies = [
 label-train-serve = { path = "../label-train-serve", editable = true }
 # and pin prodigy 
 prodigy = { index = "prodigy" }
-django-tasks = { git = "ssh://git@github.com/RealOrangeOne/django-tasks.git", rev = "4377f2c" }
-# add like this
-# uv add --package django-dataset-new git+ssh://github.com/RealOrangeOne/django-tasks.git --rev 4377f2c
 
 # uv does not support transitive dev dependencies , so 
 [dependency-groups]

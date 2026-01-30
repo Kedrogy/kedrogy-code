@@ -8,7 +8,7 @@ version = "0.1"
 dependencies = [
     "django>=6.0.1",
     "django-htmx>=1.27.0",
-    "django-tasks>=0.10.0",
+    "django-tasks",#see tool.uv.sources
     "psycopg[binary,pool]",
     "jinja2",
 ]
@@ -46,3 +46,7 @@ Homepage = "https://www.example.com/"
 [tool.uv]
 package = true
 
+[tool.uv.sources]
+django-tasks = { git = "ssh://git@github.com/RealOrangeOne/django-tasks.git", rev = "4377f2c" }
+# add like this
+# uv add --package django-dataset-new git+ssh://github.com/RealOrangeOne/django-tasks.git --rev 4377f2c
