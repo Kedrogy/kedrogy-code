@@ -46,7 +46,7 @@ spec:
               value: postgres
             # different name for the default database that is created when the image is first started
             - name: POSTGRES_DB
-              value: site_example
+              value: mysite
 
           # see compose.yaml
           volumeMounts:
