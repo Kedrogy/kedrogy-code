@@ -7,7 +7,7 @@
     {% endfor %}
     </ul>
 {% else %}
-    <p>No datasets are available.</p>
+    <p>No datasets found.</p>
 {% endif %}
 
 <form action="{% url 'label_train_serve:new' %}" method="post">

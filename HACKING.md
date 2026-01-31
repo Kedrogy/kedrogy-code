@@ -4,7 +4,7 @@ to also get dev dependencies
 
 ```sh
 export $(cat .env-prodigy | sed '/^#/d')
-uv sync --dev 
+uv sync --all-packages --dev --no-managed-python
 ```
 
 NB: django>=6.0 only supports >=3.12

@@ -60,7 +60,6 @@ COPY . /app
 ARG UV_INDEX_PRODIGY_USERNAME 
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=ssh \
-    cd mysite && \
-    uv sync --dev --locked
+    uv sync --all-packages --dev --locked
 
-ENTRYPOINT [ "/app/mysite/.venv/bin/python" ]
+ENTRYPOINT [ "/app/.venv/bin/python" ]
