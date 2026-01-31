@@ -32,7 +32,33 @@ spec:
         app.kubernetes.io/name: mysite
     spec:
       serviceAccountName: db-worker-kubectl-sa
+      volumes:
+        - name: prodigy-json
+          emptyDir:
+            sizeLimit: 50Mi
+
       initContainers:
+        - name: create-prodigy-config
+          image: busybox
+          env:
+            - name: PGHOST
+              value: postgres-svc
+            - name: PGPORT
+              value: "30001"
+            - name: PGUSER
+              value: postgres
+            - name: PGDATABASE
+              value: mysite
+            - name: PGPASSWORD
+              value: postgres
+          volumeMounts:
+            - mountPath: /prodigy-json
+              name: prodigy-json
+          command: ["sh", "-c"]
+          args:
+            - |
+              echo '{"db": "postgresql", "db_settings": {"postgresql": {"user": "'$PGUSER'", "password": "'$PGPASSWORD'", "dbname": "'$PGDATABASE'", "host": "'$PGHOST'"}}}' > /prodigy-json/prodigy.json
+
         - name: migrate
           image: lts-registry.localhost:5500/mysite:latest
           args: ["-m", "django", "migrate", "--settings", "mysite.settings"]
@@ -64,6 +90,13 @@ spec:
               value: mysite
             - name: PGPASSWORD
               value: postgres
+
+            - name: PRODIGY_CONFIG
+              value: /prodigy-json/prodigy.json
+          volumeMounts:
+            - mountPath: /prodigy-json
+              name: prodigy-json
+
       containers:
         - name: mysite
           image: lts-registry.localhost:5500/mysite:latest
@@ -83,8 +116,16 @@ spec:
               value: mysite
             - name: PGPASSWORD
               value: postgres
+
+            - name: PRODIGY_CONFIG
+              value: /prodigy-json/prodigy.json
+          volumeMounts:
+            - mountPath: /prodigy-json
+              name: prodigy-json
+
           ports:
             - containerPort: 8000
+
 ---
 apiVersion: v1
 kind: Service
