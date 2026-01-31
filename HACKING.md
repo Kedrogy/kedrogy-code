@@ -23,9 +23,17 @@ export CPPFLAGS="-I/opt/homebrew/opt/openssl/include"
 
 ## tilt
 
+https://docs.tilt.dev/example_python.html
+
 ```sh
 curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
 ```
+
+```sh
+tilt up 
+```
+
+## build docker image 
 
 ```sh
 DOCKER_BUILDKIT=1 docker build --platform=linux/arm64 \

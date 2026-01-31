@@ -66,6 +66,12 @@ run db_worker
 python -m django db_worker --settings mysite.settings
 ```
 
+collect static 
+
+```sh
+python -m django collectstatic --noinput --settings mysite.settings
+```
+
 and site
 
 ```sh

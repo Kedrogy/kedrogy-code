@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "mysite"
 version = "0.1.0"
@@ -36,4 +40,7 @@ ignore-error-codes = [422]
 # https://docs.astral.sh/uv/concepts/indexes/#pinning-a-package-to-an-index
 # prevent packages from being installed from here unless explicitly pinned to it
 explicit = true
+
+[tool.uv]
+package = true
 

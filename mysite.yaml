@@ -1,0 +1,102 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: db-worker-kubectl-sa
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: db-worker-kubectl-rb
+subjects:
+  - kind: ServiceAccount
+    name: db-worker-kubectl-sa
+roleRef:
+  kind: Role
+  name: db-worker-kubectl-role
+  apiGroup: rbac.authorization.k8s.io
+---
+# restart like this
+# kubectl rollout restart deployment mysite
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mysite
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mysite
+    spec:
+      serviceAccountName: db-worker-kubectl-sa
+      initContainers:
+        - name: migrate
+          image: lts-registry.localhost:5500/mysite:latest
+          args: ["-m", "django", "migrate", "--settings", "mysite.settings"]
+          env:
+            - name: PGHOST
+              value: postgres-svc
+            - name: PGPORT
+              value: "30001"
+            - name: PGUSER
+              value: postgres
+            - name: PGDATABASE
+              value: mysite
+            - name: PGPASSWORD
+              value: postgres
+
+        - name: db-worker
+          image: lts-registry.localhost:5500/mysite:latest
+          #this is a sidecar:
+          restartPolicy: Always
+          args: ["-m", "django", "db_worker", "--settings", "mysite.settings"]
+          env:
+            - name: PGHOST
+              value: postgres-svc
+            - name: PGPORT
+              value: "30001"
+            - name: PGUSER
+              value: postgres
+            - name: PGDATABASE
+              value: mysite
+            - name: PGPASSWORD
+              value: postgres
+      containers:
+        - name: mysite
+          image: lts-registry.localhost:5500/mysite:latest
+          command: ["bash", "-c"]
+          args:
+            - |
+              /app/mysite/.venv/bin/python -m django collectstatic --noinput --settings mysite.settings
+              /app/mysite/.venv/bin/python -m uvicorn --host 0.0.0.0 mysite.asgi:application
+          env:
+            - name: PGHOST
+              value: postgres-svc
+            - name: PGPORT
+              value: "30001"
+            - name: PGUSER
+              value: postgres
+            - name: PGDATABASE
+              value: mysite
+            - name: PGPASSWORD
+              value: postgres
+          ports:
+            - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysite
+spec:
+  selector:
+    app.kubernetes.io/name: mysite
+  ports:
+    - name: uvicorn
+      protocol: TCP
+      port: 8000
+      targetPort: 8000
+---
+
