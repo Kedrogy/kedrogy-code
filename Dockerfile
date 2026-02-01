@@ -58,6 +58,8 @@ COPY . /app
 #   )
 # EOT
 ARG UV_INDEX_PRODIGY_USERNAME 
+ARG UV_INDEX_YSZ_USERNAME
+ARG UV_INDEX_YSZ_PASSWORD
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=ssh \
     uv sync --all-packages --dev --locked
