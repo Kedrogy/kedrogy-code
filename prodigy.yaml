@@ -77,16 +77,11 @@ spec:
 
         - name: load-examples
           # XXX Tilt image
-          image: lts-registry:5000/lts-registry.localhost_5500_mysite:tilt-cf56619fd9609dc7
+          image: lts-registry:5000/mykedro:latest
           imagePullPolicy: Always
           # this works for separate image with kedro project in the root
-          # args: ["-m", "kedro", "run", "--pipeline=load_examples"]
-          command: ["sh", "-c"]
-          args:
-            - |
-              cd mykedro
-              # this is ENTRYPOINT python 
-              /app/.venv/bin/python -m kedro run --pipeline=load_examples
+          workingDir: /app/mykedro
+          args: ["-m", "kedro", "run", "--pipeline=load_examples"]
           env:
             - name: PGHOST
               value: postgres-svc
@@ -111,31 +106,31 @@ spec:
       containers:
         - name: prodigy
           # XXX Tilt image
-          image: lts-registry:5000/lts-registry.localhost_5500_mysite:tilt-cf56619fd9609dc7
+          image: lts-registry:5000/mykedro:latest
           imagePullPolicy: Always
-          # args: [
-          #     "-m",
-          #     "prodigy",
-          #     "myrecipes.textcat.custom-model",
-          #     "news_headlines",
-          #     # XXX for separate image with kedro project in the root
-          #     # ./data/00_examples instead of ./mykedro/data/00_examples
-          #     "./mykedro/data/00_examples/examples.jsonl",
-          #     "-l",
-          #     "POS,NEG",
-          #   ]
-          command: ["sh", "-c"]
-          args:
-            - |
-              . /app/.venv/bin/activate
-              # XXX not for separate image with kedro project in the root
-              cd mykedro
+          args: [
+              "-m",
+              "prodigy",
+              "myrecipes.textcat.custom-model",
+              "news_headlines",
+              # XXX for separate image with kedro project in the root
+              # ./data/00_examples instead of ./mykedro/data/00_examples
+              "./mykedro/data/00_examples/examples.jsonl",
+              "-l",
+              "POS,NEG",
+            ]
+          # command: ["sh", "-c"]
+          # args:
+          #   - |
+          #     . /app/.venv/bin/activate
+          #     # XXX not for separate image with kedro project in the root
+          #     cd mykedro
 
-              prodigy myrecipes.textcat.custom-model news_headlines ./data/00_examples/examples.jsonl -l POS,NEG
+          #     prodigy myrecipes.textcat.custom-model news_headlines ./data/00_examples/examples.jsonl -l POS,NEG
 
-              # troubleshooting 
-              # echo '{"db": "postgresql", "db_settings": {"postgresql": {"user": "postgres", "password": "postgres", "dbname": "mysite", "host": "postgres-svc"}}}' > prodigy.json
-              # prodigy spans.manual news_headlines blank:en ./data/00_examples/examples.jsonl --label FACTOR,CONDITION,METHOD,EFFECT
+          #     # troubleshooting
+          #     # echo '{"db": "postgresql", "db_settings": {"postgresql": {"user": "postgres", "password": "postgres", "dbname": "mysite", "host": "postgres-svc"}}}' > prodigy.json
+          #     # prodigy spans.manual news_headlines blank:en ./data/00_examples/examples.jsonl --label FACTOR,CONDITION,METHOD,EFFECT
 
           volumeMounts:
             - mountPath: /prodigy-json
