@@ -1,13 +1,11 @@
 #
 
-`all_data.jsonl` is what would be a large dataset in real project
+`all_data.jsonl` is what would be a large dataset in real project (its copy of news_headlines.jsonl from prodigy NER )
 
-`news_headlines.jsonl` is some of the examples from the dataset for labelling
+`examples.jsonl` is some of the examples from the dataset for labelling
 
-TODO
+run pipeline and verify like this
 
-- convert jsonl to csv
-
-- ingest: load/save pandas.SQLTableDataset to postgres
-
-- add load-examples pipeline to populate data/00_examples , add to django pipeline name to run to load examples for prodigy recipe etc
+```sh
+prodigy myrecipes.textcat.custom-model news_headlines ./data/00_examples/examples.jsonl -l POS,NEG
+```
