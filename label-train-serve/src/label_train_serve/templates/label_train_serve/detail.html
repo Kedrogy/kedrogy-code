@@ -1,1 +1,24 @@
 <h1>You're looking at dataset {{ dataset.dataset_name }}</h1>
+
+<table>
+<tr><td><label for="image">Image</label></td>
+<td>{{ dataset.image }}</td></tr>
+
+<tr><td><label for="workingDir">workingDir relative to /app</label></td>
+<td><input type="text" name="workingDir" id="workingDir" size="100" value="{{ dataset.workingDir }}"></td></tr>
+
+<tr><td><label for="pipeline">pipeline, or empty for default load_examples</label></td>
+<td><input type="text" name="pipeline" id="pipeline" size="100" value="{{ dataset.pipeline }}"></td></tr>
+
+<tr><td><label for="recipe">Prodigy recipe</label></td>
+<td><input type="text" name="recipe" id="recipe" size="100" value="{{ dataset.recipe }}"></td></tr>
+
+<tr><td><label for="recipe_options">Prodigy recipe options, space separated</label></td>
+<td><input type="text" name="recipe_options" id="recipe_options" size="100" value="{{ dataset.recipe_options }}"></td></tr>
+
+</table>
+
+<form action="{% url 'label_train_serve:delete' dataset.id %}" method="post">
+{% csrf_token %}
+<input type="submit" value="delete">
+</form>
