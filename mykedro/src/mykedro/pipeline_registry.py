@@ -1,9 +1,15 @@
-from kedro.pipeline import Pipeline, Node
+"""Project pipelines."""
+
+from kedro.framework.project import find_pipelines
+from kedro.pipeline import Pipeline
 
 
-def foo():
-    return "dummy"
+def register_pipelines() -> dict[str, Pipeline]:
+    """Register the project's pipelines.
 
-
-def register_pipelines():
-    return {"__default__": Pipeline([Node(foo, None, "dummy_output")])}
+    Returns:
+        A mapping from pipeline names to ``Pipeline`` objects.
+    """
+    pipelines = find_pipelines(raise_errors=True)
+    pipelines["__default__"] = sum(pipelines.values())
+    return pipelines
