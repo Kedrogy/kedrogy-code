@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "django_tasks",
     "django_tasks.backends.database",
+
+    # for notebooks
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
