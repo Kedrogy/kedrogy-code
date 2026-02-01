@@ -1,3 +1,6 @@
+from pathlib import Path
+import subprocess
+
 from django.apps import AppConfig
 
 
@@ -43,3 +46,13 @@ class DatasetNewConfig(AppConfig):
 
             # check that examples were added
             assert len(examples) == 1
+
+        prodigy_svc_ingress = (
+            Path(__file__).resolve().parent
+            / "templates_k8s"
+            / "prodigy-svc-ingress.yaml"
+        )
+        output = subprocess.check_output(
+            ["kubectl", "apply", "-f", prodigy_svc_ingress.as_posix()]
+        )
+        print(output)

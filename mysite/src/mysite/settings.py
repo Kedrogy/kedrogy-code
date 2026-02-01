@@ -65,6 +65,14 @@ TEMPLATES = [
         "DIRS": [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
+            # # disable caching? 
+            # # https://docs.djangoproject.com/en/6.0/ref/templates/api/
+            # 'loaders': [
+            #     'django.template.loaders.filesystem.Loader',
+            #     'django.template.loaders.app_directories.Loader',
+            # ],
+            # # or 
+            # # k rollout restart deployment mysite
             'context_processors': [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
