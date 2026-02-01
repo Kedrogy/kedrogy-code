@@ -43,118 +43,123 @@ spec:
       imagePullSecrets:
         - name: docker-ghcr-auth
       volumes:
-      - name: prodigy-json
-        emptyDir:
-          sizeLimit: 50Mi
-      - projected:
-          sources:
-            - configMap:
-                name: sql-template-examples
-        name: sql-template-examples-volume
-      - name: examples
-        emptyDir:
-          sizeLimit: 500Mi
-      - projected:
-          sources:
-            - configMap:
-                name: patterns-{{ dataset_name }}
-        name: patterns-volume
-      initContainers:
-      - name: init-prodigy-config
-        image: busybox
-        env:
-          - name: PGHOST
-            value: postgres-rw
-          - name: PGUSER
-            value: prodigy
-          - name: PGDATABASE
-            value: annotate
-          - name: PGPASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: prodigy-postgres-password
-                key: password
-        volumeMounts:
-        - mountPath: /prodigy-json
-          name: prodigy-json
-        command: ["sh", "-c"]
-        args:
-        - |
-          echo '{"db": "postgresql", "db_settings": {"postgresql": {"user": "'$PGUSER'", "password": "'$PGPASSWORD'", "dbname": "'$PGDATABASE'", "host": "'$PGHOST'"}}}' > /prodigy-json/prodigy.json
-      - name: load-examples
-        image: ghcr.io/ysz-vc/jinja2-to-psql:sha-61da70f
-        env:
-          - name: SQL_TEMPLATE
-            value: /templates/examples.sql.jinja2
-          - name: SQL_TEMPLATE_DATA
-            value: '{"fasttext_labels": "arb_Arab,eng_Latn,rus_Cyrl,spa_Latn", "limit": "limit 10" , "dataset_name": "{{ dataset_name }}" }'
-          - name: PSQL_OUTPUT_PATH
-            value: /examples/eng.jsonl
-
-          - name: PGHOST
-            value: postgres-rw
-          - name: PGUSER
-            value: prodigy
-          - name: PGDATABASE
-            value: annotate
-          - name: PGPASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: prodigy-postgres-password
-                key: password
-        volumeMounts:
-        - mountPath: /templates
+        - name: prodigy-json
+          emptyDir:
+            sizeLimit: 50Mi
+        - projected:
+            sources:
+              - configMap:
+                  name: sql-template-examples
           name: sql-template-examples-volume
-        - mountPath: /examples
-          name: examples
+        - name: examples
+          emptyDir:
+            sizeLimit: 500Mi
+        - projected:
+            sources:
+              - configMap:
+                  name: patterns-{{ dataset_name }}
+          name: patterns-volume
+      initContainers:
+        - name: init-prodigy-config
+          image: busybox
+          env:
+            - name: PGHOST
+              value: postgres-rw
+            - name: PGUSER
+              value: prodigy
+            - name: PGDATABASE
+              value: annotate
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: prodigy-postgres-password
+                  key: password
+          volumeMounts:
+            - mountPath: /prodigy-json
+              name: prodigy-json
+          command: ["sh", "-c"]
+          args:
+            - |
+              echo '{"db": "postgresql", "db_settings": {"postgresql": {"user": "'$PGUSER'", "password": "'$PGPASSWORD'", "dbname": "'$PGDATABASE'", "host": "'$PGHOST'"}}}' > /prodigy-json/prodigy.json
+        - name: load-examples
+          image: ghcr.io/ysz-vc/jinja2-to-psql:sha-61da70f
+          env:
+            - name: SQL_TEMPLATE
+              value: /templates/examples.sql.jinja2
+            - name: SQL_TEMPLATE_DATA
+              value: '{"fasttext_labels": "arb_Arab,eng_Latn,rus_Cyrl,spa_Latn", "limit": "limit 10" , "dataset_name": "{{ dataset_name }}" }'
+            - name: PSQL_OUTPUT_PATH
+              value: /examples/eng.jsonl
+
+            - name: PGHOST
+              value: postgres-rw
+            - name: PGUSER
+              value: prodigy
+            - name: PGDATABASE
+              value: annotate
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: prodigy-postgres-password
+                  key: password
+          volumeMounts:
+            - mountPath: /templates
+              name: sql-template-examples-volume
+            - mountPath: /examples
+              name: examples
 
       containers:
-      - name: prodigy
-        image: ghcr.io/stertell-ai/all-in-one-fasttext:sha-c513d5e
-        command: ["bash", "-c"]
-        args:
-        - |
-          source /app/.venv/bin/activate
+        - name: prodigy
+          image: ghcr.io/stertell-ai/all-in-one-fasttext:sha-c513d5e
+          command: ["bash", "-c"]
+          args:
+            - |
+              source /app/.venv/bin/activate
 
-          cat /examples/eng.jsonl | \
-          preprocess > eng_preproc.jsonl 
+              cat /examples/eng.jsonl | \
+              preprocess > eng_preproc.jsonl 
 
-          prodigy ysz.textcat.teach-multi {{ dataset_name }} /wiki_align_en eng_preproc.jsonl --label ADS,GAMES,HARM,GEN,OTHER --patterns /datasets/patterns-{{ dataset_name }}.jsonl
-        volumeMounts:
-        - mountPath: /prodigy-json
-          name: prodigy-json
-        - mountPath: /examples
-          name: examples
-        - mountPath: /datasets
-          name: patterns-volume
-        env:
-          - name: PRODIGY_CONFIG
-            value: /prodigy-json/prodigy.json
+              prodigy ysz.textcat.teach-multi {{ dataset_name }} /wiki_align_en eng_preproc.jsonl --label ADS,GAMES,HARM,GEN,OTHER --patterns /datasets/patterns-{{ dataset_name }}.jsonl
+          volumeMounts:
+            - mountPath: /prodigy-json
+              name: prodigy-json
+            - mountPath: /examples
+              name: examples
+            - mountPath: /datasets
+              name: patterns-volume
+          env:
+            - name: PRODIGY_CONFIG
+              value: /prodigy-json/prodigy.json
 
-          - name: PRODIGY_LOGGING
-            value: basic
-          # FIXME Prodigy Annotation Task Allocation Issue with Multi-Session Setup
-          # https://support.prodi.gy/t/prodigy-annotation-task-allocation-issue-with-multi-session-setup/7615/5?u=ysz
-          - name: PRODIGY_ALLOWED_SESSIONS
-            value: ysz,stertell
-          - name: PRODIGY_BASIC_AUTH_USER
-            value: prodigy-user
-          - name: PRODIGY_BASIC_AUTH_PASS
-            value: b7f363145d299a343f15ead44818456113388aa92e1e88221e85fe9d4f28d6a2
-          - name: PRODIGY_HOST
-            value: "0.0.0.0"
-          - name: PRODIGY_PORT
-            value: "8080"
-        ports:
-          - containerPort: 8080
-        readinessProbe:
-          # httpGet does not support basic auth
-          exec:
-            command: ["sh", "-c", "curl --fail -u prodigy-user:b7f363145d299a343f15ead44818456113388aa92e1e88221e85fe9d4f28d6a2 http://localhost:8080/?session=ysz"]
-          initialDelaySeconds: 10
-          periodSeconds: 5
-          failureThreshold: 3
-          successThreshold: 1
+            - name: PRODIGY_LOGGING
+              value: basic
+            # FIXME Prodigy Annotation Task Allocation Issue with Multi-Session Setup
+            # https://support.prodi.gy/t/prodigy-annotation-task-allocation-issue-with-multi-session-setup/7615/5?u=ysz
+            - name: PRODIGY_ALLOWED_SESSIONS
+              value: ysz,stertell
+            - name: PRODIGY_BASIC_AUTH_USER
+              value: prodigy-user
+            - name: PRODIGY_BASIC_AUTH_PASS
+              value: b7f363145d299a343f15ead44818456113388aa92e1e88221e85fe9d4f28d6a2
+            - name: PRODIGY_HOST
+              value: "0.0.0.0"
+            - name: PRODIGY_PORT
+              value: "8080"
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            # httpGet does not support basic auth
+            exec:
+              command:
+                [
+                  "sh",
+                  "-c",
+                  "curl --fail -u prodigy-user:b7f363145d299a343f15ead44818456113388aa92e1e88221e85fe9d4f28d6a2 http://localhost:8080/?session=ysz",
+                ]
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            failureThreshold: 3
+            successThreshold: 1
 ---
 apiVersion: v1
 kind: Service
