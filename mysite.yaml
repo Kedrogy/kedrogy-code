@@ -130,7 +130,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysite
+  name: mysite-svc
 spec:
   selector:
     app.kubernetes.io/name: mysite
@@ -140,4 +140,32 @@ spec:
       port: 8000
       targetPort: 8000
 ---
-
+# strip prefix /datasets
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: datasets-middleware
+spec:
+  stripPrefix:
+    forceSlash: false
+    prefixes:
+      - /datasets
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mysite-ingress
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+    traefik.ingress.kubernetes.io/router.middlewares: default-datasets-middleware@kubernetescrd
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /datasets
+            pathType: Prefix
+            backend:
+              service:
+                name: mysite-svc
+                port:
+                  number: 8000
