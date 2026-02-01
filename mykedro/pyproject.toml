@@ -1,0 +1,27 @@
+[project]
+name = "mykedro"
+version = "0.1.0"
+authors = [
+    { name = "team ysz", email = "team@ysz.vc" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "kedro>=1.2.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.9.28,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.kedro]
+package_name = "mykedro"
+project_name = "mykedro"
+kedro_init_version = "1.2.0"
+source_dir = "src"
+
+[tool.uv]
+package = true
+
+
+[tool.kedro_telemetry]
+project_id = "14909e7c5e8c47b582918cc118916796"
