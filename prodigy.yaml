@@ -1,77 +1,72 @@
-apiVersion: v1
-data:
-  patterns-{{ dataset_name }}.jsonl: |
-    {"label":"ADS","pattern":"survey"}
-    {"label":"ADS","pattern":"voucher"}
-    {"label":"ADS","pattern":"website"}
-    {"label":"ADS","pattern":"eligible"}
-    {"label":"ADS","pattern":"offer"}
-    {"label":"ADS","pattern":"vouchers"}
-    {"label":"ADS","pattern":"eligibility"}
-    {"label":"ADS","pattern":"rebates"}
-    {"label":"ADS","pattern":"offered"}
-    {"label":"ADS","pattern":"incentives"}
-    {"label":"ADS","pattern":"purchase"}
-    {"label":"ADS","pattern":"payment"}
-    {"label":"ADS","pattern":"purchasers"}
-    {"label":"ADS","pattern":"offering"}
-    {"label":"ADS","pattern":"discounted"}
-    {"label":"ADS","pattern":"sale\u2014exemption"}
-    {"label":"ADS","pattern":"enrollees"}
-    {"label":"ADS","pattern":"vouchercodes"}
-kind: ConfigMap
-metadata:
-  name: patterns-{{ dataset_name }}
----
-# https://prodigy.stertell-ai.com/???/?session=ysz
+# apiVersion: v1
+# data:
+#   patterns-news-headlines.jsonl: |
+#     {"label":"ADS","pattern":"survey"}
+#     {"label":"ADS","pattern":"voucher"}
+#     {"label":"ADS","pattern":"website"}
+#     {"label":"ADS","pattern":"eligible"}
+#     {"label":"ADS","pattern":"offer"}
+#     {"label":"ADS","pattern":"vouchers"}
+#     {"label":"ADS","pattern":"eligibility"}
+#     {"label":"ADS","pattern":"rebates"}
+#     {"label":"ADS","pattern":"offered"}
+#     {"label":"ADS","pattern":"incentives"}
+#     {"label":"ADS","pattern":"purchase"}
+#     {"label":"ADS","pattern":"payment"}
+#     {"label":"ADS","pattern":"purchasers"}
+#     {"label":"ADS","pattern":"offering"}
+#     {"label":"ADS","pattern":"discounted"}
+#     {"label":"ADS","pattern":"sale\u2014exemption"}
+#     {"label":"ADS","pattern":"enrollees"}
+#     {"label":"ADS","pattern":"vouchercodes"}
+# kind: ConfigMap
+# metadata:
+#   name: patterns-news-headlines
+# ---
+# https://prodigy.stertell-ai.com/???
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prodigy-{{ dataset_name }}
+  name: prodigy-news-headlines
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: prodigy-{{ dataset_name }}
+      app.kubernetes.io/name: prodigy-news-headlines
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: prodigy-{{ dataset_name }}
+        app.kubernetes.io/name: prodigy-news-headlines
     spec:
-      imagePullSecrets:
-        - name: docker-ghcr-auth
+      # imagePullSecrets:
+      #   - name: docker-ghcr-auth
       volumes:
         - name: prodigy-json
           emptyDir:
             sizeLimit: 50Mi
-        - projected:
-            sources:
-              - configMap:
-                  name: sql-template-examples
-          name: sql-template-examples-volume
+
         - name: examples
           emptyDir:
             sizeLimit: 500Mi
-        - projected:
-            sources:
-              - configMap:
-                  name: patterns-{{ dataset_name }}
-          name: patterns-volume
+        # - projected:
+        #     sources:
+        #       - configMap:
+        #           name: patterns-news-headlines
+        #   name: patterns-volume
       initContainers:
-        - name: init-prodigy-config
+        - name: create-prodigy-config
           image: busybox
           env:
             - name: PGHOST
-              value: postgres-rw
+              value: postgres-svc
+            - name: PGPORT
+              value: "30001"
             - name: PGUSER
-              value: prodigy
+              value: postgres
             - name: PGDATABASE
-              value: annotate
+              value: mysite
             - name: PGPASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: prodigy-postgres-password
-                  key: password
+              value: postgres
           volumeMounts:
             - mountPath: /prodigy-json
               name: prodigy-json
@@ -79,95 +74,152 @@ spec:
           args:
             - |
               echo '{"db": "postgresql", "db_settings": {"postgresql": {"user": "'$PGUSER'", "password": "'$PGPASSWORD'", "dbname": "'$PGDATABASE'", "host": "'$PGHOST'"}}}' > /prodigy-json/prodigy.json
-        - name: load-examples
-          image: ghcr.io/ysz-vc/jinja2-to-psql:sha-61da70f
-          env:
-            - name: SQL_TEMPLATE
-              value: /templates/examples.sql.jinja2
-            - name: SQL_TEMPLATE_DATA
-              value: '{"fasttext_labels": "arb_Arab,eng_Latn,rus_Cyrl,spa_Latn", "limit": "limit 10" , "dataset_name": "{{ dataset_name }}" }'
-            - name: PSQL_OUTPUT_PATH
-              value: /examples/eng.jsonl
 
+        - name: load-examples
+          # XXX Tilt image
+          image: lts-registry:5000/mykedro:latest
+          imagePullPolicy: Always
+          # this works for separate image with kedro project in the root
+          # args: ["-m", "kedro", "run", "--pipeline=load_examples"]
+          command: ["sh", "-c"]
+          args:
+            - |
+              # cd mykedro
+              # this is ENTRYPOINT python 
+              /app/.venv/bin/python -m kedro run --pipeline=load_examples
+          env:
             - name: PGHOST
-              value: postgres-rw
+              value: postgres-svc
+            - name: PGPORT
+              value: "30001"
             - name: PGUSER
-              value: prodigy
+              value: postgres
             - name: PGDATABASE
-              value: annotate
+              value: mysite
             - name: PGPASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: prodigy-postgres-password
-                  key: password
+              value: postgres
+
+          # kubectl exec -it mysite-66dbf57b94-76zc6 -- /bin/bash
+          #
+          # root@mysite-66dbf57b94-76zc6:/app# ls mykedro/
+          # README.md  conf  data  notebooks  pyproject.toml  src  tests
+
           volumeMounts:
-            - mountPath: /templates
-              name: sql-template-examples-volume
-            - mountPath: /examples
+            - mountPath: /app/mykedro/data/00_examples/
               name: examples
 
       containers:
         - name: prodigy
-          image: ghcr.io/stertell-ai/all-in-one-fasttext:sha-c513d5e
-          command: ["bash", "-c"]
+          # XXX Tilt image
+          image: lts-registry:5000/mykedro:latest
+          imagePullPolicy: Always
+          # args: [
+          #     "-m",
+          #     "prodigy",
+          #     "myrecipes.textcat.custom-model",
+          #     "news_headlines",
+          #     # XXX for separate image with kedro project in the root
+          #     # ./data/00_examples instead of ./mykedro/data/00_examples
+          #     "./mykedro/data/00_examples/examples.jsonl",
+          #     "-l",
+          #     "POS,NEG",
+          #   ]
+          command: ["sh", "-c"]
           args:
             - |
-              source /app/.venv/bin/activate
+              . /app/.venv/bin/activate
+              # XXX not for separate image with kedro project in the root
+              # cd mykedro
 
-              cat /examples/eng.jsonl | \
-              preprocess > eng_preproc.jsonl 
+              # prodigy myrecipes.textcat.custom-model news_headlines ./data/00_examples/examples.jsonl -l POS,NEG
 
-              prodigy ysz.textcat.teach-multi {{ dataset_name }} /wiki_align_en eng_preproc.jsonl --label ADS,GAMES,HARM,GEN,OTHER --patterns /datasets/patterns-{{ dataset_name }}.jsonl
+              # troubleshooting 
+              # echo '{"db": "postgresql", "db_settings": {"postgresql": {"user": "postgres", "password": "postgres", "dbname": "mysite", "host": "postgres-svc"}}}' > prodigy.json
+              prodigy spans.manual news_headlines blank:en ./data/00_examples/examples.jsonl --label FACTOR,CONDITION,METHOD,EFFECT
+
           volumeMounts:
             - mountPath: /prodigy-json
               name: prodigy-json
-            - mountPath: /examples
+            - mountPath: /app/mykedro/data/00_examples/
               name: examples
-            - mountPath: /datasets
-              name: patterns-volume
+            # - mountPath: /???
+            #   name: patterns-volume
           env:
-            - name: PRODIGY_CONFIG
-              value: /prodigy-json/prodigy.json
+            # # - name: PRODIGY_CONFIG
+            # #   value: /prodigy-json/prodigy.json
 
             - name: PRODIGY_LOGGING
-              value: basic
-            # FIXME Prodigy Annotation Task Allocation Issue with Multi-Session Setup
-            # https://support.prodi.gy/t/prodigy-annotation-task-allocation-issue-with-multi-session-setup/7615/5?u=ysz
-            - name: PRODIGY_ALLOWED_SESSIONS
-              value: ysz,stertell
-            - name: PRODIGY_BASIC_AUTH_USER
-              value: prodigy-user
-            - name: PRODIGY_BASIC_AUTH_PASS
-              value: b7f363145d299a343f15ead44818456113388aa92e1e88221e85fe9d4f28d6a2
+              value: verbose
+            # # FIXME Prodigy Annotation Task Allocation Issue with Multi-Session Setup
+            # # https://support.prodi.gy/t/prodigy-annotation-task-allocation-issue-with-multi-session-setup/7615/5?u=ysz
+            # # - name: PRODIGY_ALLOWED_SESSIONS
+            # #   value: ysz,other
+            # - name: PRODIGY_BASIC_AUTH_USER
+            #   value: prodigy-user
+            # - name: PRODIGY_BASIC_AUTH_PASS
+            #   value: b7f363145d299a343f15ead44818456113388aa92e1e88221e85fe9d4f28d6a2
             - name: PRODIGY_HOST
               value: "0.0.0.0"
-            - name: PRODIGY_PORT
-              value: "8080"
+            # - name: PRODIGY_PORT
+            #   value: "8080"
           ports:
             - containerPort: 8080
-          readinessProbe:
-            # httpGet does not support basic auth
-            exec:
-              command:
-                [
-                  "sh",
-                  "-c",
-                  "curl --fail -u prodigy-user:b7f363145d299a343f15ead44818456113388aa92e1e88221e85fe9d4f28d6a2 http://localhost:8080/?session=ysz",
-                ]
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            failureThreshold: 3
-            successThreshold: 1
+          # readinessProbe:
+          #   # httpGet does not support basic auth
+          #   exec:
+          #     command:
+          #       [
+          #         "sh",
+          #         "-c",
+          #         "curl --fail -u prodigy-user:b7f363145d299a343f15ead44818456113388aa92e1e88221e85fe9d4f28d6a2 http://localhost:8080/",
+          #       ]
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 5
+          #   failureThreshold: 3
+          #   successThreshold: 1
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: prodigy-{{ dataset_name }}
+  name: prodigy-news-headlines
 spec:
   selector:
-    app.kubernetes.io/name: prodigy-{{ dataset_name }}
+    app.kubernetes.io/name: prodigy-news-headlines
   ports:
     - name: prodigy
       protocol: TCP
       port: 8080
       targetPort: 8080
+---
+# https://support.prodi.gy/t/feature-request-url-prefixing/1898/2
+# # strip prefix /label-{{ dataset_name }}
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: label-news-headlines-middleware
+# spec:
+#   stripPrefix:
+#     forceSlash: false
+#     prefixes:
+#       # NB replace _ with - , k8s requirement above
+#       - /label-news-headlines
+# ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: news-headlines-ingress
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+    # traefik.ingress.kubernetes.io/router.middlewares: default-label-news-headlines-middleware@kubernetescrd
+spec:
+  rules:
+    - http:
+        paths:
+          # - path: /label-news-headlines
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prodigy-news-headlines
+                port:
+                  number: 8080
