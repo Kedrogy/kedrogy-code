@@ -73,18 +73,18 @@ spec:
           command: ["sh", "-c"]
           args:
             - |
-              echo '{"db": "postgresql", "db_settings": {"postgresql": {"user": "'$PGUSER'", "password": "'$PGPASSWORD'", "dbname": "'$PGDATABASE'", "host": "'$PGHOST'"}}}' > /prodigy-json/prodigy.json
+              echo '{"db": "postgresql", "db_settings": {"postgresql": {"user": "'$PGUSER'", "password": "'$PGPASSWORD'", "dbname": "'$PGDATABASE'", "host": "'$PGHOST'", "port": "'$PGPORT'"}}}' > /prodigy-json/prodigy.json
 
         - name: load-examples
           # XXX Tilt image
-          image: lts-registry:5000/mykedro:latest
+          image: lts-registry:5000/lts-registry.localhost_5500_mysite:tilt-cf56619fd9609dc7
           imagePullPolicy: Always
           # this works for separate image with kedro project in the root
           # args: ["-m", "kedro", "run", "--pipeline=load_examples"]
           command: ["sh", "-c"]
           args:
             - |
-              # cd mykedro
+              cd mykedro
               # this is ENTRYPOINT python 
               /app/.venv/bin/python -m kedro run --pipeline=load_examples
           env:
@@ -111,7 +111,7 @@ spec:
       containers:
         - name: prodigy
           # XXX Tilt image
-          image: lts-registry:5000/mykedro:latest
+          image: lts-registry:5000/lts-registry.localhost_5500_mysite:tilt-cf56619fd9609dc7
           imagePullPolicy: Always
           # args: [
           #     "-m",
@@ -129,13 +129,13 @@ spec:
             - |
               . /app/.venv/bin/activate
               # XXX not for separate image with kedro project in the root
-              # cd mykedro
+              cd mykedro
 
-              # prodigy myrecipes.textcat.custom-model news_headlines ./data/00_examples/examples.jsonl -l POS,NEG
+              prodigy myrecipes.textcat.custom-model news_headlines ./data/00_examples/examples.jsonl -l POS,NEG
 
               # troubleshooting 
               # echo '{"db": "postgresql", "db_settings": {"postgresql": {"user": "postgres", "password": "postgres", "dbname": "mysite", "host": "postgres-svc"}}}' > prodigy.json
-              prodigy spans.manual news_headlines blank:en ./data/00_examples/examples.jsonl --label FACTOR,CONDITION,METHOD,EFFECT
+              # prodigy spans.manual news_headlines blank:en ./data/00_examples/examples.jsonl --label FACTOR,CONDITION,METHOD,EFFECT
 
           volumeMounts:
             - mountPath: /prodigy-json
@@ -145,23 +145,23 @@ spec:
             # - mountPath: /???
             #   name: patterns-volume
           env:
-            # # - name: PRODIGY_CONFIG
-            # #   value: /prodigy-json/prodigy.json
+            - name: PRODIGY_CONFIG
+              value: /prodigy-json/prodigy.json
 
             - name: PRODIGY_LOGGING
               value: verbose
-            # # FIXME Prodigy Annotation Task Allocation Issue with Multi-Session Setup
-            # # https://support.prodi.gy/t/prodigy-annotation-task-allocation-issue-with-multi-session-setup/7615/5?u=ysz
-            # # - name: PRODIGY_ALLOWED_SESSIONS
-            # #   value: ysz,other
-            # - name: PRODIGY_BASIC_AUTH_USER
-            #   value: prodigy-user
-            # - name: PRODIGY_BASIC_AUTH_PASS
-            #   value: b7f363145d299a343f15ead44818456113388aa92e1e88221e85fe9d4f28d6a2
+            # FIXME Prodigy Annotation Task Allocation Issue with Multi-Session Setup
+            # https://support.prodi.gy/t/prodigy-annotation-task-allocation-issue-with-multi-session-setup/7615/5?u=ysz
+            # - name: PRODIGY_ALLOWED_SESSIONS
+            #   value: ysz,other
+            - name: PRODIGY_BASIC_AUTH_USER
+              value: prodigy-user
+            - name: PRODIGY_BASIC_AUTH_PASS
+              value: b7f363145d299a343f15ead44818456113388aa92e1e88221e85fe9d4f28d6a2
             - name: PRODIGY_HOST
               value: "0.0.0.0"
-            # - name: PRODIGY_PORT
-            #   value: "8080"
+            - name: PRODIGY_PORT
+              value: "8080"
           ports:
             - containerPort: 8080
           # readinessProbe:

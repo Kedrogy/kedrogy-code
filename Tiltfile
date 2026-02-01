@@ -12,5 +12,6 @@ docker_build('lts-registry.localhost:5500/mysite:latest',
         #     trigger='./requirements.txt'),
 ])             
 k8s_yaml('mysite.yaml')
+#k8s_yaml('prodigy.yaml')
 # XXX k8s_resource mysite is above/or docker build?
 k8s_resource('mysite', port_forwards=8000)#ingress at / conflicts with hardcode prodigy /  
