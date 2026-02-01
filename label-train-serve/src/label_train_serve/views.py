@@ -32,20 +32,6 @@ def new_dataset(request):  # , dataset_name):
         recipe = request.POST.get("recipe")
         recipe_options = request.POST.get("recipe_options")
     print(dataset_name, image, workingDir, pipeline, recipe, recipe_options)
-    dataset = {
-        "dataset_name": dataset_name,
-        "image": image,
-        "workingDir": workingDir,
-        "pipeline": pipeline,
-        "recipe": recipe,
-        "recipe_options": recipe_options,
-    }
-    # myresult = new_dataset_task.enqueue(dataset)
-    # # return HttpResponse("You're creating a dataset %s , result id %s" % (dataset_name, myresult.id))
-    # context = {"dataset_name": dataset_name, "result_id": myresult.id}
-    # # return render(request, "label_train_serve/new_dataset.html", context)#You're creating a dataset
-    # return render(request, "label_train_serve/detail_task.html", context)
-
     # redirect?
     this_dataset = DjangoDataset(
         dataset_name=dataset_name,
@@ -57,6 +43,16 @@ def new_dataset(request):  # , dataset_name):
     )
     this_dataset.save()
     return redirect("label_train_serve:detail", dataset_id=this_dataset.id)
+
+
+def label_dataset(request, dataset_id):
+    dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
+    myresult = new_dataset_task.enqueue(dataset.to_dict())
+    # return HttpResponse("You're creating a dataset %s , result id %s" % (dataset_name, myresult.id))
+    context = {"dataset_name": dataset.dataset_name, "result_id": myresult.id}
+    # return render(request, "label_train_serve/new_dataset.html", context)#You're creating a dataset
+    return render(request, "label_train_serve/detail_task.html", context)
+    # return redirect("label_train_serve:index")
 
 
 def delete_dataset(request, dataset_id):
