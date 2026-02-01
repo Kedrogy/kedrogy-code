@@ -483,14 +483,24 @@ name = "dev"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "django-extensions" },
+    { name = "ipykernel" },
+    { name = "ipywidgets" },
     { name = "myrecipes" },
     { name = "mysite" },
+    { name = "notebook" },
+    { name = "traitlets" },
 ]
 
 [package.metadata]
 requires-dist = [
+    { name = "django-extensions", specifier = ">=4.1" },
+    { name = "ipykernel", specifier = ">=7.1.0" },
+    { name = "ipywidgets", specifier = ">=8.1.8" },
     { name = "myrecipes", editable = "myrecipes" },
     { name = "mysite", editable = "mysite" },
+    { name = "notebook", specifier = "==6.5.4" },
+    { name = "traitlets", specifier = "==5.9.0" },
 ]
 
 [[package]]
@@ -1066,28 +1076,10 @@ dependencies = [
     { name = "label-train-serve" },
 ]
 
-[package.dev-dependencies]
-dev = [
-    { name = "django-extensions" },
-    { name = "ipykernel" },
-    { name = "ipywidgets" },
-    { name = "notebook" },
-    { name = "traitlets" },
-]
-
 [package.metadata]
 requires-dist = [
     { name = "django", specifier = ">=6.0.1" },
     { name = "label-train-serve", editable = "label-train-serve" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "django-extensions", specifier = ">=4.1" },
-    { name = "ipykernel", specifier = ">=7.1.0" },
-    { name = "ipywidgets", specifier = ">=8.1.8" },
-    { name = "notebook", specifier = "==6.5.4" },
-    { name = "traitlets", specifier = "==5.9.0" },
 ]
 
 [[package]]

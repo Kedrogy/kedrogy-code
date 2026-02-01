@@ -21,9 +21,24 @@ export LDFLAGS="-L/opt/homebrew/opt/openssl/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl/include"
 ```
 
+## django+jupyter
+
+first run
+
+```sh
+cd notebooks
+python -m django shell_plus --notebook --settings mysite.settings
+```
+
+then connect notebook to that kernel Django Shell-Plus kernel and eg try
+
+```sh
+from label_train_serve.models import DjangoDataset
+```
+
 ## tilt
 
-https://docs.tilt.dev/example_python.html
+<https://docs.tilt.dev/example_python.html>
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
@@ -33,7 +48,7 @@ curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/instal
 tilt up 
 ```
 
-## build docker image 
+## build docker image
 
 ```sh
 DOCKER_BUILDKIT=1 docker build --platform=linux/arm64 \
