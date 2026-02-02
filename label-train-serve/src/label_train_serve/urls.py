@@ -9,7 +9,6 @@ urlpatterns = [
     path("new_dataset/", views.new_dataset, name="new"),
     path("delete_dataset/<int:dataset_id>", views.delete_dataset, name="delete"),
     path("label_dataset/<int:dataset_id>", views.label_dataset, name="label"),
-    path("train/<int:dataset_id>", views.train, name="train"),
     path(
         "new_dataset_poll/<str:dataset_name>/<str:result_id>/",
         views.new_dataset_poll,
@@ -20,4 +19,7 @@ urlpatterns = [
         views.new_dataset_result,
         name="new-dataset-result",
     ),
+    path("new_model/<int:dataset_id>", views.new_model, name="new_model"),
+    path("model/<int:model_id>/", views.detail_model, name="detail_model"),
+    path("train_model/<int:model_id>/", views.train_model, name="train_model"),
 ]

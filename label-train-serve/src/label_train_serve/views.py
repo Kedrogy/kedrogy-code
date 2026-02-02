@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django_tasks import default_task_backend, TaskResultStatus, TaskResult
 
-from .models import DjangoDataset
+from .models import DjangoDataset, DjangoModel
 from .tasks import new_dataset_task
 
 
@@ -13,7 +13,8 @@ def index(request):
     dataset_list = (
         DjangoDataset.objects.all()
     )  # has no calss attribute objects: https://pyrefly.org/en/docs/django/
-    context = {"dataset_list": dataset_list}
+    model_list = DjangoModel.objects.all()
+    context = {"dataset_list": dataset_list, "model_list": model_list}
     return render(request, "label_train_serve/index.html", context)
 
 
@@ -81,7 +82,21 @@ def new_dataset_result(request, result_id):
     )
 
 
-def train(request, dataset_id):
+def new_model(request, dataset_id):
+    labels = request.POST.get("labels")
     dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
-    print("train on dataset", dataset, flush=True)
-    return redirect("label_train_serve:index")
+    print("new model on dataset", dataset, "using labels", labels, flush=True)
+    that_model = DjangoModel.objects.create(on_dataset=dataset, labels=labels)
+    return redirect("label_train_serve:detail_model", model_id=that_model.id)
+
+
+def detail_model(request, model_id):
+    model = get_object_or_404(DjangoModel, pk=model_id)
+    print(model)
+    return render(request, "label_train_serve/detail_model.html", {"model": model})
+
+
+def train_model(request, model_id):
+    print("train model with id", model_id)
+    model = get_object_or_404(DjangoModel, pk=model_id)
+    return render(request, "label_train_serve/training.html", {"model": model})
