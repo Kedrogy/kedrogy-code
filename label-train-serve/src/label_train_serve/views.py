@@ -100,3 +100,9 @@ def train_model(request, model_id):
     print("train model with id", model_id)
     model = get_object_or_404(DjangoModel, pk=model_id)
     return render(request, "label_train_serve/training.html", {"model": model})
+
+
+def delete_model(request, model_id):
+    model = get_object_or_404(DjangoModel, pk=model_id)
+    model.delete()
+    return redirect("label_train_serve:index")

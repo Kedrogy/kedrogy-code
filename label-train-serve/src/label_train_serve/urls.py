@@ -22,4 +22,5 @@ urlpatterns = [
     path("new_model/<int:dataset_id>", views.new_model, name="new_model"),
     path("model/<int:model_id>/", views.detail_model, name="detail_model"),
     path("train_model/<int:model_id>/", views.train_model, name="train_model"),
+    path("delete_model/<int:model_id>", views.delete_model, name="delete_model"),
 ]
