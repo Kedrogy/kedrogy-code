@@ -9,6 +9,7 @@ urlpatterns = [
     path("new_dataset/", views.new_dataset, name="new"),
     path("delete_dataset/<int:dataset_id>", views.delete_dataset, name="delete"),
     path("label_dataset/<int:dataset_id>", views.label_dataset, name="label"),
+    path("train/<int:dataset_id>", views.train, name="train"),
     path(
         "new_dataset_poll/<str:dataset_name>/<str:result_id>/",
         views.new_dataset_poll,

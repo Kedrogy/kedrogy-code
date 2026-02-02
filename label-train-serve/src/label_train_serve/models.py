@@ -27,3 +27,12 @@ class DjangoDataset(models.Model):
             # for tasks
             "dataset_id": self.id,
         }
+
+
+class DjangoModel(models.Model):
+    on_dataset = models.ForeignKey(DjangoDataset, on_delete=models.CASCADE)
+
+    labels = models.CharField(max_length=400, default="N/A")
+
+    # def __str__(self):
+    #     return self.dataset_name

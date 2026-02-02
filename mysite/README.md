@@ -57,6 +57,7 @@ TASKS = {
 run migrations
 
 ```sh
+python -m django makemigrations --settings mysite.settings && \
 python -m django migrate --settings mysite.settings
 ```
 
@@ -66,7 +67,7 @@ run db_worker
 python -m django db_worker --settings mysite.settings
 ```
 
-collect static 
+collect static
 
 ```sh
 python -m django collectstatic --noinput --settings mysite.settings

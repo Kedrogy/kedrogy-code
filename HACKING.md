@@ -82,6 +82,12 @@ k3d cluster create lts --registry-create lts-registry:5500 \
 #k3d cluster edit lts --port-add 30001:30001@loadbalancer
 ```
 
+or stop/start
+
+```sh
+k3d cluster start lts
+```
+
 import image
 
 ```sh
