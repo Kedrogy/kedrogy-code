@@ -1,0 +1,14 @@
+<a href="/">HOME</a>
+
+<h1>You're looking at MODEL with id {{ model.id }} on dataset {{ model.on_dataset.dataset_name }}</h1>
+
+<table>
+<tr><td><label for="labels">Labels</label></td>
+<td><input type="text" name="labels" id="labels" size="100" value="{{ model.labels }}"></td></tr>
+
+</table>
+
+<form action="{% url 'label_train_serve:train_model' model.id %}" method="post">
+{% csrf_token %}
+<input type="submit" value="train_model">
+</form>

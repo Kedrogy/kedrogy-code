@@ -1,5 +1,7 @@
 {% block content %} 
 
+<h1>DATASETS</h1>
+
 {% if dataset_list %}
     <ul>
     {% for dataset in dataset_list %}
@@ -39,5 +41,17 @@
 </fieldset>
 <input type="submit" value="new">
 </form>
+
+<h1>MODELS</h1>
+
+{% if model_list %}
+    <ul>
+    {% for model in model_list %}
+        <li><a href="{% url 'label_train_serve:detail_model' model.id %}">Model {{ model.id }} on {{ model.on_dataset.dataset_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No models found.</p>
+{% endif %}
 
 {% endblock %}
