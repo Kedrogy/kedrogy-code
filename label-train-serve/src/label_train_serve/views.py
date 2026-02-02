@@ -79,3 +79,9 @@ def new_dataset_result(request, result_id):
         "label_train_serve/detail_task.html#task_result",
         {"result_id": result_id, "result": result, "logs": logs},
     )
+
+
+def train(request, dataset_id):
+    dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
+    print("train on dataset", dataset, flush=True)
+    return redirect("label_train_serve:index")
