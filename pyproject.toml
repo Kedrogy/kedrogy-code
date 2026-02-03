@@ -4,6 +4,7 @@ version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
     "mysite", 
+    "predict",
     
     # uv does not support transitive dev dependencies , so 
     "django-extensions>=4.1",
@@ -19,10 +20,10 @@ dependencies = [
 
 [tool.uv.sources]
 mysite = { workspace = true }
-myrecipes = { workspace = true }
-mykedro = { workspace = true }
+predict = { workspace = true }
 
 [tool.uv.workspace]
 members = [
     "mysite",
+    "predict",
 ]
