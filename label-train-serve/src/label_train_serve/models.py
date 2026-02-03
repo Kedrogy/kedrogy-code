@@ -36,3 +36,8 @@ class DjangoModel(models.Model):
 
     # def __str__(self):
     #     return self.dataset_name
+
+
+# latest dataset for which prodigy is deployed
+class DjangoLastDataset(models.Model):
+    dataset = models.ForeignKey(DjangoDataset, on_delete=models.CASCADE)

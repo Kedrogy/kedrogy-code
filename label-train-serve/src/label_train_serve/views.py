@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django_tasks import default_task_backend, TaskResultStatus, TaskResult
 
-from .models import DjangoDataset, DjangoModel
+from .models import DjangoDataset, DjangoModel, DjangoLastDataset
 from .tasks import new_dataset_task
 
 
@@ -14,7 +14,13 @@ def index(request):
         DjangoDataset.objects.all()
     )  # has no calss attribute objects: https://pyrefly.org/en/docs/django/
     model_list = DjangoModel.objects.all()
-    context = {"dataset_list": dataset_list, "model_list": model_list}
+    latest = get_latest_dataset()
+    print("latest", latest, "dataset_name", latest.dataset.dataset_name)
+    context = {
+        "dataset_list": dataset_list,
+        "model_list": model_list,
+        "latest_dataset": latest,
+    }
     return render(request, "label_train_serve/index.html", context)
 
 
@@ -67,12 +73,32 @@ def new_dataset_poll(request, dataset_name, result_id):
     return render(request, "label_train_serve/detail_task.html", context)
 
 
+def update_latest_dataset(dataset_id):
+    found = list(DjangoLastDataset.objects.all())
+    if len(found) > 0:
+        DjangoLastDataset.objects.all().delete()
+    latest = DjangoLastDataset(dataset_id=dataset_id).save()
+    return latest
+
+
+def get_latest_dataset():
+    x = list(DjangoLastDataset.objects.all())
+    if len(x) > 0:
+        return x[0]
+    return None
+
+
 def new_dataset_result(request, result_id):
     taskResult: TaskResult = new_dataset_task.get_result(result_id)
     if not taskResult.is_finished:
         result = f"status: {taskResult.status}"
     else:
         result = taskResult.return_value
+        # dataset = get_object_or_404(DjangoDataset, pk=result["dataset_id"])
+        # dataset.running = True
+        # dataset.save()
+        update_latest_dataset(result["dataset_id"])
+        return redirect("label_train_serve:index")
     logs = taskResult.metadata.get("logs", "")
     # TODO if is_finished return non-HTMX to stop polling
     return render(

@@ -2,6 +2,12 @@
 
 <h1>DATASETS</h1>
 
+{% if latest_dataset is not None %}
+    Prodigy running for dataset {{ latest_dataset.dataset.dataset_name }}
+{% else %}
+    Prodigy IS NOT running.
+{% endif %}
+
 {% if dataset_list %}
     <ul>
     {% for dataset in dataset_list %}
