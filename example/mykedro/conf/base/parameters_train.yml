@@ -1,0 +1,8 @@
+# This is a boilerplate parameters config generated for pipeline 'train'
+# using Kedro 1.2.0.
+#
+# Documentation for this file format can be found in "Parameters"
+# Link: https://docs.kedro.org/en/1.2.0/configuration/parameters.html
+
+model_options:
+  dataset_name: news_headlines

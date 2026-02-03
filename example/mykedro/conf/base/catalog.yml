@@ -19,3 +19,15 @@ all_data_postgres:
 examples_jsonl:
   type: ysz.kedro_datasets.srsly_dataset.SrslyDataset
   filepath: data/00_examples/examples.jsonl
+
+labelled_examples:
+  type: ysz.kedro_datasets.srsly_dataset.SrslyDataset
+  filepath: data/02_intermediate/labelled_examples.jsonl
+
+dataset_fasttext:
+  type: ysz.kedro_datasets.fasttext_dataset.FasttextDataset
+  filepath: data/02_intermediate/dataset_fasttext.csv
+
+model_input:
+  type: ysz.kedro_datasets.huggingface_dataset.HuggingfaceDataset
+  filepath: data/05_model_input
