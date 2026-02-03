@@ -6,7 +6,7 @@ generated using Kedro 1.2.0
 from kedro.pipeline import Node, Pipeline  # noqa
 from sklearn.model_selection import train_test_split
 
-from .nodes import labelled_examples, jsonl_to_fasttext
+from .nodes import labelled_examples, jsonl_to_fasttext, train
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -20,7 +20,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             Node(
                 func=jsonl_to_fasttext,
-                inputs="labelled_examples",
+                inputs=["labelled_examples", "params:model_options"],
                 outputs="dataset_fasttext",
                 name="jsonl_to_fasttext_node",
             ),
@@ -29,6 +29,12 @@ def create_pipeline(**kwargs) -> Pipeline:
                 inputs="dataset_fasttext",
                 outputs="model_input",
                 name="train_test_split_node",
+            ),
+            Node(
+                func=train,
+                inputs=["model_input", "params:model_options"],
+                outputs=None,  # "model",
+                name="train_node",
             ),
         ]
     )
