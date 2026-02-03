@@ -6,3 +6,6 @@
 
 model_options:
   dataset_name: news_headlines
+  labels: ["POS", "NEG"]
+  data_seed: 123
+  seed: 123
