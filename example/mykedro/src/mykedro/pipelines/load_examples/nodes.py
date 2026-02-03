@@ -14,7 +14,7 @@ def load_examples(parameters: dict) -> SrslyDataset:
     data_table_name = parameters["data_table_name"]
     dataset_name = parameters["dataset_name"]
     id_field = parameters["id_field"]
-
+    print(data_table_name, dataset_name, id_field)
     with psycopg.connect() as conn:
         with conn.cursor() as cur:
             cur.execute(f"""
