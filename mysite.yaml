@@ -60,7 +60,7 @@ spec:
               echo '{"db": "postgresql", "db_settings": {"postgresql": {"user": "'$PGUSER'", "password": "'$PGPASSWORD'", "dbname": "'$PGDATABASE'", "host": "'$PGHOST'"}}}' > /prodigy-json/prodigy.json
 
         - name: migrate
-          image: lts-registry.localhost:5500/mysite:latest
+          image: kedrogy-registry.localhost:5500/mysite:latest
           args: ["-m", "django", "migrate", "--settings", "mysite.settings"]
           env:
             - name: PGHOST
@@ -75,7 +75,7 @@ spec:
               value: postgres
 
         - name: db-worker
-          image: lts-registry.localhost:5500/mysite:latest
+          image: kedrogy-registry.localhost:5500/mysite:latest
           #this is a sidecar:
           restartPolicy: Always
           args: ["-m", "django", "db_worker", "--settings", "mysite.settings"]
@@ -99,7 +99,7 @@ spec:
 
       containers:
         - name: mysite
-          image: lts-registry.localhost:5500/mysite:latest
+          image: kedrogy-registry.localhost:5500/mysite:latest
           command: ["bash", "-c"]
           args:
             - |

@@ -2153,7 +2153,7 @@ requires-dist = [
     { name = "scikit-learn", specifier = ">=1.7.2" },
     { name = "torch", specifier = ">=1.13.1" },
     { name = "transformers", specifier = "==4.57.1" },
-    { name = "ysz-kedro-datasets", editable = "../../kedro-datasets" },
+    { name = "ysz-kedro-datasets", git = "ssh://git@github.com/ysz-vc/kedro-datasets?tag=v0.1.5" },
 ]
 
 [[package]]
@@ -4807,24 +4807,11 @@ wheels = [
 
 [[package]]
 name = "ysz-kedro-datasets"
-source = { editable = "../../kedro-datasets" }
+version = "0.1.5"
+source = { git = "ssh://git@github.com/ysz-vc/kedro-datasets?tag=v0.1.5#0db1359e62b615fc0d9ada75f1201e77514d0d5b" }
 dependencies = [
     { name = "datasets" },
     { name = "kedro" },
     { name = "psycopg", extra = ["binary", "pool"] },
     { name = "srsly" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "datasets", specifier = ">=4.4.1" },
-    { name = "kedro", specifier = ">=1.1.1" },
-    { name = "psycopg", extras = ["binary", "pool"] },
-    { name = "srsly", specifier = ">=2.5.2" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "ipykernel", specifier = ">=7.1.0" },
-    { name = "ipywidgets", specifier = ">=8.1.8" },
 ]

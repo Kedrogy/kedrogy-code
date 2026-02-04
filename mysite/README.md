@@ -24,6 +24,14 @@ and collect static (if needed)
 python -m django collectstatic --noinput --settings mysite.settings
 ```
 
+migrate/create superuser once if needed
+
+```sh
+python -m django createsuperuser --no-input --settings mysite.settings
+# to delete superuser 
+psql -c "delete from auth_user where username='superuser';"
+```
+
 ## create django site
 
 ```sh

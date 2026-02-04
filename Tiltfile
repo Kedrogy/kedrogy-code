@@ -1,6 +1,6 @@
 watch_settings(ignore=["example", ".venv"])
 docker_build(
-    "lts-registry.localhost:5500/mysite:latest",
+    "kedrogy-registry.localhost:5500/mysite:latest",
     ".",
     dockerfile="Dockerfile",
     build_args={

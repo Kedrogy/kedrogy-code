@@ -8,7 +8,7 @@ requires-python = ">=3.12"
 dependencies = [
     "kedro>=1.2.0",
     "kedro-datasets[pandas]>=9.1.1",
-    "ysz-kedro-datasets>=0.1.4",
+    "ysz-kedro-datasets>=0.1.5",
     "psycopg[binary,pool]",
     "scikit-learn>=1.7.2",
     "prodigy>=1.18.4",
@@ -48,11 +48,11 @@ project_id = "14909e7c5e8c47b582918cc118916796"
 
 [tool.uv.sources]
 # and pin 
-# ysz-kedro-datasets = { git = "ssh://git@github.com/ysz-vc/kedro-datasets", tag = "v0.1.4" }
+ysz-kedro-datasets = { git = "ssh://git@github.com/ysz-vc/kedro-datasets", tag = "v0.1.5" }
 # and pin prodigy 
 prodigy = { index = "prodigy" }
 # development 
-ysz-kedro-datasets = { path = "../../../kedro-datasets", editable = true }
+# ysz-kedro-datasets = { path = "../../../kedro-datasets", editable = true }
 predict = { path = "../../predict", editable = true }
 
 [[tool.uv.index]]
