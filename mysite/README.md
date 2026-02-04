@@ -1,4 +1,4 @@
-# how to use label-train-serve in a django project
+# how to use kedrogy in a django project
 
 run db_worker/and site and go to <http://127.0.0.1:8000/>
 
@@ -42,17 +42,17 @@ uv sync --no-managed-python
 uv add "django>=6.0.1"
 ```
 
-add label-train-serve
+add kedrogy
 
 ```sh
-uv add --editable ../label-train-serve
+uv add --editable ../kedrogy
 ```
 
 add to `urls.py`
 
 ```python
 urlpatterns = [
-    path("", include("label_train_serve.urls")),
+    path("", include("kedrogy.urls")),
 ```
 
 add to `settings.py`
@@ -60,7 +60,7 @@ add to `settings.py`
 ```python
 INSTALLED_APPS = [
     "django_htmx",
-    "label_train_serve.apps.DatasetNewConfig",
+    "kedrogy.apps.DatasetNewConfig",
 
     "django_tasks",
     "django_tasks.backends.database",

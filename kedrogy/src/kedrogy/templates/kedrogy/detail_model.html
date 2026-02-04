@@ -8,12 +8,12 @@
 
 </table>
 
-<form action="{% url 'label_train_serve:delete_model' model.id %}" method="post">
+<form action="{% url 'kedrogy:delete_model' model.id %}" method="post">
 {% csrf_token %}
 <input type="submit" value="delete_model">
 </form>
 
-<form action="{% url 'label_train_serve:train_model' model.id %}" method="post">
+<form action="{% url 'kedrogy:train_model' model.id %}" method="post">
 {% csrf_token %}
 <input type="submit" value="train_model">
 </form>

@@ -6,7 +6,7 @@ uv workspace example with kedro pipelines and custom recipe
 uv sync --all-packages --dev --no-managed-python
 ```
 
-build image for label-train-serve , TODO:how to tilt this, but make tilt NOT modify tag of the pushed image on the cluster  
+build image for kedrogy , TODO:how to tilt this, but make tilt NOT modify tag of the pushed image on the cluster  
 
 NB Dockerfile-example has to pull ../predict for development , hence build from the root of the repository
 

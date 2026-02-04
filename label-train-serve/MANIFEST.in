@@ -1,3 +1,0 @@
-recursive-include label_train_serve/static *
-recursive-include label_train_serve/templates *
-recursive-include label_train_serve/k8s_templates *

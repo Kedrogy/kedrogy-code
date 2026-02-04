@@ -42,7 +42,7 @@ python -m django shell_plus --notebook --settings mysite.settings
 then connect notebook to that kernel Django Shell-Plus kernel and eg try
 
 ```sh
-from label_train_serve.models import DjangoDataset
+from kedrogy.models import DjangoDataset
 ```
 
 ## tilt
@@ -156,8 +156,8 @@ brew edit kubernetes-cli@1.29
 > PRODIGY_CONFIG=`pwd`/prodigy.json PRODIGY_LOGGING=verbose PRODIGY_BASIC_AUTH_USER=prodigy-user PRODIGY_BASIC_AUTH_PASS=b7f363145d299a343f15ead44818456113388aa92e1e88221e85fe9d4f28d6a2 PRODIGY_HOST=0.0.0.0 PRODIGY_PORT=8080 prodigy myrecipes.textcat.custom-model news_headlines ./data/00_examples/examples.jsonl -l POS,NEG
 15:15:08: RECIPE: Calling recipe 'myrecipes.textcat.custom-model'
 15:15:08: SORTER: Resort stream to prefer uncertain scores (bias 0.0)
-15:15:08: /Users/me/ysz-vc/label-train-serve/mykedro/prodigy.json
-15:15:08: /Users/me/ysz-vc/label-train-serve/mykedro/prodigy.json
+15:15:08: /Users/me/ysz-vc/kedrogy/mykedro/prodigy.json
+15:15:08: /Users/me/ysz-vc/kedrogy/mykedro/prodigy.json
 15:15:08: VALIDATE: Validating components returned by recipe
 15:15:08: CONTROLLER: Initialising from recipe
 15:15:08: CONTROLLER: Recipe Config
@@ -170,8 +170,8 @@ missing. This automatic hashing will be deprecated as of Prodigy v2 because it
 can lead to unwanted duplicates in custom recipes if the examples deviate from
 the default assumptions. More information can found on the docs:
 https://prodi.gy/docs/api-components#set_hashes
-15:15:08: /Users/me/ysz-vc/label-train-serve/mykedro/prodigy.json
-15:15:08: /Users/me/ysz-vc/label-train-serve/mykedro/prodigy.json
+15:15:08: /Users/me/ysz-vc/kedrogy/mykedro/prodigy.json
+15:15:08: /Users/me/ysz-vc/kedrogy/mykedro/prodigy.json
 15:15:08: DB: Creating unstructured dataset 'news_headlines'
 Added dataset news_headlines to database PostgreSQL.
 15:15:08: DB: Creating unstructured dataset '2026-02-01_15-15-08'

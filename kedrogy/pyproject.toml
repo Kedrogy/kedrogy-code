@@ -3,7 +3,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "label-train-serve"
+name = "kedrogy"
 version = "0.1"
 dependencies = [
     "django>=6.0.1",
@@ -44,7 +44,7 @@ classifiers = [
 Homepage = "https://www.example.com/"
 
 # [tool.setuptools.packages.find]
-# exclude = ['notebooks*', 'label_train_serve_site*']
+# exclude = ['notebooks*', 'kedrogy_site*']
 
 [tool.uv]
 package = true
