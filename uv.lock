@@ -1546,12 +1546,14 @@ name = "predict"
 version = "0.1.0"
 source = { editable = "predict" }
 dependencies = [
+    { name = "fastapi" },
     { name = "torch" },
     { name = "transformers" },
 ]
 
 [package.metadata]
 requires-dist = [
+    { name = "fastapi", specifier = ">=0.115.14" },
     { name = "torch", specifier = ">=1.13.1" },
     { name = "transformers", specifier = "==4.57.1" },
 ]
