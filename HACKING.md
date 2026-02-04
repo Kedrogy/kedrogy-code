@@ -1,5 +1,7 @@
 # development
 
+THINKME golang/rust rewrite to bundle everything in one executable here <https://go.dev/doc/articles/wiki/#tmp_1> + rust axum /and embed assets to rust
+
 to also get dev dependencies
 
 ```sh
