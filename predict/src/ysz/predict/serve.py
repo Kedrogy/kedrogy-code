@@ -12,9 +12,9 @@ from pydantic import BaseModel
 import uvicorn
 
 # this takes a while to load
-# from transformers import AutoTokenizer
-# import torch
-# from transformers import AutoModelForSequenceClassification
+from transformers import AutoTokenizer
+import torch
+from transformers import AutoModelForSequenceClassification
 
 
 # h/t: https://stackoverflow.com/a/42279784
@@ -63,8 +63,18 @@ def create_app(args: MyProgramArgs):
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):
-        app.state.checkpoint = args.checkpoint
-        print("serving:", app.state.checkpoint)
+        app.state.checkpoint_here = args.checkpoint
+        print("serving:", app.state.checkpoint_here)
+
+        checkpoint_here = app.state.checkpoint_here
+        app.state.tokenizer = AutoTokenizer.from_pretrained(
+            checkpoint_here, local_files_only=True
+        )
+        app.state.model = AutoModelForSequenceClassification.from_pretrained(
+            checkpoint_here, local_files_only=True
+        )
+
+        app.state.plugin_loaded = plugin_loaded
         yield
         print("Shutdown.")
 
@@ -82,7 +92,7 @@ def create_app(args: MyProgramArgs):
         request: Request,
         params: Params,
     ):
-        print("using", request.app.state.checkpoint)
+        print("using", request.app.state.checkpoint_here)
         print(params)
         # if not (credentials.username == os.getenv('USERNAME') ) or not (credentials.password == os.getenv('PASSWORD') ):
         #     raise HTTPException(
@@ -92,7 +102,14 @@ def create_app(args: MyProgramArgs):
         #     )
         print(params.text)
 
-        return {}
+        preprocessed_text = app.state.plugin_loaded(params.text)
+        inputs = app.state.tokenizer(preprocessed_text, return_tensors="pt")
+        with torch.no_grad():
+            logits = app.state.model(**inputs).logits
+        predicted_class_id = logits.argmax().item()
+        return {
+            "predicted_class_id": app.state.model.config.id2label[predicted_class_id]
+        }
 
     return app
 
