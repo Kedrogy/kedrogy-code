@@ -3,6 +3,12 @@
 example usage from .venv of `../example`
 
 ```sh
+python -m ysz.predict ../example/mykedro/data/06_models/best/ -p a_preprocess_fun
+```
+
+or like this , output example
+
+```sh
 > serve ../example/mykedro/data/06_models/best/ -p a_preprocess_fun
 preprocess arg: a_preprocess_fun
 using plugin a_preprocess_fun
