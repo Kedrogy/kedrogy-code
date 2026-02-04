@@ -28,7 +28,9 @@ WORKDIR /app
 #     cd mysite && \
 #     uv sync --dev --frozen
 
-COPY . /app
+COPY ./example /app
+
+COPY ./predict /predict
 
 # # https://docs.docker.com/build/ci/github-actions/secrets/
 # # this step configure git and checks the ssh key is loaded

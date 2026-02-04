@@ -63,19 +63,19 @@ tilt up
 DOCKER_BUILDKIT=1 docker build --platform=linux/arm64 \
 --ssh default \
 --build-arg UV_INDEX_PRODIGY_USERNAME=$UV_INDEX_PRODIGY_USERNAME \
--t lts-registry.localhost:5500/mysite:latest \
+-t kedrogy-registry.localhost:5500/mysite:latest \
 -f Dockerfile-tilt .
 
 docker build --platform=linux/arm64 \
 --build-arg UV_INDEX_PRODIGY_USERNAME=$UV_INDEX_PRODIGY_USERNAME \
--t lts-registry.localhost:5500/mysite:latest \
+-t kedrogy-registry.localhost:5500/mysite:latest \
 -f Dockerfile-tilt .
 ```
 
 verify
 
 ```sh
-docker run --platform linux/arm64 --rm -it lts-registry.localhost:5500/mysite:latest -m django runserver --settings mysite.settings
+docker run --platform linux/arm64 --rm -it kedrogy-registry.localhost:5500/mysite:latest -m django runserver --settings mysite.settings
 ```
 
 ## cluster setup
@@ -84,32 +84,32 @@ then ensure k8s cluster with postgres expose , see <https://k3d.io/v5.3.0/usage/
 
 ```sh
 # use '--agent 2' for multi node cluster 
-k3d cluster create lts --registry-create lts-registry:5500 \
+k3d cluster create kedrogy --registry-create kedrogy-registry:5500 \
 --api-port 6550 -p "8081:80@loadbalancer" -p "30001:30001@loadbalancer" #-p "30001:30001@server:0" # --agents 2
 
 #or edit
-#k3d cluster edit lts --port-add 30001:30001@loadbalancer
+#k3d cluster edit kedrogy --port-add 30001:30001@loadbalancer
 ```
 
 or stop/start
 
 ```sh
-k3d cluster start lts
+k3d cluster start kedrogy
 ```
 
 import image
 
 ```sh
-> docker exec -it k3d-lts-server-0 uname -m
+> docker exec -it k3d-kedrogy-server-0 uname -m
 aarch64
 
 # k3d image import postgres:18 --cluster=lts#this does not work on macbook
 
 docker save --platform linux/aarch64 postgres:18 > postgres.tar
-k3d image import --cluster=lts ./postgres.tar
+k3d image import --cluster=kedrogy ./postgres.tar
 
 # verify: list images 
-> docker exec k3d-lts-server-0 crictl images
+> docker exec k3d-kedrogy-server-0 crictl images
 IMAGE                                        TAG                 IMAGE ID            SIZE
 docker.io/library/postgres                   18                  f43f1abd80181       161MB
 
@@ -123,20 +123,12 @@ k apply -f postgres.yaml
 #k port-forward svc/postgres-svc 30001:30001
 ```
 
-verify postgres up and create django schema if needed
+verify postgres up and create django schema IF NEEDED
 
 ```sh
 export $(cat .env | sed '/^#/d')
 
 psql -c "create schema django_schema;"
-```
-
-migrate/create superuser once if needed
-
-```sh
-python -m django createsuperuser --no-input --settings mysite.settings
-# to delete superuser 
-psql -c "delete from django_schema.auth_user where username='superuser';"
 ```
 
 ## maybe Get matching version of kubectl

@@ -15,7 +15,8 @@ def index(request):
     )  # has no calss attribute objects: https://pyrefly.org/en/docs/django/
     model_list = DjangoModel.objects.all()
     latest = get_latest_dataset()
-    print("latest", latest, "dataset_name", latest.dataset.dataset_name)
+    if latest:
+        print("latest", latest, "dataset_name", latest.dataset.dataset_name)
     context = {
         "dataset_list": dataset_list,
         "model_list": model_list,
