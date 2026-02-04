@@ -2,10 +2,17 @@
 
 THINKME golang/rust rewrite to bundle everything in one executable here <https://go.dev/doc/articles/wiki/#tmp_1> + rust axum /and embed assets to rust
 
-to also get dev dependencies
+to also get dev dependencies copy .env-example to .env and set
+
+```
+UV_INDEX_YSZ_PASSWORD=
+UV_INDEX_PRODIGY_USERNAME=
+```
+
+then
 
 ```sh
-export $(cat .env-prodigy | sed '/^#/d')
+export $(cat .env | sed '/^#/d')
 uv sync --all-packages --dev --no-managed-python
 ```
 
