@@ -22,13 +22,13 @@ def index(request):
         "model_list": model_list,
         "latest_dataset": latest,
     }
-    return render(request, "label_train_serve/index.html", context)
+    return render(request, "kedrogy/index.html", context)
 
 
 def detail(request, dataset_id):
     dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
     print(dataset)
-    return render(request, "label_train_serve/detail.html", {"dataset": dataset})
+    return render(request, "kedrogy/detail.html", {"dataset": dataset})
 
 
 def new_dataset(request):  # , dataset_name):
@@ -50,7 +50,7 @@ def new_dataset(request):  # , dataset_name):
         recipe_options=recipe_options,
     )
     this_dataset.save()
-    return redirect("label_train_serve:detail", dataset_id=this_dataset.id)
+    return redirect("kedrogy:detail", dataset_id=this_dataset.id)
 
 
 def label_dataset(request, dataset_id):
@@ -58,20 +58,20 @@ def label_dataset(request, dataset_id):
     myresult = new_dataset_task.enqueue(dataset.to_dict())
     # return HttpResponse("You're creating a dataset %s , result id %s" % (dataset_name, myresult.id))
     context = {"dataset_name": dataset.dataset_name, "result_id": myresult.id}
-    # return render(request, "label_train_serve/new_dataset.html", context)#You're creating a dataset
-    return render(request, "label_train_serve/detail_task.html", context)
-    # return redirect("label_train_serve:index")
+    # return render(request, "kedrogy/new_dataset.html", context)#You're creating a dataset
+    return render(request, "kedrogy/detail_task.html", context)
+    # return redirect("kedrogy:index")
 
 
 def delete_dataset(request, dataset_id):
     dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
     dataset.delete()
-    return redirect("label_train_serve:index")
+    return redirect("kedrogy:index")
 
 
 def new_dataset_poll(request, dataset_name, result_id):
     context = {"dataset_name": dataset_name, "result_id": result_id}
-    return render(request, "label_train_serve/detail_task.html", context)
+    return render(request, "kedrogy/detail_task.html", context)
 
 
 def update_latest_dataset(dataset_id):
@@ -99,12 +99,12 @@ def new_dataset_result(request, result_id):
         # dataset.running = True
         # dataset.save()
         update_latest_dataset(result["dataset_id"])
-        return redirect("label_train_serve:index")
+        return redirect("kedrogy:index")
     logs = taskResult.metadata.get("logs", "")
     # TODO if is_finished return non-HTMX to stop polling
     return render(
         request,
-        "label_train_serve/detail_task.html#task_result",
+        "kedrogy/detail_task.html#task_result",
         {"result_id": result_id, "result": result, "logs": logs},
     )
 
@@ -114,22 +114,22 @@ def new_model(request, dataset_id):
     dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
     print("new model on dataset", dataset, "using labels", labels, flush=True)
     that_model = DjangoModel.objects.create(on_dataset=dataset, labels=labels)
-    return redirect("label_train_serve:detail_model", model_id=that_model.id)
+    return redirect("kedrogy:detail_model", model_id=that_model.id)
 
 
 def detail_model(request, model_id):
     model = get_object_or_404(DjangoModel, pk=model_id)
     print(model)
-    return render(request, "label_train_serve/detail_model.html", {"model": model})
+    return render(request, "kedrogy/detail_model.html", {"model": model})
 
 
 def train_model(request, model_id):
     print("train model with id", model_id)
     model = get_object_or_404(DjangoModel, pk=model_id)
-    return render(request, "label_train_serve/training.html", {"model": model})
+    return render(request, "kedrogy/training.html", {"model": model})
 
 
 def delete_model(request, model_id):
     model = get_object_or_404(DjangoModel, pk=model_id)
     model.delete()
-    return redirect("label_train_serve:index")
+    return redirect("kedrogy:index")

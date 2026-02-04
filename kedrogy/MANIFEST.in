@@ -1,0 +1,3 @@
+recursive-include kedrogy/static *
+recursive-include kedrogy/templates *
+recursive-include kedrogy/k8s_templates *

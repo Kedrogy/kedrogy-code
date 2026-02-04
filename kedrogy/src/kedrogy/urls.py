@@ -2,7 +2,7 @@ from django.urls import path
 
 from . import views
 
-app_name = "label_train_serve"
+app_name = "kedrogy"
 urlpatterns = [
     path("", views.index, name="index"),
     path("<int:dataset_id>/", views.detail, name="detail"),

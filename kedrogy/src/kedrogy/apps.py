@@ -5,10 +5,10 @@ from django.apps import AppConfig
 
 
 class DatasetNewConfig(AppConfig):
-    name = "label_train_serve"
+    name = "kedrogy"
 
     def ready(self):
-        print("label_train_serve is ready! Executing startup code.")
+        print("kedrogy is ready! Executing startup code.")
 
         import psycopg
 

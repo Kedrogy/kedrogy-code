@@ -14,7 +14,7 @@
     <section
       hx-trigger="every 1s"
       hx-swap=outerHTML
-      hx-get="{% url 'label_train_serve:new-dataset-result' result_id %}"
+      hx-get="{% url 'kedrogy:new-dataset-result' result_id %}"
     >
       <label for="logs">result: {{ result }}</label>
       <textarea id="logs" name="logs" rows="5" cols="33">

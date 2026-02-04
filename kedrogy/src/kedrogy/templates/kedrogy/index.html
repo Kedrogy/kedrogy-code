@@ -11,14 +11,14 @@
 {% if dataset_list %}
     <ul>
     {% for dataset in dataset_list %}
-        <li><a href="{% url 'label_train_serve:detail' dataset.id %}">{{ dataset.dataset_name }}</a></li>
+        <li><a href="{% url 'kedrogy:detail' dataset.id %}">{{ dataset.dataset_name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No datasets found.</p>
 {% endif %}
 
-<form action="{% url 'label_train_serve:new' %}" method="post">
+<form action="{% url 'kedrogy:new' %}" method="post">
 {% csrf_token %}
 <fieldset>
     <legend><h1>Create a new dataset</h1></legend>
@@ -53,7 +53,7 @@
 {% if model_list %}
     <ul>
     {% for model in model_list %}
-        <li><a href="{% url 'label_train_serve:detail_model' model.id %}">Model {{ model.id }} on {{ model.on_dataset.dataset_name }}</a></li>
+        <li><a href="{% url 'kedrogy:detail_model' model.id %}">Model {{ model.id }} on {{ model.on_dataset.dataset_name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

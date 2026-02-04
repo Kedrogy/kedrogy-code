@@ -99,8 +99,8 @@ Type "help", "copyright", "credits" or "license" for more information.
 ## make migrations
 
 ```sh
-> python -m django makemigrations --settings site_example.settings label_train_serve
-Migrations for 'label_train_serve':
-  /Users/me/stertell-ai/all-in-one/code/django-dataset-new/label_train_serve/migrations/0001_initial.py
+> python -m django makemigrations --settings site_example.settings kedrogy
+Migrations for 'kedrogy':
+  /Users/me/stertell-ai/all-in-one/code/django-dataset-new/kedrogy/migrations/0001_initial.py
     + Create model DjangoDataset
 ```
