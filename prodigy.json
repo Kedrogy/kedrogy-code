@@ -1,0 +1,11 @@
+{
+    "db": "postgresql",
+    "db_settings": {
+        "postgresql": {
+            "user": "postgres",
+            "password": "postgres",
+            "dbname": "mysite",
+            "host": "localhost"
+        }
+    }
+}
