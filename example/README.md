@@ -3,7 +3,7 @@
 uv workspace example with kedro pipelines and custom recipe
 
 ```sh
-uv sync --all-packages --dev
+uv sync --all-packages --dev --no-managed-python
 ```
 
 build image for label-train-serve , TODO:how to tilt this, but make tilt NOT modify tag of the pushed image on the cluster  
