@@ -11,16 +11,15 @@ dependencies = [
     "ysz-kedro-datasets>=0.1.4",
     "psycopg[binary,pool]",
     "scikit-learn>=1.7.2",
-
     "prodigy>=1.18.4",
     "psycopg2>=2.9.11",#prodigy+postgres
-
     #train pipeline
     "datasets>=4.4.1",
     "transformers==4.57.1",
     "torch>=1.13.1",
     "evaluate>=0.4.6",
     "accelerate>=1.11.0",
+    "predict",
 ]
 
 [build-system]
@@ -54,6 +53,7 @@ project_id = "14909e7c5e8c47b582918cc118916796"
 prodigy = { index = "prodigy" }
 # development 
 ysz-kedro-datasets = { path = "../../../kedro-datasets", editable = true }
+predict = { path = "../../predict", editable = true }
 
 [[tool.uv.index]]
 name = "prodigy"
@@ -63,3 +63,5 @@ ignore-error-codes = [422]
 # prevent packages from being installed from here unless explicitly pinned to it
 explicit = true
 
+[project.entry-points.'ysz.predict']
+a_preprocess_fun = "mykedro.preprocess:preprocess_fun"

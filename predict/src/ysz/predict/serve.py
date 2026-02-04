@@ -3,6 +3,7 @@ import os
 import json
 import argparse
 from contextlib import asynccontextmanager
+from importlib.metadata import entry_points
 
 from fastapi import Depends, FastAPI, HTTPException, status, Request
 from fastapi.responses import PlainTextResponse
@@ -10,9 +11,22 @@ from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from pydantic import BaseModel
 import uvicorn
 
-from transformers import AutoTokenizer
-import torch
-from transformers import AutoModelForSequenceClassification
+# this takes a while to load
+# from transformers import AutoTokenizer
+# import torch
+# from transformers import AutoModelForSequenceClassification
+
+
+# h/t: https://stackoverflow.com/a/42279784
+class MyProgramArgs(argparse.Namespace):
+    checkpoint: str
+    preprocess: str
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        self.checkpoint = "checkpoint"  # type: str
+        self.preprocess = "preprocess"  # type: str
 
 
 parser = argparse.ArgumentParser(
@@ -21,13 +35,32 @@ parser = argparse.ArgumentParser(
     epilog="",
 )
 parser.add_argument("checkpoint")
+parser.add_argument("-p", "--preprocess")
+args = parser.parse_args(namespace=MyProgramArgs())  # type: MyProgramArgs
 
 
 class Params(BaseModel):
     text: str
 
 
-def create_app(args):
+def create_app(args: MyProgramArgs):
+    print("preprocess arg:", args.preprocess)
+
+    def preprocess_none(text: str) -> str:
+        print("preprocess_none")
+        return text
+
+    plugin_loaded = preprocess_none
+    for plugin in entry_points(group="ysz.predict"):
+        if plugin.name == args.preprocess:
+            print("using plugin", plugin.name)
+            # print(plugin)
+            x = plugin.load()
+            # print(x)
+            # x("hello")
+            plugin_loaded = x
+    plugin_loaded("hello")
+
     @asynccontextmanager
     async def lifespan(app: FastAPI):
         app.state.checkpoint = args.checkpoint
@@ -65,7 +98,6 @@ def create_app(args):
 
 
 def main():
-    args = parser.parse_args()
     app = create_app(args)
     uvicorn.run(
         app, host="0.0.0.0", port=8888
