@@ -1,13 +1,14 @@
 import logging
 import time
 import subprocess
+from typing import TypedDict
 
 from django_tasks import TaskContext, task
 from django.shortcuts import get_object_or_404
 from pathlib import Path
 from jinja2 import Template
 
-from .models import DjangoDataset
+from .models import DjangoDataset, DjangoModel
 
 
 logger = logging.getLogger(__name__)
@@ -32,8 +33,20 @@ def render_print(jinja_filename, ingress_data):
     return render_ingress
 
 
+class NewDatasetTask(TypedDict):
+    dataset_id: str
+    # DjangoDataset:
+    image: str
+    workingDir: str
+    pipeline: str
+    recipe: str
+    recipe_options: str
+    # computed:
+    recipe_options_split: str
+
+
 @task(takes_context=True)
-def new_dataset_task(context: TaskContext, task_parameters: dict):
+def new_dataset_task(context: TaskContext, task_parameters: NewDatasetTask):
     # update this dataset
     this_dataset = get_object_or_404(DjangoDataset, pk=task_parameters["dataset_id"])
     print(this_dataset, flush=True)
@@ -99,3 +112,22 @@ def new_dataset_task(context: TaskContext, task_parameters: dict):
     # kubectl(context, ["kubectl", "apply", "-f", "ingress.yaml"])
     logger.warning(f"Done label dataset {dataset_name}")
     return {"dataset_id": this_dataset.id}
+
+
+@task(takes_context=True)
+def new_train_task(context: TaskContext, model_id):
+    # update this dataset
+    this_model = get_object_or_404(DjangoModel, pk=model_id)
+    dataset_name = this_model.on_dataset.dataset_name
+    print("training", this_model, "on dataset", dataset_name, flush=True)
+
+    context.metadata["logs"] = ""
+    render_manifest = render_print(
+        "pvc.yaml.jinja",
+        {"model_id": this_model.id},
+    )
+    yaml_filename = f"pvc-model-{this_model.id}.yaml"
+    Path(yaml_filename).write_text(render_manifest)
+    kubectl(context, ["kubectl", "apply", "-f", yaml_filename])
+
+    return {"model_id": this_model.id}

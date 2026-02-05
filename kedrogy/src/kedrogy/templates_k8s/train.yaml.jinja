@@ -1,0 +1,172 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: train-{{ }}
+spec:
+  template:
+    spec:
+      containers:
+      - name: pi
+        image: perl:5.34.0
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+      restartPolicy: Never
+  backoffLimit: 4
+
+
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prodigy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: prodigy
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: prodigy
+    spec:
+      # imagePullSecrets:
+      #   - name: docker-ghcr-auth
+      volumes:
+        - name: prodigy-json
+          emptyDir:
+            sizeLimit: 50Mi
+
+        - name: examples
+          emptyDir:
+            sizeLimit: 500Mi
+        # - projected:
+        #     sources:
+        #       - configMap:
+        #           name: patterns
+        #   name: patterns-volume
+      initContainers:
+        - name: create-prodigy-config
+          image: busybox
+          env:
+            - name: PGHOST
+              value: postgres-svc
+            - name: PGPORT
+              value: "30001"
+            - name: PGUSER
+              value: postgres
+            - name: PGDATABASE
+              value: mysite
+            - name: PGPASSWORD
+              value: postgres
+          volumeMounts:
+            - mountPath: /prodigy-json
+              name: prodigy-json
+          command: ["sh", "-c"]
+          args:
+            - |
+              echo '{"db": "postgresql", "db_settings": {"postgresql": {"user": "'$PGUSER'", "password": "'$PGPASSWORD'", "dbname": "'$PGDATABASE'", "host": "'$PGHOST'", "port": "'$PGPORT'"}}}' > /prodigy-json/prodigy.json
+
+        - name: load-examples
+          # XXX Tilt image
+          image: {{ image }}
+          imagePullPolicy: Always
+          # this works for separate image with kedro project in the root
+          workingDir: /app/{{ workingDir }}
+          args: [
+              "-m", 
+              "kedro", 
+              "run", 
+              "--params={{ params }}",
+              "--pipeline={{ pipeline }}"
+            ]
+          env:
+            - name: PGHOST
+              value: postgres-svc
+            - name: PGPORT
+              value: "30001"
+            - name: PGUSER
+              value: postgres
+            - name: PGDATABASE
+              value: mysite
+            - name: PGPASSWORD
+              value: postgres
+
+          # kubectl exec -it mysite-66dbf57b94-76zc6 -- /bin/bash
+          #
+          # root@mysite-66dbf57b94-76zc6:/app# ls mykedro/
+          # README.md  conf  data  notebooks  pyproject.toml  src  tests
+
+          volumeMounts:
+            - mountPath: /app/{{ workingDir }}/data/00_examples/
+              name: examples
+
+      containers:
+        - name: prodigy
+          # XXX Tilt image
+          image: {{ image }}
+          imagePullPolicy: Always
+          args: [
+              "-m",
+              "prodigy",
+              "{{ recipe }}",
+              "{{ dataset_name }}",
+              # XXX for separate image with kedro project in the root
+              # ./data/00_examples instead of ./mykedro/data/00_examples
+              "./{{ workingDir }}/data/00_examples/examples.jsonl",
+              {{ recipe_options_split }}
+            ]
+          # command: ["sh", "-c"]
+          # args:
+          #   - |
+          #     . /app/.venv/bin/activate
+          #     # XXX not for separate image with kedro project in the root
+          #     cd mykedro
+
+          #     prodigy myrecipes.textcat.custom-model news_headlines ./data/00_examples/examples.jsonl -l POS,NEG
+
+          #     # troubleshooting
+          #     # echo '{"db": "postgresql", "db_settings": {"postgresql": {"user": "postgres", "password": "postgres", "dbname": "mysite", "host": "postgres-svc"}}}' > prodigy.json
+          #     # prodigy spans.manual news_headlines blank:en ./data/00_examples/examples.jsonl --label FACTOR,CONDITION,METHOD,EFFECT
+
+          volumeMounts:
+            - mountPath: /prodigy-json
+              name: prodigy-json
+            - mountPath: /app/mykedro/data/00_examples/
+              name: examples
+            # - mountPath: /???
+            #   name: patterns-volume
+          env:
+            - name: PRODIGY_CONFIG
+              value: /prodigy-json/prodigy.json
+
+            - name: PRODIGY_LOGGING
+              value: verbose
+            # FIXME Prodigy Annotation Task Allocation Issue with Multi-Session Setup
+            # https://support.prodi.gy/t/prodigy-annotation-task-allocation-issue-with-multi-session-setup/7615/5?u=ysz
+            # - name: PRODIGY_ALLOWED_SESSIONS
+            #   value: ysz,other
+            - name: PRODIGY_BASIC_AUTH_USER
+              value: prodigy-user
+            - name: PRODIGY_BASIC_AUTH_PASS
+              value: b7f363145d299a343f15ead44818456113388aa92e1e88221e85fe9d4f28d6a2
+            - name: PRODIGY_HOST
+              value: "0.0.0.0"
+            - name: PRODIGY_PORT
+              value: "8080"
+          ports:
+            - containerPort: 8080
+          # readinessProbe:
+          #   # httpGet does not support basic auth
+          #   exec:
+          #     command:
+          #       [
+          #         "sh",
+          #         "-c",
+          #         "curl --fail -u prodigy-user:b7f363145d299a343f15ead44818456113388aa92e1e88221e85fe9d4f28d6a2 http://localhost:8080/",
+          #       ]
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 5
+          #   failureThreshold: 3
+          #   successThreshold: 1
+---
+
