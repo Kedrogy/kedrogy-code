@@ -23,4 +23,9 @@ urlpatterns = [
     path("model/<int:model_id>/", views.detail_model, name="detail_model"),
     path("train_model/<int:model_id>/", views.train_model, name="train_model"),
     path("delete_model/<int:model_id>", views.delete_model, name="delete_model"),
+    path(
+        "new_train_result/<str:result_id>/",
+        views.new_train_result,
+        name="new-train-result",
+    ),
 ]

@@ -53,3 +53,10 @@ kedro run --pipeline=train
 ```sh
 python -m ysz.predict data/06_models/best/ -p a_preprocess_fun
 ```
+
+and use ysz.predict server like this
+
+```sh
+> curl -H "Content-Type: application/json" http://0.0.0.0:8888/predict -d '{"text":"Hello, world"}'
+{"predicted_class_id":"POS"}
+```

@@ -5,12 +5,13 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django_tasks import default_task_backend, TaskResultStatus, TaskResult
 
 from .models import DjangoDataset, DjangoModel, DjangoLastDataset
-from .tasks import new_dataset_task
+from .tasks import new_dataset_task, new_train_task
 
 
 # @login_required # use LoginRequiredMiddleware instead
 def index(request):
     dataset_list = (
+        # XXX ignore those for now , https://github.com/astral-sh/ty/issues/1018
         DjangoDataset.objects.all()
     )  # has no calss attribute objects: https://pyrefly.org/en/docs/django/
     model_list = DjangoModel.objects.all()
@@ -126,10 +127,33 @@ def detail_model(request, model_id):
 def train_model(request, model_id):
     print("train model with id", model_id)
     model = get_object_or_404(DjangoModel, pk=model_id)
-    return render(request, "kedrogy/training.html", {"model": model})
+    myresult = new_train_task.enqueue(model_id)
+    return render(
+        request, "kedrogy/training.html", {"model": model, "result_id": myresult.id}
+    )
 
 
 def delete_model(request, model_id):
     model = get_object_or_404(DjangoModel, pk=model_id)
     model.delete()
     return redirect("kedrogy:index")
+
+
+def new_train_result(request, result_id):
+    taskResult: TaskResult = new_train_task.get_result(result_id)
+    if not taskResult.is_finished:
+        result = f"status: {taskResult.status}"
+    else:
+        result = taskResult.return_value
+        # dataset = get_object_or_404(DjangoDataset, pk=result["dataset_id"])
+        # dataset.running = True
+        # dataset.save()
+        # update_latest_dataset(result["dataset_id"])
+        return render(request, "kedrogy/done.html")
+    logs = taskResult.metadata.get("logs", "")
+    # TODO if is_finished return non-HTMX to stop polling
+    return render(
+        request,
+        "kedrogy/training.html#task_result",
+        {"result_id": result_id, "result": result, "logs": logs},
+    )
