@@ -1,4 +1,10 @@
 .venv
-example/mykedro/data/
+
+# ignore everything in the following folders
+example/mykedro/data/**
+
+# except their sub-folders
+!example/mykedro/data/**/.gitkeep
+
 *.tar 
 example/.venv
