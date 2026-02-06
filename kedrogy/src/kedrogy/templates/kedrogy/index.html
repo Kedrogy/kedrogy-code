@@ -1,5 +1,7 @@
 {% block content %} 
-
+<div style='
+    background: #54606e;
+'>
 <h1 style='
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
@@ -14,7 +16,6 @@
     font-weight: bold;
     margin-bottom: 10px;
     text-transform: uppercase;
-    background: #54606e;
     '>DATASETS</h1>
 
 {% if latest_dataset is not None %}
@@ -39,7 +40,25 @@
     <legend><h1>Create a new dataset</h1></legend>
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     <table>
-    <tr><td><label for="dataset_name">Name</label></td>
+    {# style of "View ID" #}
+    <tr><td><label for="dataset_name" style='
+        text-rendering: optimizeSpeed;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-size-adjust: 100%;
+        text-align: right;
+        line-height: 1.5;
+        white-space: nowrap;
+        border: 0;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: #b9b9b9;
+        font-size: 14px;
+        font-family: "Roboto Condensed", "Arial Narrow", sans-serif;
+        font-weight: bold;
+        margin-right: 10px;
+        text-transform: uppercase;
+        '>Name</label></td>
     <td><input type="text" name="dataset_name" id="dataset_name" size="100"></td></tr>
 
     <tr><td><label for="image">Image</label></td>
@@ -74,5 +93,5 @@
 {% else %}
     <p>No models found.</p>
 {% endif %}
-
+</div>
 {% endblock %}
