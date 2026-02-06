@@ -105,6 +105,9 @@ aarch64
 
 # k3d image import postgres:18 --cluster=lts#this does not work on macbook
 
+# pull first , if needed
+docker pull --platform linux/aarch64 postgres:18
+
 docker save --platform linux/aarch64 postgres:18 > postgres.tar
 k3d image import --cluster=kedrogy ./postgres.tar
 
