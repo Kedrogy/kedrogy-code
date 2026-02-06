@@ -17,3 +17,8 @@
 {% csrf_token %}
 <input type="submit" value="train_model">
 </form>
+
+<form action="{% url 'kedrogy:serve_model' model.id %}" method="post">
+{% csrf_token %}
+<input type="submit" value="serve_model">
+</form>

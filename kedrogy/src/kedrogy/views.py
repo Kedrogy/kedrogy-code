@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django_tasks import default_task_backend, TaskResultStatus, TaskResult
 
 from .models import DjangoDataset, DjangoModel, DjangoLastDataset
-from .tasks import new_dataset_task, new_train_task
+from .tasks import new_dataset_task, new_train_task, new_serve_task
 
 
 # @login_required # use LoginRequiredMiddleware instead
@@ -155,5 +155,34 @@ def new_train_result(request, result_id):
     return render(
         request,
         "kedrogy/training.html#task_result",
+        {"result_id": result_id, "result": result, "logs": logs},
+    )
+
+
+def serve_model(request, model_id):
+    print("serving model with id", model_id)
+    model = get_object_or_404(DjangoModel, pk=model_id)
+    myresult = new_serve_task.enqueue(model_id)
+    return render(
+        request, "kedrogy/serving.html", {"model": model, "result_id": myresult.id}
+    )
+
+
+def new_serve_result(request, result_id):
+    taskResult: TaskResult = new_serve_task.get_result(result_id)
+    if not taskResult.is_finished:
+        result = f"status: {taskResult.status}"
+    else:
+        result = taskResult.return_value
+        # dataset = get_object_or_404(DjangoDataset, pk=result["dataset_id"])
+        # dataset.running = True
+        # dataset.save()
+        # update_latest_dataset(result["dataset_id"])
+        return render(request, "kedrogy/done.html")
+    logs = taskResult.metadata.get("logs", "")
+    # TODO if is_finished return non-HTMX to stop polling
+    return render(
+        request,
+        "kedrogy/serving.html#task_result",
         {"result_id": result_id, "result": result, "logs": logs},
     )

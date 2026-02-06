@@ -21,6 +21,7 @@ dependencies = [
     "accelerate>=1.11.0",
     "predict",
     "kedro-viz>=12.3.0",
+    "kedro-docker>=0.6.2",
 ]
 
 [build-system]

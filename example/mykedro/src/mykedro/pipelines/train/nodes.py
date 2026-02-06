@@ -67,7 +67,9 @@ def jsonl_to_fasttext(
 
 
 def train(ads: Dataset, parameters: dict):
-    tokenizer = AutoTokenizer.from_pretrained("bert-base-multilingual-uncased")
+    tokenizer = AutoTokenizer.from_pretrained(
+        "bert-base-multilingual-uncased", local_files_only=True
+    )
 
     def preprocess_function(examples):
         return tokenizer(examples["text"], truncation=True)
@@ -90,6 +92,7 @@ def train(ads: Dataset, parameters: dict):
     print(id2label, label2id)
     model = AutoModelForSequenceClassification.from_pretrained(
         "bert-base-multilingual-uncased",
+        local_files_only=True,
         num_labels=len(parameters["labels"]) + 1,  # and __label__OTHER
         id2label=id2label,
         label2id=label2id,
