@@ -1,6 +1,21 @@
 {% block content %} 
 
-<h1>DATASETS</h1>
+<h1 style='
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 16px;
+    font-family: "Roboto Condensed", "Arial Narrow", sans-serif;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    background: #54606e;
+    '>DATASETS</h1>
 
 {% if latest_dataset is not None %}
     Prodigy running for dataset {{ latest_dataset.dataset.dataset_name }}

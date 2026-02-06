@@ -20,6 +20,7 @@ dependencies = [
     "evaluate>=0.4.6",
     "accelerate>=1.11.0",
     "predict",
+    "kedro-viz>=12.3.0",
 ]
 
 [build-system]
