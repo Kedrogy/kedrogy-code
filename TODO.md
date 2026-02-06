@@ -1,5 +1,7 @@
 # TODO
 
+- consider kubectl code migrate to eg <https://kueue.sigs.k8s.io/docs/tasks/run/plain_pods/> or <https://dagster.io/integrations/dagster-kubernetes>
+
 - fix ty fake errors <https://github.com/typeddjango/django-stubs/issues/83> and <https://github.com/astral-sh/ty/issues/1018>
 
 - use <https://docs.djangoproject.com/en/6.0/topics/signals/> of django-tasks?
