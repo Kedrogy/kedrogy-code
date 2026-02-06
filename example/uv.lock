@@ -164,6 +164,18 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/3e/38/7859ff46355f76f8d19459005ca000b6e7012f2f1ca597746cbcd1fbfe5e/antlr4-python3-runtime-4.9.3.tar.gz", hash = "sha256:f224469b4168294902bb1efa80a8bf7855f24c99aef99cbefc1bcd3cce77881b", size = 117034, upload-time = "2021-11-06T17:52:23.524Z" }
 
 [[package]]
+name = "anyconfig"
+version = "0.10.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "setuptools" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5b/70/066d535e86fbb0670768877a3aab3d284188ac44414c4da2c97f3c1c7d68/anyconfig-0.10.1.tar.gz", hash = "sha256:f04a5490da8563c97fad15810b0debc92351dbd4b8058dfd82d32a30a41e7e5c", size = 107843, upload-time = "2021-04-22T05:26:37.03Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b2/44/d8bac632c0ad506933f4b9fd34a495efcc81c01ffdb468dcd0c0f0d4cbab/anyconfig-0.10.1-py2.py3-none-any.whl", hash = "sha256:60c795cc6ef3e6f0a74182c52dfa6e8825d852b2b9128404e1aef3b84ca077a4", size = 64482, upload-time = "2021-04-22T05:26:34.599Z" },
+]
+
+[[package]]
 name = "anyio"
 version = "4.12.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1710,6 +1722,20 @@ pandas = [
 ]
 
 [[package]]
+name = "kedro-docker"
+version = "0.6.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyconfig" },
+    { name = "kedro" },
+    { name = "semver" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/99/d9/265e74932a577a1fd8c75d2efa1b8aefa7318ccc9223be2eee249802e781/kedro_docker-0.6.2.tar.gz", hash = "sha256:c95d04c89ad7725df6ac486800949b0b580e96e57f441f107792db97bc67c3f9", size = 17725, upload-time = "2024-11-27T15:29:19.531Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/24/55/247f4c12fdae96516ce7e85105fbc7039abe120033cde1f5b845dd0ddaef/kedro_docker-0.6.2-py3-none-any.whl", hash = "sha256:9dd0d7e99a16698ea4cde0994fa67fb2f924e65d5062c51359bc45a71ddacce5", size = 13337, upload-time = "2024-11-27T15:29:17.99Z" },
+]
+
+[[package]]
 name = "kedro-telemetry"
 version = "0.7.0"
 source = { registry = "https://pypi.org/simple" }
@@ -2161,6 +2187,7 @@ dependencies = [
     { name = "evaluate" },
     { name = "kedro" },
     { name = "kedro-datasets", extra = ["pandas"] },
+    { name = "kedro-docker" },
     { name = "kedro-viz" },
     { name = "predict" },
     { name = "prodigy" },
@@ -2179,6 +2206,7 @@ requires-dist = [
     { name = "evaluate", specifier = ">=0.4.6" },
     { name = "kedro", specifier = ">=1.2.0" },
     { name = "kedro-datasets", extras = ["pandas"], specifier = ">=9.1.1" },
+    { name = "kedro-docker", specifier = ">=0.6.2" },
     { name = "kedro-viz", specifier = ">=12.3.0" },
     { name = "predict", editable = "../predict" },
     { name = "prodigy", specifier = ">=1.18.4", index = "https://download.prodi.gy/" },
@@ -3881,6 +3909,15 @@ wheels = [
 ]
 
 [[package]]
+name = "semver"
+version = "2.13.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/31/a9/b61190916030ee9af83de342e101f192bbb436c59be20a4cb0cdb7256ece/semver-2.13.0.tar.gz", hash = "sha256:fa0fe2722ee1c3f57eac478820c3a5ae2f624af8264cbdf9000c980ff7f75e3f", size = 45816, upload-time = "2020-10-20T20:16:54.454Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0b/70/b84f9944a03964a88031ef6ac219b6c91e8ba2f373362329d8770ef36f02/semver-2.13.0-py2.py3-none-any.whl", hash = "sha256:ced8b23dceb22134307c1b8abfa523da14198793d9787ac838e70e29e77458d4", size = 12901, upload-time = "2020-10-20T20:16:52.583Z" },
+]
+
+[[package]]
 name = "sentry-sdk"
 version = "2.52.0"
 source = { registry = "https://pypi.org/simple" }
@@ -4309,6 +4346,8 @@ dependencies = [
     { name = "typing-extensions" },
 ]
 wheels = [
+    { url = "https://files.pythonhosted.org/packages/c9/2f/0b295dd8d199ef71e6f176f576473d645d41357b7b8aa978cc6b042575df/torch-2.10.0-1-cp312-none-macosx_11_0_arm64.whl", hash = "sha256:6abb224c2b6e9e27b592a1c0015c33a504b00a0e0938f1499f7f514e9b7bfb5c", size = 79498197, upload-time = "2026-02-06T17:37:27.627Z" },
+    { url = "https://files.pythonhosted.org/packages/a4/1b/af5fccb50c341bd69dc016769503cb0857c1423fbe9343410dfeb65240f2/torch-2.10.0-1-cp313-none-macosx_11_0_arm64.whl", hash = "sha256:7350f6652dfd761f11f9ecb590bfe95b573e2961f7a242eccb3c8e78348d26fe", size = 79498248, upload-time = "2026-02-06T17:37:31.982Z" },
     { url = "https://files.pythonhosted.org/packages/cc/af/758e242e9102e9988969b5e621d41f36b8f258bb4a099109b7a4b4b50ea4/torch-2.10.0-cp312-cp312-manylinux_2_28_aarch64.whl", hash = "sha256:5fd4117d89ffd47e3dcc71e71a22efac24828ad781c7e46aaaf56bf7f2796acf", size = 145996088, upload-time = "2026-01-21T16:24:44.171Z" },
     { url = "https://files.pythonhosted.org/packages/23/8e/3c74db5e53bff7ed9e34c8123e6a8bfef718b2450c35eefab85bb4a7e270/torch-2.10.0-cp312-cp312-manylinux_2_28_x86_64.whl", hash = "sha256:787124e7db3b379d4f1ed54dd12ae7c741c16a4d29b49c0226a89bea50923ffb", size = 915711952, upload-time = "2026-01-21T16:23:53.503Z" },
     { url = "https://files.pythonhosted.org/packages/6e/01/624c4324ca01f66ae4c7cd1b74eb16fb52596dce66dbe51eff95ef9e7a4c/torch-2.10.0-cp312-cp312-win_amd64.whl", hash = "sha256:2c66c61f44c5f903046cc696d088e21062644cbe541c7f1c4eaae88b2ad23547", size = 113757972, upload-time = "2026-01-21T16:24:39.516Z" },

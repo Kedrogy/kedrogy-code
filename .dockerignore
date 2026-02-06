@@ -1,5 +1,8 @@
 .venv
 
+# see here https://github.com/kedro-org/kedro-plugins/tree/main/kedro-docker
+# template for .dockerignore , Dockerfile 
+
 # ignore everything in the following folders
 example/mykedro/data/**
 

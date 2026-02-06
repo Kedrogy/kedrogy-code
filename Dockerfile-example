@@ -19,6 +19,37 @@ COPY --from=ghcr.io/astral-sh/uv:0.9.28 /uv /uvx /bin/
 # https://docs.docker.com/build/ci/github-actions/secrets/
 RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 
+#TODO to kedrogy-cache pvc , inspec usages of 
+#AutoTokenizer.from_pretrained etc and download if needed 
+RUN bash <<EOF
+mkdir /tmp/hf
+cd /tmp/hf
+uv init --python=3.12
+uv add huggingface_hub
+uv sync
+EOF
+
+RUN /tmp/hf/.venv/bin/python <<EOF
+from huggingface_hub import snapshot_download
+
+
+def main():
+    # https://github.com/huggingface/huggingface_hub/issues/139
+    model_path = snapshot_download(
+        repo_id="bert-base-multilingual-uncased",
+        allow_patterns=[
+            "tokenizer_config.json",
+            "config.json",
+            "vocab.txt",
+            "tokenizer.json",
+            "*.safetensors",
+        ],
+    )
+
+if __name__ == "__main__":
+    main()
+EOF
+
 WORKDIR /app
 
 # ARG UV_INDEX_PRODIGY_USERNAME 

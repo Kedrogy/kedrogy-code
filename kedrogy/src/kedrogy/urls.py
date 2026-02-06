@@ -28,4 +28,10 @@ urlpatterns = [
         views.new_train_result,
         name="new-train-result",
     ),
+    path("serve_model/<int:model_id>/", views.serve_model, name="serve_model"),
+    path(
+        "new_serve_result/<str:result_id>/",
+        views.new_serve_result,
+        name="new-serve-result",
+    ),
 ]

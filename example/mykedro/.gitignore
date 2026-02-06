@@ -6,3 +6,5 @@ data/**
 
 # also keep all .gitkeep files
 !.gitkeep
+
+.viz

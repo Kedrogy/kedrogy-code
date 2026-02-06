@@ -1,0 +1,26 @@
+<a href="/">HOME</a>
+
+<h1>You're SERVING at model with id {{ model.id }} on dataset {{ model.on_dataset.dataset_name }}</h1>
+
+{% load django_htmx %}
+<!doctype html>
+<html>
+  <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
+    TBW
+
+    {% partialdef task_result inline %}
+    <section
+      hx-trigger="every 1s"
+      hx-swap=outerHTML
+      hx-get="{% url 'kedrogy:new-serve-result' result_id %}"
+    >
+      <label for="logs">result: {{ result }}</label>
+      <textarea id="logs" name="logs" rows="5" cols="33">
+        {{ logs }}
+      </textarea>
+    </section>
+    {% endpartialdef %}
+
+    {% htmx_script %}
+  </body>
+</html>

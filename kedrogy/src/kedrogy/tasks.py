@@ -117,7 +117,7 @@ def new_dataset_task(context: TaskContext, task_parameters: NewDatasetTask):
 @task(takes_context=True)
 def new_train_task(context: TaskContext, model_id):
     # update this dataset
-    this_model = get_object_or_404(DjangoModel, pk=model_id)
+    this_model: DjangoModel = get_object_or_404(DjangoModel, pk=model_id)
     dataset_name = this_model.on_dataset.dataset_name
     print("training", this_model, "on dataset", dataset_name, flush=True)
 
@@ -130,4 +130,42 @@ def new_train_task(context: TaskContext, model_id):
     Path(yaml_filename).write_text(render_manifest)
     kubectl(context, ["kubectl", "apply", "-f", yaml_filename])
 
+    # train.yaml.jinja
+    render_manifest = render_print(
+        "train.yaml.jinja",
+        {
+            "model_id": this_model.id,
+            "image": this_model.on_dataset.image,
+            "workingDir": this_model.on_dataset.workingDir,
+            "pipeline": "train",
+            # parameters_train.yml
+            "dataset_name": dataset_name,
+            "labels": f'["{'","'.join(this_model.labels.split(","))}"]',
+        },
+    )
+    yaml_filename = f"pvc-model-{this_model.id}.yaml"
+    Path(yaml_filename).write_text(render_manifest)
+    kubectl(context, ["kubectl", "apply", "-f", yaml_filename])
+
+    return {"model_id": this_model.id}
+
+
+@task(takes_context=True)
+def new_serve_task(context: TaskContext, model_id):
+    this_model: DjangoModel = get_object_or_404(DjangoModel, pk=model_id)
+    dataset_name = this_model.on_dataset.dataset_name
+    print("serving", this_model, "on dataset", dataset_name, flush=True)
+
+    context.metadata["logs"] = ""
+    render_manifest = render_print(
+        "serve.yaml.jinja",
+        {
+            "model_id": this_model.id,
+            "image": this_model.on_dataset.image,
+            "workingDir": this_model.on_dataset.workingDir,
+        },
+    )
+    yaml_filename = f"serve-{this_model.id}.yaml"
+    Path(yaml_filename).write_text(render_manifest)
+    kubectl(context, ["kubectl", "apply", "-f", yaml_filename])
     return {"model_id": this_model.id}

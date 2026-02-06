@@ -5,7 +5,7 @@
 # Link: https://docs.kedro.org/en/1.2.0/configuration/parameters.html
 
 model_options:
-  dataset_name: news_headlines
-  labels: ["POS", "NEG"]
+  dataset_name: news
+  labels: ["P", "N"]
   data_seed: 123
   seed: 123
