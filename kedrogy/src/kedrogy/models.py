@@ -35,8 +35,8 @@ class DjangoModel(models.Model):
         # when the DjangoDataset is deleted related DjangoModel is deleted as well:
         on_delete=models.CASCADE,
     )
-
     labels = models.CharField(max_length=400, default="N/A")
+    trained = models.BooleanField(default=False)
 
     # def __str__(self):
     #     return self.dataset_name

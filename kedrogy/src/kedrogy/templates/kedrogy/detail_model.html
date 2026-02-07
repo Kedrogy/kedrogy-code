@@ -13,12 +13,15 @@
 <input type="submit" value="delete_model">
 </form>
 
-<form action="{% url 'kedrogy:train_model' model.id %}" method="post">
-{% csrf_token %}
-<input type="submit" value="train_model">
-</form>
-
+{% if model.trained %}
 <form action="{% url 'kedrogy:serve_model' model.id %}" method="post">
 {% csrf_token %}
 <input type="submit" value="serve_model">
 </form>
+{% else %}
+<form action="{% url 'kedrogy:train_model' model.id %}" method="post">
+{% csrf_token %}
+<input type="submit" value="train_model">
+</form>
+{% endif %}
+
