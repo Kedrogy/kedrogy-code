@@ -64,3 +64,9 @@ ignore-error-codes = [422]
 # https://docs.astral.sh/uv/concepts/indexes/#pinning-a-package-to-an-index
 # prevent packages from being installed from here unless explicitly pinned to it
 explicit = true
+
+[[tool.uv.index]]
+name = "ysz"
+url = "https://pypi.ysz.vc/"
+publish-url = "https://pypi.ysz.vc/"
+explicit = true
