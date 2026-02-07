@@ -215,4 +215,37 @@ def new_serve_task(context: TaskContext, model_id):
     yaml_filename = f"serve-{this_model.id}.yaml"
     Path(yaml_filename).write_text(render_manifest)
     kubectl(context, ["kubectl", "apply", "-f", yaml_filename])
+
+    this_model.served = True
+    this_model.save()
+
+    return {"model_id": this_model.id}
+
+
+@task(takes_context=True)
+def new_delete_model_task(context: TaskContext, model_id):
+    this_model: DjangoModel = get_object_or_404(DjangoModel, pk=model_id)
+    dataset_name = this_model.on_dataset.dataset_name
+    print("deleting", this_model, "on dataset", dataset_name, flush=True)
+
+    context.metadata["logs"] = ""
+
+    kubectl(
+        context,
+        ["kubectl", "delete", "deployment", f"serve-{this_model.id}"],
+        sleep=0.3,
+    )
+
+    this_model.served = False
+    this_model.save()
+
+    kubectl(context, ["kubectl", "delete", "job", f"train-{this_model.id}"], sleep=0.3)
+
+    this_model.trained = False
+    this_model.save()
+
+    kubectl(
+        context, ["kubectl", "delete", "pvc", f"pvc-model-{this_model.id}"], sleep=0.3
+    )
+
     return {"model_id": this_model.id}

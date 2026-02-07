@@ -13,7 +13,35 @@
 <input type="submit" value="delete_model">
 </form>
 
-{% if model.trained %}
+{% if predicted_class %}
+<table>
+
+<tr><td><label for="given_text_input">Given text input</label></td>
+<td><input type="text" name="given_text_input" id="given_text_input" size="100" value="{{ given_text_input }}"></td></tr>
+
+<tr><td><label for="predicted_class">Predicted class</label></td>
+<td><input type="text" name="predicted_class" id="predicted_class" size="100" value="{{ predicted_class }}"></td></tr>
+
+</table>
+
+{% endif %}
+
+{% if model.served %}
+<form action="{% url 'kedrogy:predict_model' model.id %}" method="post">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>Predict</h1></legend>
+    <table>
+
+    <tr><td><label for="text_input">Text input</label></td>
+    <td><input type="text" name="text_input" id="text_input" size="100"></td></tr>
+
+    </table>
+
+</fieldset>
+<input type="submit" value="predict_model">
+</form>
+{% elif model.trained %}
 <form action="{% url 'kedrogy:serve_model' model.id %}" method="post">
 {% csrf_token %}
 <input type="submit" value="serve_model">

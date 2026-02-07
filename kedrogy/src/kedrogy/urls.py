@@ -34,4 +34,10 @@ urlpatterns = [
         views.new_serve_result,
         name="new-serve-result",
     ),
+    path(
+        "new_delete_model_result/<str:result_id>/",
+        views.new_delete_model_result,
+        name="new-delete-model-result",
+    ),
+    path("predict_model/<int:model_id>/", views.predict_model, name="predict_model"),
 ]
