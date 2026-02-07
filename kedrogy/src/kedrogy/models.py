@@ -37,6 +37,7 @@ class DjangoModel(models.Model):
     )
     labels = models.CharField(max_length=400, default="N/A")
     trained = models.BooleanField(default=False)
+    served = models.BooleanField(default=False)
 
     # def __str__(self):
     #     return self.dataset_name
