@@ -152,7 +152,7 @@ def new_train_task(context: TaskContext, model_id):
     Path(yaml_filename).write_text(render_manifest)
     kubectl(context, ["kubectl", "apply", "-f", yaml_filename])
 
-    # get pod of the job
+    # get pod of the job h/t: https://blog.alexellis.io/fixing-the-ux-for-one-time-tasks-on-kubernetes/
     # kubectl get job train-1 -o "jsonpath={.metadata.labels.controller-uid}"
     # output: 46887afa-18f3-4cfb-ba1a-f3da7dc4c35b
     controller_uid = kubectl(
@@ -190,6 +190,9 @@ def new_train_task(context: TaskContext, model_id):
     )
 
     kubectl(context, ["kubectl", "logs", "-f", pod], sleep=0.3)
+
+    this_model.trained = True
+    this_model.save()
 
     return {"model_id": this_model.id}
 
