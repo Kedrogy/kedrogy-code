@@ -14,14 +14,19 @@ from .models import DjangoDataset, DjangoModel
 logger = logging.getLogger(__name__)
 
 
-def kubectl(context, args):
+def kubectl(context, args, sleep: float = 1) -> str:
+    """Runs kubectl with args, appends stdout line by line to context["logs"]
+    and returns kubectl logs ."""
     # args = ["bash", "-c", 'for i in {1..10}; do echo "log line $i" ; sleep 1 ; done']
     process = subprocess.Popen(args, stdout=subprocess.PIPE, text=True)
+    lines = ""
     for line in process.stdout:
         context.metadata["logs"] = context.metadata["logs"] + line
         context.save_metadata()
-
-        time.sleep(1)
+        lines = lines + line
+        time.sleep(sleep)
+    # TODO return process. returncode
+    return lines
 
 
 def render_print(jinja_filename, ingress_data):
@@ -146,6 +151,45 @@ def new_train_task(context: TaskContext, model_id):
     yaml_filename = f"pvc-model-{this_model.id}.yaml"
     Path(yaml_filename).write_text(render_manifest)
     kubectl(context, ["kubectl", "apply", "-f", yaml_filename])
+
+    # get pod of the job
+    # kubectl get job train-1 -o "jsonpath={.metadata.labels.controller-uid}"
+    # output: 46887afa-18f3-4cfb-ba1a-f3da7dc4c35b
+    controller_uid = kubectl(
+        context,
+        [
+            "kubectl",
+            "get",
+            "job",
+            f"train-{this_model.id}",
+            "-o",
+            "jsonpath={.metadata.labels.controller-uid}",
+        ],
+    )
+
+    # kubectl get po -l controller-uid=46887afa-18f3-4cfb-ba1a-f3da7dc4c35b -o name
+    # output: pod/train-1-v4hck
+
+    pod = kubectl(
+        context,
+        [
+            "kubectl",
+            "get",
+            "po",
+            "-l",
+            f"controller-uid={controller_uid}",
+            "-o",
+            "name",
+        ],
+    )
+    pod = pod[:-1]  # trailing \n
+
+    kubectl(
+        context,
+        ["kubectl", "wait", "--for=condition=Ready", pod, "--timeout=120s"],
+    )
+
+    kubectl(context, ["kubectl", "logs", "-f", pod], sleep=0.3)
 
     return {"model_id": this_model.id}
 

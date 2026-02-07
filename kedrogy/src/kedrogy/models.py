@@ -30,7 +30,11 @@ class DjangoDataset(models.Model):
 
 
 class DjangoModel(models.Model):
-    on_dataset = models.ForeignKey(DjangoDataset, on_delete=models.CASCADE)
+    on_dataset = models.ForeignKey(
+        DjangoDataset,
+        # when the DjangoDataset is deleted related DjangoModel is deleted as well:
+        on_delete=models.CASCADE,
+    )
 
     labels = models.CharField(max_length=400, default="N/A")
 
