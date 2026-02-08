@@ -22,3 +22,9 @@ serve = "ysz.predict.serve:main"
 
 [tool.uv.build-backend]
 module-name = "ysz.predict"
+
+[[tool.uv.index]]
+name = "ysz"
+url = "https://pypi.ysz.vc/"
+publish-url = "https://pypi.ysz.vc/"
+explicit = true
