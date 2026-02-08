@@ -1,5 +1,6 @@
 from pathlib import Path
 import subprocess
+import os
 
 from django.apps import AppConfig
 
@@ -33,7 +34,18 @@ class DatasetNewConfig(AppConfig):
             examples = [{"text": "hello world", "_task_hash": 123, "_input_hash": 456}]
 
             # uses settings from prodigy.json
-            db = connect()
+            db = connect(
+                db_id="postgresql",
+                db_settings={
+                    "postgresql": {
+                        "user": os.getenv("PGUSER"),
+                        "password": os.getenv("PGPASSWORD"),
+                        "dbname": os.getenv("PGDATABASE"),
+                        "host": os.getenv("PGHOST"),
+                        "port": os.getenv("PGPORT"),
+                    }
+                },
+            )
 
             db.add_dataset("test_dataset")
             # check that dataset was added
