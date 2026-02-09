@@ -141,7 +141,7 @@ spec:
           volumeMounts:
             - mountPath: /prodigy-json
               name: prodigy-json
-            - mountPath: /app/mykedro/data/00_examples/
+            - mountPath: /app/{{ workingDir }}/data/00_examples/
               name: examples
             # - mountPath: /???
             #   name: patterns-volume
