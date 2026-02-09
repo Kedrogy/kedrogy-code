@@ -26,7 +26,7 @@ spec:
               "ysz.predict", 
               "data/06_models/best/", 
               "-p", 
-              "a_preprocess_fun"
+              "{{ a_preprocess_fun }}",
             ]
           volumeMounts:
             - mountPath: /app/{{ workingDir }}/data/06_models/

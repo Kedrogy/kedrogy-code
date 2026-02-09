@@ -11,6 +11,9 @@ class DjangoDataset(models.Model):
     pipeline = models.CharField(max_length=200, default="N/A")
     # recipe = models.CharField(max_length=200, default="N/A")
     recipe_options = models.CharField(max_length=400, default="N/A")
+    # parameters for load_examples
+    data_table_name = models.CharField(max_length=400, default="N/A")
+    id_field = models.CharField(max_length=400, default="N/A")
 
     def __str__(self):
         return self.dataset_name
@@ -26,6 +29,9 @@ class DjangoDataset(models.Model):
             "recipe_options": self.recipe_options,
             # for tasks
             "dataset_id": self.id,
+            # parameters for load_examples
+            "data_table_name": self.data_table_name,
+            "id_field": self.id_field,
         }
 
 
@@ -36,6 +42,7 @@ class DjangoModel(models.Model):
         on_delete=models.CASCADE,
     )
     labels = models.CharField(max_length=400, default="N/A")
+    a_preprocess_fun = models.CharField(max_length=400, default="N/A")
     trained = models.BooleanField(default=False)
     served = models.BooleanField(default=False)
 
