@@ -53,6 +53,9 @@ def new_dataset(request):  # , dataset_name):
         pipeline = request.POST.get("pipeline")
         # recipe = request.POST.get("recipe")
         recipe_options = request.POST.get("recipe_options")
+        # parameters for load_examples
+        data_table_name = request.POST.get("data_table_name")
+        id_field = request.POST.get("id_field")
     print(dataset_name, image, workingDir, pipeline, 
     # recipe, 
     recipe_options)
@@ -64,6 +67,9 @@ def new_dataset(request):  # , dataset_name):
         pipeline=pipeline,
         # recipe=recipe,
         recipe_options=recipe_options,
+        # parameters for load_examples
+        data_table_name=data_table_name,
+        id_field=id_field,
     )
     this_dataset.save()
     return redirect("kedrogy:detail", dataset_id=this_dataset.id)
@@ -125,11 +131,16 @@ def new_dataset_result(request, result_id):
     )
 
 
-def new_model(request, dataset_id):
+def new_model(request, dataset_id):    
     labels = request.POST.get("labels")
+    a_preprocess_fun = request.POST.get("a_preprocess_fun")
     dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
     print("new model on dataset", dataset, "using labels", labels, flush=True)
-    that_model = DjangoModel.objects.create(on_dataset=dataset, labels=labels)
+    that_model = DjangoModel.objects.create(
+        on_dataset=dataset, 
+        labels=labels,
+        a_preprocess_fun=a_preprocess_fun,
+    )
     return redirect("kedrogy:detail_model", model_id=that_model.id)
 
 

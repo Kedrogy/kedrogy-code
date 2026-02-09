@@ -48,6 +48,9 @@ class NewDatasetTask(TypedDict):
     recipe_options: str
     # computed:
     recipe_options_split: str
+    # parameters for load_examples
+    data_table_name: str
+    id_field: str
 
 
 @task(takes_context=True)
@@ -84,7 +87,7 @@ def new_dataset_task(context: TaskContext, task_parameters: NewDatasetTask):
         {
             **task_parameters,
             **{
-                "params": f"load_examples_options.data_table_name=all_data,load_examples_options.dataset_name={dataset_name},load_examples_options.id_field=id"
+                "params": f"load_examples_options.data_table_name={task_parameters["data_table_name"]},load_examples_options.dataset_name={dataset_name},load_examples_options.id_field={task_parameters["id_field"]}"
             },
         },
     )
@@ -210,6 +213,7 @@ def new_serve_task(context: TaskContext, model_id):
             "model_id": this_model.id,
             "image": this_model.on_dataset.image,
             "workingDir": this_model.on_dataset.workingDir,
+            "a_preprocess_fun": this_model.a_preprocess_fun,
         },
     )
     yaml_filename = f"serve-{this_model.id}.yaml"

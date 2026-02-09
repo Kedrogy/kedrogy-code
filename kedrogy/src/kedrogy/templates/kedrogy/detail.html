@@ -3,6 +3,13 @@
 <h1>You're looking at dataset {{ dataset.dataset_name }}</h1>
 
 <table>
+
+<tr><td><label for="data_table_name">Data table:</label></td>
+<td>{{ dataset.data_table_name }}</td></tr>
+
+<tr><td><label for="id_field">Data table id field:</label></td>
+<td>{{ dataset.id_field }}</td></tr>
+
 <tr><td><label for="image">Image</label></td>
 <td>{{ dataset.image }}</td></tr>
 
@@ -38,6 +45,9 @@
     <table>
     <tr><td><label for="labels">Labels</label></td>
     <td><input type="text" name="labels" id="labels" size="100"></td></tr>
+
+    <tr><td><label for="a_preprocess_fun">Preprocessing function:</label></td>
+    <td><input type="text" name="a_preprocess_fun" id="a_preprocess_fun" size="100"></td></tr>
 
     </table>
 

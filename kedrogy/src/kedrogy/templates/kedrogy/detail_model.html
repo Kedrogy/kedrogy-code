@@ -6,6 +6,9 @@
 <tr><td><label for="labels">Labels</label></td>
 <td><input type="text" name="labels" id="labels" size="100" value="{{ model.labels }}"></td></tr>
 
+<tr><td><label for="a_preprocess_fun">Preprocessing function:</label></td>
+<td><input type="text" name="a_preprocess_fun" id="a_preprocess_fun" size="100" value="{{ model.a_preprocess_fun }}"></td></tr>
+
 </table>
 
 <form action="{% url 'kedrogy:delete_model' model.id %}" method="post">
