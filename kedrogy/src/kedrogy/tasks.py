@@ -44,7 +44,7 @@ class NewDatasetTask(TypedDict):
     image: str
     workingDir: str
     pipeline: str
-    recipe: str
+    # recipe: str
     recipe_options: str
     # computed:
     recipe_options_split: str

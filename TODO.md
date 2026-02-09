@@ -1,5 +1,9 @@
 # TODO
 
+- list existing prodigy datasets to run prodigy from (eg improted)
+
+- see wandb+prodigy integration <https://docs.wandb.ai/models/integrations/prodigy>
+
 - consider kubectl code migrate to eg <https://kueue.sigs.k8s.io/docs/tasks/run/plain_pods/> or <https://dagster.io/integrations/dagster-kubernetes>
 
 - fix ty fake errors <https://github.com/typeddjango/django-stubs/issues/83> and <https://github.com/astral-sh/ty/issues/1018>

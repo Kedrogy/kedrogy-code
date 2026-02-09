@@ -4,6 +4,7 @@ import os
 import socket
 from contextlib import closing
 import subprocess
+import time
 
 import requests
 
@@ -50,16 +51,18 @@ def new_dataset(request):  # , dataset_name):
         image = request.POST.get("image")
         workingDir = request.POST.get("workingDir")
         pipeline = request.POST.get("pipeline")
-        recipe = request.POST.get("recipe")
+        # recipe = request.POST.get("recipe")
         recipe_options = request.POST.get("recipe_options")
-    print(dataset_name, image, workingDir, pipeline, recipe, recipe_options)
+    print(dataset_name, image, workingDir, pipeline, 
+    # recipe, 
+    recipe_options)
     # redirect?
     this_dataset = DjangoDataset(
         dataset_name=dataset_name,
         image=image,
         workingDir=workingDir,
         pipeline=pipeline,
-        recipe=recipe,
+        # recipe=recipe,
         recipe_options=recipe_options,
     )
     this_dataset.save()
