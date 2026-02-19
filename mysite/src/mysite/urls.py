@@ -15,8 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.contrib import admin
+from django.conf.urls.i18n import i18n_patterns
+from django.views.i18n import set_language
 from django.urls import path, include
+
+from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
@@ -27,6 +30,11 @@ urlpatterns = (
         path("", include("kedrogy.urls")),
         path("admin/", admin.site.urls),
         path("logout/", views.logout, name="logout"),
+        path("i18n/", set_language, name="set_language"),
     ]
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 )  # https://docs.djangoproject.com/en/6.0/howto/static-files/#serving-static-files-during-development
+
+urlpatterns += i18n_patterns(
+    path("", include("kedrogy.urls")),
+)
