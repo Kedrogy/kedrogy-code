@@ -1,2 +1,2 @@
 db.sqlite3
-src/kedrogy/locale
+src/kedrogy/locale/ru/LC_MESSAGES/django.mo
