@@ -12,7 +12,9 @@ to create django.mo with translations run
 django-admin compilemessages --settings=mysite.settings
 ```
 
-FIXME run to move folder to the right directory
+FIXME run to move folder "locale" to the right directory (run from kedrogy directory)
 ```sh
 mv ../mysite/src/kedrogy/locale/ src/kedrogy
 ```
+
+edit file django.po to add more translations
