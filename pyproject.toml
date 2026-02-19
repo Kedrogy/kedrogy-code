@@ -3,19 +3,16 @@ name = "kedrogy-code"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
-    "mysite", 
+    "mysite",
     # "predict",
-    
-    # uv does not support transitive dev dependencies , so 
+    # uv does not support transitive dev dependencies , so
     "django-extensions>=4.1",
-
     "ipykernel>=7.1.0",
     "ipywidgets>=8.1.8",
-
     # XXX CommandError: Could not load shell runner: 'IPython Notebook' https://github.com/django-extensions/django-extensions/issues/1835#issuecomment-3035536658
     "notebook==6.5.4",
     "traitlets==5.9.0",
-
+    "djlint>=1.36.4",
 ]
 
 [tool.uv.sources]
