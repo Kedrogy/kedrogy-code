@@ -1,8 +1,18 @@
-{% block content %} 
-<div style='
-    background: #54606e;
-'>
-<h1 style='
+{% load i18n %}
+
+<form action="{% url 'set_language' %}" method="post">
+  {% csrf_token %}
+  <select name="language">
+    <option value="en"{% if LANGUAGE_CODE == 'en' %} selected{% endif %}>English</option>
+    <option value="ru"{% if LANGUAGE_CODE == 'ru' %} selected{% endif %}>Русский</option>
+  </select>
+  <input type="submit" value="{% trans 'Change language' %}">
+</form>
+
+
+<div style="background: #54606e;">
+
+<h1 style="
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
@@ -12,16 +22,20 @@
     box-sizing: border-box;
     color: #fff;
     font-size: 16px;
-    font-family: "Roboto Condensed", "Arial Narrow", sans-serif;
+    font-family: 'Roboto Condensed', 'Arial Narrow', sans-serif;
     font-weight: bold;
     margin-bottom: 10px;
     text-transform: uppercase;
-    '>DATASETS</h1>
+">
+    {% trans "Datasets" %}
+</h1>
 
 {% if latest_dataset is not None %}
-    Prodigy running for dataset {{ latest_dataset.dataset.dataset_name }}
+    {% blocktrans %}
+        Prodigy running for dataset {{ latest_dataset.dataset.dataset_name }}
+    {% endblocktrans %}
 {% else %}
-    Prodigy IS NOT running.
+    {% trans "Prodigy is not running." %}
 {% endif %}
 
 {% if dataset_list %}
@@ -31,73 +45,65 @@
     {% endfor %}
     </ul>
 {% else %}
-    <p>No datasets found.</p>
+    <p>{% trans "No datasets found." %}</p>
 {% endif %}
 
 <form action="{% url 'kedrogy:new' %}" method="post">
 {% csrf_token %}
 <fieldset>
-    <legend><h1>Create a new dataset</h1></legend>
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <legend><h1>{% trans "Create a new dataset" %}</h1></legend>
+
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+
     <table>
-    {# style of "View ID" #}
-    <tr><td><label for="dataset_name" style='
-        text-rendering: optimizeSpeed;
-        -webkit-font-smoothing: antialiased;
-        -webkit-text-size-adjust: 100%;
-        text-align: right;
-        line-height: 1.5;
-        white-space: nowrap;
-        border: 0;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        color: #b9b9b9;
-        font-size: 14px;
-        font-family: "Roboto Condensed", "Arial Narrow", sans-serif;
-        font-weight: bold;
-        margin-right: 10px;
-        text-transform: uppercase;
-        '>Name</label></td>
-    <td><input type="text" name="dataset_name" id="dataset_name" size="100"></td></tr>
+        <tr>
+            <td>
+                <label for="dataset_name" style="
+                    text-rendering: optimizeSpeed;
+                    -webkit-font-smoothing: antialiased;
+                    -webkit-text-size-adjust: 100%;
+                    text-align: right;
+                    line-height: 1.5;
+                    white-space: nowrap;
+                    border: 0;
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    color: #b9b9b9;
+                    font-size: 14px;
+                    font-family: 'Roboto Condensed', 'Arial Narrow', sans-serif;
+                    font-weight: bold;
+                    margin-right: 10px;
+                    text-transform: uppercase;
+                ">
+                    {% trans "Name" %}
+                </label>
+            </td>
+            <td><input type="text" name="dataset_name" id="dataset_name" size="100"></td>
+        </tr>
 
-    <tr><td><label for="data_table_name">Data table:</label></td>
-    <td><input type="text" name="data_table_name" id="data_table_name" size="100"></td></tr>
+        <tr>
+            <td><label for="data_table_name">{% trans "Data table" %}</label></td>
+            <td><input type="text" name="data_table_name" id="data_table_name" size="100"></td>
+        </tr>
 
-    <tr><td><label for="id_field">Data table id field:</label></td>
-    <td><input type="text" name="id_field" id="id_field" size="100"></td></tr>
+        <tr>
+            <td><label for="id_field">{% trans "Data table ID field" %}</label></td>
+            <td><input type="text" name="id_field" id="id_field" size="100"></td>
+        </tr>
 
-    <tr><td><label for="image">Image</label></td>
-    <td><input type="text" name="image" id="image" size="100"></td></tr>
+        <tr>
+            <td><label for="image">{% trans "Image" %}</label></td>
+            <td><input type="text" name="image" id="image" size="100"></td>
+        </tr>
 
-    <tr><td><label for="workingDir">workingDir relative to /app</label></td>
-    <td><input type="text" name="workingDir" id="workingDir" size="100"></td></tr>
+        <tr>
+            <td><label for="workingDir">{% trans "Working directory (relative to /app)" %}</label></td>
+            <td><input type="text" name="workingDir" id="workingDir" size="100"></td>
+        </tr>
 
-    <tr><td><label for="pipeline">pipeline, or empty for default load_examples</label></td>
-    <td><input type="text" name="pipeline" id="pipeline" size="100"></td></tr>
-{% comment %}
-    <tr><td><label for="recipe">Prodigy recipe</label></td>
-    <td><input type="text" name="recipe" id="recipe" size="100"></td></tr>
-{% endcomment %}
-    <tr><td><label for="recipe_options">Prodigy recipe options, space separated</label></td>
-    <td><input type="text" name="recipe_options" id="recipe_options" size="100"></td></tr>
-
-    </table>
-
-</fieldset>
-<input type="submit" value="new">
-</form>
-
-<h1>MODELS</h1>
-
-{% if model_list %}
-    <ul>
-    {% for model in model_list %}
-        <li><a href="{% url 'kedrogy:detail_model' model.id %}">Model {{ model.id }} on {{ model.on_dataset.dataset_name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No models found.</p>
-{% endif %}
-</div>
-{% endblock %}
+        <tr>
+            <td><label for="pipeline">{% trans "Pipeline (leave empty for default)" %}</label></td>
+            <td><input type="text" name="pipeline" id="pipeline" size="100"
