@@ -1,2 +1,11 @@
-<h1>You're creating a dataset {{ dataset_name }} , result id {{ result_id }}</h1>
-<a href="{% url 'kedrogy:poll' dataset_name result_id %}">Status</a>
+<!-- dataset creation message -->
+<div class="alert alert-info mb-4 rounded-lg shadow-md p-4">
+  {% blocktrans with dataset_name=dataset_name result_id=result_id %}
+    You're creating a dataset {{ dataset_name }}, result id {{ result_id }}
+  {% endblocktrans %}
+</div>
+<!-- status link -->
+<a href="{% url 'kedrogy:poll' dataset_name result_id %}"
+   class="btn btn-sm btn-outline transition-all duration-200 hover:bg-primary hover:text-white">
+  {% trans "Status" %}
+</a>
