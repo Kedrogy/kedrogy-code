@@ -1,28 +1,45 @@
-<a href="/">HOME</a>
-
-{% comment %}
-<h1>Creating dataset {{ dataset_name }} using result with id {{ result_id }}</h1>
-{% endcomment %}
-
+{% load i18n %}
 {% load django_htmx %}
-<!doctype html>
-<html>
-  <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
-    Creating dataset {{ dataset_name }} using result with id {{ result_id }}
-
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Creating Dataset" %}</title>
+    <meta name="description" content="Live updates for dataset creation">
+    <!-- Tailwind DaisyUI -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: { extend: {} },
+      plugins: [daisyui],
+    }
+    </script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  </head>
+  <body class="min-h-screen bg-base-200 font-sans p-8">
+    <!-- HOME link -->
+    <a href="/" class="btn btn-sm btn-outline mb-6 inline-block">{% trans "HOME" %}</a>
+    <!-- header -->
+    <h1 class="text-2xl font-bold mb-6">
+      {% blocktrans with dataset_name=dataset_name result_id=result_id %}
+      Creating dataset {{ dataset_name }} using result with id {{ result_id }}
+    {% endblocktrans %}
+    </h1>
+    <!-- HTMX -->
     {% partialdef task_result inline %}
-    <section
-      hx-trigger="every 1s"
-      hx-swap=outerHTML
-      hx-get="{% url 'kedrogy:new-dataset-result' result_id %}"
-    >
-      <label for="logs">result: {{ result }}</label>
-      <textarea id="logs" name="logs" rows="5" cols="33">
-        {{ logs }}
-      </textarea>
+    <section hx-trigger="every 1s"
+             hx-swap="outerHTML"
+             hx-get="{% url 'kedrogy:new-dataset-result' result_id %}"
+             class="bg-base-100 rounded-lg shadow-md p-4 mb-6">
+      <label for="logs" class="block font-medium mb-2">{% trans "Result:" %} {{ result }}</label>
+      <textarea id="logs" name="logs" rows="10" class="w-full input input-bordered focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary resize-none">
+{{ logs }}
+    </textarea>
     </section>
-    {% endpartialdef %}
-
-    {% htmx_script %}
-  </body>
+  {% endpartialdef %}
+  {% htmx_script %}
+</body>
 </html>
