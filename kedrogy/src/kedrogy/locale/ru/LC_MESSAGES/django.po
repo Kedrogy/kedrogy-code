@@ -1,17 +1,11 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-14 20:01+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2026-02-22 20:26+0300\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,52 +14,147 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: src/kedrogy/templates/kedrogy/index.html:9
-msgid "Change language"
-msgstr "Сменить язык"
+#: kedrogy/src/kedrogy/templates/kedrogy/index.html:20
+msgid "Datasets & Models"
+msgstr "Наборы данных и модели"
 
-#: src/kedrogy/templates/kedrogy/index.html:30
-msgid "Datasets"
-msgstr "Наборы данных"
-
-#: src/kedrogy/templates/kedrogy/index.html:34
+#: kedrogy/src/kedrogy/templates/kedrogy/index.html:25
 #, python-format
-msgid "Prodigy running for dataset %(latest_dataset.dataset.dataset_name)s"
-msgstr "Prodigy запущен для набора данных %(latest_dataset.dataset.dataset_name)s"
+msgid "Prodigy running for dataset %(dataset_name)s"
+msgstr "Prodigy запущен для набора данных %(dataset_name)s"
 
+#: kedrogy/src/kedrogy/templates/kedrogy/index.html:30
+msgid "Your Models"
+msgstr "Ваши модели"
 
-#: src/kedrogy/templates/kedrogy/index.html:38
-msgid "Prodigy is not running."
-msgstr "Prodigy не запущен."
-
-#: src/kedrogy/templates/kedrogy/index.html:52
-msgid "No datasets found."
-msgstr "Наборы данных не найдены."
-
-#: src/kedrogy/templates/kedrogy/index.html:58
-msgid "Create a new dataset"
-msgstr "Создать новый набор данных"
-
-#: src/kedrogy/templates/kedrogy/index.html:85
+#: kedrogy/src/kedrogy/templates/kedrogy/index.html:50
 msgid "Name"
 msgstr "Имя"
 
-#: src/kedrogy/templates/kedrogy/index.html:92
+#: kedrogy/src/kedrogy/templates/kedrogy/index.html:54
 msgid "Data table"
 msgstr "Таблица данных"
 
-#: src/kedrogy/templates/kedrogy/index.html:97
+#: kedrogy/src/kedrogy/templates/kedrogy/index.html:58
 msgid "Data table ID field"
 msgstr "ID поля таблицы"
 
-#: src/kedrogy/templates/kedrogy/index.html:102
+#: kedrogy/src/kedrogy/templates/kedrogy/index.html:62
 msgid "Image"
 msgstr "Изображение"
 
-#: src/kedrogy/templates/kedrogy/index.html:107
+#: kedrogy/src/kedrogy/templates/kedrogy/index.html:66
 msgid "Working directory (relative to /app)"
 msgstr "Рабочая директория (относительно /app)"
 
-#: src/kedrogy/templates/kedrogy/index.html:112
+#: kedrogy/src/kedrogy/templates/kedrogy/index.html:70
 msgid "Pipeline (leave empty for default)"
 msgstr "Pipeline (оставьте пустым для значения по умолчанию)"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/index.html:74
+msgid "Prodigy recipe options, space separated"
+msgstr "Варианты рецептов Prodigy, разделенные пробелом"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/index.html:80
+msgid "Change language"
+msgstr "Сменить язык"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/index.html:90
+msgid "No models found."
+msgstr "Модели не найдены"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_model.html:8
+msgid "Model details"
+msgstr "Детали модели"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_model.html:19
+msgid "Home"
+msgstr "Главная"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_model.html:21
+#, python-format
+msgid "You're looking at MODEL with id %(model_id)s on dataset %(dataset_name)s"
+msgstr "Вы просматриваете модель с id %(model_id)s в наборе данных %(dataset_name)s"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_model.html:25
+msgid "Labels"
+msgstr "Метки"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_model.html:32
+msgid "Preprocessing function"
+msgstr "Функция предобработки"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_model.html:41
+msgid "Delete model"
+msgstr "Удалить модель"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_model.html:46
+msgid "Text input"
+msgstr "Текстовый ввод"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_model.html:52
+msgid "Enter text here..."
+msgstr "Введите текст..."
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_model.html:53
+msgid "Predict model"
+msgstr "Предсказать модель"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_model.html:57
+#, python-format
+msgid ""
+"\n"
+"                Prediction result: %(predicted)s\n"
+"                "
+msgstr ""
+"\n"
+"                Результат предсказания: %(predicted)s\n"
+"                "
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_model.html:XX
+msgid "Serve model"
+msgstr "Запустить модель"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/deleting.html:9
+msgid "Delete Model"
+msgstr "Удалить модель"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/deleting.html:24
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_task.html:24
+#: kedrogy/src/kedrogy/templates/kedrogy/serving.html:24
+#: kedrogy/src/kedrogy/templates/kedrogy/training.html:24
+msgid "HOME"
+msgstr "Главная"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/deleting.html:27
+#, python-format
+msgid ""
+"\n"
+"    You're DELETING a model with id %(model_id)s on dataset %(dataset_name)s\n"
+"    "
+msgstr ""
+"\n"
+"    Вы удаляете модель с id %(model_id)s в наборе данных %(dataset_name)s\n"
+"    "
+
+#: kedrogy/src/kedrogy/templates/kedrogy/serving.html:28
+#, python-format
+msgid ""
+"\n"
+"    You're SERVING a model with id %(model_id)s on dataset %(dataset_name)s\n"
+"    "
+msgstr ""
+"\n"
+"    Вы запускаете модель с id %(model_id)s в наборе данных %(dataset_name)s\n"
+"    "
+
+#: kedrogy/src/kedrogy/templates/kedrogy/deleting.html:32
+#: kedrogy/src/kedrogy/templates/kedrogy/serving.html:31
+#: kedrogy/src/kedrogy/templates/kedrogy/training.html:31
+msgid "TBW"
+msgstr "Будет позже"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/deleting.html:38
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_task.html:37
+msgid "Result:"
+msgstr "Результат:"
