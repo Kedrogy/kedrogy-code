@@ -49,10 +49,10 @@
                                 <li>
                                     <a href="{% url 'kedrogy:detail_model' model.id %}"
                                        class="hover:bg-base-200 p-3 rounded flex flex-col gap-1">
-                                        <!-- labels -->
-                                        <span class="font-semibold truncate">{{ model.labels }}</span>
                                         <!-- dataset name -->
-                                        <span class="text-xs text-gray-500 truncate">{{ model.on_dataset.dataset_name }}</span>
+                                        <span class="font-semibold truncate">{{ model.on_dataset.dataset_name }}</span>
+                                        <!-- labels -->
+                                        <span class="text-xs text-gray-500 truncate">{{ model.labels }}</span>
                                     </a>
                                 </li>
                             {% endfor %}
