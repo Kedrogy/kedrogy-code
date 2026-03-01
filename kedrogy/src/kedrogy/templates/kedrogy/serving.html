@@ -9,14 +9,7 @@
     <title>{% trans "Model Serving" %}</title>
     <meta name="description"
           content="Model serving interface with live updates">
-    <!-- Tailwind DaisyUI -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-    tailwind.config = {
-      theme: { extend: {} },
-      plugins: [daisyui],
-    }
-    </script>
+    <link href="{% static 'css/output.css' %}" rel="stylesheet" type="text/css" />
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
   </head>
