@@ -1,4 +1,18 @@
-##kedrogy
+# kedrogy
+
+## run the tailwind css and daisyUI
+
+re-install maybe 
+
+```sh
+cd ./src/kedrogy/static/css/ && curl -sL daisyui.com/fast | bash
+```
+
+then 
+
+```sh
+./src/kedrogy/static/css/tailwindcss -i ./src/kedrogy/static/css/input.css -o ./src/kedrogy/static/css/output.css --watch 
+```
 
 ## how to generate translations
 
