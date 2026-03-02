@@ -5,8 +5,10 @@ import socket
 from contextlib import closing
 import subprocess
 import time
+from django.http import JsonResponse
 
 import requests
+from django.views.decorators.csrf import csrf_exempt
 
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
@@ -56,9 +58,14 @@ def new_dataset(request):  # , dataset_name):
         # parameters for load_examples
         data_table_name = request.POST.get("data_table_name")
         id_field = request.POST.get("id_field")
-    print(dataset_name, image, workingDir, pipeline, 
-    # recipe, 
-    recipe_options)
+    print(
+        dataset_name,
+        image,
+        workingDir,
+        pipeline,
+        # recipe,
+        recipe_options,
+    )
     # redirect?
     this_dataset = DjangoDataset(
         dataset_name=dataset_name,
@@ -113,31 +120,42 @@ def get_latest_dataset():
 
 def new_dataset_result(request, result_id):
     taskResult: TaskResult = new_dataset_task.get_result(result_id)
+
+    logs = taskResult.metadata.get("logs", "")
+
     if not taskResult.is_finished:
         result = f"status: {taskResult.status}"
-    else:
-        result = taskResult.return_value
-        # dataset = get_object_or_404(DjangoDataset, pk=result["dataset_id"])
-        # dataset.running = True
-        # dataset.save()
-        update_latest_dataset(result["dataset_id"])
-        return redirect("kedrogy:index")
-    logs = taskResult.metadata.get("logs", "")
-    # TODO if is_finished return non-HTMX to stop polling
-    return render(
-        request,
-        "kedrogy/detail_task.html#task_result",
-        {"result_id": result_id, "result": result, "logs": logs},
+        return JsonResponse(
+            {
+                "finished": False,
+                "status": taskResult.status,
+                "logs": logs,
+            }
+        )
+    result_data = taskResult.return_value
+    dataset_id = result_data["dataset_id"]
+
+    dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
+    update_latest_dataset(dataset_id)
+
+    return JsonResponse(
+        {
+            "finished": True,
+            "result": result_data,
+            "dataset_name": dataset.dataset_name,
+            "dataset_id": dataset_id,
+            "logs": logs,
+        }
     )
 
 
-def new_model(request, dataset_id):    
+def new_model(request, dataset_id):
     labels = request.POST.get("labels")
     a_preprocess_fun = request.POST.get("a_preprocess_fun")
     dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
     print("new model on dataset", dataset, "using labels", labels, flush=True)
     that_model = DjangoModel.objects.create(
-        on_dataset=dataset, 
+        on_dataset=dataset,
         labels=labels,
         a_preprocess_fun=a_preprocess_fun,
     )
@@ -276,6 +294,26 @@ def find_free_port():
         return s.getsockname()[1]
 
 
+from django.http import JsonResponse
+
+
+def dataset_detail_api(request, dataset_id):
+    dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
+
+    return JsonResponse(
+        {
+            "id": dataset.id,
+            "dataset_name": dataset.dataset_name,
+            "data_table_name": dataset.data_table_name,
+            "id_field": dataset.id_field,
+            "image": dataset.image,
+            "workingDir": dataset.workingDir,
+            "pipeline": dataset.pipeline,
+            "recipe_options": dataset.recipe_options,
+        }
+    )
+
+
 def predict_model(request, model_id):
     if request.method == "POST":
         text_input = request.POST.get("text_input")
@@ -317,4 +355,46 @@ def predict_model(request, model_id):
             "predicted_class": predicted_class,
             "given_text_input": text_input,
         },
+    )
+
+
+@csrf_exempt
+def train_model_api(request, model_id):
+    if request.method != "POST":
+        return JsonResponse({"error": "POST required"}, status=405)
+
+    model = get_object_or_404(DjangoModel, pk=model_id)
+    task = new_train_task.enqueue(model_id)
+
+    return JsonResponse({"status": "started", "result_id": task.id})
+
+
+@csrf_exempt
+def serve_model_api(request, model_id):
+    if request.method != "POST":
+        return JsonResponse({"error": "POST required"}, status=405)
+
+    model = get_object_or_404(DjangoModel, pk=model_id)
+    task = new_serve_task.enqueue(model_id)
+
+    return JsonResponse({"status": "started", "result_id": task.id})
+
+
+def train_result_api(request, result_id):
+    taskResult: TaskResult = new_train_task.get_result(result_id)
+
+    logs = taskResult.metadata.get("logs", "")
+
+    return JsonResponse(
+        {"finished": taskResult.is_finished, "status": taskResult.status, "logs": logs}
+    )
+
+
+def serve_result_api(request, result_id):
+    taskResult: TaskResult = new_serve_task.get_result(result_id)
+
+    logs = taskResult.metadata.get("logs", "")
+
+    return JsonResponse(
+        {"finished": taskResult.is_finished, "status": taskResult.status, "logs": logs}
     )
