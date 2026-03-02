@@ -1,35 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import HomePage from "./pages/HomePage";
+import DetailDatasetPage from "./pages/DatasetDetailPage";
+import CreateDatasetTaskPage from "./pages/CreateDatasetTaskPage";
+import ModelDetailPage from "./pages/ModelDetailPage";
+import TrainModelPage from "./pages/TrainModelPage";
+import ServeModelPage from "./pages/ServeModelPage";
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      <Routes>
+        {/* main */}
+        <Route path="/" element={<HomePage />} />
+
+        {/* ================= DATASETS ================= */}
+        <Route
+          path="/datasets/:datasetId"
+          element={<DetailDatasetPage />}
+        />
+
+        <Route
+          path="/datasets/task/:resultId"
+          element={<CreateDatasetTaskPage />}
+        />
+
+        {/* ================= MODELS ================= */}
+        <Route
+          path="/models/:modelId"
+          element={<ModelDetailPage />}
+        />
+
+        <Route
+          path="/models/:modelId/train/:resultId"
+          element={<TrainModelPage />}
+        />
+        <Route path="/models/:modelId/serve" element={<ServeModelPage />} />
+
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

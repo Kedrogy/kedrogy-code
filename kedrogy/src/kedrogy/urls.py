@@ -40,4 +40,14 @@ urlpatterns = [
         name="new-delete-model-result",
     ),
     path("predict_model/<int:model_id>/", views.predict_model, name="predict_model"),
+    path(
+        "api/datasets/result/<int:result_id>/",
+        views.new_dataset_result,
+        name="api-dataset-result",
+    ),
+    path("api/datasets/<int:dataset_id>/", views.dataset_detail_api),
+    path("api/models/<int:model_id>/train/", views.train_model_api),
+    path("api/models/<int:model_id>/serve/", views.serve_model_api),
+    path("api/train/result/<str:result_id>/", views.train_result_api),
+    path("api/serve/result/<str:result_id>/", views.serve_result_api),
 ]
