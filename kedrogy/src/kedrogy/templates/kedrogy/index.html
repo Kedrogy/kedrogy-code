@@ -27,7 +27,11 @@
             <h1 class="text-3xl font-bold uppercase mb-6">{% trans "Datasets & Models" %}</h1>
             {% if latest_dataset %}
                 <div class="alert alert-success mb-6">
-                    {% blocktrans with dataset_name=latest_dataset.dataset.dataset_name %}Prodigy running for dataset {{ dataset_name }}{% endblocktrans %}
+                    {% blocktrans %}
+        Prodigy running for dataset
+        {% endblocktrans %}
+                    <a href="{% url 'kedrogy:detail' latest_dataset.dataset.id %}"
+                       class="font-semibold underline hover:no-underline">{{ latest_dataset.dataset.dataset_name }}</a>
                 </div>
             {% else %}
                 <div class="alert alert-warning mb-6">{% trans "Prodigy is not running." %}</div>
