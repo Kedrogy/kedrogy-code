@@ -4,3 +4,8 @@
 @source not "./daisyui{,*}.mjs";
 
 @plugin "./daisyui.mjs";
+
+/* input.css */
+input, textarea, a {
+    color: black !important;
+}
