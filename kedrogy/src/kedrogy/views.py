@@ -56,9 +56,14 @@ def new_dataset(request):  # , dataset_name):
         # parameters for load_examples
         data_table_name = request.POST.get("data_table_name")
         id_field = request.POST.get("id_field")
-    print(dataset_name, image, workingDir, pipeline, 
-    # recipe, 
-    recipe_options)
+    print(
+        dataset_name,
+        image,
+        workingDir,
+        pipeline,
+        # recipe,
+        recipe_options,
+    )
     # redirect?
     this_dataset = DjangoDataset(
         dataset_name=dataset_name,
@@ -131,13 +136,13 @@ def new_dataset_result(request, result_id):
     )
 
 
-def new_model(request, dataset_id):    
+def new_model(request, dataset_id):
     labels = request.POST.get("labels")
     a_preprocess_fun = request.POST.get("a_preprocess_fun")
     dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
     print("new model on dataset", dataset, "using labels", labels, flush=True)
     that_model = DjangoModel.objects.create(
-        on_dataset=dataset, 
+        on_dataset=dataset,
         labels=labels,
         a_preprocess_fun=a_preprocess_fun,
     )
