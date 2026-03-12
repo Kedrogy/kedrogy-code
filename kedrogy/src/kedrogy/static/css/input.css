@@ -5,7 +5,44 @@
 
 @plugin "./daisyui.mjs";
 
-/* input.css */
-input, textarea, a {
-    color: black !important;
+
+body {
+    color: #111827;
 }
+
+.input,
+textarea {
+    color: #111827 !important;
+}
+
+
+.input::placeholder,
+textarea::placeholder {
+    color: #9ca3af;
+}
+
+.label-text {
+    color: #111827;
+    font-weight: 500;
+}
+
+a:hover {
+    color: #1d4ed8;
+}
+
+.card {
+    border-radius: 16px;
+}
+
+.input,
+input,
+textarea {
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #6b7280; 
+}
+

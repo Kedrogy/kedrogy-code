@@ -1,41 +1,36 @@
-{% load i18n %}
+{% load static i18n %}
 {% load django_htmx %}
-{% load static %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% trans "Model Serving" %}</title>
-    <meta name="description"
-          content="Model serving interface with live updates">
-    <link href="{% static 'css/output.css' %}" rel="stylesheet" type="text/css" />
-    <!-- CSS -->
+    <link href="{% static 'css/output.css' %}" rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
   </head>
   <body class="min-h-screen bg-base-200 font-sans p-8">
     <a href="/" class="btn btn-sm btn-outline mb-6 inline-block">{% trans "HOME" %}</a>
     <h1 class="text-2xl font-bold mb-6">
       {% blocktrans with model_id=model.id dataset_name=model.on_dataset.dataset_name %}
-      You're SERVING a model with id {{ model_id }} on dataset {{ dataset_name }}
-    {% endblocktrans %}
+    You're SERVING a model with id {{ model_id }} on dataset {{ dataset_name }}
+  {% endblocktrans %}
     </h1>
-    <!-- info -->
-    <p class="mb-4 text-gray-700">{% trans "TBW" %}</p>
-    <!-- HTMX result -->
     {% partialdef task_result inline %}
     <section hx-trigger="every 1s"
              hx-swap="outerHTML"
              hx-get="{% url 'kedrogy:new-serve-result' result_id %}"
-             class="bg-base-100 rounded-lg shadow-md p-4 mb-6">
-      <label for="logs" class="block font-medium mb-2">
+             class="bg-base-100 rounded-lg shadow-md p-6 mb-6 max-w-4xl mx-auto">
+      <label for="logs" class="block font-medium mb-3">
         {% blocktrans with result_value=result %}
-        result: {{ result_value }}
-      {% endblocktrans %}
+      result: {{ result_value }}
+    {% endblocktrans %}
       </label>
-      <textarea id="logs" name="logs" rows="5" class="w-full input input-bordered focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary resize-none">
-{{ logs }}
-    </textarea>
+      <textarea id="logs"
+                name="logs"
+                rows="8"
+                readonly
+                class="textarea textarea-bordered w-full min-h-[180px] bg-white text-black focus:outline-none focus:ring-2 focus:ring-primary resize-none">{{ logs }}</textarea>
     </section>
   {% endpartialdef %}
   {% htmx_script %}
