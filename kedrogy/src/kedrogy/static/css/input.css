@@ -6,43 +6,107 @@
 @plugin "./daisyui.mjs";
 
 
+
+
+input.input,
+textarea.input,
+input.input-bordered,
+textarea.input-bordered {
+    color: #111827 !important;           
+    -webkit-text-fill-color: #111827 !important; 
+    caret-color: #111827 !important;    
+}
+
+input.input::placeholder,
+textarea.input::placeholder,
+input.input-bordered::placeholder,
+textarea.input-bordered::placeholder {
+    color: #111827 !important;          
+    opacity: 1 !important;
+}
+
 body {
-    color: #111827;
-}
-
-.input,
-textarea {
-    color: #111827 !important;
-}
-
-
-.input::placeholder,
-textarea::placeholder {
-    color: #9ca3af;
-}
-
-.label-text {
-    color: #111827;
-    font-weight: 500;
-}
-
-a:hover {
-    color: #1d4ed8;
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6;
 }
 
 .card {
-    border-radius: 16px;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    background-color: #ffffff;
 }
 
-.input,
-input,
-textarea {
-    color: #111827 !important;
-    -webkit-text-fill-color: #111827 !important;
+.input {
+    border-radius: 0.5rem;
+    border: 1px solid #d1d5db;
+    padding: 0.5rem 0.75rem;
+    transition: all 0.3s ease;
 }
 
-input::placeholder,
-textarea::placeholder {
-    color: #6b7280; 
+.input:focus {
+    border-color: #3b82f6; 
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.3);
+    outline: none;
 }
 
+.btn {
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2563eb;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-outline {
+    border: 2px solid #3b82f6;
+    color: #3b82f6;
+    background-color: transparent;
+}
+
+.btn-outline:hover {
+    background-color: #3b82f6;
+    color: white;
+}
+
+h1, h2 {
+    color: #1f2937;
+}
+
+.menu li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+}
+
+.menu li a:hover {
+    background-color: #e0f2fe;
+}
+
+.alert {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.alert-success {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.alert-warning {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.grid {
+    display: grid;
+    gap: 1rem;
+}
