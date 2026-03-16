@@ -148,7 +148,7 @@ def new_train_task(context: TaskContext, model_id):
             "pipeline": "train",
             # parameters_train.yml
             "dataset_name": dataset_name,
-            "labels": f'["{'","'.join(this_model.labels.split(","))}"]',
+            "labels": f'["{'","'.join(l.strip() for l in this_model.labels.split(","))}"]',
         },
     )
     yaml_filename = f"pvc-model-{this_model.id}.yaml"

@@ -1,58 +1,33 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { startTraining } from "../api";
 
-interface Model {
-  id: number;
-  labels: string;
-  a_preprocess_fun: string;
-  dataset_name: string;
-}
-
-function ModelDetailPage() {
+export default function ModelDetailPage() {
   const { modelId } = useParams<{ modelId: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
   const { t } = useTranslation();
 
-  const [model, setModel] = useState<Model | null>(null);
-  const [textInput, setTextInput] = useState("");
-  const [prediction, setPrediction] = useState<string | null>(null);
+  const [error, setError] = useState("");
+  const [isStarting, setIsStarting] = useState(false);
 
-  useEffect(() => {
+  // Training status is passed via React Router state from TrainModelPage
+  const trained =
+    (location.state as { trained?: boolean })?.trained ?? false;
+
+  const handleTrain = async () => {
     if (!modelId) return;
-
-    fetch(`/api/models/${modelId}`)
-      .then(res => {
-        if (!res.ok) throw new Error("Failed to load model");
-        return res.json();
-      })
-      .then(data => setModel(data))
-      .catch(err => console.error(err));
-  }, [modelId]);
-
-  const handlePredict = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!modelId) return;
-
+    setIsStarting(true);
+    setError("");
     try {
-      const response = await fetch(`/api/models/${modelId}/predict`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ text_input: textInput }),
-      });
-
-      if (!response.ok) throw new Error("Prediction failed");
-
-      const data = await response.json();
-      setPrediction(data.predicted_class);
-    } catch (err) {
-      console.error(err);
+      const resultId = await startTraining(modelId);
+      navigate(`/models/${modelId}/train/${resultId}`);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : String(err));
+      setIsStarting(false);
     }
   };
-
-  if (!model) return <div className="p-8">Loading...</div>;
 
   return (
     <div className="min-h-screen bg-base-200 font-sans p-8">
@@ -63,80 +38,35 @@ function ModelDetailPage() {
         {t("home")}
       </button>
 
-      <h1 className="text-2xl font-bold mb-6">
-        {t("modelDetailTitle", {
-          model_id: model.id,
-          dataset_name: model.dataset_name,
-        })}
-      </h1>
+      <h1 className="text-2xl font-bold mb-6">Model #{modelId}</h1>
 
-      <div className="card bg-base-100 shadow-lg p-6 mb-6">
-        <div className="mb-4">
-          <h2 className="font-semibold mb-1">{t("labels")}</h2>
-          <input
-            type="text"
-            className="input input-bordered w-full"
-            value={model.labels}
-            readOnly
-          />
-        </div>
-
-        <div className="mb-4">
-          <h2 className="font-semibold mb-1">
-            {t("preprocessingFunction")}
-          </h2>
-          <input
-            type="text"
-            className="input input-bordered w-full"
-            value={model.a_preprocess_fun}
-            readOnly
-          />
-        </div>
-
-        <div className="mt-4 flex gap-2">
-          <button
-            onClick={() => navigate(`/models/${modelId}/delete`)}
-            className="btn btn-error"
-          >
-            {t("deleteModel")}
-          </button>
-
-          <button
-            onClick={() => navigate(`/models/${modelId}/serve`)}
-            className="btn btn-success"
-          >
-            {t("serveModel")}
-          </button>
-        </div>
-      </div>
+      {error && <div className="alert alert-warning mb-4">{error}</div>}
 
       <div className="card bg-base-100 shadow-lg p-6">
-        <h2 className="text-xl font-semibold mb-4">
-          {t("textInput")}
-        </h2>
-
-        <form onSubmit={handlePredict}>
-          <textarea
-            rows={4}
-            className="textarea textarea-bordered w-full mb-4"
-            placeholder={t("enterTextHere")}
-            value={textInput}
-            onChange={(e) => setTextInput(e.target.value)}
-          />
-
-          <button type="submit" className="btn btn-primary">
-            {t("predictModel")}
+        <div className="flex gap-2">
+          <button
+            className="btn btn-primary"
+            onClick={handleTrain}
+            disabled={isStarting}
+          >
+            {isStarting ? "Starting..." : "Train Model"}
           </button>
-        </form>
 
-        {prediction && (
-          <div className="alert alert-success mt-4">
-            {t("predictionResult", { predicted: prediction })}
-          </div>
+          <button
+            className="btn btn-success"
+            onClick={() => navigate(`/models/${modelId}/serve`)}
+            disabled={!trained}
+          >
+            Serve Model
+          </button>
+        </div>
+
+        {!trained && (
+          <p className="text-sm text-gray-500 mt-2">
+            Train the model first to enable serving.
+          </p>
         )}
       </div>
     </div>
   );
 }
-
-export default ModelDetailPage;
