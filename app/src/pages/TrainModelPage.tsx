@@ -1,79 +1,73 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { fetchTrainStatus } from "../api";
 
 export default function TrainModelPage() {
-  const { modelId } = useParams();
+  const { modelId, resultId } = useParams<{
+    modelId: string;
+    resultId: string;
+  }>();
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
-  const [taskId, setTaskId] = useState<string | null>(null);
   const [logs, setLogs] = useState("");
-  const [status, setStatus] = useState("Starting training...");
+  const [status, setStatus] = useState("Training...");
   const [error, setError] = useState("");
+  const [finished, setFinished] = useState(false);
 
   useEffect(() => {
-    async function startTraining() {
-      try {
-        const res = await fetch(`/api/models/${modelId}/train/`, {
-          method: "POST",
-        });
-
-        if (!res.ok) throw new Error("Failed to start training");
-
-        const data = await res.json();
-        setTaskId(data.task_id);
-      } catch (err: any) {
-        setError(err.message);
-      }
-    }
-
-    startTraining();
-  }, [modelId]);
-
-  useEffect(() => {
-    if (!taskId) return;
+    if (!resultId) return;
 
     const interval = setInterval(async () => {
       try {
-        const res = await fetch(`/api/tasks/${taskId}/`);
-        const data = await res.json();
-
+        const data = await fetchTrainStatus(resultId);
         setLogs(data.logs || "");
         setStatus(data.status || "");
 
-        if (data.status === "finished") {
+        if (data.finished) {
           clearInterval(interval);
-          navigate(`/models/${modelId}`);
+          setFinished(true);
         }
-
-        if (data.status === "failed") {
-          clearInterval(interval);
-          setError("Training failed");
-        }
-      } catch (err) {
-        console.error(err);
+      } catch (err: unknown) {
+        setError(err instanceof Error ? err.message : String(err));
+        clearInterval(interval);
       }
-    }, 2000);
+    }, 1000);
 
     return () => clearInterval(interval);
-  }, [taskId, modelId, navigate]);
+  }, [resultId]);
 
   return (
     <div className="p-8 min-h-screen bg-base-200">
-      <h1 className="text-2xl font-bold mb-4">
-        {t("Training model")} #{modelId}
-      </h1>
+      <h1 className="text-2xl font-bold mb-4">Training Model #{modelId}</h1>
 
-      {status && <p className="mb-2">{status}</p>}
-      {error && <p className="text-red-500">{error}</p>}
+      <p className="mb-2">{status}</p>
+      {error && <p className="text-red-500 mb-2">{error}</p>}
 
       <textarea
         value={logs}
         readOnly
         rows={12}
-        className="w-full textarea textarea-bordered"
+        className="w-full textarea textarea-bordered font-mono mb-4"
       />
+
+      {finished && (
+        <div className="flex gap-2">
+          <button
+            className="btn btn-success"
+            onClick={() => navigate(`/models/${modelId}/serve`)}
+          >
+            Serve Model
+          </button>
+          <button
+            className="btn btn-outline"
+            onClick={() =>
+              navigate(`/models/${modelId}`, { state: { trained: true } })
+            }
+          >
+            Back to Model
+          </button>
+        </div>
+      )}
     </div>
   );
 }
