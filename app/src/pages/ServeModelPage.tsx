@@ -1,37 +1,65 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { API } from "../api";
 
 export default function ServeModelPage() {
-  const { modelId } = useParams();
-  const [status, setStatus] = useState("");
+  const { modelId, resultId } = useParams();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  const [logs, setLogs] = useState("");
+  const [status, setStatus] = useState("Starting serving...");
   const [error, setError] = useState("");
 
-  async function startServing() {
-    try {
-      const res = await fetch(`/api/models/${modelId}/serve/`, {
-        method: "POST",
-      });
+  useEffect(() => {
+    if (!resultId) return;
 
-      if (!res.ok) throw new Error("Failed to start serving");
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch(`${API}/api/tasks/serve/${resultId}/status/`);
+        if (!res.ok) throw new Error("Failed to poll status");
+        const data = await res.json();
 
-      const data = await res.json();
-      setStatus(data.message || "Model deployed successfully");
-    } catch (err: any) {
-      setError(err.message);
-    }
-  }
+        setLogs(data.logs || "");
+        setStatus(data.status || "");
+
+        if (data.is_finished) {
+          clearInterval(interval);
+          setStatus("Serving deployed!");
+          setTimeout(() => navigate(`/models/${modelId}`), 1500);
+        }
+      } catch (err: any) {
+        clearInterval(interval);
+        setError(err.message);
+      }
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [resultId, modelId, navigate]);
 
   return (
-    <div className="p-8">
-      <h1 className="text-xl font-bold mb-4">Serve Model #{modelId}</h1>
-
-      <button className="btn btn-primary mb-4" onClick={startServing}>
-        Start Serving
+    <div className="min-h-screen bg-base-200 p-8">
+      <button onClick={() => navigate(`/models/${modelId}`)} className="btn btn-sm btn-outline mb-6">
+        {t("home")}
       </button>
 
-      {status && <p>{status}</p>}
-      {error && <p className="text-red-500">{error}</p>}
+      <div className="card bg-base-100 shadow-lg">
+        <div className="card-body">
+          <h2 className="card-title">Serving model #{modelId}</h2>
+          <p>Status: <span className="badge badge-primary">{status}</span></p>
+          {error && <div className="alert alert-error">{error}</div>}
+          <fieldset className="fieldset">
+            <legend className="fieldset-legend">{t("result") || "Logs"}</legend>
+            <textarea
+              value={logs}
+              readOnly
+              rows={16}
+              className="textarea textarea-bordered w-full font-mono"
+            />
+          </fieldset>
+        </div>
+      </div>
     </div>
   );
 }
