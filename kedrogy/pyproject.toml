@@ -9,6 +9,8 @@ dependencies = [
     "django>=6.0.1",
     "django-htmx>=1.27.0",
     "django-tasks",#see tool.uv.sources
+    "djangorestframework>=3.16",
+    "django-cors-headers>=4.7",
     "psycopg[binary,pool]",
     "jinja2",
 
