@@ -1,0 +1,10 @@
+# This is a boilerplate parameters config generated for pipeline 'load_examples'
+# using Kedro 1.2.0.
+#
+# Documentation for this file format can be found in "Parameters"
+# Link: https://docs.kedro.org/en/1.2.0/configuration/parameters.html
+
+load_examples_options:
+  data_table_name: all_data
+  dataset_name: news_headlines
+  id_field: id

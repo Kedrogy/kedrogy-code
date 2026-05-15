@@ -15,3 +15,7 @@ all_data_postgres:
   table_name: all_data
   save_args:
     if_exists: replace
+
+examples_jsonl:
+  type: ysz.kedro_datasets.srsly_dataset.SrslyDataset
+  filepath: data/00_examples/examples.jsonl
