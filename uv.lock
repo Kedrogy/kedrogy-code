@@ -885,7 +885,9 @@ dependencies = [
     { name = "django-htmx" },
     { name = "django-tasks" },
     { name = "jinja2" },
+    { name = "prodigy" },
     { name = "psycopg", extra = ["binary", "pool"] },
+    { name = "psycopg2" },
 ]
 
 [package.metadata]
@@ -894,7 +896,9 @@ requires-dist = [
     { name = "django-htmx", specifier = ">=1.27.0" },
     { name = "django-tasks", git = "https://github.com/RealOrangeOne/django-tasks.git?rev=4377f2c" },
     { name = "jinja2" },
+    { name = "prodigy", specifier = ">=1.18.4", index = "https://download.prodi.gy/" },
     { name = "psycopg", extras = ["binary", "pool"] },
+    { name = "psycopg2", specifier = ">=2.9.11" },
 ]
 
 [[package]]
@@ -1068,8 +1072,6 @@ dev = [
     { name = "ipykernel" },
     { name = "ipywidgets" },
     { name = "notebook" },
-    { name = "prodigy" },
-    { name = "psycopg2" },
     { name = "traitlets" },
 ]
 
@@ -1085,8 +1087,6 @@ dev = [
     { name = "ipykernel", specifier = ">=7.1.0" },
     { name = "ipywidgets", specifier = ">=8.1.8" },
     { name = "notebook", specifier = "==6.5.4" },
-    { name = "prodigy", specifier = ">=1.18.4", index = "https://download.prodi.gy/" },
-    { name = "psycopg2", specifier = ">=2.9.11" },
     { name = "traitlets", specifier = "==5.9.0" },
 ]
 

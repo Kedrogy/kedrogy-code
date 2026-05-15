@@ -11,6 +11,9 @@ dependencies = [
     "django-tasks",#see tool.uv.sources
     "psycopg[binary,pool]",
     "jinja2",
+
+    "prodigy>=1.18.4",
+    "psycopg2>=2.9.11",
 ]
 description = "A Django apps."
 readme = "README.rst"
@@ -50,3 +53,14 @@ package = true
 django-tasks = { git = "https://github.com/RealOrangeOne/django-tasks.git", rev = "4377f2c" }
 # add like this
 # uv add --package django-dataset-new git+ssh://github.com/RealOrangeOne/django-tasks.git --rev 4377f2c
+
+# and pin prodigy 
+prodigy = { index = "prodigy" }
+
+[[tool.uv.index]]
+name = "prodigy"
+url = "https://download.prodi.gy"
+ignore-error-codes = [422]
+# https://docs.astral.sh/uv/concepts/indexes/#pinning-a-package-to-an-index
+# prevent packages from being installed from here unless explicitly pinned to it
+explicit = true
