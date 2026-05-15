@@ -37,13 +37,11 @@ class DatasetNewConfig(AppConfig):
             db = connect(
                 db_id="postgresql",
                 db_settings={
-                    "postgresql": {
-                        "user": os.getenv("PGUSER"),
-                        "password": os.getenv("PGPASSWORD"),
-                        "dbname": os.getenv("PGDATABASE"),
-                        "host": os.getenv("PGHOST"),
-                        "port": os.getenv("PGPORT"),
-                    }
+                    "user": os.getenv("PGUSER"),
+                    "password": os.getenv("PGPASSWORD"),
+                    "dbname": os.getenv("PGDATABASE"),
+                    "host": os.getenv("PGHOST"),
+                    "port": os.getenv("PGPORT"),
                 },
             )
 
