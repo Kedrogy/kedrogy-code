@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "myrecipes"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "prodigy>=1.18.4",
+    "psycopg2>=2.9.11",#prodigy+postgres
+]
+
+[[tool.uv.index]]
+name = "prodigy"
+url = "https://download.prodi.gy"
+ignore-error-codes = [422]
+# https://docs.astral.sh/uv/concepts/indexes/#pinning-a-package-to-an-index
+# prevent packages from being installed from here unless explicitly pinned to it
+explicit = true
+
+[tool.uv.sources]
+# and pin prodigy 
+prodigy = { index = "prodigy" }
+
+[tool.uv]
+package = true
+
+# https://support.prodi.gy/t/calling-packaged-custom-recipes/3502/2
+[project.entry-points."prodigy_recipes"]
+"myrecipes.textcat.custom-model" = "myrecipes.textcat_custom_model:textcat_custom_model"
+

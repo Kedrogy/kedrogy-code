@@ -37,7 +37,7 @@ class DummyModel(object):
 # shortcut, type / converter function called on value before it's passed to
 # the function). Descriptions are also shown when typing --help.
 @prodigy.recipe(
-    "textcat.custom-model",
+    "myrecipes.textcat.custom-model",
     dataset=("The dataset to use", "positional", None, str),
     source=("The source data as a JSONL file", "positional", None, str),
     label=("One or more comma-separated labels", "option", "l", split_string),

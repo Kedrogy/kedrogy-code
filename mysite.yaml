@@ -70,8 +70,8 @@ spec:
           command: ["bash", "-c"]
           args:
             - |
-              /app/mysite/.venv/bin/python -m django collectstatic --noinput --settings mysite.settings
-              /app/mysite/.venv/bin/python -m uvicorn --host 0.0.0.0 mysite.asgi:application
+              /app/.venv/bin/python -m django collectstatic --noinput --settings mysite.settings
+              /app/.venv/bin/python -m uvicorn --host 0.0.0.0 mysite.asgi:application
           env:
             - name: PGHOST
               value: postgres-svc
