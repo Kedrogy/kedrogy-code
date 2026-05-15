@@ -114,14 +114,15 @@ spec:
           # XXX Tilt image
           image: {{ image }}
           imagePullPolicy: Always
+          workingDir: /app/{{ workingDir }}
           args: [
               "-m",
               "prodigy",
-              "{{ recipe }}",
-              "{{ dataset_name }}",
-              # XXX for separate image with kedro project in the root
-              # ./data/00_examples instead of ./mykedro/data/00_examples
-              "./{{ workingDir }}/data/00_examples/examples.jsonl",
+              # "{{ recipe }}",
+              # "{{ dataset_name }}",
+              # # XXX for separate image with kedro project in the root
+              # # ./data/00_examples instead of ./mykedro/data/00_examples
+              # "./{{ workingDir }}/data/00_examples/examples.jsonl",
               {{ recipe_options_split }}
             ]
           # command: ["sh", "-c"]

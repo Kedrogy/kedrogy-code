@@ -19,7 +19,7 @@ dependencies = [
     "torch>=1.13.1",
     "evaluate>=0.4.6",
     "accelerate>=1.11.0",
-    "predict",
+    "ysz-predict",
     "kedro-viz>=12.3.0",
     "kedro-docker>=0.6.2",
 ]
@@ -55,7 +55,7 @@ ysz-kedro-datasets = { git = "ssh://git@github.com/ysz-vc/kedro-datasets", tag =
 prodigy = { index = "prodigy" }
 # development 
 # ysz-kedro-datasets = { path = "../../../kedro-datasets", editable = true }
-predict = { path = "../../predict", editable = true }
+ysz-predict = { path = "../../predict", editable = true }
 
 [[tool.uv.index]]
 name = "prodigy"

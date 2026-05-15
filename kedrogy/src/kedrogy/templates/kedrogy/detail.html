@@ -11,10 +11,10 @@
 
 <tr><td><label for="pipeline">pipeline, or empty for default load_examples</label></td>
 <td><input type="text" name="pipeline" id="pipeline" size="100" value="{{ dataset.pipeline }}"></td></tr>
-
+{% comment %}
 <tr><td><label for="recipe">Prodigy recipe</label></td>
 <td><input type="text" name="recipe" id="recipe" size="100" value="{{ dataset.recipe }}"></td></tr>
-
+{% endcomment %}
 <tr><td><label for="recipe_options">Prodigy recipe options, space separated</label></td>
 <td><input type="text" name="recipe_options" id="recipe_options" size="100" value="{{ dataset.recipe_options }}"></td></tr>
 
