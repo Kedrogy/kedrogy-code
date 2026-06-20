@@ -22,3 +22,8 @@
 {% csrf_token %}
 <input type="submit" value="delete">
 </form>
+
+<form action="{% url 'label_train_serve:label' dataset.id %}" method="post">
+{% csrf_token %}
+<input type="submit" value="label">
+</form>

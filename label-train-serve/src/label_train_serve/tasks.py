@@ -3,6 +3,7 @@ import time
 import subprocess
 
 from django_tasks import TaskContext, task
+from django.shortcuts import get_object_or_404
 from pathlib import Path
 from jinja2 import Template
 
@@ -32,10 +33,11 @@ def render_print(jinja_filename, ingress_data):
 
 
 @task(takes_context=True)
-def new_dataset_task(context: TaskContext, task_parameters):
-    print(task_parameters, flush=True)
-    dataset_name = task_parameters["dataset_name"]
-
+def new_dataset_task(context: TaskContext, task_parameters: dict):
+    # update this dataset
+    this_dataset = get_object_or_404(DjangoDataset, pk=task_parameters["dataset_id"])
+    print(this_dataset, flush=True)
+    dataset_name = this_dataset.dataset_name
     logger.warning(
         f"Attempt {context.attempt} to create dataset {dataset_name}. Task result id: {context.task_result.id}."
     )
@@ -80,8 +82,6 @@ def new_dataset_task(context: TaskContext, task_parameters):
     # Waiting for deployment "prodigy-ysz-textcat-teach-multi" rollout to finish: 0 of 1 updated replicas are available...
     # deployment "prodigy-ysz-textcat-teach-multi" successfully rolled out
 
-    this_dataset = DjangoDataset(dataset_name=dataset_name)
-
     # # first ensure service above , otherwise: <error: services "prodigy-bar" not found>
     # render_ingress = render_print(
     #     "ingress.yaml.jinja",
@@ -89,6 +89,5 @@ def new_dataset_task(context: TaskContext, task_parameters):
     # )
     # Path("ingress.yaml").write_text(render_ingress)
     # kubectl(context, ["kubectl", "apply", "-f", "ingress.yaml"])
-    logger.warning(f"Done create dataset {dataset_name}")
-    this_dataset.save()
-    return f"{dataset_name} has been created"
+    logger.warning(f"Done label dataset {dataset_name}")
+    return f"Prodigy for {dataset_name} has been started"

@@ -14,3 +14,16 @@ class DjangoDataset(models.Model):
 
     def __str__(self):
         return self.dataset_name
+
+    def to_dict(self):
+        # print("dataset_id", self.id, flush=True)
+        return {
+            "dataset_name": self.dataset_name,
+            "image": self.image,
+            "workingDir": self.workingDir,
+            "pipeline": self.pipeline,
+            "recipe": self.recipe,
+            "recipe_options": self.recipe_options,
+            # for tasks
+            "dataset_id": self.id,
+        }
