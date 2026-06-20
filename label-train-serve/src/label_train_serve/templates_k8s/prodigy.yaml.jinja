@@ -81,7 +81,13 @@ spec:
           imagePullPolicy: Always
           # this works for separate image with kedro project in the root
           workingDir: /app/{{ workingDir }}
-          args: ["-m", "kedro", "run", "--pipeline={{ pipeline }}"]
+          args: [
+              "-m", 
+              "kedro", 
+              "run", 
+              "--params={{ params }}",
+              "--pipeline={{ pipeline }}"
+            ]
           env:
             - name: PGHOST
               value: postgres-svc

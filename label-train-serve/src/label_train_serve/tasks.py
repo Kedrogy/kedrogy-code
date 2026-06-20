@@ -43,6 +43,9 @@ def new_dataset_task(context: TaskContext, task_parameters: dict):
     )
     context.metadata["logs"] = ""
 
+    # TODO create configmap /volume for parameters_load_examples.yml for dataset
+    # and mount to prodigy
+
     # maybe?
     # kubectl(
     #     context,
@@ -60,7 +63,12 @@ def new_dataset_task(context: TaskContext, task_parameters: dict):
     )
     render_prodigy = render_print(
         "prodigy.yaml.jinja",
-        task_parameters,
+        {
+            **task_parameters,
+            **{
+                "params": f"load_examples_options.data_table_name=all_data,load_examples_options.dataset_name={dataset_name},load_examples_options.id_field=id"
+            },
+        },
     )
     yaml_filename = f"prodigy-{dataset_name}.yaml"
     Path(yaml_filename).write_text(render_prodigy)
@@ -90,4 +98,4 @@ def new_dataset_task(context: TaskContext, task_parameters: dict):
     # Path("ingress.yaml").write_text(render_ingress)
     # kubectl(context, ["kubectl", "apply", "-f", "ingress.yaml"])
     logger.warning(f"Done label dataset {dataset_name}")
-    return f"Prodigy for {dataset_name} has been started"
+    return {"dataset_id": this_dataset.id}
