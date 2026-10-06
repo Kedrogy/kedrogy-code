@@ -1,0 +1,40 @@
+test_corrupt_weights_and_foreign_manifest_fail (test_artifacts.ArtifactTests.test_corrupt_weights_and_foreign_manifest_fail) ... ok
+test_empty_and_symlink_paths_fail (test_artifacts.ArtifactTests.test_empty_and_symlink_paths_fail) ... ok
+test_missing_weights_tokenizer_and_wrong_labels_fail (test_artifacts.ArtifactTests.test_missing_weights_tokenizer_and_wrong_labels_fail) ... ok
+test_round_trip_and_finite_inference (test_artifacts.ArtifactTests.test_round_trip_and_finite_inference) ... ok
+test_wrong_run_and_modified_checksum_fail (test_artifacts.ArtifactTests.test_wrong_run_and_modified_checksum_fail) ... ok
+test_conflicting_answers_are_not_silently_weighted (test_choice_contract.ChoiceContractTests.test_conflicting_answers_are_not_silently_weighted) ... ok
+test_distinct_source_records_survive_identical_text (test_choice_contract.ChoiceContractTests.test_distinct_source_records_survive_identical_text) ... ok
+test_invalid_choices_fail_before_training (test_choice_contract.ChoiceContractTests.test_invalid_choices_fail_before_training) ... ok
+test_legacy_preview_never_infers_opposite_class (test_choice_contract.ChoiceContractTests.test_legacy_preview_never_infers_opposite_class) ... ok
+test_order_policy_and_identity_are_fingerprinted (test_choice_contract.ChoiceContractTests.test_order_policy_and_identity_are_fingerprinted) ... ok
+test_other_is_only_an_explicit_class_in_v2 (test_choice_contract.ChoiceContractTests.test_other_is_only_an_explicit_class_in_v2) ... ok
+test_reject_and_ignore_never_supply_a_target (test_choice_contract.ChoiceContractTests.test_reject_and_ignore_never_supply_a_target) ... ok
+test_stratified_split_uses_the_catalog_dataframe_contract (test_choice_contract.ChoiceContractTests.test_stratified_split_uses_the_catalog_dataframe_contract) ... ok
+test_missing_secret_has_safe_diagnostic (test_config_secrets.ConfigTests.test_missing_secret_has_safe_diagnostic) ... ok
+test_secret_round_trip_and_permissions (test_config_secrets.ConfigTests.test_secret_round_trip_and_permissions) ... ok
+test_exact_value_and_utf8 (test_db_queries.QueryTests.test_exact_value_and_utf8) ... ok
+test_quoted_identifier_and_json_key (test_db_queries.QueryTests.test_quoted_identifier_and_json_key) ... ok
+test_source_denied_before_connection (test_db_queries.QueryTests.test_source_denied_before_connection) ... ok
+test_unseen_examples_and_null_annotation_id (test_db_queries.QueryTests.test_unseen_examples_and_null_annotation_id) ... ok
+test_busy_health_and_cancelled_request_retain_one_thread_slot (test_inference.InferenceTests.test_busy_health_and_cancelled_request_retain_one_thread_slot) ... ok
+test_changed_files_and_unknown_preprocessor_never_ready (test_inference.InferenceTests.test_changed_files_and_unknown_preprocessor_never_ready) ... ok
+test_real_prediction_health_and_zero_class (test_inference.InferenceTests.test_real_prediction_health_and_zero_class) ... ok
+test_training_rechecks_same_rows_and_fingerprint (test_inference.InferenceTests.test_training_rechecks_same_rows_and_fingerprint) ... ok
+test_concurrent_imports_serialize_and_replay (test_sources.SourceDatabaseTests.test_concurrent_imports_serialize_and_replay) ... ok
+test_conflicting_batch_rolls_back_new_records_and_receipt (test_sources.SourceDatabaseTests.test_conflicting_batch_rolls_back_new_records_and_receipt) ... ok
+test_failure_after_insert_before_receipt_rolls_back_everything (test_sources.SourceDatabaseTests.test_failure_after_insert_before_receipt_rolls_back_everything) ... ok
+test_ingest_role_cannot_mutate_drop_or_impersonate_owner (test_sources.SourceDatabaseTests.test_ingest_role_cannot_mutate_drop_or_impersonate_owner) ... ok
+test_namespace_keys_do_not_collide (test_sources.SourceDatabaseTests.test_namespace_keys_do_not_collide) ... ok
+test_overlapping_concurrent_imports_preserve_the_union (test_sources.SourceDatabaseTests.test_overlapping_concurrent_imports_preserve_the_union) ... ok
+test_preview_and_failed_request_do_not_publish (test_sources.SourceDatabaseTests.test_preview_and_failed_request_do_not_publish) ... ok
+test_reader_exclusion_requires_both_source_and_record_identity (test_sources.SourceDatabaseTests.test_reader_exclusion_requires_both_source_and_record_identity) ... ok
+test_reorder_subset_append_and_lost_ack_replay (test_sources.SourceDatabaseTests.test_reorder_subset_append_and_lost_ack_replay) ... ok
+test_content_mode_and_duplicate_accounting_are_explicit (test_sources.SourceInputTests.test_content_mode_and_duplicate_accounting_are_explicit) ... ok
+test_string_ids_and_exact_text (test_sources.SourceInputTests.test_string_ids_and_exact_text) ... ok
+test_shutdown_reaps_worker_and_descendant (test_supervisor.SupervisorTests.test_shutdown_reaps_worker_and_descendant) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 1.035s
+
+OK

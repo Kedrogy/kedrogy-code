@@ -1,0 +1,40 @@
+{
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/health/",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/api/models/5/",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/legacy/",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/api/models/999999/",
+      "status": 404,
+      "expected": 404
+    }
+  ],
+  "prediction": {
+    "class_id": 0,
+    "label": "OTHER",
+    "contract_version": 1,
+    "training_run_id": "76ebe25a-1116-4277-89fb-86f4b2f48e37",
+    "serving_run_id": "605e1869-85ca-4b20-8d2c-d1a1979e5cad",
+    "predicted_class": "OTHER",
+    "model_id": 5
+  },
+  "after_network_policy_recovery": true,
+  "deployed_reconciler_observed_without_local_helper": true
+}

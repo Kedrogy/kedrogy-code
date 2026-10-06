@@ -1,0 +1,45 @@
+{
+  "model_id": 19,
+  "namespace": "default",
+  "reason": "User requested removal of all old models and datasets; explicitly reviewed the remaining incomplete legacy graph.",
+  "resources": [
+    {
+      "kind": "Job",
+      "name": "train-19",
+      "namespace": "default",
+      "uid": "624706af-1cd7-48ae-963f-79df68f97880",
+      "namespace_uid": "9353e5be-9f68-4d41-aaae-84a20e9960e1",
+      "spec_digest": "d8527ea5affe89b79a510e4433ffa8350dcac66704a2038bf607fa11fff57076"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-19",
+      "namespace": "default",
+      "uid": "59e987be-fc22-4dbe-8e40-dd127a4b1a43",
+      "namespace_uid": "9353e5be-9f68-4d41-aaae-84a20e9960e1",
+      "spec_digest": "468fe1a16b769b2b0264836a607e0d567796e54c9575e3f93e830c7490dac68a"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-19",
+      "namespace": "default",
+      "uid": "48d73bc0-2cf6-40d5-809f-e1d39627ed3f",
+      "namespace_uid": "9353e5be-9f68-4d41-aaae-84a20e9960e1",
+      "spec_digest": "a8a8188d884b67bf25eb441461db6dfc2a6e25676821cf2434df816b71d6e23a"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-19",
+      "namespace": "default",
+      "uid": "8b1a60e2-735e-44f0-8473-392f0e131cec",
+      "namespace_uid": "9353e5be-9f68-4d41-aaae-84a20e9960e1",
+      "spec_digest": "1b10c253468516a956313726b07e552dd8fbbf639502e622b35e6f3bc8a160fc"
+    }
+  ],
+  "completed": [
+    "Job/train-19",
+    "Service/serve-svc-19",
+    "ConfigMap/parameters-train-19",
+    "PersistentVolumeClaim/pvc-model-19"
+  ]
+}

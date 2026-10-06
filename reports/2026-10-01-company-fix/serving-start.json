@@ -1,0 +1,17 @@
+{
+  "result_id": "34b23cab-c281-47a7-a383-e5ef423ffaea",
+  "model_id": 23,
+  "serving": {
+    "id": "34b23cab-c281-47a7-a383-e5ef423ffaea",
+    "status": "STARTING",
+    "training_run_id": "1e029920-eb90-4277-8800-e4ab379fb75f",
+    "labels": [
+      "company_mentioned",
+      "no_company"
+    ],
+    "class_schema_version": 2,
+    "conversion_policy": "single-label-choice-v2",
+    "observed_at": null,
+    "error": null
+  }
+}

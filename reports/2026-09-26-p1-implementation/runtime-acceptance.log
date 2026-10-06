@@ -1,0 +1,38 @@
+{"preflight": {"fingerprint": "6e3f39ce8c2362f0b46c19d02a006377bc98cff3fc363730b070c87b24e518a1", "dataset_id": 1, "policy": "single-label-choice-v2", "class_schema_version": 2, "artifact_version": 2, "labels": ["positive", "negative"], "total": 12, "usable": 12, "accepted": 12, "rejected": 0, "ignored": 0, "invalid": 0, "conflicting": 0, "needs_review": 0, "duplicate_accepted": 0, "label_counts": {"positive": 6, "negative": 6}}}
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.038
+Operation failed code=RESOURCE_EXISTS exit=1 duration=0.057
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.033
+Training finished.
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.031
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.031
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.034
+The new model is ready through its per-run Service.
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.035
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.032
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.030
+First serving run stopped.
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.034
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.037
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.034
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.033
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.033
+Stopped the delayed old run.
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.036
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.037
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.033
+Replacement is READY before old create resumes.
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.031
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.031
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.033
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.033
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.033
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.034
+Late old resources collected without changing the replacement.
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.040
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.042
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.037
+Replacement stopped cleanly.
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.040
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.032
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.035
+P1 real Kubernetes, PostgreSQL and training/inference acceptance passed.

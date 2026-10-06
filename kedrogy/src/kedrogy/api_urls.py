@@ -7,6 +7,7 @@ router.register(r"datasets", api_views.DatasetViewSet)
 router.register(r"models", api_views.MLModelViewSet)
 
 urlpatterns = [
+    path("operations/delete/<uuid:result_id>/retry/", api_views.retry_cleanup),
     path("", include(router.urls)),
     path(
         "tasks/<str:task_type>/<str:result_id>/status/",

@@ -4,6 +4,11 @@ from . import views
 
 app_name = "kedrogy"
 urlpatterns = [
+    path("legacy_cleanup/retry/<uuid:identifier>/", views.retry_cleanup_view, name="retry-cleanup"),
+    path("legacy_cleanup/<str:action>/<int:identifier>/", views.cleanup, name="cleanup"),
+    path("annotation/stop/<int:dataset_id>/", views.stop_annotation_view, name="annotation-stop"),
+    path("annotation/refresh/<int:dataset_id>/", views.refresh_annotations_view, name="annotation-refresh"),
+    path("stop_model/<int:model_id>", views.stop_model, name="stop_model"),
     path("", views.index, name="index"),
     path("<int:dataset_id>/", views.detail, name="detail"),
     path("new_dataset/", views.new_dataset, name="new"),

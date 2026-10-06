@@ -1,0 +1,30 @@
+[
+  {
+    "path": "/",
+    "status": 200
+  },
+  {
+    "path": "/api/datasets/",
+    "status": 200
+  },
+  {
+    "path": "/api/datasets/active_annotation/",
+    "status": 200
+  },
+  {
+    "path": "/api/tasks/delete/not-present/status/",
+    "status": 404
+  },
+  {
+    "path": "/cleanup/models/2/model_files",
+    "status": 200
+  },
+  {
+    "path": "/legacy_cleanup/dataset/4/",
+    "status": 200
+  },
+  {
+    "path": "/en/4/",
+    "status": 200
+  }
+]

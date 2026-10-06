@@ -1,3 +1,5 @@
+"""Legacy random-suggestion demo; new datasets use textcat_choice instead."""
+
 import prodigy
 from prodigy.components.loaders import JSONL
 from prodigy.components.sorters import prefer_uncertain
@@ -44,7 +46,7 @@ class DummyModel(object):
 )
 def textcat_custom_model(dataset: str, source: str, label: List[str]):
     """
-    Use active learning-powered text classification with a custom model. To
+    Legacy binary annotation demo with random suggestions, not a learned acquisition model. To
     demonstrate how it works, this demo recipe uses a simple dummy model that
     "precits" random scores. But you can swap it out for any model of your
     choice, for example a text classification model implementation using

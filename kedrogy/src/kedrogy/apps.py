@@ -1,68 +1,8 @@
-from pathlib import Path
-import subprocess
-import os
-
+"""App registration; initialization is an explicit management command."""
 from django.apps import AppConfig
 
 
 class DatasetNewConfig(AppConfig):
+    """Register without touching PostgreSQL or Kubernetes during startup."""
+
     name = "kedrogy"
-
-    def ready(self):
-        print("kedrogy is ready! Executing startup code.")
-
-        import psycopg
-
-        # Connect to an existing database
-        with psycopg.connect() as conn:
-            # Open a cursor to perform database operations
-            with conn.cursor() as cur:
-                # Execute a command: this creates a new table
-                cur.execute("""
-                    SELECT EXISTS (
-                        SELECT FROM pg_tables
-                        WHERE schemaname = 'public' AND tablename = 'dataset'
-                    );        
-                    """)
-
-                dataset_table_found = cur.fetchall()[0][0]
-
-        if not dataset_table_found:
-            # https://prodi.gy/docs/api-database#setup-permissions
-            from prodigy.components.db import connect
-
-            examples = [{"text": "hello world", "_task_hash": 123, "_input_hash": 456}]
-
-            # uses settings from prodigy.json
-            db = connect(
-                db_id="postgresql",
-                db_settings={
-                    "user": os.getenv("PGUSER"),
-                    "password": os.getenv("PGPASSWORD"),
-                    "dbname": os.getenv("PGDATABASE"),
-                    "host": os.getenv("PGHOST"),
-                    "port": os.getenv("PGPORT"),
-                },
-            )
-
-            db.add_dataset("test_dataset")
-            # check that dataset was added
-            assert "test_dataset" in db
-
-            # add examples to dataset
-            db.add_examples(examples, ["test_dataset"])
-            # retrieve a dataset's examples
-            examples = db.get_dataset_examples("test_dataset")
-
-            # check that examples were added
-            assert len(examples) == 1
-
-        prodigy_svc_ingress = (
-            Path(__file__).resolve().parent
-            / "templates_k8s"
-            / "prodigy-svc-ingress.yaml"
-        )
-        output = subprocess.check_output(
-            ["kubectl", "apply", "-f", prodigy_svc_ingress.as_posix()]
-        )
-        print(output)

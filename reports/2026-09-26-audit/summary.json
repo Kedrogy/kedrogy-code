@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-26",
+  "findings": 30,
+  "priorities": {
+    "P1": 4,
+    "P2": 21,
+    "P3": 5
+  },
+  "existing_tests": {
+    "passed": 112,
+    "skipped_query_tests": 4,
+    "postgres_concurrency_rerun": false
+  },
+  "audit_reproductions": {
+    "django": 13,
+    "ml": 5,
+    "subprocess": 1
+  },
+  "build": "passed",
+  "lint": "failed: missing ESLint configuration",
+  "dependency_scan": "blocked by automatic approval review; external metadata transfer not approved",
+  "application_source_modified_by_audit": false
+}

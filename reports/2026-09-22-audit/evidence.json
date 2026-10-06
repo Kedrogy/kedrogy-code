@@ -1,0 +1,714 @@
+{
+  "date": "2026-09-22T13:36:05.900727+03:00",
+  "scope": "working tree and local environment; no application source fixes or data mutations",
+  "findings": {
+    "count": 47,
+    "by_priority": {
+      "P0": 4,
+      "P1": 27,
+      "P2": 15,
+      "P3": 1
+    }
+  },
+  "checks": [
+    {
+      "check": "npm run build",
+      "outcome": "PASS"
+    },
+    {
+      "check": "npm run lint",
+      "outcome": "FAIL: missing ESLint config"
+    },
+    {
+      "check": "uv lock --check --offline --no-cache at repository root",
+      "outcome": "FAIL: missing pyproject.toml"
+    },
+    {
+      "check": "existing failed task HTTP status",
+      "outcome": 500,
+      "detail": "Task failed"
+    },
+    {
+      "check": "serve-18 synthetic short text",
+      "outcome": 200,
+      "prediction": "OTHER"
+    },
+    {
+      "check": "serve-18 1024 hello words",
+      "outcome": 500,
+      "detail": "tensor size 1026 vs 512"
+    },
+    {
+      "check": "browser missing model /models/999999",
+      "outcome": "stays Loading"
+    },
+    {
+      "check": "browser missing dataset /datasets/999999",
+      "outcome": "empty Dataset card with Delete and Label actions"
+    },
+    {
+      "check": "browser Prodigy badge",
+      "outcome": "medical-notes-ner, whereas deployment recipe targets test3"
+    },
+    {
+      "check": "db-worker-kubectl-role",
+      "outcome": "NotFound"
+    },
+    {
+      "check": "active database role",
+      "outcome": "postgres; rolsuper=true"
+    },
+    {
+      "check": "stale RUNNING task",
+      "started_at": "2026-03-16T18:22:15Z"
+    }
+  ],
+  "isolated_probes": {
+    "syntax": {
+      "files": 48,
+      "errors": 0
+    },
+    "test_definitions": 0,
+    "label_mismatch": {
+      "exception": "KeyError",
+      "message": "'N'"
+    },
+    "reject_means_other": [
+      {
+        "label": 0,
+        "text": "sample"
+      }
+    ],
+    "reserved_other": [
+      {
+        "1": "OTHER",
+        "2": "positive",
+        "0": "OTHER"
+      },
+      {
+        "OTHER": "0",
+        "positive": "2"
+      }
+    ],
+    "duplicate_labels": [
+      {
+        "1": "positive",
+        "2": "positive",
+        "0": "OTHER"
+      },
+      {
+        "positive": "2",
+        "OTHER": "0"
+      }
+    ],
+    "mixed_label_types": [
+      [
+        "1",
+        "str"
+      ],
+      [
+        0,
+        "int"
+      ]
+    ],
+    "subprocess_exit_7": "stdout diagnostic\n",
+    "captured_task_metadata": {
+      "logs": "stdout diagnostic\n"
+    },
+    "yaml_injection": {
+      "privileged": true
+    },
+    "yaml_quoted_label": {
+      "exception": "ParserError",
+      "message": "while parsing a flow sequence\n  in \"<unicode string>\", line 3, column 11:\n      labels: [\"say\"yes\"]\n              ^\nexpected ',' or ']', but got '<scalar>'\n  in \"<unicode string>\", line 3, column 17:\n      labels: [\"say\"yes\"]\n                    ^"
+    },
+    "dataset_missing_configuration": {
+      "valid": true,
+      "errors": {},
+      "fields": [
+        "dataset_name"
+      ]
+    },
+    "dataset_blank_pipeline": {
+      "valid": false,
+      "errors": {
+        "pipeline": [
+          "This field may not be blank."
+        ]
+      },
+      "fields": []
+    },
+    "dataset_injected_image_validation": {
+      "valid": true,
+      "errors": {},
+      "fields": [
+        "dataset_name",
+        "image"
+      ]
+    },
+    "dataset_path_name_validation": {
+      "valid": true,
+      "errors": {},
+      "fields": [
+        "dataset_name"
+      ]
+    },
+    "anonymous_permissions": {
+      "DatasetViewSet": [
+        true
+      ],
+      "MLModelViewSet": [
+        true
+      ]
+    },
+    "django_deployment_checks": [
+      {
+        "id": "urls.W005",
+        "message": "URL namespace 'kedrogy' isn't unique. You may not be able to reverse all URLs in this namespace"
+      },
+      {
+        "id": "security.W020",
+        "message": "ALLOWED_HOSTS must not be empty in deployment."
+      },
+      {
+        "id": "security.W004",
+        "message": "You have not set a value for the SECURE_HSTS_SECONDS setting. If your entire site is served only over SSL, you may want to consider setting a value and enabling HTTP Strict Transport Security. Be sure to read the documentation first; enabling HSTS carelessly can cause serious, irreversible problems."
+      },
+      {
+        "id": "security.W012",
+        "message": "SESSION_COOKIE_SECURE is not set to True. Using a secure-only session cookie makes it more difficult for network traffic sniffers to hijack user sessions."
+      },
+      {
+        "id": "security.W008",
+        "message": "Your SECURE_SSL_REDIRECT setting is not set to True. Unless your site should be available over both SSL and non-SSL connections, you may want to either set this setting True or configure a load balancer or reverse-proxy server to redirect all connections to HTTPS."
+      },
+      {
+        "id": "security.W016",
+        "message": "You have 'django.middleware.csrf.CsrfViewMiddleware' in your MIDDLEWARE, but you have not set CSRF_COOKIE_SECURE to True. Using a secure-only CSRF cookie makes it more difficult for network traffic sniffers to steal the CSRF token."
+      },
+      {
+        "id": "security.W009",
+        "message": "Your SECRET_KEY has less than 50 characters, less than 5 unique characters, or it's prefixed with 'django-insecure-' indicating that it was generated automatically by Django. Please generate a long and random value, otherwise many of Django's security-critical features will be vulnerable to attack."
+      },
+      {
+        "id": "security.W018",
+        "message": "You should not have DEBUG set to True in deployment."
+      }
+    ],
+    "failed_task_is_finished": true,
+    "failed_task_return_value": {
+      "exception": "ValueError",
+      "message": "Task failed"
+    },
+    "unapplied_migrations": [],
+    "database": {
+      "datasets": [
+        {
+          "id": 19,
+          "name": "product-reviews-sentiment",
+          "has_matching_prodigy_dataset": false
+        },
+        {
+          "id": 20,
+          "name": "medical-notes-ner",
+          "has_matching_prodigy_dataset": false
+        },
+        {
+          "id": 21,
+          "name": "support-tickets-triage",
+          "has_matching_prodigy_dataset": false
+        }
+      ],
+      "models": [
+        [
+          19,
+          19,
+          "POSITIVE, NEGATIVE",
+          true,
+          false
+        ],
+        [
+          20,
+          19,
+          "positive, negative",
+          true,
+          true
+        ]
+      ],
+      "last_dataset_ids": [
+        19
+      ],
+      "tasks_by_status": [
+        [
+          "RUNNING",
+          1
+        ],
+        [
+          "FAILED",
+          1
+        ],
+        [
+          "SUCCEEDED",
+          301
+        ]
+      ]
+    },
+    "legacy_new_dataset_get": {
+      "exception": "UnboundLocalError",
+      "message": "cannot access local variable 'dataset_name' where it is not associated with a value"
+    },
+    "legacy_predict_inside_cluster": {
+      "exception": "UnboundLocalError",
+      "message": "cannot access local variable 'process' where it is not associated with a value"
+    }
+  },
+  "http": [
+    {
+      "name": "datasets",
+      "status": 200,
+      "content_type": "application/json",
+      "allow_origin": null
+    },
+    {
+      "name": "model20",
+      "status": 200,
+      "content_type": "application/json",
+      "allow_origin": null
+    },
+    {
+      "name": "unknown_task",
+      "status": 500,
+      "content_type": "text/html",
+      "allow_origin": null,
+      "debug_error_in_body": true
+    },
+    {
+      "name": "missing_model",
+      "status": 404,
+      "content_type": "application/json",
+      "allow_origin": null
+    },
+    {
+      "name": "cors_localhost",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "allow_origin": "http://localhost:5173"
+    },
+    {
+      "name": "cors_127",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "allow_origin": null
+    }
+  ],
+  "utf8_sql_probes": {
+    "ascii": {
+      "result": {
+        "text": "simple"
+      }
+    },
+    "quoted": {
+      "result": {
+        "text": "say \"hello\""
+      }
+    },
+    "unicode": {
+      "exception": "InvalidTextRepresentation",
+      "message": "invalid input syntax for type json"
+    }
+  },
+  "kubernetes_resources": [
+    {
+      "kind": "Deployment",
+      "name": "postgres-deployment",
+      "ready_replicas": 1,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "prodigy",
+      "ready_replicas": 1,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-1",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-10",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-12",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-13",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-15",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-16",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-17",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-18",
+      "ready_replicas": 1,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-2",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-20",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-5",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-6",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-7",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-8",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-9",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Job",
+      "name": "train-10",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Job",
+      "name": "train-12",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": 2,
+      "phase": null
+    },
+    {
+      "kind": "Job",
+      "name": "train-13",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": 2,
+      "phase": null
+    },
+    {
+      "kind": "Job",
+      "name": "train-14",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": 2,
+      "phase": null
+    },
+    {
+      "kind": "Job",
+      "name": "train-15",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": 2,
+      "phase": null
+    },
+    {
+      "kind": "Job",
+      "name": "train-16",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": 2,
+      "phase": null
+    },
+    {
+      "kind": "Job",
+      "name": "train-17",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": 2,
+      "phase": null
+    },
+    {
+      "kind": "Job",
+      "name": "train-18",
+      "ready_replicas": null,
+      "succeeded": 1,
+      "failed": null,
+      "phase": null
+    },
+    {
+      "kind": "Job",
+      "name": "train-19",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": 2,
+      "phase": null
+    },
+    {
+      "kind": "Job",
+      "name": "train-20",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": 2,
+      "phase": null
+    },
+    {
+      "kind": "Job",
+      "name": "train-3",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": 2,
+      "phase": null
+    },
+    {
+      "kind": "Job",
+      "name": "train-4",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": 2,
+      "phase": null
+    },
+    {
+      "kind": "Job",
+      "name": "train-7",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": 2,
+      "phase": null
+    },
+    {
+      "kind": "Job",
+      "name": "train-9",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": 2,
+      "phase": null
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "postgres-pvc",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": "Bound"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-10",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": "Bound"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-12",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": "Bound"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-13",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": "Bound"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-14",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": "Bound"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-15",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": "Bound"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-16",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": "Bound"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-17",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": "Bound"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-18",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": "Bound"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-19",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": "Bound"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-20",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": "Bound"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-3",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": "Bound"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-4",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": "Bound"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-7",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": "Bound"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-9",
+      "ready_replicas": null,
+      "succeeded": null,
+      "failed": null,
+      "phase": "Bound"
+    }
+  ],
+  "npm_audit_summary": {
+    "info": 0,
+    "low": 3,
+    "moderate": 1,
+    "high": 7,
+    "critical": 0,
+    "total": 11
+  },
+  "python_audit_summary": {
+    "backend": {
+      "checked_packages": 68,
+      "affected_packages": 10,
+      "raw_advisory_rows": 67,
+      "unique_package_advisory_pairs": 38,
+      "excluded": "local, VCS, private and licensed project dependencies; container images not scanned"
+    },
+    "ml": {
+      "checked_packages": 209,
+      "affected_packages": 27,
+      "raw_advisory_rows": 197,
+      "unique_package_advisory_pairs": 116,
+      "excluded": "local, VCS, private and licensed project dependencies; container images not scanned"
+    }
+  }
+}

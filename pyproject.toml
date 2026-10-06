@@ -1,0 +1,12 @@
+[project]
+name = "kedrogy-code"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = ["mysite"]
+
+[tool.uv.sources]
+mysite = { workspace = true }
+
+[tool.uv.workspace]
+members = ["mysite"]
+exclude = ["example", "kedrogy", "predict"]

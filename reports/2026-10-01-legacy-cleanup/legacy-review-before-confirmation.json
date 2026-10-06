@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "model_id": 20,
+  "namespace": "default",
+  "namespace_uid": "9353e5be-9f68-4d41-aaae-84a20e9960e1",
+  "model_stamp": "4279eb555c71167d6bfbb3efd33039cf6d2dce7b841090f73d911fbaf9d38842",
+  "resources": [
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-20",
+      "namespace": "default",
+      "uid": "1809b619-7845-498c-8f79-1c31507df235",
+      "namespace_uid": "9353e5be-9f68-4d41-aaae-84a20e9960e1",
+      "spec_digest": "cbb13bd2d9238ae0374a2f6eac772b65b29df7ad5786a85958f7fe4999768dde"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-20",
+      "namespace": "default",
+      "uid": "d4301830-858d-4199-a09c-1a7cb3af6201",
+      "namespace_uid": "9353e5be-9f68-4d41-aaae-84a20e9960e1",
+      "spec_digest": "870ce861ea38958f324ef9632c310d2963714edce94a5a16c5dc8c83789104db"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-20",
+      "namespace": "default",
+      "uid": "e8b21a0c-27fe-4412-b696-9550c2d0d298",
+      "namespace_uid": "9353e5be-9f68-4d41-aaae-84a20e9960e1",
+      "spec_digest": "488cb860bb190e331aa6b8581e04a4062c0a69db35c7df4633d8d5c373ebe60c"
+    },
+    {
+      "kind": "Job",
+      "name": "train-20",
+      "namespace": "default",
+      "uid": "900671ba-f10a-4846-9626-22af368a2e95",
+      "namespace_uid": "9353e5be-9f68-4d41-aaae-84a20e9960e1",
+      "spec_digest": "4cab83cb2f049e2da0ff36a187efe8d942e6147275d51606f17d6d1208c83ffb"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-20",
+      "namespace": "default",
+      "uid": "a5f682f1-0a13-4e17-b5c3-9783364469f9",
+      "namespace_uid": "9353e5be-9f68-4d41-aaae-84a20e9960e1",
+      "spec_digest": "71cf7c3846b887847dc5ea626190414c3cb565c77b776857e4a6089e9ec9fedd"
+    }
+  ],
+  "issues": [],
+  "evidence": [
+    "The prediction Service selects this model's legacy server.",
+    "The Deployment mounts this model's volume at its model checkpoint path.",
+    "The Job mounts this model's volume at its model checkpoint path.",
+    "The training Job uses the configuration for the model's retained annotation dataset.",
+    "No unrelated workload shares the volume, training configuration or prediction route."
+  ]
+}

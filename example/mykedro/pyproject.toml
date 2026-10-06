@@ -6,6 +6,7 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
+    "kedrogy-contracts",
     "kedro>=1.2.0",
     "kedro-datasets[pandas]>=9.1.1",
     "ysz-kedro-datasets>=0.1.5",
@@ -49,6 +50,7 @@ project_id = "14909e7c5e8c47b582918cc118916796"
 # explicit = true
 
 [tool.uv.sources]
+kedrogy-contracts = { path = "../../contracts", editable = true }
 # and pin 
 ysz-kedro-datasets = { git = "ssh://git@github.com/ysz-vc/kedro-datasets", tag = "v0.1.5" }
 # and pin prodigy 

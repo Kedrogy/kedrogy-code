@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "kedrogy"
 version = "0.2.2"
 dependencies = [
+    "kedrogy-contracts",
     "django>=6.0.1",
     "django-htmx>=1.27.0",
     "django-tasks",#see tool.uv.sources
@@ -13,12 +14,13 @@ dependencies = [
     "django-cors-headers>=4.7",
     "psycopg[binary,pool]",
     "jinja2",
+    "PyYAML>=6.0.3,<7",
 
     "prodigy>=1.18.4",
     "psycopg2>=2.9.11",
 ]
 description = "A Django apps."
-readme = "README.rst"
+readme = "README.md"
 license = "BSD-3-Clause"
 requires-python = ">=3.12"
 authors = [
@@ -52,6 +54,7 @@ Homepage = "https://www.example.com/"
 package = true
 
 [tool.uv.sources]
+kedrogy-contracts = { path = "../contracts", editable = true }
 django-tasks = { git = "https://github.com/RealOrangeOne/django-tasks.git", rev = "4377f2c" }
 # add like this
 # uv add --package django-dataset-new git+ssh://github.com/RealOrangeOne/django-tasks.git --rev 4377f2c

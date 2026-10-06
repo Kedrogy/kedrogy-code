@@ -1,0 +1,48 @@
+{
+  "namespace": "kedrogy-check-20260924",
+  "model_id": 2,
+  "runs": [
+    {
+      "id": "db664223-2830-447b-9966-f327cf7f3af5",
+      "status": "SUCCEEDED",
+      "job": "train-db664223-2830-447b-9966-f327cf7f3af5",
+      "error": {},
+      "artifact_path": "runs/db664223-2830-447b-9966-f327cf7f3af5/374719ae-47d6-4312-9de1-b4d0c9b56c7b/artifact"
+    },
+    {
+      "id": "0aa6f94a-c399-435f-a11e-f9155c6d8499",
+      "status": "SUCCEEDED",
+      "job": "train-0aa6f94a-c399-435f-a11e-f9155c6d8499",
+      "error": {},
+      "artifact_path": "runs/0aa6f94a-c399-435f-a11e-f9155c6d8499/136551c6-6c25-4545-981f-c50982e8213c/artifact"
+    },
+    {
+      "id": "873ba6fe-e0b4-48f4-8941-d4d2d7c602a0",
+      "status": "FAILED",
+      "job": "train-873ba6fe-e0b4-48f4-8941-d4d2d7c602a0",
+      "error": {
+        "code": "TRAINING_FAILED",
+        "message": "The training Job failed. Check annotation labels and available resources."
+      },
+      "artifact_path": null
+    },
+    {
+      "id": "436a4081-f346-42bc-b279-c4b1591e8a29",
+      "status": "TIMED_OUT",
+      "job": "train-436a4081-f346-42bc-b279-c4b1591e8a29",
+      "error": {
+        "code": "TRAINING_TIMEOUT",
+        "message": "Training exceeded its deadline."
+      },
+      "artifact_path": null
+    }
+  ],
+  "checks": [
+    "full Kedro pipeline with synthetic PostgreSQL annotations and tiny BERT",
+    "independent read-only artifact verification",
+    "second run has distinct checkpoint directory",
+    "observer restart reuses Job UID",
+    "failed retraining preserves published artifact",
+    "deadline deletion uses UID precondition"
+  ]
+}

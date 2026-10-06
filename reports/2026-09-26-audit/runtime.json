@@ -1,0 +1,19 @@
+{
+  "http://127.0.0.1:8002/health/": {
+    "status": 200
+  },
+  "http://127.0.0.1:8002/api/datasets/": {
+    "status": 500
+  },
+  "http://127.0.0.1:8002/api/models/": {
+    "status": 500
+  },
+  "http://127.0.0.1:5173/": {
+    "status": 200
+  },
+  "infrastructure": {
+    "docker_socket_present": false,
+    "postgres_error": "Connection refused on local port 30001 (service logs)",
+    "kubernetes_inventory": "not refreshed: Docker unavailable"
+  }
+}

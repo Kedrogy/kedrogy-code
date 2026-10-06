@@ -1,0 +1,24 @@
+✔ class zero displays OTHER and stays bound to the loaded class order (0.478583ms)
+✔ serving states are explicit and malformed response payloads fail closed (0.221084ms)
+✔ explicit class zero and schema versions stay consistent across prediction (0.156083ms)
+✔ annotation counts describe saved answers independently of a running session (0.92025ms)
+✔ only a ready session can expose an HTTP application URL (0.313833ms)
+✔ cleanup review is terminal for polling but preserves explicit retry and bounded progress (0.324666ms)
+✔ accepts consistent READY status (0.836833ms)
+✔ accepts consistent QUEUED status (0.077334ms)
+✔ accepts consistent RUNNING status (0.046208ms)
+✔ accepts consistent VERIFYING status (0.042458ms)
+✔ accepts consistent SUCCEEDED status (0.040542ms)
+✔ accepts consistent FAILED status (0.037458ms)
+✔ accepts consistent TIMED_OUT status (0.048875ms)
+✔ accepts consistent INTERRUPTED status (0.034375ms)
+✔ rejects malformed or contradictory status payloads (0.284542ms)
+✔ HTTP errors preserve public validation messages without rendering raw HTML (11.2325ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 96.837958

@@ -1,0 +1,124 @@
+Creating test database for alias 'default'...
+Bad Request: /api/datasets/1/label/
+.Forbidden (CSRF cookie not set.): /label_dataset/1
+..Method Not Allowed (GET): /new_dataset/
+Method Not Allowed (HEAD): /new_dataset/
+Method Not Allowed (GET): /new_model/1
+Method Not Allowed (HEAD): /new_model/1
+Method Not Allowed (GET): /label_dataset/1
+Method Not Allowed (HEAD): /label_dataset/1
+Method Not Allowed (GET): /delete_dataset/1
+Method Not Allowed (HEAD): /delete_dataset/1
+Method Not Allowed (GET): /train_model/1/
+Method Not Allowed (HEAD): /train_model/1/
+Method Not Allowed (GET): /serve_model/1/
+Method Not Allowed (HEAD): /serve_model/1/
+Method Not Allowed (GET): /delete_model/1
+Method Not Allowed (HEAD): /delete_model/1
+Method Not Allowed (GET): /predict_model/1/
+Method Not Allowed (HEAD): /predict_model/1/
+Method Not Allowed (GET): /en/new_dataset/
+Method Not Allowed (HEAD): /en/new_dataset/
+Method Not Allowed (GET): /en/new_model/1
+Method Not Allowed (HEAD): /en/new_model/1
+Method Not Allowed (GET): /en/label_dataset/1
+Method Not Allowed (HEAD): /en/label_dataset/1
+Method Not Allowed (GET): /en/delete_dataset/1
+Method Not Allowed (HEAD): /en/delete_dataset/1
+Method Not Allowed (GET): /en/train_model/1/
+Method Not Allowed (HEAD): /en/train_model/1/
+Method Not Allowed (GET): /en/serve_model/1/
+Method Not Allowed (HEAD): /en/serve_model/1/
+Method Not Allowed (GET): /en/delete_model/1
+Method Not Allowed (HEAD): /en/delete_model/1
+Method Not Allowed (GET): /en/predict_model/1/
+Method Not Allowed (HEAD): /en/predict_model/1/
+Method Not Allowed (GET): /ru/new_dataset/
+Method Not Allowed (HEAD): /ru/new_dataset/
+Method Not Allowed (GET): /ru/new_model/1
+Method Not Allowed (HEAD): /ru/new_model/1
+Method Not Allowed (GET): /ru/label_dataset/1
+Method Not Allowed (HEAD): /ru/label_dataset/1
+Method Not Allowed (GET): /ru/delete_dataset/1
+Method Not Allowed (HEAD): /ru/delete_dataset/1
+Method Not Allowed (GET): /ru/train_model/1/
+Method Not Allowed (HEAD): /ru/train_model/1/
+Method Not Allowed (GET): /ru/serve_model/1/
+Method Not Allowed (HEAD): /ru/serve_model/1/
+Method Not Allowed (GET): /ru/delete_model/1
+Method Not Allowed (HEAD): /ru/delete_model/1
+Method Not Allowed (GET): /ru/predict_model/1/
+Method Not Allowed (HEAD): /ru/predict_model/1/
+.Bad Request: /api/datasets/1/
+..Conflict: /api/models/1/
+Conflict: /api/datasets/1/
+Operation failed code=CLUSTER_UNAVAILABLE exit=1 duration=0.093
+Conflict: /delete_dataset/1
+......Conflict: /api/models/1/serve/
+............Bad Request: /api/models/1/train/
+.Bad Request: /api/models/1/
+Bad Request: /api/models/1/
+Bad Request: /api/models/1/
+Bad Request: /api/models/1/
+.....Service Unavailable: /api/models/1/predict/
+..Conflict: /api/models/1/serve/
+.....Conflict: /api/models/1/
+...Conflict: /api/models/
+..Conflict: /api/models/1/
+....Conflict: /api/datasets/1/
+.Conflict: /new_model/1
+..Not Found: /api/models/1/
+...............Not Found: /api/tasks/serve/not-present/status/
+...................Operation failed code=COMMAND_FAILED exit=7 duration=0.020
+....Internal Server Error: /api/tasks/serve/id/status/
+Traceback (most recent call last):
+  File "/Users/millafedotova/work/kedrogy-code/mysite/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/millafedotova/work/kedrogy-code/mysite/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/millafedotova/work/kedrogy-code/mysite/.venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/millafedotova/work/kedrogy-code/mysite/.venv/lib/python3.12/site-packages/django/views/generic/base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/millafedotova/work/kedrogy-code/mysite/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/millafedotova/work/kedrogy-code/mysite/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/millafedotova/work/kedrogy-code/mysite/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/millafedotova/work/kedrogy-code/mysite/.venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/millafedotova/work/kedrogy-code/mysite/.venv/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/millafedotova/work/kedrogy-code/kedrogy/src/kedrogy/api_views.py", line 192, in task_status
+    return Response(retrieve(task_func, result_id))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/millafedotova/work/kedrogy-code/kedrogy/src/kedrogy/task_results.py", line 28, in retrieve
+    return present(task.get_result(result_id))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/millafedotova/.pyenv/versions/3.12.13/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/millafedotova/.pyenv/versions/3.12.13/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/millafedotova/.pyenv/versions/3.12.13/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+RuntimeError: private-internal-path
+....Bad Request: /api/unknown/
+Not Found: /api/unknown/
+.
+----------------------------------------------------------------------
+Ran 92 tests in 2.823s
+
+OK
+Destroying test database for alias 'default'...
+Found 92 test(s).
+System check identified no issues (0 silenced).

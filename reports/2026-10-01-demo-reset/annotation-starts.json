@@ -1,0 +1,24 @@
+[
+  {
+    "result_id": "62929f54-4934-4067-bf2b-e5115b9c5210",
+    "operation": {
+      "id": "62929f54-4934-4067-bf2b-e5115b9c5210",
+      "kind": "label",
+      "status": "RUNNING",
+      "is_finished": false,
+      "logs": "",
+      "error": null,
+      "step": "Annotation startup",
+      "can_retry": false,
+      "session": {
+        "id": "62929f54-4934-4067-bf2b-e5115b9c5210",
+        "dataset_id": 22,
+        "status": "STARTING",
+        "observed_at": null,
+        "url": null,
+        "error": null
+      },
+      "return_value": null
+    }
+  }
+]

@@ -1,0 +1,12 @@
+<!doctype html><html lang="en"><head><title>Review cleanup</title></head><body>
+<h1>Review cleanup: {{ plan.action }}</h1>
+<p>Target: {{ plan.target }}. Source rows are preserved. Annotations retained: {{ plan.retains_annotations|yesno:"Yes,No" }}.</p>
+<p>Models: {{ plan.model_ids }}. Deleting model files removes all versions stored on the model volume.</p>
+<ul>{% for resource in plan.resources %}<li>{{ resource.kind }}/{{ resource.name }} ({{ resource.uid }})</li>{% endfor %}</ul>
+{% if plan.annotations %}<p>The selected annotation dataset has {{ plan.annotations.count }} linked examples. Shared examples and session datasets are preserved.</p>{% endif %}
+<ul>{% for issue in plan.issues %}<li>{{ issue }}</li>{% endfor %}</ul>
+{% if not plan.issues %}<form method="post">{% csrf_token %}
+<input type="hidden" name="preview_token" value="{{ plan.preview_token }}" />
+<input type="hidden" name="request_key" value="{{ request_key }}" />
+<button type="submit">Confirm reviewed cleanup</button></form>{% endif %}
+<a href="/">Cancel and return home</a></body></html>

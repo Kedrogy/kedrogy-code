@@ -1,0 +1,87 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 402B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for kedrogy-registry.localhost:5500/mykedro:lifecycle-20260926
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 460B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 70.59kB 0.0s done
+#4 DONE 0.0s
+
+#5 [1/7] FROM kedrogy-registry.localhost:5500/mykedro:lifecycle-20260926@sha256:3f58a4e4969d3a2da525deafc195e7bf2252d037100b193b4b2c3250cfc7a4c4
+#5 resolve kedrogy-registry.localhost:5500/mykedro:lifecycle-20260926@sha256:3f58a4e4969d3a2da525deafc195e7bf2252d037100b193b4b2c3250cfc7a4c4 done
+#5 CACHED
+
+#6 [2/7] COPY example/myrecipes /app/myrecipes
+#6 DONE 0.0s
+
+#7 [3/7] COPY example/mykedro/src /app/mykedro/src
+#7 DONE 0.0s
+
+#8 [4/7] COPY example/mykedro/conf/base /app/mykedro/conf/base
+#8 DONE 0.0s
+
+#9 [5/7] COPY predict/src /predict/src
+#9 DONE 0.0s
+
+#10 [6/7] COPY contracts /contracts
+#10 DONE 0.0s
+
+#11 [7/7] RUN uv pip install --offline --no-deps --no-build-isolation --python /app/.venv/bin/python -e /app/myrecipes
+#11 0.288 Resolved 1 package in 14ms
+#11 0.289    Building myrecipes @ file:///app/myrecipes
+#11 0.802       Built myrecipes @ file:///app/myrecipes
+#11 0.808 Prepared 1 package in 519ms
+#11 0.811 Uninstalled 1 package in 3ms
+#11 0.812 Installed 1 package in 1ms
+#11 0.813  ~ myrecipes==0.1.0 (from file:///app/myrecipes)
+#11 DONE 0.8s
+
+#12 exporting to image
+#12 exporting layers 0.1s done
+#12 exporting manifest sha256:00f1c2baa49dcb3b1121add0b7fe0db39e940d517958faeaf487028df5c02daa 0.0s done
+#12 exporting config sha256:04b4e54a5f3a2e643e16835dcc31b93a26a76c7c695b6b03af785200c7c596b5 done
+#12 exporting attestation manifest sha256:2ce0c8b63253c226c4e42aa97f611a89763ae32b54c8e44867bd565cb93ba2c6 done
+#12 exporting manifest list sha256:b76286a6e858e4c8bd887eb0e0ae55206539699a30c89ff50e00eb14d8446026 done
+#12 naming to kedrogy-registry.localhost:5500/mykedro:p1-20260926 done
+#12 unpacking to kedrogy-registry.localhost:5500/mykedro:p1-20260926 0.0s done
+#12 DONE 0.2s
+The push refers to repository [kedrogy-registry.localhost:5500/mykedro]
+8fab80907cc7: Layer already exists
+f6e099218b19: Layer already exists
+4551fa167c14: Layer already exists
+81634bd2e758: Layer already exists
+49a484302ebe: Layer already exists
+5fbde4972ad6: Pushed
+e37d37a855f6: Layer already exists
+97778338882f: Layer already exists
+a7a40829ca30: Layer already exists
+d122ce05d523: Layer already exists
+53d0064e1618: Layer already exists
+561a74ac552f: Pushed
+35a9f4de4d8c: Pushed
+b489c061966d: Pushed
+9a8d75b48361: Layer already exists
+6c37e5feec4a: Pushed
+e1f7c3b857f3: Layer already exists
+c84bebac337e: Layer already exists
+3fc290be6c3f: Layer already exists
+ec27ace5ca43: Layer already exists
+396edad7232f: Layer already exists
+9c2f833fc391: Layer already exists
+59642b67175c: Layer already exists
+47466a48442e: Layer already exists
+a640c51055ce: Layer already exists
+61345be290ed: Layer already exists
+13f7a80ae37c: Layer already exists
+00d7ec0c34e8: Layer already exists
+bd36565c0fde: Layer already exists
+4f4fb700ef54: Layer already exists
+p1-20260926: digest: sha256:b76286a6e858e4c8bd887eb0e0ae55206539699a30c89ff50e00eb14d8446026 size: 856

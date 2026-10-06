@@ -1,0 +1,21 @@
+{
+  "namespace": "kedrogy-check-20260924",
+  "checks": [
+    {
+      "host": "10.43.6.149",
+      "port": 8000,
+      "blocked": true
+    },
+    {
+      "host": "10.42.0.42",
+      "port": 8000,
+      "blocked": true
+    },
+    {
+      "host": "10.43.41.50",
+      "port": 8080,
+      "blocked": true
+    }
+  ],
+  "note": "An initial probe passed through after Docker restarted. The local node was restarted before this repeat. HTTPS route checks must also pass to prove the service is healthy."
+}

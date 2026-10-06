@@ -1,0 +1,11 @@
+Creating test database for alias 'default'...
+................Not Found: /api/tasks/serve/not-present/status/
+...........Operation failed code=COMMAND_FAILED exit=7 duration=0.011
+....
+----------------------------------------------------------------------
+Ran 31 tests in 0.415s
+
+OK
+Destroying test database for alias 'default'...
+Found 31 test(s).
+System check identified no issues (0 silenced).

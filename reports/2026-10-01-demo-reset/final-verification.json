@@ -1,0 +1,69 @@
+{
+  "active_datasets": 3,
+  "active_models": 3,
+  "source_unchanged": true,
+  "source_row_count": 200,
+  "models": [
+    {
+      "model_id": 21,
+      "dataset_id": 22,
+      "usable_annotations": 20,
+      "invalid_annotations": 0,
+      "labels": [
+        "positive",
+        "negative",
+        "neutral"
+      ],
+      "trained": false
+    },
+    {
+      "model_id": 22,
+      "dataset_id": 23,
+      "usable_annotations": 20,
+      "invalid_annotations": 0,
+      "labels": [
+        "business",
+        "technology",
+        "politics",
+        "society"
+      ],
+      "trained": false
+    },
+    {
+      "model_id": 23,
+      "dataset_id": 24,
+      "usable_annotations": 20,
+      "invalid_annotations": 0,
+      "labels": [
+        "company_mentioned",
+        "no_company"
+      ],
+      "trained": false
+    }
+  ],
+  "old_cleanup_operations": [
+    {
+      "id": "a5879553-4a7d-4b36-92be-97af63b58846",
+      "target": "dataset:21",
+      "status": "SUCCEEDED"
+    },
+    {
+      "id": "86766bb6-47cb-4871-976e-349d7e1cfb1b",
+      "target": "dataset:19",
+      "status": "SUCCEEDED"
+    },
+    {
+      "id": "cd053c2e-7fb2-481f-84eb-aadcb0bc12f1",
+      "target": "model:20",
+      "status": "SUCCEEDED"
+    }
+  ],
+  "annotation_session": {
+    "id": "2a5a6b75-7c48-42f0-b52d-d08a692b7273",
+    "dataset_id": 24,
+    "status": "READY",
+    "observed_at": "2026-10-01T18:31:30.732830+00:00",
+    "url": "http://label.localhost:8081",
+    "error": null
+  }
+}
