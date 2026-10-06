@@ -5,16 +5,12 @@ all_data_jsonl:
 all_data:
   type: pandas.CSVDataset
   filepath: data/01_raw/all_data.csv
+  load_args:
+    dtype: str
+    keep_default_na: False
   save_args:
     index: False
     quoting: 1 #csv.QUOTE_ALL
-
-all_data_postgres:
-  type: pandas.SQLTableDataset
-  credentials: db_credentials
-  table_name: all_data
-  save_args:
-    if_exists: replace
 
 examples_jsonl:
   type: ysz.kedro_datasets.srsly_dataset.SrslyDataset

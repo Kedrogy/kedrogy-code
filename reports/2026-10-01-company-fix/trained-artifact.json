@@ -1,0 +1,145 @@
+{
+  "quality": {
+    "accuracy": 0.9318181818181818,
+    "confusion_matrix": [
+      [
+        8,
+        2
+      ],
+      [
+        1,
+        33
+      ]
+    ],
+    "macro_f1": 0.8993135011441648,
+    "majority_baseline": 0.7727272727272727,
+    "predicted_counts": [
+      9,
+      35
+    ],
+    "samples": 44,
+    "split": "validation",
+    "support": [
+      10,
+      34
+    ],
+    "train_samples": 132,
+    "training_steps": 136,
+    "version": 1,
+    "warnings": []
+  },
+  "best_checkpoint": "data/06_models/runs/1e029920-eb90-4277-8800-e4ab379fb75f/a357a48c-fc1d-4358-90b7-32b704f0a2dc/training/checkpoint-68",
+  "global_step": 68,
+  "epoch": 4.0,
+  "run": "1e029920-eb90-4277-8800-e4ab379fb75f",
+  "serving": "34b23cab-c281-47a7-a383-e5ef423ffaea",
+  "snapshot": {
+    "image": "kedrogy-registry:5000/mykedro@sha256:4f5997f0737a566316b56f1d15d51184ad00e43398695a27a29559c3718a9bd7",
+    "labels": [
+      "company_mentioned",
+      "no_company"
+    ],
+    "dataset": {
+      "image": "kedrogy-registry:5000/mykedro@sha256:b76286a6e858e4c8bd887eb0e0ae55206539699a30c89ff50e00eb14d8446026",
+      "id_field": "id",
+      "pipeline": "load_examples",
+      "dataset_id": 24,
+      "workingDir": "mykedro",
+      "dataset_name": "dataset-89f4390b-3199-4a11-8286-1dc7cff928a5",
+      "display_name": "news-company-mentions-demo",
+      "binding_state": "BOUND",
+      "source_config": {
+        "table": "all_data",
+        "schema": "public",
+        "id_fields": [
+          "id"
+        ]
+      },
+      "recipe_options": "-l company_mentioned,no_company",
+      "data_table_name": "all_data",
+      "annotation_policy": "single-label-choice-v2",
+      "prodigy_dataset_id": 44
+    },
+    "options": {
+      "seed": 123,
+      "data_seed": 123,
+      "max_steps": -1,
+      "base_model": "bert-base-multilingual-uncased",
+      "max_length": 256,
+      "weight_decay": 0.01,
+      "learning_rate": 3e-05,
+      "eval_batch_size": 16,
+      "max_annotations": 100000,
+      "artifact_version": 2,
+      "num_train_epochs": 8,
+      "train_batch_size": 8,
+      "conversion_policy": "single-label-choice-v2",
+      "prodigy_dataset_id": 44,
+      "annotation_fingerprint": "9d4058ad2ca7646cf2566f0951b5392f5e4ebd9357244739df89e8e4ae9069af"
+    },
+    "annotations": {
+      "total": 176,
+      "labels": [
+        "company_mentioned",
+        "no_company"
+      ],
+      "policy": "single-label-choice-v2",
+      "usable": 176,
+      "ignored": 0,
+      "invalid": 0,
+      "accepted": 176,
+      "rejected": 0,
+      "dataset_id": 44,
+      "conflicting": 0,
+      "fingerprint": "9d4058ad2ca7646cf2566f0951b5392f5e4ebd9357244739df89e8e4ae9069af",
+      "label_counts": {
+        "no_company": 136,
+        "company_mentioned": 40
+      },
+      "needs_review": 0,
+      "artifact_version": 2,
+      "duplicate_accepted": 0,
+      "class_schema_version": 2
+    },
+    "preprocessor": "",
+    "artifact_version": 2,
+    "conversion_policy": "single-label-choice-v2",
+    "class_schema_version": 2
+  },
+  "artifact": {
+    "pvc": "pvc-model-23",
+    "path": "runs/1e029920-eb90-4277-8800-e4ab379fb75f/a357a48c-fc1d-4358-90b7-32b704f0a2dc/artifact",
+    "files": {
+      "vocab.txt": "87b44292b452f6c05afa49b2e488e7eedf79ea4f4c39db6f2f4b37764228ef3f",
+      "config.json": "f7c6cf4d974feb0814ca49a20e6ac11c30bb82061665709ab17e936f5c55cc05",
+      "quality.json": "f4dcf4486d3b99d5cd549dafe00a546371c7404112653f982e17590159da71de",
+      "tokenizer.json": "75cc2ee21bf46225c0b51a82a509063e1d704437030c2cc1d9fbbf1b921af709",
+      "model.safetensors": "5096b1f082961e7d5fc62c214c1606fe419e9760b77eb02a8c03e1f42e55cd35",
+      "training_args.bin": "40aacb524e547f3321bf6b25b36ecbdfc50549a29146cec19491a6d5939cb99e",
+      "tokenizer_config.json": "1f92c93d2e31974acffab86d48e80a9357acb18c68346c5472ef1d12c72d5d77",
+      "special_tokens_map.json": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3"
+    },
+    "image": "kedrogy-registry:5000/mykedro@sha256:4f5997f0737a566316b56f1d15d51184ad00e43398695a27a29559c3718a9bd7",
+    "labels": [
+      "company_mentioned",
+      "no_company"
+    ],
+    "run_id": "1e029920-eb90-4277-8800-e4ab379fb75f",
+    "quality": {
+      "split": "validation",
+      "samples": 44,
+      "version": 1,
+      "accuracy": 0.9318181818181818,
+      "macro_f1": 0.8993135011441648,
+      "warnings": [],
+      "train_samples": 132,
+      "training_steps": 136,
+      "majority_baseline": 0.7727272727272727
+    },
+    "version": 2,
+    "verified": true,
+    "attempt_id": "a357a48c-fc1d-4358-90b7-32b704f0a2dc",
+    "conversion_policy": "single-label-choice-v2",
+    "class_schema_version": 2
+  }
+}

@@ -1,0 +1,605 @@
+{
+  "deliveries": [],
+  "retained_annotations": [],
+  "pending_cleanup": [],
+  "verified_model_resources": [],
+  "ownership_issues": [
+    "Ownership is unresolved for PersistentVolumeClaim/pvc-model-20.",
+    "Ownership is unresolved for Deployment/serve-20.",
+    "Ownership is unresolved for Service/serve-svc-20.",
+    "Ownership is unresolved for Job/train-20.",
+    "Ownership is unresolved for PersistentVolumeClaim/pvc-model-19.",
+    "Ownership is unresolved for Service/serve-svc-19.",
+    "Ownership is unresolved for Job/train-19."
+  ],
+  "resource_identities": [
+    {
+      "kind": "Deployment",
+      "name": "postgres-deployment",
+      "uid": "74b83acd-ae3c-465a-9561-8e51a30057d3",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "prodigy",
+      "uid": "d7b5cba4-7344-4054-8e58-b423d85050a4",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-1",
+      "uid": "0caa8ab8-0fd0-412d-b5d5-4c4c24af7f05",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-10",
+      "uid": "23eab897-51e1-405a-941b-11051c5993e3",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-12",
+      "uid": "3194180f-b004-4db8-a634-6b8649d3120e",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-13",
+      "uid": "fbaae55a-83c5-4dd6-af5f-5b89ab57d5e3",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-15",
+      "uid": "29fc7fc7-a681-4ee0-90ba-1c100b2995b3",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-16",
+      "uid": "ecb5f086-7901-4409-a7d2-29e8916c0c1e",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-17",
+      "uid": "03d6984b-9cd3-4e45-b950-3bb91ce4775c",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-18",
+      "uid": "228c76ca-c1f3-4c40-bb72-0c167449fcae",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-2",
+      "uid": "62ce9d39-6819-4ffc-a5cd-7e9c3591e2b6",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-20",
+      "uid": "d4301830-858d-4199-a09c-1a7cb3af6201",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-5",
+      "uid": "4dd451bc-38a5-4441-b4dd-a6cfd84b1fa4",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-6",
+      "uid": "e12c330f-e0ab-41f3-9bbf-01468e3a776f",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-7",
+      "uid": "d194e6e0-0ae5-4009-8f4b-3d0af21bb722",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-8",
+      "uid": "a26d2f40-f748-4cb8-9855-c85a2f200a78",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Deployment",
+      "name": "serve-9",
+      "uid": "aecb78c3-c30b-4ad4-838e-5bbc5db59a77",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Job",
+      "name": "train-10",
+      "uid": "9467dde2-c3d6-4dca-b5f9-6b6753c66fcf",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Job",
+      "name": "train-12",
+      "uid": "6665f93f-d31d-45e0-be52-08aabc17c0a2",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Job",
+      "name": "train-13",
+      "uid": "3d55f9e1-7828-4ce7-8cc3-7b17c417d38d",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Job",
+      "name": "train-14",
+      "uid": "d05fdf6f-c9a7-4e70-ade3-54721a19d918",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Job",
+      "name": "train-15",
+      "uid": "14a2cb72-ac3f-4f88-9931-fb17754597a0",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Job",
+      "name": "train-16",
+      "uid": "e667579d-ac00-47fb-850f-59a725cb0521",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Job",
+      "name": "train-17",
+      "uid": "5d5890ea-0b00-4f16-9e0a-11f6760788c9",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Job",
+      "name": "train-18",
+      "uid": "d59c750c-064d-4a05-9569-50f0e2b31e7a",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Job",
+      "name": "train-19",
+      "uid": "624706af-1cd7-48ae-963f-79df68f97880",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Job",
+      "name": "train-20",
+      "uid": "900671ba-f10a-4846-9626-22af368a2e95",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Job",
+      "name": "train-3",
+      "uid": "09b75ed9-1334-4569-af48-b2b71d28d623",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Job",
+      "name": "train-4",
+      "uid": "7bdc2062-9ea5-40aa-ad46-26ad936a8ddd",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Job",
+      "name": "train-7",
+      "uid": "07b59afc-5d63-409c-89c2-155384a06643",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Job",
+      "name": "train-9",
+      "uid": "b126449c-8e0b-4871-ba54-91e5a511d259",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "kubernetes",
+      "uid": "8d6b169c-ba5a-458e-aa33-0bfaf146ae3c",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "postgres-svc",
+      "uid": "8e2fb8c1-eb88-4fab-a345-6c25c5b5ece2",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "prodigy-svc",
+      "uid": "83a7ecb2-9c60-429c-b50b-43149c3358cc",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-1",
+      "uid": "19a1102b-3682-44c1-b46c-0305a8a4441e",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-10",
+      "uid": "0a8eb4ec-8347-4102-8708-7c934b80cfe8",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-12",
+      "uid": "48ebc64b-3c55-42fe-b878-68d935783149",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-13",
+      "uid": "d1605fbd-c86d-4552-ab99-29691597871e",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-15",
+      "uid": "b62e37b7-1242-4755-b807-aca110a40c03",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-16",
+      "uid": "af176aaa-5fdc-4378-8426-6750f22bfe2a",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-17",
+      "uid": "c06ecbf8-1821-4261-b910-b6851a40e479",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-18",
+      "uid": "69e281a3-7030-4450-918a-f2b6bab85f07",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-19",
+      "uid": "59e987be-fc22-4dbe-8e40-dd127a4b1a43",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-2",
+      "uid": "5927efc5-14d0-49d4-8a87-4b4a830ee1bc",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-20",
+      "uid": "e8b21a0c-27fe-4412-b696-9550c2d0d298",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-5",
+      "uid": "eea5d639-a89c-40e6-8a86-48cfe25f507a",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-6",
+      "uid": "2efabee6-b73e-4d08-b4da-97bdd0d9f5fe",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-7",
+      "uid": "1ccbdb1d-fd8e-4e36-86d4-bedeadf6e10b",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-8",
+      "uid": "abfbeb2f-4cd3-4208-a35b-25b387395856",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "Service",
+      "name": "serve-svc-9",
+      "uid": "06186e75-8912-43f4-8df4-8ce4b5c5411e",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "kube-root-ca.crt",
+      "uid": "a2bd5dbe-12c0-41d0-86e4-83f777525e27",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-1",
+      "uid": "d034e30d-c20d-4097-8bf6-51fee75a9b78",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-10",
+      "uid": "e1e0c5f7-1414-4cfd-8c34-581cec7b9f79",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-12",
+      "uid": "92494fc3-8642-408b-a070-c6b9996a62be",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-13",
+      "uid": "3e04a4f5-9172-4b7a-be43-b118ae6808e9",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-14",
+      "uid": "3597a0ab-815f-41e9-98cb-feddbf97c8f4",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-15",
+      "uid": "13190d6b-ecac-4bca-9ab2-696fc758fc0d",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-16",
+      "uid": "ecb490b4-09db-4fd7-a5d6-fc26b9f784ac",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-17",
+      "uid": "c205d284-5e7c-4e8a-ab94-e67a310433fa",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-18",
+      "uid": "8c0bf4eb-3647-4d77-a09b-0220a94063a4",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-19",
+      "uid": "48d73bc0-2cf6-40d5-809f-e1d39627ed3f",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-2",
+      "uid": "706d770c-e5a9-48c1-83ac-f3a153faee38",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-20",
+      "uid": "a5f682f1-0a13-4e17-b5c3-9783364469f9",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-3",
+      "uid": "d6723743-7930-44f2-ba84-41dac9d781e1",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-4",
+      "uid": "92826016-19e4-4544-bdb9-fda63d11eaef",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-5",
+      "uid": "7943252d-161f-45d9-a97c-162db7fe4ada",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-6",
+      "uid": "4b6a4ef3-c02d-4f00-b6d1-3446b3b95520",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-7",
+      "uid": "f7b1dd83-74ea-4275-a6b0-630c0e4fee8a",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "parameters-train-9",
+      "uid": "e800ca39-495e-4142-9200-707b1387e852",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "postgres-pvc",
+      "uid": "adc06bb2-5a00-4ba6-84eb-fc9b7d93d8f7",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-10",
+      "uid": "564f7506-2edb-4027-9d69-8c5189f481cb",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-12",
+      "uid": "caf72093-a7f3-487e-8150-b7feadb9b1f3",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-13",
+      "uid": "65f43b11-99a4-42e4-ab8c-04bc998be21a",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-14",
+      "uid": "f5dbb15d-17aa-4b4c-8d26-9483556e495f",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-15",
+      "uid": "e873b6fa-a0e9-4bed-8598-fdcbbc3ace69",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-16",
+      "uid": "ece1857b-4d3b-4b89-aba5-c9755da68b64",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-17",
+      "uid": "57a0efdf-243c-4e76-8dc7-7d4a31c95ef9",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-18",
+      "uid": "979b0c7e-e693-4ba3-81eb-898c06c5429a",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-19",
+      "uid": "8b1a60e2-735e-44f0-8473-392f0e131cec",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-20",
+      "uid": "1809b619-7845-498c-8f79-1c31507df235",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-3",
+      "uid": "f69e489d-3c9c-48c9-b224-14d23b159580",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-4",
+      "uid": "208388f7-2eca-4853-bc56-b1c1af76d6e4",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-7",
+      "uid": "10673d14-aed1-4058-b62a-c96f690d4a15",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "pvc-model-9",
+      "uid": "8a4d0767-164a-48f2-a986-3dbec590919e",
+      "namespace": "default",
+      "disposition": "Inventory only; names and labels alone do not authorize historical cleanup"
+    }
+  ]
+}

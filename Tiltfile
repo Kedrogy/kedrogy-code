@@ -1,22 +1,19 @@
-watch_settings(ignore=["example", ".venv"])
+default_registry("kedrogy-registry.localhost:5500", host_from_cluster="kedrogy-registry:5000")
+watch_settings(ignore=["example", ".venv", ".local", ".env", "reports"])
 docker_build(
-    "kedrogy-registry.localhost:5500/mysite:latest",
+    "kedrogy-backend:dev",
     ".",
     dockerfile="Dockerfile",
-    build_args={
-        "UV_INDEX_PRODIGY_USERNAME": os.environ.get("UV_INDEX_PRODIGY_USERNAME", ""),
-        "UV_INDEX_YSZ_USERNAME": os.environ.get("UV_INDEX_YSZ_USERNAME", ""),
-        "UV_INDEX_YSZ_PASSWORD": os.environ.get("UV_INDEX_YSZ_PASSWORD", ""),
-    },
+    secret=[
+        "id=prodigy_username,env=UV_INDEX_PRODIGY_USERNAME",
+        "id=ysz_username,env=UV_INDEX_YSZ_USERNAME",
+        "id=ysz_password,env=UV_INDEX_YSZ_PASSWORD",
+    ],
     live_update=[
-        sync(".", "/app"),
-        # run('cd /app && pip install -r requirements.txt',
-        #     trigger='./requirements.txt'),
+        sync("mysite/src", "/app/mysite/src"),
+        sync("kedrogy/src", "/app/kedrogy/src"),
     ],
 )
-k8s_yaml("mysite.yaml")
-# k8s_yaml('prodigy.yaml')
-# XXX k8s_resource mysite is above yml/or docker build?
-k8s_resource(
-    "mysite", port_forwards=8000
-)  # ingress at / conflicts with hardcode prodigy /
+local("python3 scripts/render_infrastructure.py --profile local --backend-image kedrogy-backend:dev --output-dir .local/tilt")
+k8s_yaml(".local/tilt/mysite.yaml")
+k8s_resource("mysite", port_forwards=["8002:8000"])

@@ -1,0 +1,363 @@
+{
+  "database": "mysite",
+  "namespace": "default",
+  "password_changes": false,
+  "source_before": [
+    200,
+    "122427250917526242496"
+  ],
+  "source_after": [
+    200,
+    "122427250917526242496"
+  ],
+  "legacy_resources_unchanged": true,
+  "legacy_resources": {
+    "Deployment/postgres-deployment": {
+      "uid": "74b83acd-ae3c-465a-9561-8e51a30057d3",
+      "spec_hash": "4961ad76396f852c4db2ac9ca17fc799bf6492b245264f448071386ac239937e"
+    },
+    "Deployment/prodigy": {
+      "uid": "d7b5cba4-7344-4054-8e58-b423d85050a4",
+      "spec_hash": "8f2b7c61d9d495300354197ac9da021e54781400fc618b5bca29e1fa2be92d53"
+    },
+    "Deployment/serve-1": {
+      "uid": "0caa8ab8-0fd0-412d-b5d5-4c4c24af7f05",
+      "spec_hash": "390e26a5cbcd153d19efb0c804a576b4cfcc807f1ef334745a463a498aea4d61"
+    },
+    "Deployment/serve-10": {
+      "uid": "23eab897-51e1-405a-941b-11051c5993e3",
+      "spec_hash": "0515573f5b9ba6a6baca20b5eb8d02d994355b9b842cfa1f12a9a1d849c4e3d3"
+    },
+    "Deployment/serve-12": {
+      "uid": "3194180f-b004-4db8-a634-6b8649d3120e",
+      "spec_hash": "e2949e610a4d96f89a21d146b5bd1559ebfa63ff4fac7f5bf0100bcad64f8923"
+    },
+    "Deployment/serve-13": {
+      "uid": "fbaae55a-83c5-4dd6-af5f-5b89ab57d5e3",
+      "spec_hash": "ae08befe462ffd92484a53c4a090c2ff6091e42912db91ff46768dba7b4400ca"
+    },
+    "Deployment/serve-15": {
+      "uid": "29fc7fc7-a681-4ee0-90ba-1c100b2995b3",
+      "spec_hash": "38e62988fab582fddd387284e35f770a6de8daa9bc37697bdd6b2e70464b350b"
+    },
+    "Deployment/serve-16": {
+      "uid": "ecb5f086-7901-4409-a7d2-29e8916c0c1e",
+      "spec_hash": "90efd36c696f97621bdbcce8dd0c49af839fb17488f5ae292ebe669968df2ca6"
+    },
+    "Deployment/serve-17": {
+      "uid": "03d6984b-9cd3-4e45-b950-3bb91ce4775c",
+      "spec_hash": "487981786ecf32851167a42dab20f1e845ca5f8943b5c17d85e7250ffbf0b423"
+    },
+    "Deployment/serve-18": {
+      "uid": "228c76ca-c1f3-4c40-bb72-0c167449fcae",
+      "spec_hash": "1a3fb12ff15d5b2dc22c564413ca4fbc0c1f57aa7178a811b4704e4b576837d9"
+    },
+    "Deployment/serve-2": {
+      "uid": "62ce9d39-6819-4ffc-a5cd-7e9c3591e2b6",
+      "spec_hash": "c84b4b3fa561f7cdc91c048ebc1e341e21dfb741ee27a6ef65610bc97e4858b4"
+    },
+    "Deployment/serve-20": {
+      "uid": "d4301830-858d-4199-a09c-1a7cb3af6201",
+      "spec_hash": "96ed6ca3311dc4115701b89a9453d9762debb6044e528f7777e5c87ba53320db"
+    },
+    "Deployment/serve-5": {
+      "uid": "4dd451bc-38a5-4441-b4dd-a6cfd84b1fa4",
+      "spec_hash": "be6d9330f1ffa397e9d3e85cefe109dcba07b8e9e5354f7061f544c4eb32e73b"
+    },
+    "Deployment/serve-6": {
+      "uid": "e12c330f-e0ab-41f3-9bbf-01468e3a776f",
+      "spec_hash": "41694d6b4c2436dbc721ad7b15238abdf177c91d90e30a24b619c65abc5e22c5"
+    },
+    "Deployment/serve-7": {
+      "uid": "d194e6e0-0ae5-4009-8f4b-3d0af21bb722",
+      "spec_hash": "0393919d1ff7f6e8777dfd5a4cfd7e915c9fe6f182b379eee0abc1624ec392dd"
+    },
+    "Deployment/serve-8": {
+      "uid": "a26d2f40-f748-4cb8-9855-c85a2f200a78",
+      "spec_hash": "c5fe8eee79a0ca2d2e2db32dce1ad78b4ba82755835d4e6dbcbae5020773289e"
+    },
+    "Deployment/serve-9": {
+      "uid": "aecb78c3-c30b-4ad4-838e-5bbc5db59a77",
+      "spec_hash": "afbf0dd5333930ad0c4d4b8cbc88cf38843ae08dce6b145ee085e853d91568ac"
+    },
+    "Job/train-10": {
+      "uid": "9467dde2-c3d6-4dca-b5f9-6b6753c66fcf",
+      "spec_hash": "89bd87de84f091b2821b106f6cb9d6b67722eef58bbc9fe55204e57472986304"
+    },
+    "Job/train-12": {
+      "uid": "6665f93f-d31d-45e0-be52-08aabc17c0a2",
+      "spec_hash": "edfbaf1d2dfd285bdf59fe8cdfa7b189d60b51a6b85a703abc01012ba3b9e9ae"
+    },
+    "Job/train-13": {
+      "uid": "3d55f9e1-7828-4ce7-8cc3-7b17c417d38d",
+      "spec_hash": "1a4265962308230a23b2bae00c514946bbbdd34d9d1d3bcfead1ff0c89c61af2"
+    },
+    "Job/train-14": {
+      "uid": "d05fdf6f-c9a7-4e70-ade3-54721a19d918",
+      "spec_hash": "aeafc82e61c7d00d10224463e3da8b3c0247ccca7fb54e85203e03a198cc0944"
+    },
+    "Job/train-15": {
+      "uid": "14a2cb72-ac3f-4f88-9931-fb17754597a0",
+      "spec_hash": "e3e300802f26731b11eb797f6c183af18ff5cc364aa8ebcf4b9e0d804f4a88ca"
+    },
+    "Job/train-16": {
+      "uid": "e667579d-ac00-47fb-850f-59a725cb0521",
+      "spec_hash": "e1b85cb0660cb5b90c6575a6ab282546f32fb1d29fc6abf92a84bb8af6be907c"
+    },
+    "Job/train-17": {
+      "uid": "5d5890ea-0b00-4f16-9e0a-11f6760788c9",
+      "spec_hash": "158a801a448e7f29d5b5a3f2066ad8bf53e42e647724a2ff108dc6d8ad2a7ef5"
+    },
+    "Job/train-18": {
+      "uid": "d59c750c-064d-4a05-9569-50f0e2b31e7a",
+      "spec_hash": "efa97a597dc742c63a1c4569d34676793342d0760deabe0aad6bf3e83a9c9f82"
+    },
+    "Job/train-19": {
+      "uid": "624706af-1cd7-48ae-963f-79df68f97880",
+      "spec_hash": "25d68d9a7b691c76bf0ae8d35daacfa3ec710980ec45d808850af78e462eb0fc"
+    },
+    "Job/train-20": {
+      "uid": "900671ba-f10a-4846-9626-22af368a2e95",
+      "spec_hash": "b3959907829f829639d4f26fad94ff6692c04fb712cd4d46dfc38099050bdd63"
+    },
+    "Job/train-3": {
+      "uid": "09b75ed9-1334-4569-af48-b2b71d28d623",
+      "spec_hash": "edbd3d0b033407608675b6b1174db2d2f634d19288bcaad6d100f73f2e2451d2"
+    },
+    "Job/train-4": {
+      "uid": "7bdc2062-9ea5-40aa-ad46-26ad936a8ddd",
+      "spec_hash": "826f98a2b135bac5574685617cf2eb3f64401cd5a1ddd13c1e2a98a87cfd7141"
+    },
+    "Job/train-7": {
+      "uid": "07b59afc-5d63-409c-89c2-155384a06643",
+      "spec_hash": "54796f2d3087781f0cb1c5a06ba2267f0419f986e20292d6ba2ff68b911e1fbb"
+    },
+    "Job/train-9": {
+      "uid": "b126449c-8e0b-4871-ba54-91e5a511d259",
+      "spec_hash": "cb67c526beee7f26b2020cf8f7d65fe3a3deff070aa4bf249da16b020a736f73"
+    },
+    "Service/kubernetes": {
+      "uid": "8d6b169c-ba5a-458e-aa33-0bfaf146ae3c",
+      "spec_hash": "4e2773dac150258b439b3586468ecbd2de218fa4ea90d407badb67d9a271b1b7"
+    },
+    "Service/postgres-svc": {
+      "uid": "8e2fb8c1-eb88-4fab-a345-6c25c5b5ece2",
+      "spec_hash": "7be78822fd481bbc77c5356060747f3d52a60be6ac1c205fb05cc0cedae0202e"
+    },
+    "Service/prodigy-svc": {
+      "uid": "83a7ecb2-9c60-429c-b50b-43149c3358cc",
+      "spec_hash": "36dd5e58b541d0f324ab8ab87c246b12aa2cbb623933aecc3e8bc64668c24865"
+    },
+    "Service/serve-svc-1": {
+      "uid": "19a1102b-3682-44c1-b46c-0305a8a4441e",
+      "spec_hash": "a8f57e95859a0340b212c5189fbc98d2c22c46dc0c247525b89bf15d93507895"
+    },
+    "Service/serve-svc-10": {
+      "uid": "0a8eb4ec-8347-4102-8708-7c934b80cfe8",
+      "spec_hash": "d838ed585d0f6a7f9d95e74ed88708feec9dd15df6ca70719d908f96053225e4"
+    },
+    "Service/serve-svc-12": {
+      "uid": "48ebc64b-3c55-42fe-b878-68d935783149",
+      "spec_hash": "edde66714dda305358d604563e063905f2c6d08d554582e212bae3131acd5d03"
+    },
+    "Service/serve-svc-13": {
+      "uid": "d1605fbd-c86d-4552-ab99-29691597871e",
+      "spec_hash": "efd69a1403ff431f3ab878bd4739188352528a28bef8a9ab46b7e8e9eed721ec"
+    },
+    "Service/serve-svc-15": {
+      "uid": "b62e37b7-1242-4755-b807-aca110a40c03",
+      "spec_hash": "d42b3f24f3de7ff1e8cabff7cbb74a54e3631b6c31d0f1cfc0ff91b4ae6f6893"
+    },
+    "Service/serve-svc-16": {
+      "uid": "af176aaa-5fdc-4378-8426-6750f22bfe2a",
+      "spec_hash": "d23fdaca58440c284594074d513f97fd6e3025bdc7de1a7c77b967728e96b0a3"
+    },
+    "Service/serve-svc-17": {
+      "uid": "c06ecbf8-1821-4261-b910-b6851a40e479",
+      "spec_hash": "e86ce449b410ba2b5cf66bb5465912d8764a7cbefc61e2416f0e8167ffa1ccab"
+    },
+    "Service/serve-svc-18": {
+      "uid": "69e281a3-7030-4450-918a-f2b6bab85f07",
+      "spec_hash": "c10c9450008a834ba6a0b000e4705864fad6e8455baf011905c219eecfb06a2c"
+    },
+    "Service/serve-svc-19": {
+      "uid": "59e987be-fc22-4dbe-8e40-dd127a4b1a43",
+      "spec_hash": "8ef4002ca4225bc76af4a2498c34bd5f8516c7fbe4cb07d15bcbc5c0ab47d8e5"
+    },
+    "Service/serve-svc-2": {
+      "uid": "5927efc5-14d0-49d4-8a87-4b4a830ee1bc",
+      "spec_hash": "8eafae1973a2994114ac73e8897d686c21c9456f1806ead565ce5a1f73de8ac9"
+    },
+    "Service/serve-svc-20": {
+      "uid": "e8b21a0c-27fe-4412-b696-9550c2d0d298",
+      "spec_hash": "c82fa38ba3c43a75b3eee495daf9686530941e4941eb28b828663ca352c31543"
+    },
+    "Service/serve-svc-5": {
+      "uid": "eea5d639-a89c-40e6-8a86-48cfe25f507a",
+      "spec_hash": "0a75cf4aa577bbdde2a6e01a3a19463aec9b2695082578d641a96c2037df7e75"
+    },
+    "Service/serve-svc-6": {
+      "uid": "2efabee6-b73e-4d08-b4da-97bdd0d9f5fe",
+      "spec_hash": "7292a54255c336559bd90dc4621bebdd84d12ceff28f4890189b3ed4ecbb552d"
+    },
+    "Service/serve-svc-7": {
+      "uid": "1ccbdb1d-fd8e-4e36-86d4-bedeadf6e10b",
+      "spec_hash": "9836f043323e6dd21e8844188e19d8348236ba728726b09179f4e28407d46f15"
+    },
+    "Service/serve-svc-8": {
+      "uid": "abfbeb2f-4cd3-4208-a35b-25b387395856",
+      "spec_hash": "73a4c1d35abd79e4eb2ad7d3eb58c80ac618a2c45e667a6e0cc674d479f9139a"
+    },
+    "Service/serve-svc-9": {
+      "uid": "06186e75-8912-43f4-8df4-8ce4b5c5411e",
+      "spec_hash": "dddc3bc01eb027f161ab47d16a060338c5c0688dcf1b2744f1226f42f5cf2d1f"
+    },
+    "ConfigMap/kube-root-ca.crt": {
+      "uid": "a2bd5dbe-12c0-41d0-86e4-83f777525e27",
+      "spec_hash": "ee3af484eebc20f3ce177e1bef466f171286574ecbcda2a004ca7e7eb3d0881d"
+    },
+    "ConfigMap/parameters-train-1": {
+      "uid": "d034e30d-c20d-4097-8bf6-51fee75a9b78",
+      "spec_hash": "4d328dcc310ff073b8c0a15cc6a7da4e01d727daadbe36c9c8f5434ea0801246"
+    },
+    "ConfigMap/parameters-train-10": {
+      "uid": "e1e0c5f7-1414-4cfd-8c34-581cec7b9f79",
+      "spec_hash": "f2666fba13e08fe9bb0d36295ae5238e3674a9d1651e8037de4c768b0763d2fc"
+    },
+    "ConfigMap/parameters-train-12": {
+      "uid": "92494fc3-8642-408b-a070-c6b9996a62be",
+      "spec_hash": "6eed96f110b58e72d055e0659c7b827528a6ae20cb11dbf05a20a5defb34ca9a"
+    },
+    "ConfigMap/parameters-train-13": {
+      "uid": "3e04a4f5-9172-4b7a-be43-b118ae6808e9",
+      "spec_hash": "ed8469cd5623d3e4be272126ab3d8dfce86f6ffa1fd88786a3f61bb34c968e1e"
+    },
+    "ConfigMap/parameters-train-14": {
+      "uid": "3597a0ab-815f-41e9-98cb-feddbf97c8f4",
+      "spec_hash": "b86464f17831dbfbbe51b082ffce57543c5560919dcda16176b2c90b9e4056bd"
+    },
+    "ConfigMap/parameters-train-15": {
+      "uid": "13190d6b-ecac-4bca-9ab2-696fc758fc0d",
+      "spec_hash": "1cbed02a4f9a0d0925f886823bf03368be23c333a8eaff2492d8e321d61bd7ff"
+    },
+    "ConfigMap/parameters-train-16": {
+      "uid": "ecb490b4-09db-4fd7-a5d6-fc26b9f784ac",
+      "spec_hash": "040167907b4922982133d058bc322dd12cab7ec3f3ce49c4a2e12e1f3205c1a7"
+    },
+    "ConfigMap/parameters-train-17": {
+      "uid": "c205d284-5e7c-4e8a-ab94-e67a310433fa",
+      "spec_hash": "22e6d0f8c2a29e6ba3ec5b90877767e9d64f84e838cc90bff9ad26fcceca671b"
+    },
+    "ConfigMap/parameters-train-18": {
+      "uid": "8c0bf4eb-3647-4d77-a09b-0220a94063a4",
+      "spec_hash": "51dd8c1d163514782c843e74a73a821be36967f5c5dd3769777bfdeb746b553f"
+    },
+    "ConfigMap/parameters-train-19": {
+      "uid": "48d73bc0-2cf6-40d5-809f-e1d39627ed3f",
+      "spec_hash": "832397507b85527ff86cd808bd0e679e0e47978ec2c18176047462a5806c24bd"
+    },
+    "ConfigMap/parameters-train-2": {
+      "uid": "706d770c-e5a9-48c1-83ac-f3a153faee38",
+      "spec_hash": "4d328dcc310ff073b8c0a15cc6a7da4e01d727daadbe36c9c8f5434ea0801246"
+    },
+    "ConfigMap/parameters-train-20": {
+      "uid": "a5f682f1-0a13-4e17-b5c3-9783364469f9",
+      "spec_hash": "70342ed60c4dec88b8eac1f2b42bf429814f2cc9469f39082e671fc7c02e5b33"
+    },
+    "ConfigMap/parameters-train-3": {
+      "uid": "d6723743-7930-44f2-ba84-41dac9d781e1",
+      "spec_hash": "7e992880b6772ade1307fa405d117f8930f0910e7b6c7aa17221c7504845dda3"
+    },
+    "ConfigMap/parameters-train-4": {
+      "uid": "92826016-19e4-4544-bdb9-fda63d11eaef",
+      "spec_hash": "3144f8bfad3a1ba99af82b86b463809a6e288628578cd01edf368f3a92a4bbe9"
+    },
+    "ConfigMap/parameters-train-5": {
+      "uid": "7943252d-161f-45d9-a97c-162db7fe4ada",
+      "spec_hash": "c889288abdd826182884ec0930283bb192a0f2212e178539088bd4d9ee4cb517"
+    },
+    "ConfigMap/parameters-train-6": {
+      "uid": "4b6a4ef3-c02d-4f00-b6d1-3446b3b95520",
+      "spec_hash": "c889288abdd826182884ec0930283bb192a0f2212e178539088bd4d9ee4cb517"
+    },
+    "ConfigMap/parameters-train-7": {
+      "uid": "f7b1dd83-74ea-4275-a6b0-630c0e4fee8a",
+      "spec_hash": "8cbd0eab57953c05254afc96104d0ce2e1c9e53927d052494990f12df0ce4ab2"
+    },
+    "ConfigMap/parameters-train-9": {
+      "uid": "e800ca39-495e-4142-9200-707b1387e852",
+      "spec_hash": "21c5d29eb7a0c95e3d49dc3a0fd68ad6696f87caa5bc16bad4099f5996df0e21"
+    },
+    "PersistentVolumeClaim/postgres-pvc": {
+      "uid": "adc06bb2-5a00-4ba6-84eb-fc9b7d93d8f7",
+      "spec_hash": "bde2409f84a0bd447eda3301154d7306b3b9b7557c6fae5da9a824485784d59b"
+    },
+    "PersistentVolumeClaim/pvc-model-10": {
+      "uid": "564f7506-2edb-4027-9d69-8c5189f481cb",
+      "spec_hash": "28bfaa0518d73d4e527065e0213353f270e8c19f26ac42f6381f5bc186c723df"
+    },
+    "PersistentVolumeClaim/pvc-model-12": {
+      "uid": "caf72093-a7f3-487e-8150-b7feadb9b1f3",
+      "spec_hash": "1141d82a116a142b8e6591de98e042049118f05801ea34654d84418ab79fe4a4"
+    },
+    "PersistentVolumeClaim/pvc-model-13": {
+      "uid": "65f43b11-99a4-42e4-ab8c-04bc998be21a",
+      "spec_hash": "487850c14d327af09892bd5b8d843c6bc59fd71fe19eb5609d55ac6cd2c853b0"
+    },
+    "PersistentVolumeClaim/pvc-model-14": {
+      "uid": "f5dbb15d-17aa-4b4c-8d26-9483556e495f",
+      "spec_hash": "6ed7ce1e0eb89e4107c62a832774ad3f756010aec368e5ea54a470725bc46836"
+    },
+    "PersistentVolumeClaim/pvc-model-15": {
+      "uid": "e873b6fa-a0e9-4bed-8598-fdcbbc3ace69",
+      "spec_hash": "8f1ef36ee9317df55aab6c3657a69eb03934538e36a2133a040943123befcfcc"
+    },
+    "PersistentVolumeClaim/pvc-model-16": {
+      "uid": "ece1857b-4d3b-4b89-aba5-c9755da68b64",
+      "spec_hash": "468b22ffa397a70dd0fc6f7ea0e9eaf3810d00d1fa7fc45e1ffdfeb260186969"
+    },
+    "PersistentVolumeClaim/pvc-model-17": {
+      "uid": "57a0efdf-243c-4e76-8dc7-7d4a31c95ef9",
+      "spec_hash": "9779387aa0b560c3d267a0dceb16aa05e232859ba49c34854ffc87ee7cbf89da"
+    },
+    "PersistentVolumeClaim/pvc-model-18": {
+      "uid": "979b0c7e-e693-4ba3-81eb-898c06c5429a",
+      "spec_hash": "8a097dd50319288bc02c0cb2e058536709cb25310dfa8efb5ab0ec273c9867bd"
+    },
+    "PersistentVolumeClaim/pvc-model-19": {
+      "uid": "8b1a60e2-735e-44f0-8473-392f0e131cec",
+      "spec_hash": "a47fea1a04320685dc21a35bab4c92a8dc92d296c70fe066d96f2eb4f0949a4d"
+    },
+    "PersistentVolumeClaim/pvc-model-20": {
+      "uid": "1809b619-7845-498c-8f79-1c31507df235",
+      "spec_hash": "cf6c890b97c1ae744efb54f969c9d5fb758c97659d2c905989a8b3bcca4fcd1c"
+    },
+    "PersistentVolumeClaim/pvc-model-3": {
+      "uid": "f69e489d-3c9c-48c9-b224-14d23b159580",
+      "spec_hash": "d7cfcdcd5395b485e45e2b5924ccbdb257765cc0fd9e384b0bbd0b3fc8a9831c"
+    },
+    "PersistentVolumeClaim/pvc-model-4": {
+      "uid": "208388f7-2eca-4853-bc56-b1c1af76d6e4",
+      "spec_hash": "bbfef6e27a8ba3e89393e34faccf0b989dfce8a445321a8e0cb7ffc10dca4d87"
+    },
+    "PersistentVolumeClaim/pvc-model-7": {
+      "uid": "10673d14-aed1-4058-b62a-c96f690d4a15",
+      "spec_hash": "cfe3b47aba9493e844fdd6e282545cfabdd1bcc30c558e63d4eecbcfcc8cfce8"
+    },
+    "PersistentVolumeClaim/pvc-model-9": {
+      "uid": "8a4d0767-164a-48f2-a986-3dbec590919e",
+      "spec_hash": "4800d478951f74d3df33ffae8fc426b1f35e56b317d0edb0dc83cdd5e0e7696a"
+    }
+  },
+  "ingest_can_insert_managed": true,
+  "ingest_can_update_managed": false,
+  "ingest_can_delete_legacy": false,
+  "legacy_source_owner": "kedrogy_migrator",
+  "images": {
+    "ml": "kedrogy-registry:5000/mykedro@sha256:b76286a6e858e4c8bd887eb0e0ae55206539699a30c89ff50e00eb14d8446026",
+    "backend": "kedrogy-registry:5000/mysite@sha256:36d937972c2a4c0178195b58b63e20bb07e23804e173e23afef53bcdd119d2fd",
+    "web": "kedrogy-registry:5000/web@sha256:3a95591f6db5c86751147d8aeccae55a51aeade9a97ff996f3c9c9ba41ed35c0"
+  },
+  "controllers_started": true,
+  "historical_annotations_converted": false
+}

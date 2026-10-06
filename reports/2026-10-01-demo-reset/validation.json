@@ -1,0 +1,131 @@
+[
+  {
+    "dataset_id": 22,
+    "model_id": 21,
+    "prodigy_dataset_id": 41,
+    "binding_state": "BOUND",
+    "annotation": {
+      "status": "PRESENT",
+      "counts": {
+        "total": 20,
+        "accepted": 20,
+        "rejected": 0,
+        "ignored": 0,
+        "invalid": 0
+      },
+      "error": null
+    },
+    "training_data": {
+      "fingerprint": "fbe882742e25e3aa53b39ca2a6b05f83318eb6dea67dc837e1babf309a8576a6",
+      "dataset_id": 41,
+      "policy": "single-label-choice-v2",
+      "class_schema_version": 2,
+      "artifact_version": 2,
+      "labels": [
+        "positive",
+        "negative",
+        "neutral"
+      ],
+      "total": 20,
+      "usable": 20,
+      "accepted": 20,
+      "rejected": 0,
+      "ignored": 0,
+      "invalid": 0,
+      "conflicting": 0,
+      "needs_review": 0,
+      "duplicate_accepted": 0,
+      "label_counts": {
+        "positive": 4,
+        "negative": 10,
+        "neutral": 6
+      }
+    }
+  },
+  {
+    "dataset_id": 23,
+    "model_id": 22,
+    "prodigy_dataset_id": 43,
+    "binding_state": "BOUND",
+    "annotation": {
+      "status": "PRESENT",
+      "counts": {
+        "total": 20,
+        "accepted": 20,
+        "rejected": 0,
+        "ignored": 0,
+        "invalid": 0
+      },
+      "error": null
+    },
+    "training_data": {
+      "fingerprint": "99ee08adbbeb5c3ecb288dc7c57ae5392393cb7c76886cc8a8b230ab1bb710af",
+      "dataset_id": 43,
+      "policy": "single-label-choice-v2",
+      "class_schema_version": 2,
+      "artifact_version": 2,
+      "labels": [
+        "business",
+        "technology",
+        "politics",
+        "society"
+      ],
+      "total": 20,
+      "usable": 20,
+      "accepted": 20,
+      "rejected": 0,
+      "ignored": 0,
+      "invalid": 0,
+      "conflicting": 0,
+      "needs_review": 0,
+      "duplicate_accepted": 0,
+      "label_counts": {
+        "business": 10,
+        "technology": 2,
+        "politics": 3,
+        "society": 5
+      }
+    }
+  },
+  {
+    "dataset_id": 24,
+    "model_id": 23,
+    "prodigy_dataset_id": 44,
+    "binding_state": "BOUND",
+    "annotation": {
+      "status": "PRESENT",
+      "counts": {
+        "total": 20,
+        "accepted": 20,
+        "rejected": 0,
+        "ignored": 0,
+        "invalid": 0
+      },
+      "error": null
+    },
+    "training_data": {
+      "fingerprint": "d093b544003b08023f0cf69d24285c561c1412134efc96b5dace8dd8d4d47a57",
+      "dataset_id": 44,
+      "policy": "single-label-choice-v2",
+      "class_schema_version": 2,
+      "artifact_version": 2,
+      "labels": [
+        "company_mentioned",
+        "no_company"
+      ],
+      "total": 20,
+      "usable": 20,
+      "accepted": 20,
+      "rejected": 0,
+      "ignored": 0,
+      "invalid": 0,
+      "conflicting": 0,
+      "needs_review": 0,
+      "duplicate_accepted": 0,
+      "label_counts": {
+        "company_mentioned": 7,
+        "no_company": 13
+      }
+    }
+  }
+]

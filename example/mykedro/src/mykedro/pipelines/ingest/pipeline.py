@@ -13,8 +13,8 @@ def create_pipeline(**kwargs) -> Pipeline:
         [
             Node(
                 func=ingest,
-                inputs="all_data",
-                outputs="all_data_postgres",
+                inputs=["all_data", "params:ingest_options"],
+                outputs="import_receipt",
                 name="ingest_node",
             ),
         ]

@@ -1,0 +1,48 @@
+{
+  "namespace": "kedrogy-check-20260925",
+  "dataset_id": 5,
+  "model_id": 5,
+  "runs": [
+    {
+      "id": "ddc13618-16f5-4436-927f-4ae495fc1648",
+      "job_uid": "df97c924-a655-4500-b8b1-7876715c7232",
+      "artifact_path": "runs/ddc13618-16f5-4436-927f-4ae495fc1648/1f84dcd3-7b35-4015-97a0-c73256081835/artifact",
+      "labels": [
+        "positive",
+        "negative"
+      ]
+    },
+    {
+      "id": "76ebe25a-1116-4277-89fb-86f4b2f48e37",
+      "job_uid": "a0835b7e-24c8-49ae-a0ec-a4f2e64bfc6d",
+      "artifact_path": "runs/76ebe25a-1116-4277-89fb-86f4b2f48e37/996a1ae5-75c5-48d5-9e7e-691984cccb77/artifact",
+      "labels": [
+        "negative",
+        "positive"
+      ]
+    }
+  ],
+  "serving_id": "605e1869-85ca-4b20-8d2c-d1a1979e5cad",
+  "prediction": {
+    "class_id": 0,
+    "label": "OTHER",
+    "contract_version": 1,
+    "training_run_id": "76ebe25a-1116-4277-89fb-86f4b2f48e37",
+    "serving_run_id": "d5aa2b87-bc71-403a-b0fa-5257d6d52e14",
+    "predicted_class": "OTHER",
+    "model_id": 5
+  },
+  "checks": [
+    "real tiny BERT training twice",
+    "annotation preflight",
+    "idempotent Train and Serve",
+    "rename preserves binding",
+    "distinct training classes and artifacts",
+    "draft edit cannot relabel inference",
+    "fresh readiness required",
+    "replacement Pod recovery",
+    "external deployment change invalidates health",
+    "Stop followed by explicit restart"
+  ],
+  "note": "The external scale perturbation used fixture-scoped admin access after controller RBAC correctly rejected deployments/scale. Controller privileges were not expanded."
+}

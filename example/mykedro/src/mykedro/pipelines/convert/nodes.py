@@ -1,18 +1,19 @@
-"""
-This is a boilerplate pipeline 'convert'
-generated using Kedro 1.2.0
-"""
+"""Preserve explicit upstream identities and exact text during conversion."""
+
+import json
 
 import pandas as pd
 
-from ysz.kedro_datasets.srsly_dataset import SrslyDataset
 
-
-def convert(all_data_jsonl: SrslyDataset) -> pd.DataFrame:
-    df = pd.DataFrame.from_records(all_data_jsonl)
-    # for index, r in df.iterrows():
-    #     df.loc[index, "meta"]["id"] = index
-    df = df.reset_index().rename(columns={"index": "id"})
-    df["source"] = df["meta"].apply(lambda m: m["source"])
-
-    return df[["id", "text", "source"]]
+def convert(rows) -> pd.DataFrame:
+    records = []
+    for row in rows:
+        meta = dict(row.get("meta", {}))
+        if "source" in row:
+            meta["source"] = row["source"]
+        identifier = row.get("id", meta.get("id"))
+        if identifier is not None and not isinstance(identifier, str):
+            raise ValueError("Source IDs must be strings; numeric coercion can lose leading zeros.")
+        records.append({"id": identifier or "", "text": row["text"],
+                        "meta": json.dumps(meta, ensure_ascii=False, sort_keys=True)})
+    return pd.DataFrame.from_records(records, columns=["id", "text", "meta"])

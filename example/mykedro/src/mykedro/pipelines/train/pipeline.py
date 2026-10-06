@@ -4,9 +4,8 @@ generated using Kedro 1.2.0
 """
 
 from kedro.pipeline import Node, Pipeline  # noqa
-from sklearn.model_selection import train_test_split
 
-from .nodes import labelled_examples, jsonl_to_fasttext, train
+from .nodes import labelled_examples, jsonl_to_fasttext, split_examples, train
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -25,8 +24,8 @@ def create_pipeline(**kwargs) -> Pipeline:
                 name="jsonl_to_fasttext_node",
             ),
             Node(
-                func=train_test_split,
-                inputs="dataset_fasttext",
+                func=split_examples,
+                inputs=["dataset_fasttext", "params:model_options"],
                 outputs="model_input",
                 name="train_test_split_node",
             ),

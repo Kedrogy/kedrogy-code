@@ -1,0 +1,142 @@
+[
+  {
+    "image": "kedrogy-registry.localhost:5500/mykedro:latest",
+    "layers": 13,
+    "files": 51130,
+    "checked_secret_values": 6,
+    "findings": [
+      {
+        "kind": "secret-in-metadata",
+        "path": "blobs/sha256/cf3c09028e72a03e220076e812646a5d8eb8ebde978c8c9fc0584f18291d77db"
+      },
+      {
+        "kind": "private-path",
+        "path": "root/.cache/uv/sdists-v9/.git"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/HEAD"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/branches"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/config"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/description"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/hooks"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/hooks/applypatch-msg.sample"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/hooks/commit-msg.sample"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/hooks/fsmonitor-watchman.sample"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/hooks/post-update.sample"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/hooks/pre-applypatch.sample"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/hooks/pre-commit.sample"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/hooks/pre-merge-commit.sample"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/hooks/pre-push.sample"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/hooks/pre-rebase.sample"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/hooks/pre-receive.sample"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/hooks/prepare-commit-msg.sample"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/hooks/push-to-checkout.sample"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/hooks/sendemail-validate.sample"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/hooks/update.sample"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/info"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/info/exclude"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/objects"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/objects/info"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/objects/pack"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/refs"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/refs/heads"
+      },
+      {
+        "kind": "private-path",
+        "path": "tmp/hf/.git/refs/tags"
+      }
+    ]
+  },
+  {
+    "image": "lts-registry.localhost:5500/mykedro:latest",
+    "layers": 10,
+    "files": 47187,
+    "checked_secret_values": 6,
+    "findings": [
+      {
+        "kind": "secret-in-metadata",
+        "path": "blobs/sha256/a469efef5ad78b8ae61fd950c87b18fc8a951572604dd751a383158ef34f4ae8"
+      }
+    ]
+  }
+]

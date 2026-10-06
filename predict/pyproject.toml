@@ -9,6 +9,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "kedrogy-contracts",
     "transformers==4.57.1",
     "torch>=1.13.1",
     "fastapi[standard]>=0.115.14",
@@ -28,3 +29,6 @@ name = "ysz"
 url = "https://pypi.ysz.vc/"
 publish-url = "https://pypi.ysz.vc/"
 explicit = true
+
+[tool.uv.sources]
+kedrogy-contracts = { path = "../contracts", editable = true }

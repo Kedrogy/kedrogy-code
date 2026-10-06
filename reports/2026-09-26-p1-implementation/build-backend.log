@@ -1,0 +1,65 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 198B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for kedrogy-registry.localhost:5500/mysite:lifecycle-20260926
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 460B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 782.17kB 0.0s done
+#4 DONE 0.0s
+
+#5 [1/4] FROM kedrogy-registry.localhost:5500/mysite:lifecycle-20260926@sha256:1bc274d11438d20d05139135d1f45abbc4bed4180b684f827743ec55fb442722
+#5 resolve kedrogy-registry.localhost:5500/mysite:lifecycle-20260926@sha256:1bc274d11438d20d05139135d1f45abbc4bed4180b684f827743ec55fb442722 0.0s done
+#5 CACHED
+
+#6 [2/4] COPY kedrogy/src /app/kedrogy/src
+#6 DONE 0.1s
+
+#7 [3/4] COPY mysite/src /app/mysite/src
+#7 DONE 0.0s
+
+#8 [4/4] COPY contracts /app/contracts
+#8 DONE 0.0s
+
+#9 exporting to image
+#9 exporting layers 0.0s done
+#9 exporting manifest sha256:05748f5b45300c1a137c0ab355d31b8311e75d46b9efcaffb76acba8088306eb done
+#9 exporting config sha256:7447772e3632f8bc39db4d4ef352eb578bff50aed3ab3aa6e028f65a348e9823 done
+#9 exporting attestation manifest sha256:b88c98563020a9530941f4b5c774935f5bd2fb6b19ce3bf7e3e5d46fe6cc2aca done
+#9 exporting manifest list sha256:36d937972c2a4c0178195b58b63e20bb07e23804e173e23afef53bcdd119d2fd done
+#9 naming to kedrogy-registry.localhost:5500/mysite:p1-20260926 done
+#9 unpacking to kedrogy-registry.localhost:5500/mysite:p1-20260926 0.0s done
+#9 DONE 0.1s
+The push refers to repository [kedrogy-registry.localhost:5500/mysite]
+4f4fb700ef54: Layer already exists
+c84bebac337e: Layer already exists
+f753cc2c59e7: Layer already exists
+52c2b1e57a24: Layer already exists
+1cd41f79d2c0: Layer already exists
+1b36656f8387: Layer already exists
+7867aeb3c6a5: Pushed
+6239597a8df6: Pushed
+13f7a80ae37c: Layer already exists
+8fab80907cc7: Layer already exists
+d9a2c96a699e: Layer already exists
+88d1735a3453: Layer already exists
+d1351f963bd6: Layer already exists
+bd36565c0fde: Layer already exists
+fdf6abd56137: Layer already exists
+64c6472786e6: Layer already exists
+b42efba7fce1: Pushed
+55214ffd62fc: Layer already exists
+a50d1c84ed93: Layer already exists
+f81be34ecdc8: Layer already exists
+d122ce05d523: Layer already exists
+171225ffde15: Layer already exists
+0d3f9a724320: Layer already exists
+873d15081e65: Layer already exists
+p1-20260926: digest: sha256:36d937972c2a4c0178195b58b63e20bb07e23804e173e23afef53bcdd119d2fd size: 856

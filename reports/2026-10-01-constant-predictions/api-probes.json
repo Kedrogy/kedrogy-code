@@ -1,0 +1,86 @@
+[
+  {
+    "text": "Microsoft announced a new version of Windows.",
+    "expected": "company_mentioned",
+    "response": {
+      "class_id": 0,
+      "label": "company_mentioned",
+      "contract_version": 1,
+      "training_run_id": "a1ff21ec-af00-4e24-a541-c67b643b4d7f",
+      "serving_run_id": "ee9bc275-9d93-478d-bd5f-37d8ece2637b",
+      "class_schema_version": 2,
+      "predicted_class": "company_mentioned",
+      "model_id": 23
+    }
+  },
+  {
+    "text": "A dog is sleeping on the sofa.",
+    "expected": "no_company",
+    "response": {
+      "class_id": 0,
+      "label": "company_mentioned",
+      "contract_version": 1,
+      "training_run_id": "a1ff21ec-af00-4e24-a541-c67b643b4d7f",
+      "serving_run_id": "ee9bc275-9d93-478d-bd5f-37d8ece2637b",
+      "class_schema_version": 2,
+      "predicted_class": "company_mentioned",
+      "model_id": 23
+    }
+  },
+  {
+    "text": "Tesla opened a new factory.",
+    "expected": "company_mentioned",
+    "response": {
+      "class_id": 0,
+      "label": "company_mentioned",
+      "contract_version": 1,
+      "training_run_id": "a1ff21ec-af00-4e24-a541-c67b643b4d7f",
+      "serving_run_id": "ee9bc275-9d93-478d-bd5f-37d8ece2637b",
+      "class_schema_version": 2,
+      "predicted_class": "company_mentioned",
+      "model_id": 23
+    }
+  },
+  {
+    "text": "It is raining today and the streets are empty.",
+    "expected": "no_company",
+    "response": {
+      "class_id": 0,
+      "label": "company_mentioned",
+      "contract_version": 1,
+      "training_run_id": "a1ff21ec-af00-4e24-a541-c67b643b4d7f",
+      "serving_run_id": "ee9bc275-9d93-478d-bd5f-37d8ece2637b",
+      "class_schema_version": 2,
+      "predicted_class": "company_mentioned",
+      "model_id": 23
+    }
+  },
+  {
+    "text": "Компания Microsoft выпустила обновление Windows.",
+    "expected": "company_mentioned",
+    "response": {
+      "class_id": 0,
+      "label": "company_mentioned",
+      "contract_version": 1,
+      "training_run_id": "a1ff21ec-af00-4e24-a541-c67b643b4d7f",
+      "serving_run_id": "ee9bc275-9d93-478d-bd5f-37d8ece2637b",
+      "class_schema_version": 2,
+      "predicted_class": "company_mentioned",
+      "model_id": 23
+    }
+  },
+  {
+    "text": "Кот спит на диване.",
+    "expected": "no_company",
+    "response": {
+      "class_id": 0,
+      "label": "company_mentioned",
+      "contract_version": 1,
+      "training_run_id": "a1ff21ec-af00-4e24-a541-c67b643b4d7f",
+      "serving_run_id": "ee9bc275-9d93-478d-bd5f-37d8ece2637b",
+      "class_schema_version": 2,
+      "predicted_class": "company_mentioned",
+      "model_id": 23
+    }
+  }
+]

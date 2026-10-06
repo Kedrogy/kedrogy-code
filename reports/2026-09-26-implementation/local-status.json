@@ -1,0 +1,11 @@
+{
+  "frontend": 200,
+  "api": 200,
+  "active_annotation": 200,
+  "annotation_state": "UNVERIFIED",
+  "model_20": {
+    "trained": false,
+    "served": false,
+    "artifact_status": "INVALID"
+  }
+}

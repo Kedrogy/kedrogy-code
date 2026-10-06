@@ -1,0 +1,66 @@
+273e26863691f4aff1ae0583484c566983dd59c3839d353868d3ae0413df7868
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, django_tasks_database, kedrogy, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying django_tasks_database.0001_initial... OK
+  Applying django_tasks_database.0002_alter_dbtaskresult_options... OK
+  Applying django_tasks_database.0003_dbtaskresult_enqueued_at_dbtaskresult_finished_at... OK
+  Applying django_tasks_database.0004_dbtaskresult_started_at... OK
+  Applying django_tasks_database.0005_alter_dbtaskresult_priority_and_more... OK
+  Applying django_tasks_database.0006_alter_dbtaskresult_args_kwargs_and_more... OK
+  Applying django_tasks_database.0007_add_separate_results_fields... OK
+  Applying django_tasks_database.0008_separate_results_field... OK
+  Applying django_tasks_database.0009_remove_results_field... OK
+  Applying django_tasks_database.0010_alter_dbtaskresult_status... OK
+  Applying django_tasks_database.0011_rename_complete_status... OK
+  Applying django_tasks_database.0012_add_separate_exception_fields... OK
+  Applying django_tasks_database.0013_separate_exception_fields... OK
+  Applying django_tasks_database.0014_remove_dbtaskresult_exception_data... OK
+  Applying django_tasks_database.0015_correctly_order_run_after... OK
+  Applying django_tasks_database.0016_remove_dbtaskresult_django_task_new_ordering_idx_and_more... OK
+  Applying django_tasks_database.0017_dbtaskresult_metadata... OK
+  Applying kedrogy.0001_initial... OK
+  Applying kedrogy.0002_djangodataset_image_djangodataset_pipeline_and_more... OK
+  Applying kedrogy.0003_djangomodel... OK
+  Applying kedrogy.0004_djangolastdataset... OK
+  Applying kedrogy.0005_djangomodel_trained... OK
+  Applying kedrogy.0006_djangomodel_served... OK
+  Applying kedrogy.0007_remove_djangodataset_recipe... OK
+  Applying kedrogy.0008_djangodataset_data_table_name_djangodataset_id_field_and_more... OK
+  Applying kedrogy.0009_djangomodel_model_name... OK
+  Applying kedrogy.0010_djangomodel_artifact_status_trainingrun_and_more... OK
+  Applying kedrogy.0011_djangodataset_binding_state_and_more... OK
+  Applying kedrogy.0012_alter_djangodataset_prodigy_dataset_id_and_more... OK
+  Applying kedrogy.0013_normalize_legacy_drafts... OK
+  Applying kedrogy.0014_durable_annotation_cleanup... OK
+  Applying kedrogy.0015_serving_resource_ownership... OK
+  Applying kedrogy.0016_annotation_identity_policy... OK
+  Applying sessions.0001_initial... OK
+Provisioned five restricted roles. Credentials saved to private files; values withheld.
+namespace/kedrogy-p1-20260926 created
+serviceaccount/kedrogy-controller created
+serviceaccount/kedrogy-workload created
+role.rbac.authorization.k8s.io/kedrogy-controller created
+rolebinding.rbac.authorization.k8s.io/kedrogy-controller created
+clusterrole.rbac.authorization.k8s.io/kedrogy-namespace-identity-kedrogy-p1-20260926 created
+clusterrolebinding.rbac.authorization.k8s.io/kedrogy-namespace-identity-kedrogy-p1-20260926 created
+{"dry_run": false, "duplicate_count": 0, "fingerprint": "f467b8f73932564f93c367e9a4956d62ad635fe3f7934a9edb38f823ea2bb6e4", "id": "85251b66-1d76-4c88-b0b7-58597a59992e", "identity_policy": "upstream-id-v1", "input_count": 12, "inserted_count": 12, "parser_version": "source-record-v1", "recorded_at": "2026-09-26 20:11:36.051139+00:00", "replayed": false, "request_key": "first-import", "source_id": "5981c6fd-60bb-4a6b-96cc-62305ea90ece", "unchanged_count": 0}
+{"dry_run": false, "duplicate_count": 0, "fingerprint": "f467b8f73932564f93c367e9a4956d62ad635fe3f7934a9edb38f823ea2bb6e4", "id": "85251b66-1d76-4c88-b0b7-58597a59992e", "identity_policy": "upstream-id-v1", "input_count": 12, "inserted_count": 12, "parser_version": "source-record-v1", "recorded_at": "2026-09-26 20:11:36.051139+00:00", "replayed": true, "request_key": "first-import", "source_id": "5981c6fd-60bb-4a6b-96cc-62305ea90ece", "unchanged_count": 0}
+P1 fixture ready; private credentials withheld and no working data copied.

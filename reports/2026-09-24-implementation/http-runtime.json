@@ -1,0 +1,97 @@
+[
+  {
+    "path": "/",
+    "host": "app.kedrogy.test",
+    "method": "GET",
+    "status": 200,
+    "tls": true
+  },
+  {
+    "path": "/assets/index-BYqgYMgW.js",
+    "host": "app.kedrogy.test",
+    "method": "GET",
+    "status": 200,
+    "tls": true
+  },
+  {
+    "path": "/static/admin/css/base.css",
+    "host": "app.kedrogy.test",
+    "method": "GET",
+    "status": 200,
+    "tls": true
+  },
+  {
+    "path": "/health/",
+    "host": "app.kedrogy.test",
+    "method": "GET",
+    "status": 200,
+    "tls": true
+  },
+  {
+    "path": "/api/models/",
+    "host": "app.kedrogy.test",
+    "method": "GET",
+    "status": 200,
+    "tls": true
+  },
+  {
+    "path": "/api/does-not-exist/",
+    "host": "app.kedrogy.test",
+    "method": "GET",
+    "status": 404,
+    "tls": true
+  },
+  {
+    "path": "/train_model/2/",
+    "host": "app.kedrogy.test",
+    "method": "HEAD",
+    "status": 405,
+    "tls": true
+  },
+  {
+    "path": "/train_model/2/",
+    "host": "app.kedrogy.test",
+    "method": "POST",
+    "status": 403,
+    "tls": true
+  },
+  {
+    "path": "/legacy/",
+    "host": "app.kedrogy.test",
+    "method": "GET",
+    "status": 200,
+    "tls": true
+  },
+  {
+    "path": "/admin/login/",
+    "host": "app.kedrogy.test",
+    "method": "GET",
+    "status": 200,
+    "tls": true
+  },
+  {
+    "path": "/",
+    "host": "label.kedrogy.test",
+    "method": "GET",
+    "status": 200,
+    "tls": true
+  },
+  {
+    "path": "/api/models/",
+    "host": "app.kedrogy.test",
+    "method": "GET",
+    "status": 301,
+    "tls": false
+  },
+  {
+    "path": "/api/models/",
+    "host": "unapproved.invalid",
+    "method": "GET",
+    "status": 400,
+    "tls": false
+  },
+  {
+    "check": "ingress HTTP redirect",
+    "status": 301
+  }
+]

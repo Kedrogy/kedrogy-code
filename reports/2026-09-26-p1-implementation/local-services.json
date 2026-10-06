@@ -1,0 +1,33 @@
+{
+  "processes": {
+    "api": {
+      "pid": 14296,
+      "alive": true
+    },
+    "worker": {
+      "pid": 14297,
+      "alive": true
+    },
+    "training": {
+      "pid": 14298,
+      "alive": true
+    },
+    "serving": {
+      "pid": 14299,
+      "alive": true
+    },
+    "operations": {
+      "pid": 14300,
+      "alive": true
+    },
+    "frontend": {
+      "pid": 14301,
+      "alive": true
+    }
+  },
+  "http": {
+    "health": 200,
+    "frontend": 200,
+    "models_proxy": 200
+  }
+}

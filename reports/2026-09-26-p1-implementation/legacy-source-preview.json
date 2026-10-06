@@ -1,0 +1,15 @@
+{
+  "applied": false,
+  "source": {
+    "schema": "public",
+    "table": "all_data",
+    "id_field": "id",
+    "source_id": null
+  },
+  "rows": 200,
+  "missing_ids": 0,
+  "empty_texts": 0,
+  "duplicate_ids": 0,
+  "identity_verified": false,
+  "next_step": "Review the origin of legacy IDs. Copy only into a new explicitly selected source namespace, retaining original source and ID provenance. Existing annotations remain bound to their original source."
+}

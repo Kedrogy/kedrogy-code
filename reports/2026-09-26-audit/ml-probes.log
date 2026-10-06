@@ -1,0 +1,10 @@
+test_disposable_database_regression_uses_obsolete_signature (__main__.MLDefects.test_disposable_database_regression_uses_obsolete_signature) ... ok
+test_duplicate_single_class_data_passes_and_leaks_across_split (__main__.MLDefects.test_duplicate_single_class_data_passes_and_leaks_across_split) ... ok
+test_one_inference_failure_never_recovers_despite_live_probe (__main__.MLDefects.test_one_inference_failure_never_recovers_despite_live_probe) ... ok
+test_rejecting_wrong_suggestion_becomes_other (__main__.MLDefects.test_rejecting_wrong_suggestion_becomes_other) ... ok
+test_unstratified_split_can_remove_a_class_from_training (__main__.MLDefects.test_unstratified_split_can_remove_a_class_from_training) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.005s
+
+OK

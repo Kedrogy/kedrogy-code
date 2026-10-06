@@ -1,0 +1,46 @@
+{
+  "result_id": "1e029920-eb90-4277-8800-e4ab379fb75f",
+  "model_id": 23,
+  "run": {
+    "id": "1e029920-eb90-4277-8800-e4ab379fb75f",
+    "model_id": 23,
+    "status": "QUEUED",
+    "is_finished": false,
+    "logs": "",
+    "labels": [
+      "company_mentioned",
+      "no_company"
+    ],
+    "attempts": [],
+    "annotations": {
+      "fingerprint": "9d4058ad2ca7646cf2566f0951b5392f5e4ebd9357244739df89e8e4ae9069af",
+      "dataset_id": 44,
+      "policy": "single-label-choice-v2",
+      "class_schema_version": 2,
+      "artifact_version": 2,
+      "labels": [
+        "company_mentioned",
+        "no_company"
+      ],
+      "total": 176,
+      "usable": 176,
+      "accepted": 176,
+      "rejected": 0,
+      "ignored": 0,
+      "invalid": 0,
+      "conflicting": 0,
+      "needs_review": 0,
+      "duplicate_accepted": 0,
+      "label_counts": {
+        "company_mentioned": 40,
+        "no_company": 136
+      }
+    },
+    "quality": null,
+    "artifact_verified": false,
+    "error": null,
+    "created_at": "2026-10-01T19:28:36.223033+00:00",
+    "finished_at": null,
+    "return_value": null
+  }
+}

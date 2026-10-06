@@ -1,0 +1,35 @@
+{
+  "model_id": 23,
+  "serving": {
+    "id": "34b23cab-c281-47a7-a383-e5ef423ffaea",
+    "status": "READY",
+    "training_run_id": "1e029920-eb90-4277-8800-e4ab379fb75f",
+    "labels": [
+      "company_mentioned",
+      "no_company"
+    ],
+    "class_schema_version": 2,
+    "conversion_policy": "single-label-choice-v2",
+    "observed_at": "2026-10-01T19:43:31.646541+00:00",
+    "error": null
+  },
+  "published_run": "1e029920-eb90-4277-8800-e4ab379fb75f",
+  "source_rows": 200,
+  "source_unchanged": true,
+  "previous_annotations_preserved": 20,
+  "candidate_api_predictions_match": true,
+  "tests": {
+    "frontend": 26,
+    "backend": 35,
+    "training_quality": 4,
+    "artifacts": 6,
+    "frontend_build": "passed"
+  },
+  "browser": {
+    "input_cleared_removes_prediction": true,
+    "input_changed_during_request_discards_result": true,
+    "russian_negative_prediction": "no_company"
+  },
+  "diagnostic_correct": 23,
+  "diagnostic_total": 24
+}

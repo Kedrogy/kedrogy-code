@@ -1,0 +1,44 @@
+[
+  {
+    "text": "Microsoft announced a new version of Windows.",
+    "expected": "company_mentioned",
+    "before": "company_mentioned",
+    "after": "company_mentioned",
+    "correct": true
+  },
+  {
+    "text": "A dog is sleeping on the sofa.",
+    "expected": "no_company",
+    "before": "company_mentioned",
+    "after": "no_company",
+    "correct": true
+  },
+  {
+    "text": "Tesla opened a new factory.",
+    "expected": "company_mentioned",
+    "before": "company_mentioned",
+    "after": "no_company",
+    "correct": false
+  },
+  {
+    "text": "It is raining today and the streets are empty.",
+    "expected": "no_company",
+    "before": "company_mentioned",
+    "after": "no_company",
+    "correct": true
+  },
+  {
+    "text": "Компания Microsoft выпустила обновление Windows.",
+    "expected": "company_mentioned",
+    "before": "company_mentioned",
+    "after": "company_mentioned",
+    "correct": true
+  },
+  {
+    "text": "Кот спит на диване.",
+    "expected": "no_company",
+    "before": "company_mentioned",
+    "after": "no_company",
+    "correct": true
+  }
+]

@@ -1,0 +1,10 @@
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, django_tasks_database, kedrogy, sessions
+Running migrations:
+  Applying kedrogy.0015_serving_resource_ownership... OK
+  Applying kedrogy.0016_annotation_identity_policy... OK
+clusterrole.rbac.authorization.k8s.io/kedrogy-namespace-identity-default created
+clusterrolebinding.rbac.authorization.k8s.io/kedrogy-namespace-identity-default created
+Scoped kubeconfig refreshed (token requested for 24h); credential values withheld.
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.038
+Additive local rollout completed. Source contents and existing workload specifications are unchanged.

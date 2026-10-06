@@ -1,0 +1,48 @@
+{
+  "checks": [
+    "Dataset A launched with idempotent request",
+    "Stopped A, released slot, launched B",
+    "Both datasets retain independent saved-answer counts while only B is active",
+    "A live Pod prevents volume deletion and leaves visible NEEDS_REVIEW progress",
+    "After removing the synthetic consumer, the process was killed after external deletion but before progress commit; an independent observer completed the same operation",
+    "Model volume removed; dataset deletion stops annotation and retains saved data",
+    "Explicit retained-annotation cleanup deletes A only, preserving B and source rows",
+    "Batched observations preserve EMPTY versus PRESENT after selected deletion",
+    "Real Kubernetes resourceVersion rejects a delayed annotation route write after Stop",
+    "A later explicit purge of B succeeds even after its source/image settings retire; all five source rows remain"
+  ],
+  "datasets": [
+    3,
+    4
+  ],
+  "annotation_a": "060e161d-4f7a-4fde-8a5f-6f0b0416af76",
+  "annotation_b": "e24b7199-023e-4214-b7b1-5c6a25e40fe1",
+  "observations": [
+    {
+      "status": "PRESENT",
+      "counts": {
+        "total": 1,
+        "accepted": 0,
+        "rejected": 1,
+        "ignored": 0,
+        "invalid": 0
+      },
+      "error": null
+    },
+    {
+      "status": "PRESENT",
+      "counts": {
+        "total": 1,
+        "accepted": 0,
+        "rejected": 1,
+        "ignored": 0,
+        "invalid": 0
+      },
+      "error": null
+    }
+  ],
+  "model_id": 2,
+  "recovery_cleanup": "d7e81579-cb83-49ed-863a-c6a315be1ae2",
+  "annotation_cleanup": "8bf528fa-89f5-4fb2-bddc-a33e72e40dc2",
+  "source_rows_preserved": 5
+}

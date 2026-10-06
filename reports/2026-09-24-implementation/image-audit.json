@@ -1,0 +1,19 @@
+{
+  "scope": "Final image metadata and build history only",
+  "checked_known_values": 6,
+  "results": [
+    {
+      "image": "kedrogy-registry.localhost:5500/mysite:reliability-20260924-final",
+      "metadata_and_history_secret_match": false
+    },
+    {
+      "image": "kedrogy-registry.localhost:5500/mykedro:reliability-20260924-final",
+      "metadata_and_history_secret_match": false
+    },
+    {
+      "image": "kedrogy-registry.localhost:5500/web:reliability-20260924-final",
+      "metadata_and_history_secret_match": false
+    }
+  ],
+  "full_layer_scan": "Cancelled after Docker export/build contention and Docker shutdown; no full-layer-clean claim for this release. Prior baseline full-layer scan is documented in the 2026-09-22 report."
+}

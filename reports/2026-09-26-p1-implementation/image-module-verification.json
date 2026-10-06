@@ -1,0 +1,33 @@
+{
+  "ml": {
+    "digest": "sha256:b76286a6e858e4c8bd887eb0e0ae55206539699a30c89ff50e00eb14d8446026",
+    "files": {
+      "example/mykedro/src/mykedro/sources.py": "53f01300e8ca2e070aeebea2a273adccf4634453defd51c867892f26d5c50505",
+      "example/mykedro/src/mykedro/pipelines/train/nodes.py": "b0077afb35846d8667eb2097a3fd4666b05584df6232440440285a87c0a956a8",
+      "example/myrecipes/src/myrecipes/textcat_choice.py": "eee58cef2aea37312c1b6dc19661e25dc280585005ad8fe6c93875ad9a314c43",
+      "contracts/src/kedrogy_contracts/__init__.py": "2ebdc0bd3939f6b3bbad932e6b710ca6674df55b2e2ed99f922c7157500c7e1b",
+      "predict/src/ysz/predict/serve.py": "913e1b301f686c0d4dd7e4871c65c921352de7bdcb240b42dc68b52ea00021b0"
+    },
+    "verified": true
+  },
+  "backend": {
+    "digest": "sha256:36d937972c2a4c0178195b58b63e20bb07e23804e173e23afef53bcdd119d2fd",
+    "files": {
+      "kedrogy/src/kedrogy/serving_resources.py": "256f74325def1be7ff43ef3364816debb56a9fd6fb1e2ef4a8d6cdae01f28d18",
+      "kedrogy/src/kedrogy/serving.py": "437b763f0ffba0379467c096a9e6a81e06a001a4785bba90bdc0c560982cd229",
+      "kedrogy/src/kedrogy/training_preflight.py": "8929a4aba2b334f98d7339586023142a3456aab837617480891e63ce6fb1b781",
+      "kedrogy/src/kedrogy/views.py": "3988b96a51ef8c46cb0f8b0cb235105ec60bc37177026f125e725b02cf9950b1",
+      "kedrogy/src/kedrogy/serializers.py": "7f7c7f9dd97844359ae709a2b3c79c6d4cdfd8aa94efb215d3ed59ee48e9b015",
+      "contracts/src/kedrogy_contracts/__init__.py": "2ebdc0bd3939f6b3bbad932e6b710ca6674df55b2e2ed99f922c7157500c7e1b"
+    },
+    "verified": true
+  },
+  "web": {
+    "digest": "sha256:3a95591f6db5c86751147d8aeccae55a51aeade9a97ff996f3c9c9ba41ed35c0",
+    "files": {
+      "app/dist/index.html": "45243723b54310c51155b689dfa357fe175577ef6e4d69c3c125b0abc234dfec",
+      "app/dist/assets/index-CayEDTpz.js": "c4a103d4ea8a2b225e85489255bbcfc9d5ebf7dfb110dc1d6a88f2b22e48f033"
+    },
+    "verified": true
+  }
+}

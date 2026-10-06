@@ -1,0 +1,16 @@
+{"preflight": {"fingerprint": "6e3f39ce8c2362f0b46c19d02a006377bc98cff3fc363730b070c87b24e518a1", "dataset_id": 1, "policy": "single-label-choice-v2", "class_schema_version": 2, "artifact_version": 2, "labels": ["positive", "negative"], "total": 12, "usable": 12, "accepted": 12, "rejected": 0, "ignored": 0, "invalid": 0, "conflicting": 0, "needs_review": 0, "duplicate_accepted": 0, "label_counts": {"positive": 6, "negative": 6}}}
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.060
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.055
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.054
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.059
+Annotation stopped after saved browser answers.
+Operation failed code=RESOURCE_NOT_FOUND exit=1 duration=0.053
+Operation failed code=RESOURCE_EXISTS exit=1 duration=0.091
+Training finished.
+Traceback (most recent call last):
+  File "/Users/millafedotova/work/kedrogy-code/scripts/check_p1_runtime.py", line 192, in <module>
+    annotation_stage() if args.stage == 'annotation' else training_stage()
+                                                          ^^^^^^^^^^^^^^^^
+  File "/Users/millafedotova/work/kedrogy-code/scripts/check_p1_runtime.py", line 116, in training_stage
+    raise AssertionError(f'Training failed: {trained.error}')
+AssertionError: Training failed: {'code': 'TRAINING_FAILED', 'message': 'The training Job failed. Check annotation labels and available resources.'}

@@ -59,12 +59,17 @@
                 </div>
             </div>
         </div>
+        <p>Annotation data: {{ annotation_data.status }}. Session: {{ annotation_session.status }}.</p>
+        {% if annotation_session.url %}<a href="{{ annotation_session.url }}" class="btn">Open annotation session</a>{% endif %}
+        <form action="{% url 'kedrogy:annotation-stop' dataset.id %}" method="post">{% csrf_token %}<button class="btn">Stop annotation</button></form>
+        <form action="{% url 'kedrogy:annotation-refresh' dataset.id %}" method="post">{% csrf_token %}<button class="btn">Refresh annotation counts</button></form>
         <div class="flex gap-2 mb-6">
             <form action="{% url 'kedrogy:delete' dataset.id %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-error btn-sm">{% trans "Delete" %}</button>
             </form>
             <form action="{% url 'kedrogy:label' dataset.id %}" method="post">
+                <input type="hidden" name="request_key" value="{{ request_key }}" />
                 {% csrf_token %}
                 <button type="submit" class="btn btn-primary btn-sm">{% trans "Label" %}</button>
             </form>

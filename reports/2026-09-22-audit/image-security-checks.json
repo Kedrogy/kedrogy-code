@@ -1,0 +1,16 @@
+[
+  {
+    "image": "kedrogy-registry.localhost:5500/mysite:security-20260922-final",
+    "layers": 15,
+    "files": 20926,
+    "checked_secret_values": 6,
+    "findings": []
+  },
+  {
+    "image": "kedrogy-registry.localhost:5500/mykedro:security-20260922-final",
+    "layers": 20,
+    "files": 50981,
+    "checked_secret_values": 6,
+    "findings": []
+  }
+]

@@ -1,34 +1,18 @@
+import { messageText, statusText } from "../i18n/messages";
+import { parseAnnotationSession, type AnnotationSession } from "../api/operations";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { API } from "../api";
 
-interface Dataset {
-  id: number;
-  dataset_name: string;
-  image: string;
-  workingDir: string;
-  pipeline: string;
-  recipe_options: string;
-  data_table_name: string;
-  id_field: string;
-  labelled: boolean;
-}
-
-interface Model {
-  id: number;
-  on_dataset: number;
-  dataset_name: string;
-  labels: string;
-  a_preprocess_fun: string;
-  trained: boolean;
-  served: boolean;
-}
+import { parseModel, parseDataset, type Dataset, type Model } from "../api/models";
+import { responseError } from "../api/tasks";
 
 export default function HomePage() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
+  const [annotation, setAnnotation] = useState<AnnotationSession | null>(null);
   const [datasets, setDatasets] = useState<Dataset[]>([]);
   const [models, setModels] = useState<Model[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -43,22 +27,36 @@ export default function HomePage() {
     recipe_options: "",
   });
 
-  const load = async () => {
+  const load = async (signal = AbortSignal.timeout(10000)) => {
     try {
-      const [dRes, mRes] = await Promise.all([
-        fetch(`${API}/api/datasets/`),
-        fetch(`${API}/api/models/`),
+      const [dRes, mRes, aRes] = await Promise.all([
+        fetch(`${API}/api/datasets/`, { signal }),
+        fetch(`${API}/api/models/`, { signal }),
+        fetch(`${API}/api/datasets/active_annotation/`, { signal }),
       ]);
-      if (!dRes.ok || !mRes.ok) throw new Error("Failed to load data");
-      setDatasets(await dRes.json());
-      setModels(await mRes.json());
-    } catch (err: any) {
-      setError(err.message);
+      if (!dRes.ok || !mRes.ok || !aRes.ok) throw new Error("Failed to load data");
+      const datasets: unknown = await dRes.json();
+      const models: unknown = await mRes.json();
+      if (!Array.isArray(datasets) || !Array.isArray(models)) throw new Error("The list response is invalid.");
+      const active = parseAnnotationSession(await aRes.json());
+      if (signal.aborted) return;
+      setAnnotation(active);
+      setDatasets(datasets.map(parseDataset));
+      setModels(models.map(parseModel));
+    } catch (err: unknown) {
+      if (!signal.aborted) setError(err instanceof Error ? err.message : "The request failed.");
     }
   };
 
   useEffect(() => {
-    load();
+    const controller = new AbortController();
+    let timer: ReturnType<typeof setTimeout>;
+    async function refresh() {
+      await load(AbortSignal.any([controller.signal, AbortSignal.timeout(10000)]));
+      if (!controller.signal.aborted) timer = setTimeout(() => { void refresh(); }, 10000);
+    }
+    void refresh();
+    return () => { controller.abort(); clearTimeout(timer); };
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,7 +72,7 @@ export default function HomePage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      if (!res.ok) throw new Error("Failed to create dataset");
+      if (!res.ok) throw new Error(await responseError(res));
       setFormData({
         dataset_name: "",
         data_table_name: "",
@@ -85,12 +83,12 @@ export default function HomePage() {
         recipe_options: "",
       });
       await load();
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "The request failed.");
     }
   };
 
-  const formFields = [
+  const formFields: { name: keyof typeof formData; label: string }[] = [
     { name: "dataset_name", label: t("name") },
     { name: "data_table_name", label: t("dataTable") },
     { name: "id_field", label: t("idField") },
@@ -102,46 +100,17 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-base-200">
-      {/* Navbar */}
-      <div className="navbar bg-base-100 shadow-sm">
-        <div className="flex-1">
-          <span className="text-xl font-bold px-4">Kedrogy</span>
-        </div>
-        <div className="flex-none gap-2 pr-4">
-          <button
-            className={`btn btn-sm ${i18n.language === "en" ? "btn-primary" : "btn-outline"}`}
-            onClick={() => i18n.changeLanguage("en")}
-          >
-            EN
-          </button>
-          <button
-            className={`btn btn-sm ${i18n.language === "ru" ? "btn-primary" : "btn-outline"}`}
-            onClick={() => i18n.changeLanguage("ru")}
-          >
-            RU
-          </button>
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-6 py-8">
         <h1 className="text-3xl font-bold uppercase mb-6">{t("title")}</h1>
 
-        {error && <div className="alert alert-error mb-6">{error}</div>}
+        {error && <div className="alert alert-error mb-6">{messageText(error, t)}</div>}
 
-        {/* Prodigy status badge */}
-        {datasets.length > 0 && (() => {
-          const latest = datasets[datasets.length - 1];
-          return (
-            <div className="mb-6">
-              <span
-                className="badge badge-primary badge-lg p-4 cursor-pointer"
-                onClick={() => navigate(`/datasets/${latest.id}`)}
-              >
-                {t("prodigyRunning", { dataset: latest.dataset_name })}
-              </span>
-            </div>
-          );
-        })()}
+        <div className="mb-6 space-x-4" aria-live="polite">
+          <span>{t("annotationSession", { status: annotation ? statusText(annotation.status, t) : t("loading") })}</span>
+          {annotation?.dataset_id && <Link to={`/datasets/${annotation.dataset_id}`}>{t("datasetNumber", { id: annotation.dataset_id })}</Link>}
+          {annotation?.url && <a href={annotation.url} target="_blank" rel="noreferrer">{t("openAnnotationSession")}</a>}
+          <Link to="/retained-annotations">{t("retainedAnnotations")}</Link>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
 
@@ -157,7 +126,7 @@ export default function HomePage() {
                       <tr>
                         <th>{t("name")}</th>
                         <th>{t("labels")}</th>
-                        <th>Trained</th>
+                        <th>{t("trained")}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -168,8 +137,8 @@ export default function HomePage() {
                           onClick={() => navigate(`/models/${model.id}`)}
                         >
                           <td className="font-semibold">{model.dataset_name}</td>
-                          <td>{model.labels}</td>
-                          <td>{model.trained ? "Yes" : "No"}</td>
+                          <td>{model.labels.join(", ")}</td>
+                          <td>{t(model.trained ? "verified" : model.artifact_status === "UNVERIFIED" ? "notChecked" : "unavailable")}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -182,7 +151,7 @@ export default function HomePage() {
 
             {/* Datasets table */}
             <div>
-              <h2 className="text-2xl font-semibold mb-4">Datasets</h2>
+              <h2 className="text-2xl font-semibold mb-4">{t("datasets")}</h2>
               {datasets.length > 0 ? (
                 <div className="overflow-x-auto bg-base-100 rounded-xl shadow">
                   <table className="table table-zebra">
@@ -190,7 +159,7 @@ export default function HomePage() {
                       <tr>
                         <th>{t("name")}</th>
                         <th>{t("dataTable")}</th>
-                        <th>Labelled</th>
+                        <th>{t("annotationData")}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -202,14 +171,14 @@ export default function HomePage() {
                         >
                           <td className="font-semibold">{ds.dataset_name}</td>
                           <td>{ds.data_table_name}</td>
-                          <td>{ds.labelled ? "Yes" : "No"}</td>
+                          <td>{statusText(ds.annotation_data.status, t)}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
               ) : (
-                <p className="text-gray-500">No datasets yet.</p>
+                <p className="text-gray-500">{t("noDatasets")}</p>
               )}
             </div>
           </div>
@@ -226,7 +195,7 @@ export default function HomePage() {
                       <input
                         name={field.name}
                         className="input input-bordered w-full"
-                        value={(formData as any)[field.name]}
+                        value={formData[field.name]}
                         onChange={handleInputChange}
                       />
                     </fieldset>

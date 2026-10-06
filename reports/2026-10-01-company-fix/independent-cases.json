@@ -1,0 +1,122 @@
+[
+  {
+    "text": "Amazon hired additional warehouse workers.",
+    "expected": "company_mentioned",
+    "language": "en"
+  },
+  {
+    "text": "Google published its annual environmental report.",
+    "expected": "company_mentioned",
+    "language": "en"
+  },
+  {
+    "text": "Samsung recalled a batch of mobile phones.",
+    "expected": "company_mentioned",
+    "language": "en"
+  },
+  {
+    "text": "I bought running shoes from Adidas.",
+    "expected": "company_mentioned",
+    "language": "en"
+  },
+  {
+    "text": "Netflix raised the monthly subscription price.",
+    "expected": "company_mentioned",
+    "language": "en"
+  },
+  {
+    "text": "IBM opened a research laboratory in Canada.",
+    "expected": "company_mentioned",
+    "language": "en"
+  },
+  {
+    "text": "Nokia signed an agreement with a telecom operator.",
+    "expected": "company_mentioned",
+    "language": "en"
+  },
+  {
+    "text": "Spotify released a new feature for podcast listeners.",
+    "expected": "company_mentioned",
+    "language": "en"
+  },
+  {
+    "text": "The children played football in the park.",
+    "expected": "no_company",
+    "language": "en"
+  },
+  {
+    "text": "Heavy snow closed the mountain road.",
+    "expected": "no_company",
+    "language": "en"
+  },
+  {
+    "text": "Our company is hiring an accountant.",
+    "expected": "no_company",
+    "language": "en"
+  },
+  {
+    "text": "The president met the prime minister yesterday.",
+    "expected": "no_company",
+    "language": "en"
+  },
+  {
+    "text": "She baked bread for her family.",
+    "expected": "no_company",
+    "language": "en"
+  },
+  {
+    "text": "A university opened a new library.",
+    "expected": "no_company",
+    "language": "en"
+  },
+  {
+    "text": "Small businesses are struggling with rising rents.",
+    "expected": "no_company",
+    "language": "en"
+  },
+  {
+    "text": "The train arrived at the station on time.",
+    "expected": "no_company",
+    "language": "en"
+  },
+  {
+    "text": "Яндекс запустил новый сервис для водителей.",
+    "expected": "company_mentioned",
+    "language": "ru"
+  },
+  {
+    "text": "Сбербанк открыл отделение в нашем районе.",
+    "expected": "company_mentioned",
+    "language": "ru"
+  },
+  {
+    "text": "Компания Samsung представила новый телефон.",
+    "expected": "company_mentioned",
+    "language": "ru"
+  },
+  {
+    "text": "Я заказал кроссовки в магазине Nike.",
+    "expected": "company_mentioned",
+    "language": "ru"
+  },
+  {
+    "text": "Дети играют во дворе после школы.",
+    "expected": "no_company",
+    "language": "ru"
+  },
+  {
+    "text": "Завтра ожидается сильный снегопад.",
+    "expected": "no_company",
+    "language": "ru"
+  },
+  {
+    "text": "Наша компания ищет нового бухгалтера.",
+    "expected": "no_company",
+    "language": "ru"
+  },
+  {
+    "text": "В городском парке посадили деревья.",
+    "expected": "no_company",
+    "language": "ru"
+  }
+]

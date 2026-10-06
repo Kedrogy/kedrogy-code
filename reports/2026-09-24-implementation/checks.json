@@ -1,0 +1,37 @@
+{
+  "backend_tests": 42,
+  "postgres_concurrency_tests": 3,
+  "offline_checkpoint_tests": 5,
+  "frontend_contract_tests": 10,
+  "http_tls_checks": 14,
+  "frontend_build": "passed",
+  "django_check": "passed",
+  "django_deploy_check": {
+    "errors": 0,
+    "warnings": [
+      "security.W004: HSTS intentionally staged"
+    ]
+  },
+  "ruff_changed_runtime_modules": "passed",
+  "git_diff_check": "passed",
+  "browser_checks": [
+    "FAILED shows safe reason and no success message",
+    "verified published model remains available after failed retraining",
+    "unknown task shows Unavailable and an explicit retry button",
+    "SUCCEEDED shows completion",
+    "working model 20 is unavailable for Serve after failed artifact verification"
+  ],
+  "network_denial_checks": 3,
+  "real_tunnel_cleanup": "passed",
+  "worker_crash_and_docker_restart_recovery": "passed",
+  "migration_consistency": "passed",
+  "tilt_runtime": "not run: binary unavailable",
+  "image_secret_scan": "metadata and history only; full-layer export cancelled",
+  "cleanup": {
+    "fixture_namespace": "deleted",
+    "fixture_postgres_container_and_volume": "removed",
+    "fixture_listeners_and_tunnels": "stopped",
+    "fixture_credentials_and_tls_material": "removed",
+    "working_application": "running on localhost:5173 with API on 127.0.0.1:8002"
+  }
+}

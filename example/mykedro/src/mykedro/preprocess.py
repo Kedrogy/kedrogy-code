@@ -1,3 +1,5 @@
-def preprocess_fun(text: str):
-    print("preprocess_fun", text)
+"""The approved identity preprocessor does not log submitted text."""
+
+
+def preprocess_fun(text: str) -> str:
     return text

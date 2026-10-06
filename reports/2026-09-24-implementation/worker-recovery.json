@@ -1,0 +1,19 @@
+{
+  "run_id": "750cdedf-b1c8-450d-9959-9a485d8e1b19",
+  "status": "SUCCEEDED",
+  "job_uid_preserved": true,
+  "image": "kedrogy-registry:5000/mykedro@sha256:897d9d4bb8eb431101be7d160f1981fab46224fc3d2ecd99bf25883d8d6befcb",
+  "checks": [
+    "real queue-worker SIGKILL after Job creation",
+    "independent reconciliation process",
+    "Docker and database shutdown/restart during observation",
+    "expired lease recovered without creating a second Job",
+    "full Kedro pipeline with saved data seed and tiny BERT",
+    "independent read-only verifier published matching artifact"
+  ],
+  "preceding_attempts": [
+    "Competing test deployment reconciler rejected an unapproved fixture image; test isolation corrected.",
+    "A 300-second fixture Job hit its deadline during heavy Docker contention; state was TIMED_OUT."
+  ],
+  "artifact_path": "runs/750cdedf-b1c8-450d-9959-9a485d8e1b19/9b4409ba-3ed2-4881-b497-81444c6a9cdb/artifact"
+}

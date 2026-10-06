@@ -1,0 +1,22 @@
+[
+  {
+    "image": "mysite",
+    "verified_files": [
+      "kedrogy/src/kedrogy/serving.py",
+      "kedrogy/src/kedrogy/training.py",
+      "kedrogy/src/kedrogy/serializers.py",
+      "contracts/src/kedrogy_contracts/__init__.py"
+    ],
+    "shared_contracts_version": "0.1.0"
+  },
+  {
+    "image": "mykedro",
+    "verified_files": [
+      "predict/src/ysz/predict/serve.py",
+      "example/mykedro/src/mykedro/pipelines/train/nodes.py",
+      "example/mykedro/src/mykedro/preprocess.py",
+      "contracts/src/kedrogy_contracts/__init__.py"
+    ],
+    "shared_contracts_version": "0.1.0"
+  }
+]

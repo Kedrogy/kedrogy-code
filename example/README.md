@@ -14,9 +14,9 @@ NB Dockerfile-example has to pull ../predict for development , hence build from 
 cd ..
 
 docker build --platform=linux/arm64 \
---build-arg UV_INDEX_PRODIGY_USERNAME=$UV_INDEX_PRODIGY_USERNAME \
---build-arg UV_INDEX_YSZ_USERNAME=$UV_INDEX_YSZ_USERNAME \
---build-arg UV_INDEX_YSZ_PASSWORD=$UV_INDEX_YSZ_PASSWORD \
+--secret id=prodigy_username,env=UV_INDEX_PRODIGY_USERNAME \
+--secret id=ysz_username,env=UV_INDEX_YSZ_USERNAME \
+--secret id=ysz_password,env=UV_INDEX_YSZ_PASSWORD \
 --ssh default=~/.ssh/id_rsa \
 -t kedrogy-registry.localhost:5500/mykedro:latest \
 -f Dockerfile-example .
