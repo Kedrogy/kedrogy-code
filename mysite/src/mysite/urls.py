@@ -27,6 +27,7 @@ from . import views
 
 urlpatterns = (
     [
+        path("api/", include("kedrogy.api_urls")),
         path("", include("kedrogy.urls")),
         path("admin/", admin.site.urls),
         path("logout/", views.logout, name="logout"),
