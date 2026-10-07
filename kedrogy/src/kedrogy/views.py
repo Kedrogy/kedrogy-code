@@ -5,8 +5,10 @@ import socket
 from contextlib import closing
 import subprocess
 import time
+from django.http import JsonResponse
 
 import requests
+from django.views.decorators.csrf import csrf_exempt
 
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
@@ -96,6 +98,27 @@ def delete_dataset(request, dataset_id):
     return redirect("kedrogy:index")
 
 
+@csrf_exempt
+def label_dataset_api(request, dataset_id):
+    if request.method != "POST":
+        return JsonResponse({"error": "POST required"}, status=405)
+    dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
+    myresult = new_dataset_task.enqueue(dataset.to_dict())
+    return JsonResponse({
+        "dataset_name": dataset.dataset_name,
+        "result_id": str(myresult.id),
+    })
+
+
+@csrf_exempt
+def delete_dataset_api(request, dataset_id):
+    if request.method != "POST":
+        return JsonResponse({"error": "POST required"}, status=405)
+    dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
+    dataset.delete()
+    return JsonResponse({"deleted": True})
+
+
 def new_dataset_poll(request, dataset_name, result_id):
     context = {"dataset_name": dataset_name, "result_id": result_id}
     return render(request, "kedrogy/detail_task.html", context)
@@ -118,21 +141,32 @@ def get_latest_dataset():
 
 def new_dataset_result(request, result_id):
     taskResult: TaskResult = new_dataset_task.get_result(result_id)
+
+    logs = taskResult.metadata.get("logs", "")
+
     if not taskResult.is_finished:
         result = f"status: {taskResult.status}"
-    else:
-        result = taskResult.return_value
-        # dataset = get_object_or_404(DjangoDataset, pk=result["dataset_id"])
-        # dataset.running = True
-        # dataset.save()
-        update_latest_dataset(result["dataset_id"])
-        return redirect("kedrogy:index")
-    logs = taskResult.metadata.get("logs", "")
-    # TODO if is_finished return non-HTMX to stop polling
-    return render(
-        request,
-        "kedrogy/detail_task.html#task_result",
-        {"result_id": result_id, "result": result, "logs": logs},
+        return JsonResponse(
+            {
+                "finished": False,
+                "status": taskResult.status,
+                "logs": logs,
+            }
+        )
+    result_data = taskResult.return_value
+    dataset_id = result_data["dataset_id"]
+
+    dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
+    update_latest_dataset(dataset_id)
+
+    return JsonResponse(
+        {
+            "finished": True,
+            "result": result_data,
+            "dataset_name": dataset.dataset_name,
+            "dataset_id": dataset_id,
+            "logs": logs,
+        }
     )
 
 
@@ -281,6 +315,52 @@ def find_free_port():
         return s.getsockname()[1]
 
 
+from django.http import JsonResponse
+
+
+def index_api(request):
+    datasets = list(DjangoDataset.objects.all().values(
+        "id", "dataset_name", "data_table_name", "id_field",
+        "image", "workingDir", "pipeline", "recipe_options",
+    ))
+    models_qs = list(DjangoModel.objects.select_related("on_dataset").all())
+    models = [
+        {
+            "id": m.id,
+            "on_dataset_id": m.on_dataset_id,
+            "dataset_name": m.on_dataset.dataset_name,
+            "labels": m.labels,
+            "a_preprocess_fun": m.a_preprocess_fun,
+            "trained": m.trained,
+            "served": m.served,
+        }
+        for m in models_qs
+    ]
+    latest = get_latest_dataset()
+    return JsonResponse({
+        "datasets": datasets,
+        "models": models,
+        "latest_dataset": {"name": latest.dataset.dataset_name, "id": latest.dataset.id} if latest else None,
+    })
+
+
+def dataset_detail_api(request, dataset_id):
+    dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
+
+    return JsonResponse(
+        {
+            "id": dataset.id,
+            "dataset_name": dataset.dataset_name,
+            "data_table_name": dataset.data_table_name,
+            "id_field": dataset.id_field,
+            "image": dataset.image,
+            "workingDir": dataset.workingDir,
+            "pipeline": dataset.pipeline,
+            "recipe_options": dataset.recipe_options,
+        }
+    )
+
+
 def predict_model(request, model_id):
     if request.method == "POST":
         text_input = request.POST.get("text_input")
@@ -322,4 +402,104 @@ def predict_model(request, model_id):
             "predicted_class": predicted_class,
             "given_text_input": text_input,
         },
+    )
+
+
+@csrf_exempt
+def predict_model_api(request, model_id):
+    if request.method != "POST":
+        return JsonResponse({"error": "POST required"}, status=405)
+    data = json.loads(request.body) if request.content_type == "application/json" else request.POST
+    text_input = data.get("text_input", "")
+    model = get_object_or_404(DjangoModel, pk=model_id)
+    if os.getenv("KUBERNETES_SERVICE_HOST", "NOT_FOUND") != "NOT_FOUND":
+        url = f"http://serve-svc-{model.id}.default.svc.cluster.local:8888/predict"
+    else:
+        try_port = find_free_port()
+        process = subprocess.Popen(
+            ["kubectl", "port-forward", f"svc/serve-svc-{model.id}", f"{try_port}:8888"],
+            stdout=subprocess.PIPE, text=True,
+        )
+        for line in process.stdout:
+            if "Forwarding from" in line:
+                break
+            time.sleep(0.3)
+        url = f"http://0.0.0.0:{try_port}/predict"
+    predicted_class = predict_call(text_input, url)
+    if process:
+        process.kill()
+    return JsonResponse({"predicted_class": predicted_class, "text_input": text_input})
+
+
+@csrf_exempt
+def train_model_api(request, model_id):
+    if request.method != "POST":
+        return JsonResponse({"error": "POST required"}, status=405)
+
+    model = get_object_or_404(DjangoModel, pk=model_id)
+    task = new_train_task.enqueue(model_id)
+
+    return JsonResponse({"status": "started", "result_id": task.id})
+
+
+@csrf_exempt
+def serve_model_api(request, model_id):
+    if request.method != "POST":
+        return JsonResponse({"error": "POST required"}, status=405)
+
+    model = get_object_or_404(DjangoModel, pk=model_id)
+    task = new_serve_task.enqueue(model_id)
+
+    return JsonResponse({"status": "started", "result_id": task.id})
+
+
+@csrf_exempt
+def create_dataset_api(request):
+    if request.method != "POST":
+        return JsonResponse({"error": "POST required"}, status=405)
+    data = json.loads(request.body) if request.content_type == "application/json" else request.POST
+    this_dataset = DjangoDataset(
+        dataset_name=data.get("dataset_name", ""),
+        image=data.get("image", ""),
+        workingDir=data.get("workingDir", ""),
+        pipeline=data.get("pipeline", ""),
+        recipe_options=data.get("recipe_options", ""),
+        data_table_name=data.get("data_table_name", ""),
+        id_field=data.get("id_field", ""),
+    )
+    this_dataset.save()
+    return JsonResponse({"id": this_dataset.id, "dataset_name": this_dataset.dataset_name})
+
+
+@csrf_exempt
+def create_model_api(request, dataset_id):
+    if request.method != "POST":
+        return JsonResponse({"error": "POST required"}, status=405)
+    data = json.loads(request.body) if request.content_type == "application/json" else request.POST
+    dataset = get_object_or_404(DjangoDataset, pk=dataset_id)
+    that_model = DjangoModel.objects.create(
+        on_dataset=dataset,
+        labels=data.get("labels", ""),
+        a_preprocess_fun=data.get("a_preprocess_fun", ""),
+    )
+    return JsonResponse({"id": that_model.id})
+
+
+def train_result_api(request, result_id):
+    taskResult: TaskResult = new_train_task.get_result(result_id)
+
+    logs = taskResult.metadata.get("logs", "")
+
+    return JsonResponse(
+        {"finished": taskResult.is_finished, "status": taskResult.status, "logs": logs}
+    )
+
+
+def serve_result_api(request, result_id):
+    taskResult: TaskResult = new_serve_task.get_result(result_id)
+
+    logs = taskResult.metadata.get("logs", "")
+
+    return JsonResponse(
+        {"finished": taskResult.is_finished, "status": taskResult.status, "logs": logs}
     )
