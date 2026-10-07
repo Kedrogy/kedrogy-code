@@ -1,73 +1,65 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchTrainStatus } from "../api";
+import { useTranslation } from "react-i18next";
+import { API } from "../api";
 
 export default function TrainModelPage() {
-  const { modelId, resultId } = useParams<{
-    modelId: string;
-    resultId: string;
-  }>();
+  const { modelId, resultId } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [logs, setLogs] = useState("");
-  const [status, setStatus] = useState("Training...");
+  const [status, setStatus] = useState("Starting training...");
   const [error, setError] = useState("");
-  const [finished, setFinished] = useState(false);
 
   useEffect(() => {
     if (!resultId) return;
 
     const interval = setInterval(async () => {
       try {
-        const data = await fetchTrainStatus(resultId);
+        const res = await fetch(`${API}/api/tasks/train/${resultId}/status/`);
+        if (!res.ok) throw new Error("Failed to poll status");
+        const data = await res.json();
+
         setLogs(data.logs || "");
         setStatus(data.status || "");
 
-        if (data.finished) {
+        if (data.is_finished) {
           clearInterval(interval);
-          setFinished(true);
+          setStatus("Training complete!");
+          setTimeout(() => navigate(`/models/${modelId}`), 1500);
         }
-      } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : String(err));
+      } catch (err: any) {
         clearInterval(interval);
+        setError(err.message);
       }
-    }, 1000);
+    }, 2000);
 
     return () => clearInterval(interval);
-  }, [resultId]);
+  }, [resultId, modelId, navigate]);
 
   return (
-    <div className="p-8 min-h-screen bg-base-200">
-      <h1 className="text-2xl font-bold mb-4">Training Model #{modelId}</h1>
+    <div className="min-h-screen bg-base-200 p-8">
+      <button onClick={() => navigate(`/models/${modelId}`)} className="btn btn-sm btn-outline mb-6">
+        {t("home")}
+      </button>
 
-      <p className="mb-2">{status}</p>
-      {error && <p className="text-red-500 mb-2">{error}</p>}
-
-      <textarea
-        value={logs}
-        readOnly
-        rows={12}
-        className="w-full textarea textarea-bordered font-mono mb-4"
-      />
-
-      {finished && (
-        <div className="flex gap-2">
-          <button
-            className="btn btn-success"
-            onClick={() => navigate(`/models/${modelId}/serve`)}
-          >
-            Serve Model
-          </button>
-          <button
-            className="btn btn-outline"
-            onClick={() =>
-              navigate(`/models/${modelId}`, { state: { trained: true } })
-            }
-          >
-            Back to Model
-          </button>
+      <div className="card bg-base-100 shadow-lg">
+        <div className="card-body">
+          <h2 className="card-title">Training model #{modelId}</h2>
+          <p>Status: <span className="badge badge-primary">{status}</span></p>
+          {error && <div className="alert alert-error">{error}</div>}
+          <fieldset className="fieldset">
+            <legend className="fieldset-legend">{t("result") || "Logs"}</legend>
+            <textarea
+              value={logs}
+              readOnly
+              rows={16}
+              className="textarea textarea-bordered w-full font-mono"
+            />
+          </fieldset>
         </div>
-      )}
+      </div>
     </div>
   );
 }

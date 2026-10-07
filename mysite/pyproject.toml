@@ -10,11 +10,18 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "django>=6.0.1",
+    "psycopg[binary,pool]",
+
     "kedrogy",
 ]
 
 [tool.uv.sources]
 kedrogy = { path = "../kedrogy", editable = true }
+
+[dependency-groups]
+dev = [
+    "django-extensions>=4.1",
+]
 
 [tool.uv]
 package = true
