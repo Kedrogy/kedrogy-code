@@ -1,0 +1,8 @@
+{
+  "kind": "Deployment",
+  "name": "prodigy",
+  "namespace": "default",
+  "uid": "d7b5cba4-7344-4054-8e58-b423d85050a4",
+  "namespace_uid": "9353e5be-9f68-4d41-aaae-84a20e9960e1",
+  "spec_digest": "b9803d06c9f38b8c379428e748aa27f0589412a5c23ed672870229670b2a50f2"
+}

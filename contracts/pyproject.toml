@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kedrogy-contracts"
+version = "0.1.0"
+description = "Pure shared validation contracts for Kedrogy services"
+requires-python = ">=3.12"
+
+[tool.setuptools.packages.find]
+where = ["src"]

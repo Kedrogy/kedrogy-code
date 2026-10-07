@@ -1,0 +1,17 @@
+{
+  "fixture_only": true,
+  "checks": [
+    "Saved one real Prodigy answer in A, stopped A, then saved one in B",
+    "Home names B as active and reports both datasets PRESENT",
+    "Cleanup preview identifies pvc-model-2 and explains retained annotations and all-file removal",
+    "Recovered cleanup shows SUCCEEDED with 3 of 3 steps",
+    "Timed-out cleanup stays visible as NEEDS_REVIEW with safe error and retry action",
+    "Retry changes the same operation 704b8d02-f708-4ebf-a29a-bf1ae2ee9f9a to SUCCEEDED with 2 of 2 steps"
+  ],
+  "screenshots": [
+    "annotation-status.png",
+    "cleanup-needs-review.png",
+    "cleanup-retried.png",
+    "cleanup-completed.png"
+  ]
+}

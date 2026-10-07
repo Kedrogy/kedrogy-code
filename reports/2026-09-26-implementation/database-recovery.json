@@ -1,0 +1,18 @@
+{
+  "outage_seconds": 15,
+  "reconcilers": [
+    {
+      "name": "training-reconciler",
+      "same_process_survived": true
+    },
+    {
+      "name": "serving-reconciler",
+      "same_process_survived": true
+    },
+    {
+      "name": "operation-reconciler",
+      "same_process_survived": true
+    }
+  ],
+  "data_observer_resumed": true
+}

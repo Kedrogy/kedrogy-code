@@ -1,5 +1,6 @@
-# This is a boilerplate parameters config generated for pipeline 'ingest'
-# using Kedro 1.2.0.
-#
-# Documentation for this file format can be found in "Parameters"
-# Link: https://docs.kedro.org/en/1.2.0/configuration/parameters.html
+# Imports are explicit and preview-only until apply is set to true.
+ingest_options:
+  source_key: null
+  request_key: null
+  apply: false
+  deduplicate: false

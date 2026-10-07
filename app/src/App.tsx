@@ -1,5 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import { LanguageSwitcher } from "./components/LanguageSwitcher";
+
+import CleanupPage from "./pages/CleanupPage";
+import RetainedAnnotationsPage from "./pages/RetainedAnnotationsPage";
 import HomePage from "./pages/HomePage";
 import DatasetDetailPage from "./pages/DatasetDetailPage";
 import CreateDatasetTaskPage from "./pages/CreateDatasetTaskPage";
@@ -11,7 +15,11 @@ import DeleteModelPage from "./pages/DeleteModelPage";
 function App() {
   return (
     <Router>
+      <LanguageSwitcher />
       <Routes>
+        <Route path="/cleanup/:target/:id/:action" element={<CleanupPage />} />
+        <Route path="/operations/delete/:resultId" element={<DeleteModelPage />} />
+        <Route path="/retained-annotations" element={<RetainedAnnotationsPage />} />
         {/* main */}
         <Route path="/" element={<HomePage />} />
 

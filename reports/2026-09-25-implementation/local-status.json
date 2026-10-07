@@ -1,0 +1,12 @@
+{
+  "frontend": 200,
+  "backend": 200,
+  "model": 200,
+  "model_status": {
+    "id": 20,
+    "artifact_status": "INVALID",
+    "trained": false,
+    "served": false,
+    "serving": "UNVERIFIED"
+  }
+}

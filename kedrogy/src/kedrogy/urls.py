@@ -4,6 +4,11 @@ from . import views
 
 app_name = "kedrogy"
 urlpatterns = [
+    path("legacy_cleanup/retry/<uuid:identifier>/", views.retry_cleanup_view, name="retry-cleanup"),
+    path("legacy_cleanup/<str:action>/<int:identifier>/", views.cleanup, name="cleanup"),
+    path("annotation/stop/<int:dataset_id>/", views.stop_annotation_view, name="annotation-stop"),
+    path("annotation/refresh/<int:dataset_id>/", views.refresh_annotations_view, name="annotation-refresh"),
+    path("stop_model/<int:model_id>", views.stop_model, name="stop_model"),
     path("", views.index, name="index"),
     path("<int:dataset_id>/", views.detail, name="detail"),
     path("new_dataset/", views.new_dataset, name="new"),
@@ -40,20 +45,4 @@ urlpatterns = [
         name="new-delete-model-result",
     ),
     path("predict_model/<int:model_id>/", views.predict_model, name="predict_model"),
-    path(
-        "api/datasets/result/<str:result_id>/",
-        views.new_dataset_result,
-        name="api-dataset-result",
-    ),
-    path("api/index/", views.index_api, name="api-index"),
-    path("api/datasets/<int:dataset_id>/label/", views.label_dataset_api, name="api-label-dataset"),
-    path("api/datasets/<int:dataset_id>/delete/", views.delete_dataset_api, name="api-delete-dataset"),
-    path("api/datasets/create/", views.create_dataset_api, name="api-create-dataset"),
-    path("api/datasets/<int:dataset_id>/models/create/", views.create_model_api, name="api-create-model"),
-    path("api/datasets/<int:dataset_id>/", views.dataset_detail_api),
-    path("api/models/<int:model_id>/train/", views.train_model_api),
-    path("api/models/<int:model_id>/serve/", views.serve_model_api),
-    path("api/models/<int:model_id>/predict/", views.predict_model_api, name="api-predict"),
-    path("api/train/result/<str:result_id>/", views.train_result_api),
-    path("api/serve/result/<str:result_id>/", views.serve_result_api),
 ]

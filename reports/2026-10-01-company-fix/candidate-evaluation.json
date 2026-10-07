@@ -1,0 +1,184 @@
+{
+  "training_run": "1e029920-eb90-4277-8800-e4ab379fb75f",
+  "quality": {
+    "split": "validation",
+    "samples": 44,
+    "version": 1,
+    "accuracy": 0.9318181818181818,
+    "macro_f1": 0.8993135011441648,
+    "warnings": [],
+    "train_samples": 132,
+    "training_steps": 136,
+    "majority_baseline": 0.7727272727272727
+  },
+  "results": [
+    {
+      "text": "Amazon hired additional warehouse workers.",
+      "expected": "company_mentioned",
+      "language": "en",
+      "predicted": "company_mentioned",
+      "correct": true
+    },
+    {
+      "text": "Google published its annual environmental report.",
+      "expected": "company_mentioned",
+      "language": "en",
+      "predicted": "company_mentioned",
+      "correct": true
+    },
+    {
+      "text": "Samsung recalled a batch of mobile phones.",
+      "expected": "company_mentioned",
+      "language": "en",
+      "predicted": "company_mentioned",
+      "correct": true
+    },
+    {
+      "text": "I bought running shoes from Adidas.",
+      "expected": "company_mentioned",
+      "language": "en",
+      "predicted": "company_mentioned",
+      "correct": true
+    },
+    {
+      "text": "Netflix raised the monthly subscription price.",
+      "expected": "company_mentioned",
+      "language": "en",
+      "predicted": "company_mentioned",
+      "correct": true
+    },
+    {
+      "text": "IBM opened a research laboratory in Canada.",
+      "expected": "company_mentioned",
+      "language": "en",
+      "predicted": "company_mentioned",
+      "correct": true
+    },
+    {
+      "text": "Nokia signed an agreement with a telecom operator.",
+      "expected": "company_mentioned",
+      "language": "en",
+      "predicted": "company_mentioned",
+      "correct": true
+    },
+    {
+      "text": "Spotify released a new feature for podcast listeners.",
+      "expected": "company_mentioned",
+      "language": "en",
+      "predicted": "company_mentioned",
+      "correct": true
+    },
+    {
+      "text": "The children played football in the park.",
+      "expected": "no_company",
+      "language": "en",
+      "predicted": "no_company",
+      "correct": true
+    },
+    {
+      "text": "Heavy snow closed the mountain road.",
+      "expected": "no_company",
+      "language": "en",
+      "predicted": "no_company",
+      "correct": true
+    },
+    {
+      "text": "Our company is hiring an accountant.",
+      "expected": "no_company",
+      "language": "en",
+      "predicted": "no_company",
+      "correct": true
+    },
+    {
+      "text": "The president met the prime minister yesterday.",
+      "expected": "no_company",
+      "language": "en",
+      "predicted": "no_company",
+      "correct": true
+    },
+    {
+      "text": "She baked bread for her family.",
+      "expected": "no_company",
+      "language": "en",
+      "predicted": "no_company",
+      "correct": true
+    },
+    {
+      "text": "A university opened a new library.",
+      "expected": "no_company",
+      "language": "en",
+      "predicted": "no_company",
+      "correct": true
+    },
+    {
+      "text": "Small businesses are struggling with rising rents.",
+      "expected": "no_company",
+      "language": "en",
+      "predicted": "no_company",
+      "correct": true
+    },
+    {
+      "text": "The train arrived at the station on time.",
+      "expected": "no_company",
+      "language": "en",
+      "predicted": "no_company",
+      "correct": true
+    },
+    {
+      "text": "Яндекс запустил новый сервис для водителей.",
+      "expected": "company_mentioned",
+      "language": "ru",
+      "predicted": "company_mentioned",
+      "correct": true
+    },
+    {
+      "text": "Сбербанк открыл отделение в нашем районе.",
+      "expected": "company_mentioned",
+      "language": "ru",
+      "predicted": "no_company",
+      "correct": false
+    },
+    {
+      "text": "Компания Samsung представила новый телефон.",
+      "expected": "company_mentioned",
+      "language": "ru",
+      "predicted": "company_mentioned",
+      "correct": true
+    },
+    {
+      "text": "Я заказал кроссовки в магазине Nike.",
+      "expected": "company_mentioned",
+      "language": "ru",
+      "predicted": "company_mentioned",
+      "correct": true
+    },
+    {
+      "text": "Дети играют во дворе после школы.",
+      "expected": "no_company",
+      "language": "ru",
+      "predicted": "no_company",
+      "correct": true
+    },
+    {
+      "text": "Завтра ожидается сильный снегопад.",
+      "expected": "no_company",
+      "language": "ru",
+      "predicted": "no_company",
+      "correct": true
+    },
+    {
+      "text": "Наша компания ищет нового бухгалтера.",
+      "expected": "no_company",
+      "language": "ru",
+      "predicted": "no_company",
+      "correct": true
+    },
+    {
+      "text": "В городском парке посадили деревья.",
+      "expected": "no_company",
+      "language": "ru",
+      "predicted": "no_company",
+      "correct": true
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "namespace": "kedrogy-check-20260926",
+  "checks": [
+    {
+      "host": "10.43.248.191",
+      "port": 8000,
+      "blocked": true
+    },
+    {
+      "host": "10.42.0.153",
+      "port": 8000,
+      "blocked": true
+    },
+    {
+      "host": "10.43.222.224",
+      "port": 8080,
+      "blocked": true
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "transport_error": "PREDICTION_UNAVAILABLE",
+  "real_port_forward_reaped": true,
+  "pipes_closed": true
+}

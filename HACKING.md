@@ -1,5 +1,8 @@
 # development
 
+For the current source-import, annotation, serving and rollout contracts, see
+[Source and model contracts](SOURCE_AND_MODEL_CONTRACTS.md).
+
 THINKME golang/rust rewrite to bundle everything in one executable here <https://go.dev/doc/articles/wiki/#tmp_1> + rust axum /and embed assets to rust
 
 to also get dev dependencies copy .env-example to .env and set
@@ -62,12 +65,12 @@ tilt up
 ```sh
 DOCKER_BUILDKIT=1 docker build --platform=linux/arm64 \
 --ssh default \
---build-arg UV_INDEX_PRODIGY_USERNAME=$UV_INDEX_PRODIGY_USERNAME \
+--secret id=prodigy_username,env=UV_INDEX_PRODIGY_USERNAME \
 -t kedrogy-registry.localhost:5500/mysite:latest \
 -f Dockerfile-tilt .
 
 docker build --platform=linux/arm64 \
---build-arg UV_INDEX_PRODIGY_USERNAME=$UV_INDEX_PRODIGY_USERNAME \
+--secret id=prodigy_username,env=UV_INDEX_PRODIGY_USERNAME \
 -t kedrogy-registry.localhost:5500/mysite:latest \
 -f Dockerfile-tilt .
 ```
@@ -156,7 +159,7 @@ brew edit kubernetes-cli@1.29
 ## troubleshooting
 
 ```sh
-> PRODIGY_CONFIG=`pwd`/prodigy.json PRODIGY_LOGGING=verbose PRODIGY_BASIC_AUTH_USER=prodigy-user PRODIGY_BASIC_AUTH_PASS=b7f363145d299a343f15ead44818456113388aa92e1e88221e85fe9d4f28d6a2 PRODIGY_HOST=0.0.0.0 PRODIGY_PORT=8080 prodigy myrecipes.textcat.custom-model news_headlines ./data/00_examples/examples.jsonl -l POS,NEG
+> PRODIGY_CONFIG=`pwd`/prodigy.json PRODIGY_LOGGING=verbose PRODIGY_BASIC_AUTH_USER=prodigy-user PRODIGY_BASIC_AUTH_PASS="$PRODIGY_BASIC_AUTH_PASS" PRODIGY_HOST=0.0.0.0 PRODIGY_PORT=8080 prodigy myrecipes.textcat.custom-model news_headlines ./data/00_examples/examples.jsonl -l POS,NEG
 15:15:08: RECIPE: Calling recipe 'myrecipes.textcat.custom-model'
 15:15:08: SORTER: Resort stream to prefer uncertain scores (bias 0.0)
 15:15:08: /Users/me/ysz-vc/kedrogy/mykedro/prodigy.json
@@ -194,6 +197,6 @@ with
 
 ```sh
 > cat prodigy.json 
-{"db": "postgresql", "db_settings": {"postgresql": {"user": "postgres", "password": "postgres", "dbname": "mysite", "host": "localhost"}}}
+{"db": "postgresql", "db_settings": {"postgresql": {"user": "postgres", "password": "<set from PGPASSWORD>", "dbname": "mysite", "host": "localhost"}}}
 
 ```

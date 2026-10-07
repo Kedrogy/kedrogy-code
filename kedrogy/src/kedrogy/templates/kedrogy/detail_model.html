@@ -12,50 +12,71 @@
     <body class="min-h-screen bg-base-200 font-sans p-8">
         <a href="/" class="btn btn-sm btn-outline mb-6">{% trans "Home" %}</a>
         <h1 class="text-2xl font-bold mb-6">
-            {% blocktrans with model_id=model.id dataset_name=model.on_dataset.dataset_name %}
-You're looking at MODEL with id {{ model_id }} on dataset {{ dataset_name }}
-{% endblocktrans %}
+            {% blocktrans with model_id=model.id dataset_name=model.on_dataset.dataset_name %}You're looking at MODEL with id {{ model_id }} on dataset {{ dataset_name }}{% endblocktrans %}
         </h1>
         <div class="card bg-base-100 shadow-lg p-6 mb-6">
             <div class="mb-4">
                 <h2 class="font-semibold mb-1">{% trans "Labels" %}</h2>
                 <input type="text"
-                       class="input input-bordered w-full bg-white text-black"
-                       value="{{ model.labels }}"
+                       class="input input-bordered w-full"
+                       value="{{ draft_labels|join:", " }}"
                        readonly>
             </div>
             <div class="mb-4">
                 <h2 class="font-semibold mb-1">{% trans "Preprocessing function" %}</h2>
                 <input type="text"
-                       class="input input-bordered w-full bg-white text-black"
+                       class="input input-bordered w-full"
                        value="{{ model.a_preprocess_fun }}"
                        readonly>
             </div>
-            <!-- delete -->
+            <p>{% trans "Artifact status" %}: {{ model.artifact_status }}</p>
+            <p>Serving: {{ serving.status }}</p>
+            {% if serving.error %}<p role="status">{{ serving.error.message }}</p>{% endif %}
+            {% if serving.training_run_id %}<p>Loaded training run: {{ serving.training_run_id }}</p>{% endif %}
+            {% if serving.class_schema_version == 1 %}<p>Legacy model: class zero uses the original OTHER mapping.</p>{% endif %}
+            <p>Loaded classes: {% if serving.class_schema_version == 1 %}OTHER, {% endif %}{{ serving.labels|join:", " }}</p>
+            <p>Class edits apply to the next training run.</p>
+            <form action="{% url 'kedrogy:train_model' model.id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="request_key" value="{{ request_key }}">
+                <button type="submit" class="btn btn-primary">Train model</button>
+            </form>
+            <form action="{% url 'kedrogy:stop_model' model.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn">Stop serving</button>
+            </form>
+            <a href="{% url 'kedrogy:detail_model' model.id %}">Refresh serving status</a>
+            <!-- Model operations -->
             <div class="mt-4">
-                <a href="{% url 'kedrogy:delete_model' model.id %}"
-                   class="btn btn-error">{% trans "Delete model" %}</a>
-                <a href="{% url 'kedrogy:serve_model' model.id %}"
-                   class="btn btn-success">{% trans "Serve model" %}</a>
+                <form action="{% url 'kedrogy:delete_model' model.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-error">{% trans "Delete model" %}</button>
+                </form>
+                <form action="{% url 'kedrogy:serve_model' model.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="request_key" value="{{ request_key }}">
+                    <button type="submit" class="btn btn-success" {% if model.artifact_status != "VERIFIED" %}disabled{% endif %}>{% trans "Serve model" %}</button>
+                </form>
             </div>
         </div>
         <div class="mt-4 flex gap-2"></div>
         <!-- prediction -->
         <div class="card bg-base-100 shadow-lg p-6">
             <h2 class="text-xl font-semibold mb-4">{% trans "Text input" %}</h2>
+            {% if prediction_error %}<p role="alert">{{ prediction_error }}</p>{% endif %}
             <form method="post" action="{% url 'kedrogy:predict_model' model.id %}">
                 {% csrf_token %}
                 <textarea name="text_input"
                           rows="4"
-                          class="textarea textarea-bordered w-full mb-4 bg-white text-black"
+                          class="textarea textarea-bordered w-full mb-4"
                           placeholder="{% trans 'Enter text here...' %}">{{ given_text_input }}</textarea>
-                <button type="submit" class="btn btn-primary">{% trans "Predict model" %}</button>
+                <button type="submit" class="btn btn-primary" {% if serving.status != "READY" %}disabled{% endif %}>{% trans "Predict model" %}</button>
             </form>
-            {% if predicted_class %}
+            {% if predicted_class != None %}
                 <div class="alert alert-success mt-4">
                     {% blocktrans with predicted=predicted_class %}
-Prediction result: {{ predicted }}
-{% endblocktrans %}
+                Prediction result: {{ predicted }}
+                {% endblocktrans %}
                 </div>
             {% endif %}
         </div>

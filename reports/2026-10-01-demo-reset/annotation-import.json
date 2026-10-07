@@ -1,0 +1,44 @@
+[
+  {
+    "dataset_id": 22,
+    "model_id": 21,
+    "name": "news-sentiment-demo",
+    "accepted": 20,
+    "label_counts": {
+      "positive": 4,
+      "negative": 10,
+      "neutral": 6
+    },
+    "added_via_api": 15,
+    "already_saved": 5,
+    "invalid": 0
+  },
+  {
+    "dataset_id": 23,
+    "model_id": 22,
+    "name": "news-topic-demo",
+    "accepted": 20,
+    "label_counts": {
+      "business": 10,
+      "technology": 2,
+      "politics": 3,
+      "society": 5
+    },
+    "added_via_api": 20,
+    "already_saved": 0,
+    "invalid": 0
+  },
+  {
+    "dataset_id": 24,
+    "model_id": 23,
+    "name": "news-company-mentions-demo",
+    "accepted": 20,
+    "label_counts": {
+      "company_mentioned": 7,
+      "no_company": 13
+    },
+    "added_via_api": 20,
+    "already_saved": 0,
+    "invalid": 0
+  }
+]

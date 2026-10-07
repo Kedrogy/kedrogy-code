@@ -1,0 +1,106 @@
+{
+  "dataset_id": 1,
+  "model_id": 1,
+  "annotation_id": "3a30e1ed-311b-4a1b-b598-661ca31b3ba6",
+  "namespace": "kedrogy-p1-20260926",
+  "preflight": {
+    "fingerprint": "6e3f39ce8c2362f0b46c19d02a006377bc98cff3fc363730b070c87b24e518a1",
+    "dataset_id": 1,
+    "policy": "single-label-choice-v2",
+    "class_schema_version": 2,
+    "artifact_version": 2,
+    "labels": [
+      "positive",
+      "negative"
+    ],
+    "total": 12,
+    "usable": 12,
+    "accepted": 12,
+    "rejected": 0,
+    "ignored": 0,
+    "invalid": 0,
+    "conflicting": 0,
+    "needs_review": 0,
+    "duplicate_accepted": 0,
+    "label_counts": {
+      "positive": 6,
+      "negative": 6
+    }
+  },
+  "training_run": "2fd097a6-f62c-4fb3-a7ef-551d25d294df",
+  "artifact": {
+    "pvc": "pvc-model-1",
+    "path": "runs/2fd097a6-f62c-4fb3-a7ef-551d25d294df/cd5ee09c-0951-4c27-aee0-5b89683adbdc/artifact",
+    "files": {
+      "vocab.txt": "6355e4a11801aadf48380af6b2d6acf580d45df0d6b83722747574fe7d2a2c49",
+      "config.json": "027d33686a3ffe7735c87ee229a539f3ed89cefb0e967801fe79c1da000c84bc",
+      "tokenizer.json": "88ead65edd5020d50d6825d588982aef82fb4d98732cfd8a6807993146121680",
+      "model.safetensors": "4ab741ccdb6c07e39f5d5e9bf57c97c01aaa3fa13500bb43aba6c4c0e89284a4",
+      "training_args.bin": "45130d7cbd9d4280a6124838749cbf5a89e8a092edbfb4e4a146fb91bbe4224b",
+      "tokenizer_config.json": "0088a6f8bcdd4014184fb068b83ebb12896a9db2bb269a71f73de83fef24bceb",
+      "special_tokens_map.json": "5d5b662e421ea9fac075174bb0688ee0d9431699900b90662acd44b2a350503a"
+    },
+    "image": "kedrogy-registry:5000/mykedro@sha256:b76286a6e858e4c8bd887eb0e0ae55206539699a30c89ff50e00eb14d8446026",
+    "labels": [
+      "positive",
+      "negative"
+    ],
+    "run_id": "2fd097a6-f62c-4fb3-a7ef-551d25d294df",
+    "version": 2,
+    "verified": true,
+    "attempt_id": "cd5ee09c-0951-4c27-aee0-5b89683adbdc",
+    "conversion_policy": "single-label-choice-v2",
+    "class_schema_version": 2
+  },
+  "first_prediction": {
+    "class_id": 0,
+    "label": "positive",
+    "contract_version": 1,
+    "training_run_id": "2fd097a6-f62c-4fb3-a7ef-551d25d294df",
+    "serving_run_id": "75a9094e-8d3d-489c-907b-f63df6335442",
+    "class_schema_version": 2
+  },
+  "replacement_prediction": {
+    "class_id": 0,
+    "label": "positive",
+    "contract_version": 1,
+    "training_run_id": "2fd097a6-f62c-4fb3-a7ef-551d25d294df",
+    "serving_run_id": "f85d7eac-6e6f-4f72-8227-1a898de9899f",
+    "class_schema_version": 2
+  },
+  "replacement_resources": [
+    [
+      "Deployment",
+      "serve-f85d7eac-6e6f-4f72-8227-1a898de9899f",
+      "10274dd6-7ee3-4ded-b0fb-a8b0cb565c3c"
+    ],
+    [
+      "Service",
+      "serve-svc-f85d7eac-6e6f-4f72-8227-1a898de9899f",
+      "71dcf3c6-9d12-401f-b8bb-909f31b782f2"
+    ]
+  ],
+  "race_trace": [
+    "old-create-paused",
+    "new-ready",
+    "old-create-resumed"
+  ],
+  "foreign_resources": [
+    {
+      "kind": "ConfigMap",
+      "uid": "443ebc60-ee09-4bdd-8240-1964b53d7014",
+      "preserved": true
+    },
+    {
+      "kind": "Deployment",
+      "uid": "8fc4a134-f6f6-4840-9d70-b402e7876db9",
+      "preserved": true
+    },
+    {
+      "kind": "Service",
+      "uid": "8b4ae8b4-4ae4-47ea-b0dc-85b657ecb02a",
+      "preserved": true
+    }
+  ],
+  "namespace_cleanup_pending": false
+}

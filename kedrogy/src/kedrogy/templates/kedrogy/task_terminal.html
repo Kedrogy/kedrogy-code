@@ -1,0 +1,22 @@
+<section role="status" aria-live="polite" class="bg-base-100 rounded-lg p-4">
+  {% if task.status == "SUCCEEDED" %}
+    <p>Operation completed successfully.</p>
+  {% else %}
+    <p role="alert">{{ task.error.message|default:"The operation did not complete successfully." }}</p>
+    <p>Status: {{ task.status }}</p>
+    <p>Return to the model or dataset to review its configuration and retry.</p>
+  {% endif %}
+  {% if task.logs %}<pre>{{ task.logs }}</pre>{% endif %}
+  {% if task.step %}<p>{{ task.step }}</p>{% endif %}
+  {% if task.progress %}<p>Completed steps: {{ task.progress.completed }} / {{ task.progress.total }}</p>{% endif %}
+  {% if task.can_retry %}
+    <form method="post" action="{% url 'kedrogy:retry-cleanup' task.id %}">{% csrf_token %}
+      <button type="submit">Retry the same cleanup operation</button>
+    </form>
+  {% endif %}
+  {% if task.session %}
+    <p>Current annotation session: {{ task.session.status }}</p>
+    <a href="{% url 'kedrogy:detail' task.session.dataset_id %}">View annotation session</a>
+  {% endif %}
+  <a href="{% url 'kedrogy:index' %}">Home</a>
+</section>

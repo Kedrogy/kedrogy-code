@@ -1,0 +1,26 @@
+{
+  "fingerprint": "9d4058ad2ca7646cf2566f0951b5392f5e4ebd9357244739df89e8e4ae9069af",
+  "dataset_id": 44,
+  "policy": "single-label-choice-v2",
+  "class_schema_version": 2,
+  "artifact_version": 2,
+  "labels": [
+    "company_mentioned",
+    "no_company"
+  ],
+  "total": 176,
+  "usable": 176,
+  "accepted": 176,
+  "rejected": 0,
+  "ignored": 0,
+  "invalid": 0,
+  "conflicting": 0,
+  "needs_review": 0,
+  "duplicate_accepted": 0,
+  "label_counts": {
+    "company_mentioned": 40,
+    "no_company": 136
+  },
+  "added": 156,
+  "source_rows_modified": 0
+}

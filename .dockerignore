@@ -1,13 +1,35 @@
-.venv
-
-# see here https://github.com/kedro-org/kedro-plugins/tree/main/kedro-docker
-# template for .dockerignore , Dockerfile 
-
-# ignore everything in the following folders
+.git
+**/.git
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+**/.venv
+**/venv
+**/node_modules
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/.ruff_cache
+**/dist
+**/build
+**/*.egg-info
+.local
+reports
+**/notebooks
+**/*.ipynb
+*.tar
+*.dump
+*.log
+prodigy.json
+**/prodigy.json*
+**/conf/local/**
 example/mykedro/data/**
-
-# except their sub-folders
 !example/mykedro/data/**/.gitkeep
-
-*.tar 
-example/.venv
+prodigy-*.yaml
+pvc-model-*.yaml
+serve-*.yaml
+*.pem
+*.key
+bundle.unminified.js

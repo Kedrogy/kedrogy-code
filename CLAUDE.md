@@ -4,11 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Setup
 
-Copy `.env-example` to `.env`, fill in credentials, then:
+Copy `.env.example` to the ignored `.env` file and configure service credentials. Use the setup and role instructions in [SECURITY_SETUP.md](SECURITY_SETUP.md). Install the locked workspace dependencies:
 
 ```sh
-export $(cat .env | sed '/^#/d')
-uv sync --all-packages --dev --no-managed-python
+uv sync --locked
 ```
 
 PostgreSQL is required. The database connection is configured entirely via `PG*` environment variables (`PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD`, `PGDATABASE`).
@@ -23,12 +22,12 @@ export CPPFLAGS="-I/opt/homebrew/opt/openssl/include"
 
 ### Backend (Django)
 
-All Django commands use `--settings mysite.settings` and require `PG*` env vars set:
+Select local or deployment settings explicitly. Local service commands load the ignored environment file:
 
 ```sh
-python -m django runserver --settings mysite.settings
-python -m django migrate --settings mysite.settings
-python -m django db_worker --settings mysite.settings   # background task worker
+uv run --env-file .env python -m django runserver --settings mysite.settings_local
+uv run --env-file .env python -m django migrate --settings mysite.settings_local
+uv run --env-file .env python -m django db_worker --settings mysite.settings_local
 ```
 
 ### Frontend (React SPA)
@@ -72,28 +71,28 @@ This is a **uv workspace monorepo** with these packages:
 Kedrogy manages three phases for NLP model development:
 
 1. **Label** — deploys a [Prodigy](https://prodi.gy) annotation server as a Kubernetes Deployment so users can annotate data
-2. **Train** — runs a Kedro pipeline as a Kubernetes Job to train a spaCy model using labeled data
+2. **Train** — runs a Kedro pipeline as a Kubernetes Job to train a Hugging Face text classifier using explicit class choices, then verifies the saved model, tokenizer and class mapping
 3. **Serve** — deploys the trained model via `ysz-predict` (FastAPI) as a Kubernetes Deployment for inference
 
 ### Key Backend Components
 
-**`kedrogy/src/kedrogy/tasks.py`** — `django-tasks` background tasks that orchestrate K8s operations. Each task runs `kubectl apply` on a rendered Jinja2 manifest, then streams logs back via `context.metadata["logs"]` (polled by HTMX in the UI).
+**`kedrogy/src/kedrogy/tasks.py`** — `django-tasks` entry points for persisted annotation, training, serving and cleanup operations. The lifecycle modules coordinate state, leases, resource ownership and reconciliation. The bounded Kubernetes adapter preserves safe diagnostics and checks actual outcomes.
 
-**`kedrogy/src/kedrogy/templates_k8s/`** — Jinja2 templates for K8s manifests: `prodigy.yaml.jinja` (labeling), `train.yaml.jinja` + `pvc.yaml.jinja` (training), `serve.yaml.jinja` (serving).
+**`kedrogy/src/kedrogy/manifests.py`** — structured Kubernetes document builders. The former dynamic Jinja workload templates were replaced with serialized documents and server-validated launch configuration.
 
-**`kedrogy/src/kedrogy/models.py`** — Three models: `DjangoDataset` (stores image, workingDir, Kedro pipeline, Prodigy recipe options), `DjangoModel` (FK to dataset, labels, trained/served status), `DjangoLastDataset` (tracks active Prodigy deployment).
+**`kedrogy/src/kedrogy/models.py`** — datasets and models plus durable TrainingRun, ServingRun, AnnotationSession and deletion state. Display names are separate from stable annotation/source identities. Legacy compatibility fields do not replace verified run/artifact status.
 
-**`mysite/src/mysite/settings.py`** — Configures `django-tasks` with `DatabaseBackend` (tasks stored in PostgreSQL). The `DJANGO_SETTINGS_MODULE` is `mysite.settings`.
+**`mysite/src/mysite/settings_base.py`** — shared settings including database-backed tasks. `settings_local.py` and `settings_deploy.py` select explicit runtime profiles; isolated test settings avoid working-cluster access.
 
 ### Frontend / API Boundary
 
-The React SPA (`app/`) mirrors the Django HTML view flow and communicates with JSON API endpoints under `kedrogy/urls.py` (prefixed `/api/`):
+The React SPA (`app/`) uses the Django REST API in `kedrogy/api_urls.py`, mounted under `/api/`:
 - `GET /api/datasets/<id>/` — dataset details
 - `POST /api/models/<id>/train/` and `POST /api/models/<id>/serve/` — start tasks
-- `GET /api/train/result/<result_id>/` and `GET /api/serve/result/<result_id>/` — poll task status
+- `GET /api/tasks/<task_type>/<result_id>/status/` — poll validated task outcomes
 
 The legacy Django UI uses HTMX for polling task results and Alpine.js for interactivity.
 
 ### Kubernetes Dependency
 
-The Django server and tasks worker must run inside (or with access to) a K8s cluster — `tasks.py` shells out to `kubectl` directly. For local development, use `k3d` (see `HACKING.md` for cluster setup) and `tilt up`.
+Workflow controllers require a scoped Kubernetes connection. Application import and isolated checks do not bootstrap resources or require the working cluster. For local setup, consult [HACKING.md](HACKING.md), [SECURITY_SETUP.md](SECURITY_SETUP.md) and [SOURCE_AND_MODEL_CONTRACTS.md](SOURCE_AND_MODEL_CONTRACTS.md). Frontend styles are bundled by Vite from the installed Tailwind/DaisyUI packages.

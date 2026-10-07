@@ -1,0 +1,13 @@
+{
+  "id": "ee9bc275-9d93-478d-bd5f-37d8ece2637b",
+  "status": "READY",
+  "training_run_id": "a1ff21ec-af00-4e24-a541-c67b643b4d7f",
+  "labels": [
+    "company_mentioned",
+    "no_company"
+  ],
+  "class_schema_version": 2,
+  "conversion_policy": "single-label-choice-v2",
+  "observed_at": "2026-10-01T19:39:54.665566+00:00",
+  "error": null
+}

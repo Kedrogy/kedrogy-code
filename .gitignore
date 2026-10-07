@@ -5,3 +5,13 @@ __pycache__
 *.sqlite3
 postgres.tar
 .env
+.env.*
+!.env.example
+.local/
+**/prodigy.json
+prodigy-*.yaml
+pvc-model-*.yaml
+serve-*.yaml
+*.dump
+*.bundle
+/reports/github-migration-*/

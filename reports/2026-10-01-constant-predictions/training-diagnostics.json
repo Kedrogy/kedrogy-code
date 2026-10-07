@@ -1,0 +1,42 @@
+{
+  "checkpoint": {
+    "_name_or_path": null,
+    "model_type": "bert",
+    "hidden_size": 768,
+    "num_hidden_layers": 12,
+    "vocab_size": 105879,
+    "id2label": {
+      "0": "company_mentioned",
+      "1": "no_company"
+    },
+    "label2id": {
+      "company_mentioned": 0,
+      "no_company": 1
+    }
+  },
+  "training_states": [
+    {
+      "global_step": 1,
+      "max_steps": 1,
+      "num_train_epochs": 1,
+      "epoch": 1.0,
+      "log_history": [
+        {
+          "epoch": 1.0,
+          "eval_accuracy": 0.2,
+          "eval_loss": 0.7025077939033508,
+          "eval_runtime": 0.1706,
+          "eval_samples_per_second": 29.317,
+          "eval_steps_per_second": 5.863,
+          "step": 1
+        }
+      ]
+    }
+  ],
+  "model_id": 23,
+  "annotation_counts": {
+    "no_company": 13,
+    "company_mentioned": 7
+  },
+  "preprocessor": ""
+}

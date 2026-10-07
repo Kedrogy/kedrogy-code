@@ -23,10 +23,12 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from .errors import health, error_400, error_403, error_404, error_500
 
 
 urlpatterns = (
     [
+        path("health/", health),
         path("api/", include("kedrogy.api_urls")),
         path("", include("kedrogy.urls")),
         path("admin/", admin.site.urls),
@@ -37,5 +39,10 @@ urlpatterns = (
 )  # https://docs.djangoproject.com/en/6.0/howto/static-files/#serving-static-files-during-development
 
 urlpatterns += i18n_patterns(
-    path("", include("kedrogy.urls")),
+    path("", include("kedrogy.urls", namespace="kedrogy_i18n")),
 )
+
+handler400 = error_400
+handler403 = error_403
+handler404 = error_404
+handler500 = error_500

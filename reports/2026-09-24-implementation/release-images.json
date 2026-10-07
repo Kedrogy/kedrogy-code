@@ -1,0 +1,5 @@
+{
+  "backend": "kedrogy-registry:5000/mysite@sha256:102402bd6a44fdcaa67c1bdd9b7aebbc62a13e975a34ec8b7ace779d376308bc",
+  "ml": "kedrogy-registry:5000/mykedro@sha256:897d9d4bb8eb431101be7d160f1981fab46224fc3d2ecd99bf25883d8d6befcb",
+  "web": "kedrogy-registry:5000/web@sha256:8d03344b5b044888e013844dd239fdc62fc3a5f4e28b48f532924b668ac16cd6"
+}

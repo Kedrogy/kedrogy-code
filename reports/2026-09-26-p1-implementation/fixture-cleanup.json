@@ -1,0 +1,10 @@
+{
+  "namespace": "kedrogy-p1-20260926",
+  "namespace_uid": "1d99caba-b8a0-4b14-a43e-7f55d6108f56",
+  "resource_count": 15,
+  "database_container_id": "273e26863691f4aff1ae0583484c566983dd59c3839d353868d3ae0413df7868",
+  "working_namespace": "default",
+  "namespace_removed": true,
+  "database_container_removed": true,
+  "native_test_postgres_stopped": true
+}

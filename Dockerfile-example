@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 # Dockerfile for Tilt 
 
 FROM python:3.12-slim
@@ -21,15 +22,15 @@ RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 #TODO to kedrogy-cache pvc , inspec usages of 
 #AutoTokenizer.from_pretrained etc and download if needed 
-RUN bash <<EOF
+RUN --mount=type=cache,target=/root/.cache/uv bash <<EOF
 mkdir /tmp/hf
 cd /tmp/hf
-uv init --python=3.12
+uv init --python=3.12 --vcs none
 uv add huggingface_hub
 uv sync
 EOF
 
-RUN /tmp/hf/.venv/bin/python <<EOF
+RUN HF_HUB_DISABLE_XET=1 /tmp/hf/.venv/bin/python <<EOF
 from huggingface_hub import snapshot_download
 
 
@@ -52,37 +53,22 @@ EOF
 
 WORKDIR /app
 
-# ARG UV_INDEX_PRODIGY_USERNAME 
-# RUN --mount=type=cache,target=/root/.cache/uv \
-#     --mount=type=bind,source=mysite/uv.lock,target=mysite/uv.lock \
-#     --mount=type=bind,source=mysite/pyproject.toml,target=mysite/pyproject.toml \
-#     cd mysite && \
-#     uv sync --dev --frozen
+COPY contracts /contracts
+COPY example/pyproject.toml example/uv.lock /app/
+COPY example/mykedro/pyproject.toml /app/mykedro/
+COPY example/mykedro/src /app/mykedro/src
+COPY example/mykedro/conf/base /app/mykedro/conf/base
+COPY example/myrecipes/pyproject.toml example/myrecipes/README.md /app/myrecipes/
+COPY example/myrecipes/src /app/myrecipes/src
+COPY predict/pyproject.toml predict/README.md /predict/
+COPY predict/src /predict/src
+RUN mkdir -p /app/mykedro/conf/local /app/mykedro/data/00_examples /app/mykedro/data/02_intermediate /app/mykedro/data/05_model_input /app/mykedro/data/06_models
 
-COPY ./example /app
-
-COPY ./predict /predict
-
-# # https://docs.docker.com/build/ci/github-actions/secrets/
-# # this step configure git and checks the ssh key is loaded
-# RUN --mount=type=ssh <<EOT
-#   set -e
-#   echo "Setting Git SSH protocol"
-#   git config --global url."git@github.com:".insteadOf "https://github.com/"
-#   (
-#     set +e
-#     ssh -T git@github.com
-#     if [ ! "$?" = "1" ]; then
-#       echo "No GitHub SSH key loaded exiting..."
-#       exit 1
-#     fi
-#   )
-# EOT
-ARG UV_INDEX_PRODIGY_USERNAME 
-ARG UV_INDEX_YSZ_USERNAME
-ARG UV_INDEX_YSZ_PASSWORD
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=ssh \
-    uv sync --all-packages --dev --locked
+    --mount=type=secret,id=prodigy_username,env=UV_INDEX_PRODIGY_USERNAME \
+    --mount=type=secret,id=ysz_username,env=UV_INDEX_YSZ_USERNAME \
+    --mount=type=secret,id=ysz_password,env=UV_INDEX_YSZ_PASSWORD \
+    uv sync --all-packages --no-dev --locked
 
-ENTRYPOINT [ "/app/.venv/bin/python" ]
+ENTRYPOINT ["/app/.venv/bin/python"]

@@ -1,4 +1,5 @@
 {% load static i18n %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
     <head>
@@ -10,21 +11,22 @@
         <link rel="stylesheet" href="{% static 'css/input.css' %}">
     </head>
     <body class="min-h-screen bg-base-200 font-sans p-8">
+        <!-- HOME -->
         <a href="/" class="btn btn-sm btn-outline mb-6 inline-block">{% trans "HOME" %}</a>
+        <h1 class="text-2xl font-bold mb-6">
+            {% blocktrans with dataset_name=dataset.dataset_name %}
+            You're looking at dataset {{ dataset_name }}
+        {% endblocktrans %}
+        </h1>
         <!-- details -->
-        <div class="card bg-base-100 shadow-md rounded-lg p-6 mb-6 max-w-3xl mx-auto">
-            <h1 class="text-2xl font-bold mb-6">
-                {% blocktrans with dataset_name=dataset.dataset_name %}
-You're looking at dataset {{ dataset_name }}
-{% endblocktrans %}
-            </h1>
+        <div class="card bg-base-100 shadow-md rounded-lg p-6 mb-6 max-w-3xl">
             <div class="grid grid-cols-1 gap-4">
                 <div class="flex justify-between">
-                    <span class="font-medium">{% trans "Data table" %}</span>
+                    <span class="font-medium">{% trans "Data table:" %}</span>
                     <span>{{ dataset.data_table_name }}</span>
                 </div>
                 <div class="flex justify-between">
-                    <span class="font-medium">{% trans "Data table ID field" %}</span>
+                    <span class="font-medium">{% trans "Data table id field:" %}</span>
                     <span>{{ dataset.id_field }}</span>
                 </div>
                 <div class="flex justify-between">
@@ -37,7 +39,7 @@ You're looking at dataset {{ dataset_name }}
                            name="workingDir"
                            id="workingDir"
                            value="{{ dataset.workingDir }}"
-                           class="input input-bordered w-full bg-white text-black focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
+                           class="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
                 </div>
                 <div>
                     <label class="font-medium mb-1" for="pipeline">{% trans "Pipeline (leave empty for default)" %}</label>
@@ -45,7 +47,7 @@ You're looking at dataset {{ dataset_name }}
                            name="pipeline"
                            id="pipeline"
                            value="{{ dataset.pipeline }}"
-                           class="input input-bordered w-full bg-white text-black focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
+                           class="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
                 </div>
                 <div>
                     <label class="font-medium mb-1" for="recipe_options">{% trans "Prodigy recipe options, space separated" %}</label>
@@ -53,19 +55,24 @@ You're looking at dataset {{ dataset_name }}
                            name="recipe_options"
                            id="recipe_options"
                            value="{{ dataset.recipe_options }}"
-                           class="input input-bordered w-full bg-white text-black focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
-                </div>
-                <div class="flex gap-2 mt-4">
-                    <form action="{% url 'kedrogy:delete' dataset.id %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-error btn-sm">{% trans "Delete" %}</button>
-                    </form>
-                    <form action="{% url 'kedrogy:label' dataset.id %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-primary btn-sm">{% trans "Label" %}</button>
-                    </form>
+                           class="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
                 </div>
             </div>
+        </div>
+        <p>Annotation data: {{ annotation_data.status }}. Session: {{ annotation_session.status }}.</p>
+        {% if annotation_session.url %}<a href="{{ annotation_session.url }}" class="btn">Open annotation session</a>{% endif %}
+        <form action="{% url 'kedrogy:annotation-stop' dataset.id %}" method="post">{% csrf_token %}<button class="btn">Stop annotation</button></form>
+        <form action="{% url 'kedrogy:annotation-refresh' dataset.id %}" method="post">{% csrf_token %}<button class="btn">Refresh annotation counts</button></form>
+        <div class="flex gap-2 mb-6">
+            <form action="{% url 'kedrogy:delete' dataset.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-error btn-sm">{% trans "Delete" %}</button>
+            </form>
+            <form action="{% url 'kedrogy:label' dataset.id %}" method="post">
+                <input type="hidden" name="request_key" value="{{ request_key }}" />
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary btn-sm">{% trans "Label" %}</button>
+            </form>
         </div>
         <!-- create model -->
         <div class="card bg-base-100 shadow-md rounded-lg p-6 max-w-3xl mx-auto">
@@ -80,14 +87,14 @@ You're looking at dataset {{ dataset_name }}
                     <input type="text"
                            name="labels"
                            id="labels"
-                           class="input input-bordered w-full bg-white text-black focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
+                           class="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
                 </div>
                 <div>
-                    <label for="a_preprocess_fun" class="font-medium mb-1">{% trans "Preprocessing function" %}</label>
+                    <label for="a_preprocess_fun" class="font-medium mb-1">{% trans "Preprocessing function:" %}</label>
                     <input type="text"
                            name="a_preprocess_fun"
                            id="a_preprocess_fun"
-                           class="input input-bordered w-full bg-white text-black focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
+                           class="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
                 </div>
                 <button type="submit" class="btn btn-primary mt-2 w-full">{% trans "New model" %}</button>
             </form>

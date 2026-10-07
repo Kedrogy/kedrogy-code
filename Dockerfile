@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 # Dockerfile for Tilt 
 
 FROM python:3.12-slim
@@ -33,35 +34,20 @@ RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 WORKDIR /app
 
-# ARG UV_INDEX_PRODIGY_USERNAME 
-# RUN --mount=type=cache,target=/root/.cache/uv \
-#     --mount=type=bind,source=mysite/uv.lock,target=mysite/uv.lock \
-#     --mount=type=bind,source=mysite/pyproject.toml,target=mysite/pyproject.toml \
-#     cd mysite && \
-#     uv sync --dev --frozen
+COPY contracts /app/contracts
+COPY pyproject.toml uv.lock /app/
+COPY mysite/pyproject.toml mysite/README.md /app/mysite/
+COPY mysite/src /app/mysite/src
+COPY kedrogy/pyproject.toml kedrogy/README.md /app/kedrogy/
+COPY kedrogy/src /app/kedrogy/src
 
-COPY . /app
-
-# # https://docs.docker.com/build/ci/github-actions/secrets/
-# # this step configure git and checks the ssh key is loaded
-# RUN --mount=type=ssh <<EOT
-#   set -e
-#   echo "Setting Git SSH protocol"
-#   git config --global url."git@github.com:".insteadOf "https://github.com/"
-#   (
-#     set +e
-#     ssh -T git@github.com
-#     if [ ! "$?" = "1" ]; then
-#       echo "No GitHub SSH key loaded exiting..."
-#       exit 1
-#     fi
-#   )
-# EOT
-ARG UV_INDEX_PRODIGY_USERNAME 
-ARG UV_INDEX_YSZ_USERNAME
-ARG UV_INDEX_YSZ_PASSWORD
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=ssh \
-    uv sync --all-packages --dev --locked
+    --mount=type=secret,id=prodigy_username,env=UV_INDEX_PRODIGY_USERNAME \
+    --mount=type=secret,id=ysz_username,env=UV_INDEX_YSZ_USERNAME \
+    --mount=type=secret,id=ysz_password,env=UV_INDEX_YSZ_PASSWORD \
+    uv sync --all-packages --no-dev --locked
 
-ENTRYPOINT [ "/app/.venv/bin/python" ]
+RUN /app/.venv/bin/python -m django collectstatic --noinput --settings mysite.test_settings
+
+ENTRYPOINT ["/app/.venv/bin/python"]

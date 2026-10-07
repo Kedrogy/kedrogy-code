@@ -1,0 +1,8 @@
+{
+  "namespace_removed": true,
+  "database_container_and_anonymous_volume_removed": true,
+  "fixture_credentials_removed": true,
+  "browser_tabs_closed": true,
+  "temporary_processes_stopped": true,
+  "working_data_preserved": true
+}

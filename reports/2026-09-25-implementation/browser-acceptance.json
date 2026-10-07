@@ -1,0 +1,13 @@
+{
+  "date": "2026-09-25",
+  "url": "http://127.0.0.1:5174/models/5",
+  "data": "Disposable synthetic fixture only",
+  "checks": {
+    "verified_history": "Two SUCCEEDED runs with distinct class orders; published and selected-for-serving markers visible.",
+    "draft_isolation": "Draft future,draft; loaded classes OTHER,negative,positive.",
+    "readiness": "READY displayed, Serve disabled while active, Predict enabled after nonempty input.",
+    "prediction": "good product displayed Predicted class: OTHER.",
+    "validation": "600 repeated good tokens returned the model token-limit message, retained all 3000 input characters, and kept serving READY.",
+    "retry": "bad product succeeded after the validation error, with Predicted class: OTHER."
+  }
+}
