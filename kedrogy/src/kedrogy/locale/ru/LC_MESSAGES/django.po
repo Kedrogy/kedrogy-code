@@ -158,3 +158,58 @@ msgstr "Будет позже"
 #: kedrogy/src/kedrogy/templates/kedrogy/detail_task.html:37
 msgid "Result:"
 msgstr "Результат:"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_dataset.html
+msgid "Dataset Details"
+msgstr "Детали набора данных"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_dataset.html
+msgid "You're looking at dataset %(dataset_name)s"
+msgstr "Вы просматриваете набор данных %(dataset_name)s"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_dataset.html
+msgid "Data table:"
+msgstr "Таблица данных:"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_dataset.html
+msgid "Data table id field:"
+msgstr "ID поля таблицы:"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_dataset.html
+msgid "Create a model on this dataset"
+msgstr "Создать модель на этом наборе данных"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_dataset.html
+msgid "Preprocessing function:"
+msgstr "Функция предобработки:"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_dataset.html
+msgid "New model"
+msgstr "Создать модель"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_dataset.html
+msgid "Delete"
+msgstr "Удалить"
+
+#: kedrogy/src/kedrogy/templates/kedrogy/detail_dataset.html
+msgid "Label"
+msgstr "Разметить"
+#: templates/kedrogy/index.html
+msgid "Create"
+msgstr "Создать"
+
+#: templates/kedrogy/index.html
+msgid "Create Dataset"
+msgstr "Создать датасет"
+
+#: templates/kedrogy/index.html
+msgid "All Datasets"
+msgstr "Все датасеты"
+
+#: templates/kedrogy/index.html
+msgid "Prodigy running for dataset"
+msgstr "Prodigy запущен для датасета"
+
+#: templates/kedrogy/index.html
+msgid "Prodigy is not running."
+msgstr "Prodigy не запущен"

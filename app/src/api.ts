@@ -1,3 +1,5 @@
+export const API = "http://127.0.0.1:8000";
+
 // Shared API module — all backend calls go through here.
 //
 // JSON API endpoints (all csrf_exempt):

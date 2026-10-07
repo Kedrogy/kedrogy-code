@@ -1,42 +1,67 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { API } from "../api";
 
 function DeleteModelPage() {
-  const { id } = useParams();
+  const { modelId, resultId } = useParams();
+  const navigate = useNavigate();
   const { t } = useTranslation();
+
   const [logs, setLogs] = useState("");
+  const [status, setStatus] = useState("Deleting...");
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      fetch(`/api/models/${id}/delete-status`)
-        .then(res => res.text())
-        .then(data => setLogs(data));
-    }, 1000);
+    if (!resultId) return;
+
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch(`${API}/api/tasks/delete/${resultId}/status/`);
+        if (!res.ok) throw new Error("Failed to poll status");
+        const data = await res.json();
+
+        setLogs(data.logs || "");
+        setStatus(data.status || "");
+
+        if (data.is_finished) {
+          clearInterval(interval);
+          setStatus("Done!");
+          setTimeout(() => navigate("/"), 1500);
+        }
+      } catch (err: any) {
+        clearInterval(interval);
+        setError(err.message);
+      }
+    }, 2000);
 
     return () => clearInterval(interval);
-  }, [id]);
+  }, [resultId, navigate]);
 
   return (
-    <div className="p-8">
-      <a href="/" className="btn btn-sm btn-outline mb-6 inline-block">
-        HOME
-      </a>
+    <div className="min-h-screen bg-base-200 p-8">
+      <button onClick={() => navigate("/")} className="btn btn-sm btn-outline mb-6">
+        {t("home")}
+      </button>
 
-      <h1 className="text-2xl font-bold mb-6">
-        {t("deletingModel", { id })}
-      </h1>
-
-      <p className="mb-6">{t("tbw")}</p>
-
-      <label className="font-medium">{t("result")}</label>
-
-      <textarea
-        value={logs}
-        readOnly
-        rows={20}
-        className="textarea textarea-bordered w-full resize-none mt-2 mb-4 font-mono"
-      />
+      <div className="card bg-base-100 shadow-lg">
+        <div className="card-body">
+          <h2 className="card-title">
+            {t("deletingModel", { id: modelId }) || `Deleting Model #${modelId}`}
+          </h2>
+          <p>Status: <span className="badge badge-primary">{status}</span></p>
+          {error && <div className="alert alert-error">{error}</div>}
+          <fieldset className="fieldset">
+            <legend className="fieldset-legend">{t("result") || "Logs"}</legend>
+            <textarea
+              value={logs}
+              readOnly
+              rows={16}
+              className="textarea textarea-bordered w-full font-mono"
+            />
+          </fieldset>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,1075 @@
+{
+  "summary": {
+    "source": "https://github.com/wildfluss/kedrogy-code",
+    "target": "https://github.com/Kedrogy/kedrogy-code",
+    "commits": 105,
+    "branches": 7,
+    "tags": 13,
+    "authors_corrected": 17,
+    "committers_corrected": 11,
+    "changed_commit_hashes": 24,
+    "other_authors_preserved": 88,
+    "dates_preserved": true,
+    "timezones_preserved": true,
+    "trees_preserved": true,
+    "messages_preserved": true,
+    "parent_graph_preserved_under_mapping": true,
+    "primary_account": "millafedotova",
+    "primary_email": "144226851+millafedotova@users.noreply.github.com",
+    "github_original_attribution": "millapsina",
+    "dates_reconstructed": false,
+    "issues_copied": 0,
+    "pull_requests_copied": 0,
+    "independent_download_verified": true,
+    "github_author_attribution_verified": 17
+  },
+  "refs": [
+    {
+      "ref": "refs/heads/5-single-page-app",
+      "old_sha": "9422cdc43aaa18f2089be0cd2cec354a524f2e0f",
+      "new_sha": "e9e4edc9fd362e1b07162b42fdbd6b05e4cf54eb"
+    },
+    {
+      "ref": "refs/heads/7-fix-logs-output-must-fit-into-the-window",
+      "old_sha": "17cb17525ad5953021fb5b211bf43fea1fd1a453",
+      "new_sha": "cb06eef3ff9a0d1f7dd3773fc0265fe3c1504d11"
+    },
+    {
+      "ref": "refs/heads/8-this-must-be-link",
+      "old_sha": "6462ff0ce36c28f4cf2523d965c0567676f701ed",
+      "new_sha": "eeb84df90d5692f54c337d3b0e7c1589cc98088c"
+    },
+    {
+      "ref": "refs/heads/claude",
+      "old_sha": "9e66046e8084986c10b8fb49e32bd145631c006a",
+      "new_sha": "1ef7a91458dd27e9c5f6cb6a6fe5220aba416254"
+    },
+    {
+      "ref": "refs/heads/claude-figma-ui",
+      "old_sha": "c43cbf6f1ba38dc1ee0c458e1c17e57ea8f3a0d0",
+      "new_sha": "491e7f9a4ba6b9929cfeca2802a9d756e1c0a0cd"
+    },
+    {
+      "ref": "refs/heads/claude-milla",
+      "old_sha": "54d52307ac19470b6146ea53a9574e568376d57d",
+      "new_sha": "2aa96fdcb82aded54b202cf92463302ef5651553"
+    },
+    {
+      "ref": "refs/heads/main",
+      "old_sha": "9e66046e8084986c10b8fb49e32bd145631c006a",
+      "new_sha": "1ef7a91458dd27e9c5f6cb6a6fe5220aba416254"
+    },
+    {
+      "ref": "refs/tags/predict-v0.1.0",
+      "old_sha": "d96a669812f5285b91a0b2511b7fa77570726068",
+      "new_sha": "d96a669812f5285b91a0b2511b7fa77570726068"
+    },
+    {
+      "ref": "refs/tags/predict-v0.1.1",
+      "old_sha": "1eb96eac7e62f0d651f7685ba87450182ebb7889",
+      "new_sha": "1eb96eac7e62f0d651f7685ba87450182ebb7889"
+    },
+    {
+      "ref": "refs/tags/predict-v0.1.2",
+      "old_sha": "94ae4904784f2afc6f5e4af4ec0cb4684b8eb891",
+      "new_sha": "94ae4904784f2afc6f5e4af4ec0cb4684b8eb891"
+    },
+    {
+      "ref": "refs/tags/v0.1.0",
+      "old_sha": "559b8f44921abc9073f37052c736a307c977c9e1",
+      "new_sha": "559b8f44921abc9073f37052c736a307c977c9e1"
+    },
+    {
+      "ref": "refs/tags/v0.1.1",
+      "old_sha": "e447575bf39563f45dfd92bd6562fa5457fff3b6",
+      "new_sha": "e447575bf39563f45dfd92bd6562fa5457fff3b6"
+    },
+    {
+      "ref": "refs/tags/v0.1.2",
+      "old_sha": "841ac4c97682143b97f1e86c7eeb98e0e56a8122",
+      "new_sha": "841ac4c97682143b97f1e86c7eeb98e0e56a8122"
+    },
+    {
+      "ref": "refs/tags/v0.1.3",
+      "old_sha": "bd70e997afe11ebc7ae7e2e076dbae802bd42cac",
+      "new_sha": "bd70e997afe11ebc7ae7e2e076dbae802bd42cac"
+    },
+    {
+      "ref": "refs/tags/v0.1.4",
+      "old_sha": "b1e8b4edd0b72dbf40e749ed1a19f429e32e6c54",
+      "new_sha": "b1e8b4edd0b72dbf40e749ed1a19f429e32e6c54"
+    },
+    {
+      "ref": "refs/tags/v0.1.5",
+      "old_sha": "845fa6fc53854f396381a994fa9187ee7e42ea39",
+      "new_sha": "845fa6fc53854f396381a994fa9187ee7e42ea39"
+    },
+    {
+      "ref": "refs/tags/v0.1.6",
+      "old_sha": "3575129dcfff4a497bee8c9c7f22e147008d75ae",
+      "new_sha": "3575129dcfff4a497bee8c9c7f22e147008d75ae"
+    },
+    {
+      "ref": "refs/tags/v0.2.0",
+      "old_sha": "23f3b684eaba564d89a833af3757b50ab7736eac",
+      "new_sha": "9c09d0e78c6a3f31dc840f3942bd47fa31ae26c7"
+    },
+    {
+      "ref": "refs/tags/v0.2.1",
+      "old_sha": "8970143c60182226ca02cef196aec6f1b53cae45",
+      "new_sha": "697a1b9a7f8664e67755582413b31e1e35d3633c"
+    },
+    {
+      "ref": "refs/tags/v0.2.2",
+      "old_sha": "17cb17525ad5953021fb5b211bf43fea1fd1a453",
+      "new_sha": "cb06eef3ff9a0d1f7dd3773fc0265fe3c1504d11"
+    }
+  ],
+  "commits": [
+    {
+      "old_sha": "122a645d8674f8a1735c622bcea27330e9e06fbc",
+      "new_sha": "122a645d8674f8a1735c622bcea27330e9e06fbc",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769422937 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769423023 +0300",
+      "subject": "move code/django-dataset-new from stertell/all-in-one #4d627d2 here"
+    },
+    {
+      "old_sha": "7f2c3f0ba92cbb91b105fe7168821d07d0db5903",
+      "new_sha": "7f2c3f0ba92cbb91b105fe7168821d07d0db5903",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769423218 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769423218 +0300",
+      "subject": "import all-in-one/code/tools too"
+    },
+    {
+      "old_sha": "c936610bfad4bb55342e6c75812506bce7bd3101",
+      "new_sha": "c936610bfad4bb55342e6c75812506bce7bd3101",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769425620 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769425620 +0300",
+      "subject": "uv workspace"
+    },
+    {
+      "old_sha": "b6bf457246ad679f47b0daa45b1662ec6e2bb4c5",
+      "new_sha": "b6bf457246ad679f47b0daa45b1662ec6e2bb4c5",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769441419 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769441419 +0300",
+      "subject": "make django /templates work with src layout and uv workspace"
+    },
+    {
+      "old_sha": "ac4ebe09afa7153fdd97f68b203d0b4ca9c6de37",
+      "new_sha": "ac4ebe09afa7153fdd97f68b203d0b4ca9c6de37",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769443712 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769443712 +0300",
+      "subject": "uv sync in site-example only to editable install django app"
+    },
+    {
+      "old_sha": "6c979d0db1c2b92823ce8814d7181f293c55c1f5",
+      "new_sha": "6c979d0db1c2b92823ce8814d7181f293c55c1f5",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769699036 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769699036 +0300",
+      "subject": "rename"
+    },
+    {
+      "old_sha": "863520f9798197eb09425dd1cc4b8c9af73baa83",
+      "new_sha": "863520f9798197eb09425dd1cc4b8c9af73baa83",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769699392 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769699392 +0300",
+      "subject": "update .md"
+    },
+    {
+      "old_sha": "5a0d2ac9647c899959ca2a8aec560f51b9ca76b9",
+      "new_sha": "5a0d2ac9647c899959ca2a8aec560f51b9ca76b9",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769699400 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769699696 +0300",
+      "subject": "rename"
+    },
+    {
+      "old_sha": "93489b5b22551425d3776cd2a2fc1217735b9920",
+      "new_sha": "93489b5b22551425d3776cd2a2fc1217735b9920",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769702101 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769702101 +0300",
+      "subject": "k3d+postgres that exposes port on host"
+    },
+    {
+      "old_sha": "3aee07d3912bf9aa27ef85478071874455e8d1c4",
+      "new_sha": "3aee07d3912bf9aa27ef85478071874455e8d1c4",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769702520 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769702520 +0300",
+      "subject": "cleanup HACKING.md"
+    },
+    {
+      "old_sha": "ef75102568f41c0edb363c47d5b7cd2e49464abf",
+      "new_sha": "ef75102568f41c0edb363c47d5b7cd2e49464abf",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769703506 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769703506 +0300",
+      "subject": "fix label_train_serve extends"
+    },
+    {
+      "old_sha": "8b7c61c8644da1a4097d44ebb1222c2d623b30ec",
+      "new_sha": "8b7c61c8644da1a4097d44ebb1222c2d623b30ec",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769760358 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769760358 +0300",
+      "subject": "flat django project"
+    },
+    {
+      "old_sha": "1be61bc25bbf08c703a3f45f051fbfe207808311",
+      "new_sha": "1be61bc25bbf08c703a3f45f051fbfe207808311",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769761267 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769761267 +0300",
+      "subject": "how to use this app in new django project"
+    },
+    {
+      "old_sha": "cab5617df594b52a02940e0a9f7a469275c614dc",
+      "new_sha": "cab5617df594b52a02940e0a9f7a469275c614dc",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769762564 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769762564 +0300",
+      "subject": "fix image import to k3d"
+    },
+    {
+      "old_sha": "7c725a1114dbd3d3d734bb254c554ed8f967ed8a",
+      "new_sha": "7c725a1114dbd3d3d734bb254c554ed8f967ed8a",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769765084 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769765084 +0300",
+      "subject": "uv does not support transitive dev dependencies , so"
+    },
+    {
+      "old_sha": "9b00503d3bfd373eb180b278f137408d534e56a5",
+      "new_sha": "9b00503d3bfd373eb180b278f137408d534e56a5",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769765491 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769765491 +0300",
+      "subject": "fix django-tasks pin"
+    },
+    {
+      "old_sha": "1dc3b65da9ef6aa9bcbacfccb9484baf4cbf5e8e",
+      "new_sha": "1dc3b65da9ef6aa9bcbacfccb9484baf4cbf5e8e",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769768226 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769768226 +0300",
+      "subject": "build image for tilt"
+    },
+    {
+      "old_sha": "df0862885a02c4ddd4b00ad5412fce2845a3ab1d",
+      "new_sha": "df0862885a02c4ddd4b00ad5412fce2845a3ab1d",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769866316 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769866316 +0300",
+      "subject": "tilt that worked with live update"
+    },
+    {
+      "old_sha": "9973921780553b68d3629fd5ec9a53ea681b4ba8",
+      "new_sha": "9973921780553b68d3629fd5ec9a53ea681b4ba8",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769876604 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769876604 +0300",
+      "subject": "add textcat_custom_model.py from explosion/prodigy-recipes #428bccb"
+    },
+    {
+      "old_sha": "614ceb09109e0078ebabd7727da6b57e2a3773a5",
+      "new_sha": "614ceb09109e0078ebabd7727da6b57e2a3773a5",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769877595 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769877595 +0300",
+      "subject": "create workspace and add prodigy recipe project"
+    },
+    {
+      "old_sha": "cfde10af58771f6e2d0f99d3bac369955ad80b86",
+      "new_sha": "cfde10af58771f6e2d0f99d3bac369955ad80b86",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769879542 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769879542 +0300",
+      "subject": "create prodigy tables on app ready"
+    },
+    {
+      "old_sha": "dd22321e356b91e1df48325be0e57c38d03ae79b",
+      "new_sha": "dd22321e356b91e1df48325be0e57c38d03ae79b",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769921768 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769921768 +0300",
+      "subject": "how to use django + jupyter"
+    },
+    {
+      "old_sha": "709c5901e16178eb62bac752008de93d295705f7",
+      "new_sha": "709c5901e16178eb62bac752008de93d295705f7",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769923607 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769923607 +0300",
+      "subject": "minimal Kedro project"
+    },
+    {
+      "old_sha": "51d00e3b5df4ada446a43dc2397ad908ed1a3f92",
+      "new_sha": "51d00e3b5df4ada446a43dc2397ad908ed1a3f92",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769929454 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769929454 +0300",
+      "subject": "add convert/ingest pipelines to load data to postgres"
+    },
+    {
+      "old_sha": "511f00280a47b7feff83c2d34497895d8d8f9278",
+      "new_sha": "511f00280a47b7feff83c2d34497895d8d8f9278",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769932114 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769932114 +0300",
+      "subject": "add example of load_examples pipeline to load jsonl from database for prodigy"
+    },
+    {
+      "old_sha": "ea2a8f9f8fa2c2e9af32e7b618b91cdad282ff94",
+      "new_sha": "ea2a8f9f8fa2c2e9af32e7b618b91cdad282ff94",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769940554 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769940554 +0300",
+      "subject": "use ingress instead of tilt port_forwards"
+    },
+    {
+      "old_sha": "fe694477f08b4ed67af82d948735e892b129f139",
+      "new_sha": "fe694477f08b4ed67af82d948735e892b129f139",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769945932 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769945932 +0300",
+      "subject": "copy prodigy-deployment-svc.yaml.jinja from stertell/all-in-one #4d627d2"
+    },
+    {
+      "old_sha": "deda212bf07bd9f76a89d83e5d6ee6236e135f8f",
+      "new_sha": "deda212bf07bd9f76a89d83e5d6ee6236e135f8f",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769945946 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769945946 +0300",
+      "subject": "indent"
+    },
+    {
+      "old_sha": "f3b9778509102a28b08fe376bc5943a315deb3b5",
+      "new_sha": "f3b9778509102a28b08fe376bc5943a315deb3b5",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769945982 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769945982 +0300",
+      "subject": "remove ns"
+    },
+    {
+      "old_sha": "daf705ce8784b3b5c23dc6bd36edf366aa993697",
+      "new_sha": "daf705ce8784b3b5c23dc6bd36edf366aa993697",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769951525 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769951525 +0300",
+      "subject": "prodigy.yaml that worked on k3d at root /"
+    },
+    {
+      "old_sha": "8bc2f9749938a2c77a71a2fa6655c75127457ba9",
+      "new_sha": "8bc2f9749938a2c77a71a2fa6655c75127457ba9",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769952306 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769952306 +0300",
+      "subject": "tilt k8s_resource/port_forwards that worked"
+    },
+    {
+      "old_sha": "b7994c1950dcfbd58f443d31e6a9c78bb8d05475",
+      "new_sha": "b7994c1950dcfbd58f443d31e6a9c78bb8d05475",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769953155 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769953155 +0300",
+      "subject": "hardcode tilt image to prodigy.yaml that worked"
+    },
+    {
+      "old_sha": "7a6bc9773d21de711e10f9c480a6e822ee62adaa",
+      "new_sha": "7a6bc9773d21de711e10f9c480a6e822ee62adaa",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769956916 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769956916 +0300",
+      "subject": "move example to separate uv workspace"
+    },
+    {
+      "old_sha": "b3b58c90ee513a5aed45bf3f1214921ac78f6204",
+      "new_sha": "b3b58c90ee513a5aed45bf3f1214921ac78f6204",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769957687 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769957687 +0300",
+      "subject": "move prodigy yalm"
+    },
+    {
+      "old_sha": "7edd40e2206b390484f083ce5b33ff7e81159cac",
+      "new_sha": "7edd40e2206b390484f083ce5b33ff7e81159cac",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769962197 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769962197 +0300",
+      "subject": "creating /updating prodigy deployment that worked"
+    },
+    {
+      "old_sha": "f30dd7a46f8d5b99675cf8aefb1fc820e2c0298e",
+      "new_sha": "f30dd7a46f8d5b99675cf8aefb1fc820e2c0298e",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769963168 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769963168 +0300",
+      "subject": "add notebooks to example"
+    },
+    {
+      "old_sha": "7b9bdb8bd9b9fbc9096f8db94a4c2a9cd8ad956f",
+      "new_sha": "7b9bdb8bd9b9fbc9096f8db94a4c2a9cd8ad956f",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769972296 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769972296 +0300",
+      "subject": "add delete dataset"
+    },
+    {
+      "old_sha": "2bd60ea36f9843d6fd1777683c26dde6d58921dd",
+      "new_sha": "2bd60ea36f9843d6fd1777683c26dde6d58921dd",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1769973434 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1769973434 +0300",
+      "subject": "deploy prodigy on label button"
+    },
+    {
+      "old_sha": "d48d3e2962e840da1f906ec50d3eec896ce8016d",
+      "new_sha": "d48d3e2962e840da1f906ec50d3eec896ce8016d",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770052157 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770052157 +0300",
+      "subject": "add DjangoModel"
+    },
+    {
+      "old_sha": "6a4d165248575e22c71c4e7342092366dc30bbcd",
+      "new_sha": "6a4d165248575e22c71c4e7342092366dc30bbcd",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770053806 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770053806 +0300",
+      "subject": "add train model view"
+    },
+    {
+      "old_sha": "d75886715cdda57c8746b4ac237ca3add7368af2",
+      "new_sha": "d75886715cdda57c8746b4ac237ca3add7368af2",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770054269 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770054269 +0300",
+      "subject": "add delete model"
+    },
+    {
+      "old_sha": "9065235a41563acfe5f28eb4bb5d957a3926512d",
+      "new_sha": "9065235a41563acfe5f28eb4bb5d957a3926512d",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770131757 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770131757 +0300",
+      "subject": "rename"
+    },
+    {
+      "old_sha": "8c7011d86e1d320cb7fc8e633900f9e4c6e22270",
+      "new_sha": "8c7011d86e1d320cb7fc8e633900f9e4c6e22270",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770133677 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770133677 +0300",
+      "subject": "how to docker build private uv dependency"
+    },
+    {
+      "old_sha": "39b9d9f86d66085a8ecd1ba02d129a3111d516e5",
+      "new_sha": "39b9d9f86d66085a8ecd1ba02d129a3111d516e5",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770136738 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770136738 +0300",
+      "subject": "add Prodigy running for dataset"
+    },
+    {
+      "old_sha": "b98cf950a707aa395bde7b386a528971499aea01",
+      "new_sha": "b98cf950a707aa395bde7b386a528971499aea01",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770150435 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770150435 +0300",
+      "subject": "add labelled_examples/jsonl_to_fasttext to train pipeline"
+    },
+    {
+      "old_sha": "58f23681afa4e125e3b061ea942494bda4a14480",
+      "new_sha": "58f23681afa4e125e3b061ea942494bda4a14480",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770152625 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770152625 +0300",
+      "subject": "add train node"
+    },
+    {
+      "old_sha": "77c7a1af86339dbcc14d342674af084e478e163a",
+      "new_sha": "77c7a1af86339dbcc14d342674af084e478e163a",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770153575 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770153584 +0300",
+      "subject": "add predict notebook which would be serve server -a"
+    },
+    {
+      "old_sha": "6536a0985db7ef9e0e30b1bcac8d675ee9662575",
+      "new_sha": "6536a0985db7ef9e0e30b1bcac8d675ee9662575",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770218557 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770218557 +0300",
+      "subject": "dummy /predict server"
+    },
+    {
+      "old_sha": "19ec10ae0b31393fd7ba79dddbab1954f262d3bf",
+      "new_sha": "19ec10ae0b31393fd7ba79dddbab1954f262d3bf",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770221254 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770221254 +0300",
+      "subject": "add checkpoint"
+    },
+    {
+      "old_sha": "e906db29124219a15e39f83b7928fff340ffd395",
+      "new_sha": "e906db29124219a15e39f83b7928fff340ffd395",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770235045 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770235045 +0300",
+      "subject": "move predict out of workspace"
+    },
+    {
+      "old_sha": "046701889d91e5437e0a6c874bbfa6ae2a4892d6",
+      "new_sha": "046701889d91e5437e0a6c874bbfa6ae2a4892d6",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770235365 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770235365 +0300",
+      "subject": "namespace predict under ysz."
+    },
+    {
+      "old_sha": "6dfc6f2d664905d36fe8c5896b05f2d96de711df",
+      "new_sha": "6dfc6f2d664905d36fe8c5896b05f2d96de711df",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770237226 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770237226 +0300",
+      "subject": "how to use entry-points for preprocessing plugins"
+    },
+    {
+      "old_sha": "c7815edea599088456f00e87e024858ce1416384",
+      "new_sha": "c7815edea599088456f00e87e024858ce1416384",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770237745 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770237745 +0300",
+      "subject": "serve that works with checkpoints and preprocessing plugins from command line"
+    },
+    {
+      "old_sha": "559ce37eda337983bf91da1b12232953d8c97adb",
+      "new_sha": "559ce37eda337983bf91da1b12232953d8c97adb",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770238118 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770238118 +0300",
+      "subject": "allow python -m ysz.predict"
+    },
+    {
+      "old_sha": "b606196c5af1bb32c77fab7d73183ebe59615f47",
+      "new_sha": "b606196c5af1bb32c77fab7d73183ebe59615f47",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770238174 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770238174 +0300",
+      "subject": "fix README.md"
+    },
+    {
+      "old_sha": "7268418015b4f68fef4bf731c4dcc791f8c16b7e",
+      "new_sha": "7268418015b4f68fef4bf731c4dcc791f8c16b7e",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770238549 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770238549 +0300",
+      "subject": "update README.md"
+    },
+    {
+      "old_sha": "96c24d856719e59217a080f2dcfa4919858db8f8",
+      "new_sha": "96c24d856719e59217a080f2dcfa4919858db8f8",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770243047 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770243047 +0300",
+      "subject": "update .md"
+    },
+    {
+      "old_sha": "0ecbb6d9eeaf70c5c9a6b52942fe7a51fa36f395",
+      "new_sha": "0ecbb6d9eeaf70c5c9a6b52942fe7a51fa36f395",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770247937 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770247937 +0300",
+      "subject": "move Dockerfile-example"
+    },
+    {
+      "old_sha": "516f8ab6723e30e0a68f955e0ad8ada68be3bde2",
+      "new_sha": "516f8ab6723e30e0a68f955e0ad8ada68be3bde2",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770249281 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770249281 +0300",
+      "subject": "rename python project to kedrogy"
+    },
+    {
+      "old_sha": "8bc6d38ccd2c15136d09455c02ce06469394e765",
+      "new_sha": "8bc6d38ccd2c15136d09455c02ce06469394e765",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author iakov zaitcev <admin@tradeideas.net> 1770282974 +0300",
+      "committer": "committer iakov zaitcev <admin@tradeideas.net> 1770282974 +0300",
+      "subject": "add to TODO"
+    },
+    {
+      "old_sha": "4f288688cdb0f2919848042669488201a906c35f",
+      "new_sha": "4f288688cdb0f2919848042669488201a906c35f",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770308698 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770308698 +0300",
+      "subject": "how to return plain html on done to htmx"
+    },
+    {
+      "old_sha": "e7b0154d10d17a001a4a56444a289892d7be53a4",
+      "new_sha": "e7b0154d10d17a001a4a56444a289892d7be53a4",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770381076 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770381076 +0300",
+      "subject": "update TODO.md"
+    },
+    {
+      "old_sha": "e4510a3f035b87d9538631d42ab3b5cc48b7a3aa",
+      "new_sha": "e4510a3f035b87d9538631d42ab3b5cc48b7a3aa",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author iakov zaitcev <admin@tradeideas.net> 1770396108 +0300",
+      "committer": "committer iakov zaitcev <admin@tradeideas.net> 1770396108 +0300",
+      "subject": "how to replace styles in templates"
+    },
+    {
+      "old_sha": "f41b6588a2173c6c7f3edb81dd5320a38f7a2907",
+      "new_sha": "f41b6588a2173c6c7f3edb81dd5320a38f7a2907",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author iakov zaitcev <admin@tradeideas.net> 1770398191 +0300",
+      "committer": "committer iakov zaitcev <admin@tradeideas.net> 1770398191 +0300",
+      "subject": "more styles examples"
+    },
+    {
+      "old_sha": "e433aeecf09d5a2ee6e279d3aa076b9d8994ae15",
+      "new_sha": "e433aeecf09d5a2ee6e279d3aa076b9d8994ae15",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author iakov zaitcev <admin@tradeideas.net> 1770408943 +0300",
+      "committer": "committer iakov zaitcev <admin@tradeideas.net> 1770408943 +0300",
+      "subject": "commit prodigy bundle unminified"
+    },
+    {
+      "old_sha": "8361cc7741d62e792586cb5565851f59ff11731c",
+      "new_sha": "8361cc7741d62e792586cb5565851f59ff11731c",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author iakov zaitcev <admin@tradeideas.net> 1770409603 +0300",
+      "committer": "committer iakov zaitcev <admin@tradeideas.net> 1770409603 +0300",
+      "subject": "how to replace bundle in venv"
+    },
+    {
+      "old_sha": "519f16b9617bfac68b46b32fe0c492ed60016b3c",
+      "new_sha": "519f16b9617bfac68b46b32fe0c492ed60016b3c",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author iakov zaitcev <admin@tradeideas.net> 1770414500 +0300",
+      "committer": "committer iakov zaitcev <admin@tradeideas.net> 1770414500 +0300",
+      "subject": "fix kedro data/ ignore"
+    },
+    {
+      "old_sha": "0092d134eed0fa457bea12017b44cfaa2e323356",
+      "new_sha": "0092d134eed0fa457bea12017b44cfaa2e323356",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author iakov zaitcev <admin@tradeideas.net> 1770418432 +0300",
+      "committer": "committer iakov zaitcev <admin@tradeideas.net> 1770418432 +0300",
+      "subject": "train/serve that worked"
+    },
+    {
+      "old_sha": "4497025616dcc5f32504ea3ddb2bf645d2dda69e",
+      "new_sha": "4497025616dcc5f32504ea3ddb2bf645d2dda69e",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author iakov zaitcev <admin@tradeideas.net> 1770478838 +0300",
+      "committer": "committer iakov zaitcev <admin@tradeideas.net> 1770478838 +0300",
+      "subject": "output train jobs to view"
+    },
+    {
+      "old_sha": "1eaceca452b58777fe0d5f8fa54c6568dcd94440",
+      "new_sha": "1eaceca452b58777fe0d5f8fa54c6568dcd94440",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author iakov zaitcev <admin@tradeideas.net> 1770479399 +0300",
+      "committer": "committer iakov zaitcev <admin@tradeideas.net> 1770479399 +0300",
+      "subject": "add trained to DjangoModel and use it"
+    },
+    {
+      "old_sha": "a41fde957228112ea36e95f535580bd13bb2116c",
+      "new_sha": "a41fde957228112ea36e95f535580bd13bb2116c",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author iakov zaitcev <admin@tradeideas.net> 1770490668 +0300",
+      "committer": "committer iakov zaitcev <admin@tradeideas.net> 1770490668 +0300",
+      "subject": "add delete and predict"
+    },
+    {
+      "old_sha": "559b8f44921abc9073f37052c736a307c977c9e1",
+      "new_sha": "559b8f44921abc9073f37052c736a307c977c9e1",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author iakov zaitcev <admin@tradeideas.net> 1770494690 +0300",
+      "committer": "committer iakov zaitcev <admin@tradeideas.net> 1770494690 +0300",
+      "subject": "add github action to publish to pypi.ysz.vc"
+    },
+    {
+      "old_sha": "e447575bf39563f45dfd92bd6562fa5457fff3b6",
+      "new_sha": "e447575bf39563f45dfd92bd6562fa5457fff3b6",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770584222 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770584222 +0300",
+      "subject": "fix MANIFEST"
+    },
+    {
+      "old_sha": "841ac4c97682143b97f1e86c7eeb98e0e56a8122",
+      "new_sha": "841ac4c97682143b97f1e86c7eeb98e0e56a8122",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770584518 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770584518 +0300",
+      "subject": "force prodigy to use PG* env vars on init of prodigy tables"
+    },
+    {
+      "old_sha": "bd70e997afe11ebc7ae7e2e076dbae802bd42cac",
+      "new_sha": "bd70e997afe11ebc7ae7e2e076dbae802bd42cac",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770584782 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770584782 +0300",
+      "subject": "try fix prodigy connect db_settings"
+    },
+    {
+      "old_sha": "d96a669812f5285b91a0b2511b7fa77570726068",
+      "new_sha": "d96a669812f5285b91a0b2511b7fa77570726068",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770586207 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770586207 +0300",
+      "subject": "build/publish predict"
+    },
+    {
+      "old_sha": "1eb96eac7e62f0d651f7685ba87450182ebb7889",
+      "new_sha": "1eb96eac7e62f0d651f7685ba87450182ebb7889",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770586392 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770586392 +0300",
+      "subject": "add missing .python-version"
+    },
+    {
+      "old_sha": "94ae4904784f2afc6f5e4af4ec0cb4684b8eb891",
+      "new_sha": "94ae4904784f2afc6f5e4af4ec0cb4684b8eb891",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770592341 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770592341 +0300",
+      "subject": "rename to ysz-predict"
+    },
+    {
+      "old_sha": "b1e8b4edd0b72dbf40e749ed1a19f429e32e6c54",
+      "new_sha": "b1e8b4edd0b72dbf40e749ed1a19f429e32e6c54",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770666138 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770666167 +0300",
+      "subject": "remove recipe in favour of recipe_options only for any prodigy recipe"
+    },
+    {
+      "old_sha": "845fa6fc53854f396381a994fa9187ee7e42ea39",
+      "new_sha": "845fa6fc53854f396381a994fa9187ee7e42ea39",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770671538 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770671812 +0300",
+      "subject": "add data_table_name, id_field , and a_preprocess_fun"
+    },
+    {
+      "old_sha": "3575129dcfff4a497bee8c9c7f22e147008d75ae",
+      "new_sha": "3575129dcfff4a497bee8c9c7f22e147008d75ae",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1770674535 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1770674555 +0300",
+      "subject": "fix bug mountPath"
+    },
+    {
+      "old_sha": "b6ac33677c55cc6c694e6838bad1c619f0fbee3b",
+      "new_sha": "7768424ab3a8306a77e164cb4777db5c757b6ea8",
+      "author_changed": true,
+      "committer_changed": false,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1771510693 +0300",
+      "committer": "committer team-ysz <team@ysz.vc> 1771511933 +0300",
+      "subject": "kedro translations"
+    },
+    {
+      "old_sha": "0beb254357858524113aad720e7a54cfa48b6bf6",
+      "new_sha": "8ac379ae3da0c0f5f575fa15c527b031928b43f2",
+      "author_changed": true,
+      "committer_changed": false,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1771511853 +0300",
+      "committer": "committer team-ysz <team@ysz.vc> 1771511933 +0300",
+      "subject": "translations fixed"
+    },
+    {
+      "old_sha": "59b3a1fbf728eb6fffdfee30d770b057a4203707",
+      "new_sha": "72dcd7d971a092afcb0490655e04808b12a94a83",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author Iakov Zaitcev <yakov@greatquarter.com> 1771514846 +0300",
+      "committer": "committer Iakov Zaitcev <yakov@greatquarter.com> 1771514846 +0300",
+      "subject": "add djlint"
+    },
+    {
+      "old_sha": "a2256cc1f008a5b5e2a37c5d5b50aa125df4039e",
+      "new_sha": "db1677092ad7e50379c29d01833f444d0f8fb619",
+      "author_changed": true,
+      "committer_changed": false,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1772029904 +0300",
+      "committer": "committer team-ysz <team@ysz.vc> 1772029981 +0300",
+      "subject": "translations done fixes #3"
+    },
+    {
+      "old_sha": "d208914f3b922d1ade8a454fc98edf20080b0710",
+      "new_sha": "ed73cacdf52c2baf3a03cd745ce8d1c2948fe186",
+      "author_changed": true,
+      "committer_changed": false,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1771705773 +0300",
+      "committer": "committer team-ysz <team@ysz.vc> 1772032986 +0300",
+      "subject": "daisy ui added"
+    },
+    {
+      "old_sha": "663a4d5eca432b62692455ede77f0ef6be2bd942",
+      "new_sha": "772c6ec5dd15ea269c370b9c4318e989db7ac459",
+      "author_changed": true,
+      "committer_changed": false,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1771785050 +0300",
+      "committer": "committer team-ysz <team@ysz.vc> 1772032986 +0300",
+      "subject": "button added"
+    },
+    {
+      "old_sha": "ce9dddc5e58249876dacef3452d9cf750ac7cb2d",
+      "new_sha": "2bf0c4fd884464422676ff6d42716378ed3f5fc6",
+      "author_changed": true,
+      "committer_changed": false,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1772032935 +0300",
+      "committer": "committer team-ysz <team@ysz.vc> 1772032986 +0300",
+      "subject": "index.html fixed"
+    },
+    {
+      "old_sha": "23f3b684eaba564d89a833af3757b50ab7736eac",
+      "new_sha": "9c09d0e78c6a3f31dc840f3942bd47fa31ae26c7",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1772392839 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1772392839 +0300",
+      "subject": "0.2.0 release"
+    },
+    {
+      "old_sha": "880005e728c49afce9f7e5f692f524e5f024ed01",
+      "new_sha": "173084825b7f85aad191a8535e3d9e93b6d36c52",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1772394176 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1772394176 +0300",
+      "subject": "fix daisyUI install/load static"
+    },
+    {
+      "old_sha": "8970143c60182226ca02cef196aec6f1b53cae45",
+      "new_sha": "697a1b9a7f8664e67755582413b31e1e35d3633c",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1772394944 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1772394944 +0300",
+      "subject": "bugfix v0.2.1"
+    },
+    {
+      "old_sha": "17cb17525ad5953021fb5b211bf43fea1fd1a453",
+      "new_sha": "cb06eef3ff9a0d1f7dd3773fc0265fe3c1504d11",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author team ysz <team@ysz.vc> 1772395276 +0300",
+      "committer": "committer team ysz <team@ysz.vc> 1772395299 +0300",
+      "subject": "fix daisyUI install more"
+    },
+    {
+      "old_sha": "72a370550c07598cef2e3f02a31cd372f7a287bc",
+      "new_sha": "67fe13b4c2640d1a8db5f902f5bf4e581289ec4e",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author Iakov Zaitcev <yakov@greatquarter.com> 1773481229 +0300",
+      "committer": "committer Iakov Zaitcev <yakov@greatquarter.com> 1773481229 +0300",
+      "subject": "remove workspace"
+    },
+    {
+      "old_sha": "9e66046e8084986c10b8fb49e32bd145631c006a",
+      "new_sha": "1ef7a91458dd27e9c5f6cb6a6fe5220aba416254",
+      "author_changed": false,
+      "committer_changed": false,
+      "author": "author Iakov Zaitcev <yakov@greatquarter.com> 1773483251 +0300",
+      "committer": "committer Iakov Zaitcev <yakov@greatquarter.com> 1773483251 +0300",
+      "subject": "add missing django-extensions"
+    },
+    {
+      "old_sha": "bf68935ca8b581125b18bc4932e8f14571fe6693",
+      "new_sha": "5658ffcd026aa409f758580ded149c81037a00f4",
+      "author_changed": true,
+      "committer_changed": true,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1772569133 +0300",
+      "committer": "committer millafedotova <fedotovamilla@gmail.com> 1773483357 +0300",
+      "subject": "fixed #8"
+    },
+    {
+      "old_sha": "65b486b7e417d51c95dbdf4d74fd1f8e669f4ff3",
+      "new_sha": "9fb70ef2cf252e72d3982a798bdb49d9e133522f",
+      "author_changed": true,
+      "committer_changed": true,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1772746699 +0300",
+      "committer": "committer millafedotova <fedotovamilla@gmail.com> 1773483357 +0300",
+      "subject": "datasets field fixed"
+    },
+    {
+      "old_sha": "3364db9c64027f6ad8e7400cce9fad673ad35d68",
+      "new_sha": "1c9b1a4f90b40b0282b69e84560f0682e7c4edc1",
+      "author_changed": true,
+      "committer_changed": true,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1773352332 +0300",
+      "committer": "committer millafedotova <fedotovamilla@gmail.com> 1773483357 +0300",
+      "subject": "daisy ui fixed & added"
+    },
+    {
+      "old_sha": "6462ff0ce36c28f4cf2523d965c0567676f701ed",
+      "new_sha": "eeb84df90d5692f54c337d3b0e7c1589cc98088c",
+      "author_changed": true,
+      "committer_changed": true,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1773485145 +0300",
+      "committer": "committer millafedotova <fedotovamilla@gmail.com> 1773485145 +0300",
+      "subject": "fixed ui"
+    },
+    {
+      "old_sha": "eedad702b20f1d225415aeb561b5cb7cd07122be",
+      "new_sha": "62ee222b9d508ae883d5f1f31c9f7451dd249ff7",
+      "author_changed": true,
+      "committer_changed": true,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1772036116 +0300",
+      "committer": "committer millafedotova <fedotovamilla@gmail.com> 1772036116 +0300",
+      "subject": "base for spa created"
+    },
+    {
+      "old_sha": "1920725c7ea80cf2f60acd94d92ae4e08790b8fe",
+      "new_sha": "7a87301e7d1d3d96cfbc60ff910fc2c78f8501dd",
+      "author_changed": true,
+      "committer_changed": true,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1772037048 +0300",
+      "committer": "committer millafedotova <fedotovamilla@gmail.com> 1772037048 +0300",
+      "subject": "daisyui and tailwind added"
+    },
+    {
+      "old_sha": "f8f3a00f2a8967f6c915759e2d02af5a1a4af279",
+      "new_sha": "d9beefe6f45dcef6fa0583ec339d5e1be6ca127f",
+      "author_changed": true,
+      "committer_changed": true,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1772465976 +0300",
+      "committer": "committer millafedotova <fedotovamilla@gmail.com> 1772465976 +0300",
+      "subject": "app pages added"
+    },
+    {
+      "old_sha": "54d52307ac19470b6146ea53a9574e568376d57d",
+      "new_sha": "2aa96fdcb82aded54b202cf92463302ef5651553",
+      "author_changed": true,
+      "committer_changed": true,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1773687484 +0300",
+      "committer": "committer millafedotova <fedotovamilla@gmail.com> 1773687484 +0300",
+      "subject": "rest api added with claude"
+    },
+    {
+      "old_sha": "e8e1481ca681296fc0dd5654e9a957094ff02ef2",
+      "new_sha": "5939285b2bab702d9cb12c86d1a0128ee243add7",
+      "author_changed": true,
+      "committer_changed": true,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1774726486 +0300",
+      "committer": "committer millafedotova <fedotovamilla@gmail.com> 1774726486 +0300",
+      "subject": "backend added"
+    },
+    {
+      "old_sha": "9422cdc43aaa18f2089be0cd2cec354a524f2e0f",
+      "new_sha": "e9e4edc9fd362e1b07162b42fdbd6b05e4cf54eb",
+      "author_changed": true,
+      "committer_changed": true,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1776537631 +0200",
+      "committer": "committer millafedotova <fedotovamilla@gmail.com> 1776537631 +0200",
+      "subject": "Add DaisyUI components matching Figma, wire API to Django backend"
+    },
+    {
+      "old_sha": "c43cbf6f1ba38dc1ee0c458e1c17e57ea8f3a0d0",
+      "new_sha": "491e7f9a4ba6b9929cfeca2802a9d756e1c0a0cd",
+      "author_changed": true,
+      "committer_changed": true,
+      "author": "author millafedotova <fedotovamilla@gmail.com> 1776537682 +0200",
+      "committer": "committer millafedotova <fedotovamilla@gmail.com> 1776537682 +0200",
+      "subject": "Add Django REST API for React SPA integration"
+    }
+  ]
+}
