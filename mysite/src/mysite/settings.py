@@ -44,11 +44,14 @@ INSTALLED_APPS = [
     "django_tasks.backends.database",
     # for notebooks
     "django_extensions",
+    "rest_framework",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -157,3 +160,20 @@ TASKS = {
 
 # XXX https://docs.djangoproject.com/en/6.0/howto/static-files/ and https://stackoverflow.com/a/78760859 and
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+# CORS
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+]
+CORS_ALLOW_CREDENTIALS = True
+
+# DRF
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+}
