@@ -14,3 +14,4 @@ pvc-model-*.yaml
 serve-*.yaml
 *.dump
 *.bundle
+/reports/github-migration-*/
