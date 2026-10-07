@@ -40,6 +40,6 @@ test_perfect_small_validation_still_requires_review (test_training_quality.Train
 test_split_deduplicates_text_and_keeps_classes_in_both_partitions (test_training_quality.TrainingQualityTests.test_split_deduplicates_text_and_keeps_classes_in_both_partitions) ... ok
 
 ----------------------------------------------------------------------
-Ran 40 tests in 0.434s
+Ran 40 tests in 0.367s
 
 OK

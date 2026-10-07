@@ -26,13 +26,18 @@ function ModelDetailPage() {
   const predictionRequest = useRef(createLatestRequest());
   const predictionContext = JSON.stringify([modelId, model?.id, model?.serving.id,
     model?.serving.training_run_id, model?.serving.status, !!healthError]);
+  const [previousPredictionContext, setPreviousPredictionContext] = useState(predictionContext);
+
+  if (previousPredictionContext !== predictionContext) {
+    setPreviousPredictionContext(predictionContext);
+    setPrediction(null);
+    setPredictionError("");
+    setPredicting(false);
+  }
 
   useEffect(() => {
     const requests = predictionRequest.current;
     requests.cancel();
-    setPrediction(null);
-    setPredictionError("");
-    setPredicting(false);
     return () => requests.cancel();
   }, [predictionContext]);
 

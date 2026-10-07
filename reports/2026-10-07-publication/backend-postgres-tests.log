@@ -98,10 +98,10 @@ Traceback (most recent call last):
   File "/Users/millafedotova/work/kedrogy-code/mysite/.venv/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
     return func(*args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/millafedotova/work/kedrogy-code/kedrogy/src/kedrogy/api_views.py", line 202, in task_status
+  File "/private/tmp/kedrogy-pr-integration-20261007/kedrogy/src/kedrogy/api_views.py", line 202, in task_status
     return Response(retrieve(task_func, result_id))
                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/millafedotova/work/kedrogy-code/kedrogy/src/kedrogy/task_results.py", line 28, in retrieve
+  File "/private/tmp/kedrogy-pr-integration-20261007/kedrogy/src/kedrogy/task_results.py", line 28, in retrieve
     return present(task.get_result(result_id))
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/millafedotova/.pyenv/versions/3.12.13/lib/python3.12/unittest/mock.py", line 1139, in __call__
@@ -117,7 +117,7 @@ RuntimeError: private-internal-path
 Not Found: /api/unknown/
 ............
 ----------------------------------------------------------------------
-Ran 128 tests in 1.997s
+Ran 128 tests in 1.993s
 
 OK
 Destroying test database for alias 'default'...

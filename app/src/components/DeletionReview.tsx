@@ -7,7 +7,13 @@ import { parseDeletionPreview, type DeletionPreview } from "../api/operations";
 import { isRecord, responseError } from "../api/tasks";
 import { LegacyCleanupReview } from "./LegacyCleanupReview";
 
-export function DeletionReview({ target, id, action }: { target: "models" | "datasets"; id: string; action: "model" | "model_files" | "dataset" | "annotations" }) {
+type DeletionReviewProps = { target: "models" | "datasets"; id: string; action: "model" | "model_files" | "dataset" | "annotations" };
+
+export function DeletionReview(props: DeletionReviewProps) {
+  return <DeletionReviewContent key={`${props.target}:${props.id}:${props.action}`} {...props} />;
+}
+
+function DeletionReviewContent({ target, id, action }: DeletionReviewProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [plan, setPlan] = useState<DeletionPreview | null>(null);
@@ -18,7 +24,6 @@ export function DeletionReview({ target, id, action }: { target: "models" | "dat
   const key = useRef(crypto.randomUUID());
   useEffect(() => {
     const controller = new AbortController();
-    setPlan(null);
     const path = action === "annotations" ? "retained_annotations/" : `deletion_preview/?action=${action}`;
     void fetch(`${API}/api/${target}/${id}/${path}`, { signal: AbortSignal.any([controller.signal, AbortSignal.timeout(15000)]) })
       .then(async r => { if (!r.ok) throw new Error(await responseError(r)); return parseDeletionPreview(await r.json()); })
@@ -26,6 +31,11 @@ export function DeletionReview({ target, id, action }: { target: "models" | "dat
       .catch((e: unknown) => { if (!controller.signal.aborted) setError(e instanceof Error ? e.message : "Could not load cleanup preview."); });
     return () => controller.abort();
   }, [target, id, action, revision]);
+  function refreshPreview() {
+    setPlan(null);
+    setError("");
+    setRevision(value => value + 1);
+  }
   async function submit() {
     if (!plan || busy) return;
     setBusy(true); setError("");
@@ -55,9 +65,9 @@ export function DeletionReview({ target, id, action }: { target: "models" | "dat
       {plan.issues.length > 0 && <p className="font-semibold">{t("deletionBlocked")}</p>}
       {plan.issues.map(issue => <p role="alert" key={issue}>{messageText(issue, t)}</p>)}
       {plan.issues.length > 0 && plan.legacy_review_model_ids.map(modelId => <LegacyCleanupReview key={modelId} modelId={modelId}
-        onRecorded={() => { setRecordedModelId(modelId); setRevision(value => value + 1); }} />)}
+        onRecorded={() => { setRecordedModelId(modelId); refreshPreview(); }} />)}
       <button className="btn btn-error" disabled={busy || plan.issues.length > 0} onClick={() => void submit()}>{t(busy ? "submitting" : "confirmCleanup")}</button>
     </>}
-    <div className="flex gap-3"><button className="btn" disabled={busy} onClick={() => setRevision(v => v + 1)}>{t("refreshPreview")}</button><Link to="/" className="btn">{t("cancel")}</Link></div>
+    <div className="flex gap-3"><button className="btn" disabled={busy} onClick={refreshPreview}>{t("refreshPreview")}</button><Link to="/" className="btn">{t("cancel")}</Link></div>
   </main>;
 }

@@ -31,10 +31,10 @@ The complete current total is 194 successful tests. PostgreSQL used a dedicated 
 
 One regression fixture needed adjustment: the catalog round-trip/split test previously supplied identical text with conflicting labels. The current training splitter correctly rejects those inputs. That test now supplies distinct texts and still checks class representation in both partitions and disjoint row indices. The annotation identity tests continue to retain their original identical-text fixtures.
 
-ESLint remains an unavailable gate: npm run lint fails because app/eslint.config.js/mjs/cjs is missing. This publication does not claim lint success or a new live Kubernetes/browser acceptance run.
+The subsequent branch integration restored the SPA's ESLint configuration and now passes npm run lint. Two React state-reset patterns were corrected while retaining request cancellation and context-bound prediction results. Tailwind/DaisyUI CSS is bundled locally instead of loaded from a CDN. The combined branch result also passes all 194 tests, migration consistency and the production build; it does not claim a new live Kubernetes/browser acceptance run.
 
 ## Recovery artifacts
 
-The original migration bundle is retained locally and excluded through the *.bundle ignore rule. Private environments, credentials, generated builds and virtual environments remain ignored. The commit includes the migration report/mapping and project evidence, but does not embed a duplicate Git-history bundle.
+The migration report, mappings and original-history bundle remain local recovery artifacts and are excluded from the final PR. Private environments, credentials, generated builds and virtual environments remain ignored. Project implementation and test evidence is included.
 
 The archived migration report describes the migration-time state. This publication report records the subsequent commit/PR preparation and current verification.
